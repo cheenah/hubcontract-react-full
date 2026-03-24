@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">HubContract</string>
+    <string name="title_activity_main">HubContract</string>
+    <string name="package_name">kz.hubcontract.app</string>
+    <string name="custom_url_scheme">kz.hubcontract.app</string>
+</resources>
