@@ -468,7 +468,7 @@ const LandingPage = () => {
                       <div className="tender-info-row">
                         <div className="tender-budget-highlight">
                           <Banknote size={16} />
-                          <span>{tender.budget.toLocaleString()} ₸</span>
+                          <span>{tender.budget?.toLocaleString() ?? ''} ₸</span>
                         </div>
                         <div className="tender-location">
                           <MapPin size={14} />
