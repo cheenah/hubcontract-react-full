@@ -49,8 +49,8 @@ import ForgotPassword from '@/pages/ForgotPassword';
 import ResetPassword from '@/pages/ResetPassword';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
-
+// const API = `${BACKEND_URL}/api`;
+const API = 'https://test-api.hubcontract.kz/api';
 // Axios interceptor
 axios.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
