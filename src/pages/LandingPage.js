@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -45,7 +46,8 @@ const LandingPage = () => {
     role: 'contractor',
     company_name: ''
   });
-
+console.log(API)
+console.log("Весь process.env:", process.env);
   // Load tenders on component mount
   useEffect(() => {
     fetchTenders();
@@ -117,6 +119,7 @@ const LandingPage = () => {
     setLoading(true);
     try {
       const response = await axios.post(`${API}/auth/login`, loginForm);
+      console.log(response)
       localStorage.setItem('token', response.data.token);
       setUser(response.data.user);
       setShowAuth(false); // Close modal dialog
@@ -396,7 +399,7 @@ const LandingPage = () => {
                 {/* Search Buttons */}
                 <div className="search-buttons">
                   <Button 
-                    onClick={() => navigate('/tenders')}
+                    onClick={() => navigate('tenders')}
                     className="search-btn-primary"
                     size="lg"
                   >
