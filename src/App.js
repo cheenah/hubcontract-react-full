@@ -47,9 +47,9 @@ import TermsOfUse from '@/pages/TermsOfUse';
 import Disclaimer from '@/pages/Disclaimer';
 import ForgotPassword from '@/pages/ForgotPassword';
 import ResetPassword from '@/pages/ResetPassword';
-
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-// const API = `${BACKEND_URL}/api`;
+// const BACKEND_URL = 'http://localhost:8000'
+const BACKEND_URL = 'https://test-api.hubcontract.kz/';
+// const API = `http://localhost:8000/api`;
 const API = 'https://test-api.hubcontract.kz/api';
 // Axios interceptor
 axios.interceptors.request.use((config) => {

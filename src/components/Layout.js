@@ -29,7 +29,7 @@ const Layout = ({ children }) => {
   // Fetch unread notifications count
   React.useEffect(() => {
     if (user) {
-      const API = process.env.REACT_APP_BACKEND_URL;
+      const API = 'https://test-api.hubcontract.kz';
       const token = localStorage.getItem('token');
       
       fetch(`${API}/api/notifications/unread-count`, {
