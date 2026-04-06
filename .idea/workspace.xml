@@ -59,9 +59,14 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "yarn",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "terminal",
     "ts.external.directory.path": "C:\\Program Files\\JetBrains\\PyCharm 2025.3.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mongo"
+    ]
   }
 }]]></component>
   <component name="SharedIndexes">
@@ -91,7 +96,7 @@
       <workItem from="1775287337571" duration="3989000" />
       <workItem from="1775388759912" duration="188000" />
       <workItem from="1775388972438" duration="7718000" />
-      <workItem from="1775478758704" duration="4676000" />
+      <workItem from="1775478758704" duration="8503000" />
     </task>
     <task id="LOCAL-00001" summary="Node.js modules versions [Fix]">
       <option name="closed" value="true" />

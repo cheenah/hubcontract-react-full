@@ -11,7 +11,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
-import { Calendar, MapPin, DollarSign, FileText, Banknote } from 'lucide-react';
+import { Calendar, MapPin, DollarSign, FileText, Banknote, Download } from 'lucide-react';
 
 const TenderDetail = () => {
   const { id } = useParams();
@@ -296,7 +296,6 @@ const TenderDetail = () => {
                 </div>
               </div>
             </div>
-
             <div className="description-section">
               <h3 className="subsection-title">{t('tenderDetail.description')}</h3>
               <p className="description-text">{tender.description}</p>
@@ -306,7 +305,31 @@ const TenderDetail = () => {
               <h3 className="subsection-title">{t('tenderDetail.technicalSpecs')}</h3>
               <p className="description-text">{tender.technical_specs}</p>
             </div>
-
+<div className="description-section">
+  <h3 className="subsection-title">Документы тендера</h3>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '8px' }}>
+    <a href="/documents/tz.pdf" download style={{ display:'flex', alignItems:'center', gap:'10px', padding:'10px 14px', border:'0.5px solid var(--color-border-secondary)', borderRadius:'8px', textDecoration:'none', color:'var(--color-text-primary)', background:'var(--color-background-secondary)', fontSize:'14px' }}>
+      <FileText size={16} style={{ color:'var(--color-text-secondary)', flexShrink:0 }} />
+      <span style={{ flex:1 }}>Техническое задание</span>
+      <Download size={15} style={{ color:'var(--color-text-secondary)', flexShrink:0 }} />
+    </a>
+    <a href="/documents/tender_announcement.pdf" download style={{ display:'flex', alignItems:'center', gap:'10px', padding:'10px 14px', border:'0.5px solid var(--color-border-secondary)', borderRadius:'8px', textDecoration:'none', color:'var(--color-text-primary)', background:'var(--color-background-secondary)', fontSize:'14px' }}>
+      <FileText size={16} style={{ color:'var(--color-text-secondary)', flexShrink:0 }} />
+      <span style={{ flex:1 }}>Объявление о тендере</span>
+      <Download size={15} style={{ color:'var(--color-text-secondary)', flexShrink:0 }} />
+    </a>
+    <a href="/documents/press.pdf" download style={{ display:'flex', alignItems:'center', gap:'10px', padding:'10px 14px', border:'0.5px solid var(--color-border-secondary)', borderRadius:'8px', textDecoration:'none', color:'var(--color-text-primary)', background:'var(--color-background-secondary)', fontSize:'14px' }}>
+      <FileText size={16} style={{ color:'var(--color-text-secondary)', flexShrink:0 }} />
+      <span style={{ flex:1 }}>Пресс-релиз</span>
+      <Download size={15} style={{ color:'var(--color-text-secondary)', flexShrink:0 }} />
+    </a>
+    <a href="/documents/agreement.pdf" download style={{ display:'flex', alignItems:'center', gap:'10px', padding:'10px 14px', border:'0.5px solid var(--color-border-secondary)', borderRadius:'8px', textDecoration:'none', color:'var(--color-text-primary)', background:'var(--color-background-secondary)', fontSize:'14px' }}>
+      <FileText size={16} style={{ color:'var(--color-text-secondary)', flexShrink:0 }} />
+      <span style={{ flex:1 }}>Соглашение</span>
+      <Download size={15} style={{ color:'var(--color-text-secondary)', flexShrink:0 }} />
+    </a>
+  </div>
+</div>
             {tender.requirements && tender.requirements.length > 0 && (
               <div className="description-section">
                 <h3 className="subsection-title">{t('tenderDetail.requirements')}</h3>

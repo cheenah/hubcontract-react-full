@@ -226,7 +226,7 @@ const TenderList = () => {
           <div className="advanced-filters-panel">
             <div className="advanced-filters-grid">
               <div className="filter-group">
-                <Label>Бюджет от (₸)</Label>
+                <Label>Бюджет от ($)</Label>
                 <Input
                   type="number"
                   placeholder="0"
@@ -236,7 +236,7 @@ const TenderList = () => {
               </div>
 
               <div className="filter-group">
-                <Label>Бюджет до (₸)</Label>
+                <Label>Бюджет до ($)</Label>
                 <Input
                   type="number"
                   placeholder="1000000000"
@@ -318,7 +318,7 @@ const TenderList = () => {
                   <div className="tender-details-grid">
                     <div className="detail-item">
                       <span className="detail-label">{t('tenderList.budget')}</span>
-                      <span className="price-highlight">{tender.budget.toLocaleString()} ₸</span>
+                      <span className="price-highlight">{tender.budget.toLocaleString()}$</span>
                     </div>
                     <div className="detail-item">
                       <span className="detail-label">{t('tenderList.typeLabel')}</span>

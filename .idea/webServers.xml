@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="394e6041-2554-47d4-9bac-5de5887262f6" name="test-dev">
+        <fileTransfer accessType="SFTP" host="hubcontract.kz" port="22" sshConfigId="96c60a65-5d66-4c55-8082-173ddcc22b38" sshConfig="ubuntu@hubcontract.kz:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
