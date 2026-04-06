@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="baac46ef-bf41-4f73-b09d-490929e58f4a" name="Changes" comment="New Build [Build]" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;cheenah&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/cheenah/hubcontract-react-full.git&quot;,
+    &quot;accountId&quot;: &quot;4851477b-3e57-4a48-82ee-436f728ae3bd&quot;
+  }
+}</component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3BeuDx1lITJcAzirmUxNDXujc6a" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "WebServerToolWindowPanel.toolwindow.highlight.mappings": "true",
+    "WebServerToolWindowPanel.toolwindow.highlight.symlinks": "true",
+    "WebServerToolWindowPanel.toolwindow.show.date": "false",
+    "WebServerToolWindowPanel.toolwindow.show.permissions": "false",
+    "WebServerToolWindowPanel.toolwindow.show.size": "false",
+    "ai.playground.ignore.import.keys.banner.in.settings": "true",
+    "com.google.cloudcode.ide_session_index": "20260405_0000",
+    "git-widget-placeholder": "dev-changes",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\PyCharm 2025.3.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-PY-253.32098.74" />
+        <option value="bundled-python-sdk-1cd77e80b48f-6d6dccd035ac-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.32098.74" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="baac46ef-bf41-4f73-b09d-490929e58f4a" name="Changes" comment="" />
+      <created>1774861741100</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1774861741100</updated>
+      <workItem from="1774861742339" duration="1734000" />
+      <workItem from="1774863556420" duration="7518000" />
+      <workItem from="1774874630285" duration="1407000" />
+      <workItem from="1774899832217" duration="575000" />
+      <workItem from="1774932465100" duration="2088000" />
+      <workItem from="1774943215969" duration="272000" />
+      <workItem from="1774943508411" duration="13865000" />
+      <workItem from="1775117748962" duration="8717000" />
+      <workItem from="1775219688492" duration="4573000" />
+      <workItem from="1775287337571" duration="3989000" />
+      <workItem from="1775388759912" duration="188000" />
+      <workItem from="1775388972438" duration="7718000" />
+      <workItem from="1775478758704" duration="3889000" />
+    </task>
+    <task id="LOCAL-00001" summary="Node.js modules versions [Fix]">
+      <option name="closed" value="true" />
+      <created>1774870354004</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1774870354005</updated>
+    </task>
+    <task id="LOCAL-00002" summary="toLocaleString [Small Fix]">
+      <option name="closed" value="true" />
+      <created>1774875623052</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1774875623052</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Changes for Landing and Login [Dev Fix]">
+      <option name="closed" value="true" />
+      <created>1775037744800</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1775037744800</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Changes for test [Test Env]">
+      <option name="closed" value="true" />
+      <created>1775042947879</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1775042947879</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Build [build]">
+      <option name="closed" value="true" />
+      <created>1775119896037</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1775119896037</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Fixes in Layout and new Build [Small Fix, Build]">
+      <option name="closed" value="true" />
+      <created>1775131277609</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1775131277609</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Fixes in Layout and new Build [Small Fix, Build]">
+      <option name="closed" value="true" />
+      <created>1775131299377</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1775131299377</updated>
+    </task>
+    <task id="LOCAL-00008" summary="New Build [Build]">
+      <option name="closed" value="true" />
+      <created>1775131567223</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1775131567223</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Node.js modules versions [Fix]" />
+    <MESSAGE value="toLocaleString [Small Fix]" />
+    <MESSAGE value="Changes for Landing and Login [Dev Fix]" />
+    <MESSAGE value="Changes for test [Test Env]" />
+    <MESSAGE value="Build [build]" />
+    <MESSAGE value="Fixes in Layout and new Build [Small Fix, Build]" />
+    <MESSAGE value="New Build [Build]" />
+    <option name="LAST_COMMIT_MESSAGE" value="New Build [Build]" />
+  </component>
+</project>

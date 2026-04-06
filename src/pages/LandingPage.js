@@ -142,20 +142,13 @@ console.log("Весь process.env:", process.env);
   };
 
   const handleRegister = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      const response = await axios.post(`${API}/auth/register`, registerForm);
-      localStorage.setItem('token', response.data.token);
-      setUser(response.data.user);
-      toast.success('Registration successful!');
-      navigate('/dashboard');
-    } catch (error) {
-      toast.error(error.response?.data?.detail || 'Registration failed');
-    } finally {
-      setLoading(false);
-    }
-  };
+  e.preventDefault();
+  setLoading(true);
+  setTimeout(() => {
+    toast.error('Ведутся технические работы на сервере');
+    setLoading(false);
+  }, 500);
+};
 
   return (
     <div className="landing-page">
@@ -196,16 +189,6 @@ console.log("Весь process.env:", process.env);
                 
                 <div className="menu-divider"></div>
                 
-                <DropdownMenuItem onClick={() => navigate('/about')}>
-                  О платформе
-                </DropdownMenuItem>
-                
-                <DropdownMenuItem onClick={() => navigate('/help')}>
-                  Центр помощи
-                </DropdownMenuItem>
-                
-                <div className="menu-divider"></div>
-                
                 <DropdownMenuItem onClick={() => setShowAuth(true)} className="menu-item-primary">
                   Вход / Регистрация
                 </DropdownMenuItem>
@@ -230,24 +213,6 @@ console.log("Весь process.env:", process.env);
             <p className="hero-description" data-testid="hero-subtitle">
               {t('landing.heroDescription')}
             </p>
-            <div className="hero-actions">
-              <Button
-                onClick={() => setShowAuth(true)}
-                className="btn-hero-primary"
-                size="lg"
-              >
-                {t('landing.getStarted')}
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="btn-hero-secondary"
-                data-testid="learn-more-btn"
-                onClick={() => navigate('/about')}
-              >
-                {t('landing.learnMore')}
-              </Button>
-            </div>
 
             {/* Stats */}
             <div className="hero-stats">
@@ -311,22 +276,22 @@ console.log("Весь process.env:", process.env);
                     </Select>
                   </div>
 
-                  <div className="filter-group">
-                    <label className="search-label">{t('tenderList.regionLabel')}</label>
-                    <Select value={regionFilter} onValueChange={setRegionFilter}>
-                      <SelectTrigger className="filter-select-advanced">
-                        <SelectValue placeholder={t('tenderList.allRegions')} />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="all">{t('tenderList.allRegions')}</SelectItem>
-                        <SelectItem value="almaty">Алматы</SelectItem>
-                        <SelectItem value="nur-sultan">Нур-Султан</SelectItem>
-                        <SelectItem value="shymkent">Шымкент</SelectItem>
-                        <SelectItem value="aktobe">Актобе</SelectItem>
-                        <SelectItem value="karaganda">Караганда</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
+<div className="filter-group">
+  <label className="search-label">{t('tenderList.regionLabel')}</label>
+  <Select value={regionFilter} onValueChange={setRegionFilter}>
+    <SelectTrigger className="filter-select-advanced">
+      <SelectValue placeholder={t('tenderList.regions.all')} />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectItem value="all">{t('tenderList.regions.all')}</SelectItem>
+      <SelectItem value="almaty">{t('tenderList.regions.almaty')}</SelectItem>
+      <SelectItem value="astana">{t('tenderList.regions.astana')}</SelectItem>
+      <SelectItem value="shymkent">{t('tenderList.regions.shymkent')}</SelectItem>
+      <SelectItem value="aktobe">{t('tenderList.regions.aktobe')}</SelectItem>
+      <SelectItem value="karaganda">{t('tenderList.regions.karaganda')}</SelectItem>
+    </SelectContent>
+  </Select>
+</div>
 
                   <div className="filter-group">
                     <label className="search-label">{t('tenderList.typeLabel')}</label>
@@ -655,36 +620,29 @@ console.log("Весь process.env:", process.env);
                 >
                   Войти в систему
                 </Button>
-                <Button 
-                  variant="ghost"
-                  onClick={() => navigate('/help')}
-                  className="footer-link"
-                >
-                  Центр помощи
-                </Button>
               </div>
             </div>
           </div>
 
           {/* Footer Bottom */}
-          <div className="footer-bottom">
-            <div className="footer-copyright">
-              <p>&copy; 2025 HubContract. Все права защищены.</p>
-            </div>
-            <div className="footer-legal">
-              <button onClick={() => navigate('/privacy-policy')} className="legal-link">
-                Политика конфиденциальности
-              </button>
-              <span className="legal-divider">|</span>
-              <button onClick={() => navigate('/terms-of-use')} className="legal-link">
-                Условия использования
-              </button>
-              <span className="legal-divider">|</span>
-              <button onClick={() => navigate('/disclaimer')} className="legal-link">
-                Отказ от ответственности
-              </button>
-            </div>
-          </div>
+          {/*<div className="footer-bottom">*/}
+          {/*  <div className="footer-copyright">*/}
+          {/*    <p>&copy; 2025 HubContract. Все права защищены.</p>*/}
+          {/*  </div>*/}
+          {/*  <div className="footer-legal">*/}
+          {/*    <button onClick={() => navigate('/privacy-policy')} className="legal-link">*/}
+          {/*      Политика конфиденциальности*/}
+          {/*    </button>*/}
+          {/*    <span className="legal-divider">|</span>*/}
+          {/*    <button onClick={() => navigate('/terms-of-use')} className="legal-link">*/}
+          {/*      Условия использования*/}
+          {/*    </button>*/}
+          {/*    <span className="legal-divider">|</span>*/}
+          {/*    <button onClick={() => navigate('/disclaimer')} className="legal-link">*/}
+          {/*      Отказ от ответственности*/}
+          {/*    </button>*/}
+          {/*  </div>*/}
+          {/*</div>*/}
         </div>
       </footer>
 

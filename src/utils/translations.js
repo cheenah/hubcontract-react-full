@@ -14,7 +14,7 @@ export const translations = {
       profile: 'Профиль',
       logout: 'Выйти',
     },
-    
+
     // Landing Page
     landing: {
       platformBadge: 'Надежная платформа для поставщиков и подрядчиков',
@@ -46,7 +46,7 @@ export const translations = {
         userManagementDesc: 'Система рейтингов с комплексной верификацией поставщиков и подрядчиков и отзывами заказчиков',
       },
     },
-    
+
     // Auth
     auth: {
       welcomeTitle: 'Доступ к HubContract',
@@ -100,7 +100,7 @@ export const translations = {
       withdrawnBidWarning: 'Эта заявка была отозвана. После сохранения изменений она будет повторно подана на рассмотрение.',
       saveAndResubmit: 'Сохранить и подать заново',
     },
-    
+
     // Dashboard
     dashboard: {
       welcomeBack: 'С возвращением,',
@@ -122,7 +122,7 @@ export const translations = {
       createFirst: 'Создать первый тендер',
       viewDetails: 'Посмотреть детали',
     },
-    
+
     // Tender List
     tenderList: {
       title: 'Обзор тендеров',
@@ -158,8 +158,16 @@ export const translations = {
       noTendersFound: 'Тендеры не найдены',
       budget: 'Бюджет:',
       region: 'Регион:',
+      regions: {
+  all: 'Все регионы',
+  almaty: 'Алматы',
+  astana: 'Астана',
+  shymkent: 'Шымкент',
+  aktobe: 'Актобе',
+  karaganda: 'Караганда'
+},
     },
-    
+
     // Tender Detail
     tenderDetail: {
       submitBid: 'Подать заявку',
@@ -184,7 +192,7 @@ export const translations = {
       proposalPlaceholder: 'Опишите ваш подход и квалификацию',
       submitButton: 'Подать заявку',
     },
-    
+
     // Create Tender
     createTender: {
       title: 'Создать новый тендер',
@@ -223,7 +231,7 @@ export const translations = {
       creating: 'Создание...',
       create: 'Создать тендер',
     },
-    
+
     // My Tenders
     myTenders: {
       title: 'Мои тендеры',
@@ -236,7 +244,7 @@ export const translations = {
       noClosed: 'Нет закрытых тендеров',
       noCancelled: 'Нет отмененных тендеров',
     },
-    
+
     // My Bids
     myBids: {
       title: 'Мои заявки',
@@ -250,7 +258,7 @@ export const translations = {
       yourProposal: 'Ваше предложение:',
       viewTender: 'Просмотр тендера',
     },
-    
+
     // Profile
     profile: {
       title: 'Профиль',
@@ -285,7 +293,7 @@ export const translations = {
       rejectionNotice: 'Ваши документы были отклонены. Пожалуйста, перезагрузите исправленные документы.',
       pendingNotice: 'Ваши документы на рассмотрении. Вы будете уведомлены после верификации.',
     },
-    
+
     // Admin Panel
     admin: {
       title: 'Панель администратора',
@@ -302,11 +310,11 @@ export const translations = {
       reject: 'Отклонить',
       approve: 'Одобрить',
     },
-    
+
     // Status
     status: {
       published_receiving_proposals: 'Опубликован (прием ценовых предложений)',
-      published_receiving_applications: 'Опубликован (прием заявок)', 
+      published_receiving_applications: 'Опубликован (прием заявок)',
       under_review: 'Рассмотрение заявок',
       completed: 'Закупка состоялась',
       failed: 'Закупка не состоялась',
@@ -319,7 +327,7 @@ export const translations = {
       winner: 'победитель',
       stage1_approved: 'этап 1 одобрен',
     },
-    
+
     // Common
     common: {
       loading: 'Загрузка...',
@@ -336,7 +344,7 @@ export const translations = {
       error: 'Произошла ошибка',
     },
   },
-  
+
   // KAZAKH
   kk: {
     // Navigation
@@ -349,7 +357,7 @@ export const translations = {
       profile: 'Профиль',
       logout: 'Шығу',
     },
-    
+
     // Landing Page
     landing: {
       platformBadge: 'Сенімді қосалқы мердігерлік қызметтер платформасы',
@@ -381,7 +389,7 @@ export const translations = {
         userManagementDesc: 'Пайдаланушыларды кешенді тексеру жүйесімен рөлге негізделген қолжетімділік бақылауы',
       },
     },
-    
+
     // Auth
     auth: {
       welcomeTitle: 'HubContract-ға кіру',
@@ -435,7 +443,7 @@ export const translations = {
       withdrawnBidWarning: 'Бұл өтінім қайтарылды. Өзгерістерді сақтағаннан кейін ол қайта қарауға жіберіледі.',
       saveAndResubmit: 'Сақтау және қайта жіберу',
     },
-    
+
     // Dashboard
     dashboard: {
       welcomeBack: 'Қайта келуіңізбен,',
@@ -457,7 +465,7 @@ export const translations = {
       createFirst: 'Бірінші тендерді жасау',
       viewDetails: 'Толығырақ қарау',
     },
-    
+
     // Tender List
     tenderList: {
       title: 'Тендерлерді шолу',
@@ -492,9 +500,16 @@ export const translations = {
       singleSource: 'Бір көзден',
       noTendersFound: 'Тендерлер табылмады',
       budget: 'Бюджет:',
-      region: 'Аймақ:',
+      region: 'Аймақ:',regions: {
+  all: 'Барлық аймақтар',
+  almaty: 'Алматы',
+  astana: 'Астана',
+  shymkent: 'Шымкент',
+  aktobe: 'Ақтөбе',
+  karaganda: 'Қарағанды'
+},
     },
-    
+
     // Tender Detail
     tenderDetail: {
       submitBid: 'Өтінім беру',
@@ -519,7 +534,7 @@ export const translations = {
       proposalPlaceholder: 'Тәсіл мен біліктілігіңізді сипаттаңыз',
       submitButton: 'Өтінім беру',
     },
-    
+
     // Create Tender
     createTender: {
       title: 'Жаңа тендер жасау',
@@ -558,7 +573,7 @@ export const translations = {
       creating: 'Жасалуда...',
       create: 'Тендер жасау',
     },
-    
+
     // My Tenders
     myTenders: {
       title: 'Менің тендерлерім',
@@ -571,7 +586,7 @@ export const translations = {
       noClosed: 'Жабық тендерлер жоқ',
       noCancelled: 'Болдырылмаған тендерлер жоқ',
     },
-    
+
     // My Bids
     myBids: {
       title: 'Менің өтінімдерім',
@@ -585,7 +600,7 @@ export const translations = {
       yourProposal: 'Сіздің ұсынысыңыз:',
       viewTender: 'Тендерді қарау',
     },
-    
+
     // Profile
     profile: {
       title: 'Профиль',
@@ -620,7 +635,7 @@ export const translations = {
       rejectionNotice: 'Сіздің құжаттар қабылданбады. Түзетілген құжаттарды қайта жүктеңіз.',
       pendingNotice: 'Сіздің құжаттар қарастырылуда. Тексеруден кейін хабарланасыз.',
     },
-    
+
     // Admin Panel
     admin: {
       title: 'Әкімші панелі',
@@ -637,7 +652,7 @@ export const translations = {
       reject: 'Қабылдамау',
       approve: 'Мақұлдау',
     },
-    
+
     // Status
     status: {
       published_receiving_proposals: 'Жарияланған (бағалық ұсыныстарды қабылдау)',
@@ -654,7 +669,7 @@ export const translations = {
       winner: 'жеңімпаз',
       stage1_approved: '1-кезең мақұлданған',
     },
-    
+
     // Common
     common: {
       loading: 'Жүктелуде...',
@@ -671,7 +686,7 @@ export const translations = {
       error: 'Қате орын алды',
     },
   },
-  
+
   // ENGLISH
   en: {
     // Navigation
@@ -684,7 +699,7 @@ export const translations = {
       profile: 'Profile',
       logout: 'Logout',
     },
-    
+
     // Landing Page
     landing: {
       platformBadge: 'Trusted Subcontractor Services Platform',
@@ -716,7 +731,7 @@ export const translations = {
         userManagementDesc: 'Role-based access control with comprehensive user verification system',
       },
     },
-    
+
     // Auth
     auth: {
       welcomeTitle: 'Access HubContract',
@@ -770,7 +785,7 @@ export const translations = {
       withdrawnBidWarning: 'This bid was withdrawn. After saving changes it will be resubmitted for consideration.',
       saveAndResubmit: 'Save and Resubmit',
     },
-    
+
     // Dashboard
     dashboard: {
       welcomeBack: 'Welcome back,',
@@ -792,7 +807,7 @@ export const translations = {
       createFirst: 'Create Your First Tender',
       viewDetails: 'View Details',
     },
-    
+
     // Tender List
     tenderList: {
       title: 'Browse Tenders',
@@ -828,8 +843,16 @@ export const translations = {
       noTendersFound: 'No tenders found',
       budget: 'Budget:',
       region: 'Region:',
+      regions: {
+  all: 'All regions',
+  almaty: 'Almaty',
+  astana: 'Astana',
+  shymkent: 'Shymkent',
+  aktobe: 'Aktobe',
+  karaganda: 'Karaganda'
+},
     },
-    
+
     // Tender Detail
     tenderDetail: {
       submitBid: 'Submit Bid',
@@ -854,7 +877,7 @@ export const translations = {
       proposalPlaceholder: 'Describe your approach and qualifications',
       submitButton: 'Submit Bid',
     },
-    
+
     // Create Tender
     createTender: {
       title: 'Create New Tender',
@@ -893,7 +916,7 @@ export const translations = {
       creating: 'Creating...',
       create: 'Create Tender',
     },
-    
+
     // My Tenders
     myTenders: {
       title: 'My Tenders',
@@ -906,7 +929,7 @@ export const translations = {
       noClosed: 'No closed tenders',
       noCancelled: 'No cancelled tenders',
     },
-    
+
     // My Bids
     myBids: {
       title: 'My Bids',
@@ -920,7 +943,7 @@ export const translations = {
       yourProposal: 'Your Proposal:',
       viewTender: 'View Tender',
     },
-    
+
     // Profile
     profile: {
       title: 'Profile',
@@ -955,7 +978,7 @@ export const translations = {
       rejectionNotice: 'Your documents were rejected. Please re-upload corrected documents.',
       pendingNotice: "Your documents are under review. You'll be notified once they're verified.",
     },
-    
+
     // Admin Panel
     admin: {
       title: 'Admin Panel',
@@ -972,7 +995,7 @@ export const translations = {
       reject: 'Reject',
       approve: 'Approve',
     },
-    
+
     // Status
     status: {
       published_receiving_proposals: 'Published (Receiving Price Proposals)',
@@ -989,7 +1012,7 @@ export const translations = {
       winner: 'winner',
       stage1_approved: 'stage 1 approved',
     },
-    
+
     // Common
     common: {
       loading: 'Loading...',
@@ -1006,7 +1029,7 @@ export const translations = {
       error: 'An error occurred',
     },
   },
-  
+
   // CHINESE (中文)
   zh: {
     nav: {
@@ -1018,7 +1041,7 @@ export const translations = {
       profile: '个人资料',
       logout: '退出',
     },
-    
+
     landing: {
       platformBadge: '可靠的分包服务平台',
       heroTitle: '寻找可靠的',
@@ -1049,7 +1072,7 @@ export const translations = {
         userManagementDesc: '具有全面验证和客户评价的分包商评级系统',
       },
     },
-    
+
     auth: {
       welcomeTitle: '访问 HubContract',
       signIn: '登录',
@@ -1102,7 +1125,7 @@ export const translations = {
       withdrawnBidWarning: '此投标已撤回。保存更改后将重新提交审核。',
       saveAndResubmit: '保存并重新提交',
     },
-    
+
     dashboard: {
       welcomeBack: '欢迎回来，',
       manageCustomer: '管理招标并寻找承包商',
@@ -1114,7 +1137,7 @@ export const translations = {
       myBids: '我的投标',
       analytics: '分析',
     },
-    
+
     // Tender List
     tenderList: {
       title: '浏览招标',
@@ -1151,7 +1174,7 @@ export const translations = {
       budget: '预算:',
       region: '地区:',
     },
-    
+
     tender: {
       title: '招标',
       createNew: '创建新招标',
@@ -1171,7 +1194,7 @@ export const translations = {
       details: '详细信息',
       category: '类别',
     },
-    
+
     bid: {
       title: '投标',
       submitBid: '提交投标',
@@ -1182,7 +1205,7 @@ export const translations = {
       documents: '文件',
       submit: '提交',
     },
-    
+
     profile: {
       title: '个人资料',
       subtitle: '管理您的账户和验证文件',
@@ -1201,7 +1224,7 @@ export const translations = {
       uploaded: '已上传',
       reupload: '重新上传',
     },
-    
+
     admin: {
       title: '管理面板',
       subtitle: '管理用户、招标和验证',
@@ -1210,7 +1233,7 @@ export const translations = {
       activeTenders: '活跃招标',
       pendingVerifications: '待审核验证',
     },
-    
+
     status: {
       published_receiving_proposals: '已发布（接收价格提案）',
       under_review: '审核中',
@@ -1220,7 +1243,7 @@ export const translations = {
       pending: '待处理',
       draft: '草稿',
     },
-    
+
     common: {
       loading: '加载中...',
       save: '保存',
@@ -1236,7 +1259,7 @@ export const translations = {
       error: '发生错误',
     },
   },
-  
+
   // TURKISH (Türkçe)
   tr: {
     nav: {
@@ -1248,7 +1271,7 @@ export const translations = {
       profile: 'Profil',
       logout: 'Çıkış',
     },
-    
+
     landing: {
       platformBadge: 'Güvenilir taşeron hizmet platformu',
       heroTitle: 'Güvenilir',
@@ -1279,7 +1302,7 @@ export const translations = {
         userManagementDesc: 'Kapsamlı doğrulama ve müşteri değerlendirmeleri ile taşeron derecelendirme sistemi',
       },
     },
-    
+
     auth: {
       welcomeTitle: "HubContract'a Erişim",
       signIn: 'Giriş Yap',
@@ -1332,7 +1355,7 @@ export const translations = {
       withdrawnBidWarning: 'Bu teklif geri çekildi. Değişiklikleri kaydettikten sonra yeniden gönderilecektir.',
       saveAndResubmit: 'Kaydet ve Yeniden Gönder',
     },
-    
+
     dashboard: {
       welcomeBack: 'Hoş geldiniz,',
       manageCustomer: 'İhaleleri yönetin ve yükleniciler bulun',
@@ -1344,7 +1367,7 @@ export const translations = {
       myBids: 'Tekliflerim',
       analytics: 'Analiz',
     },
-    
+
     // Tender List
     tenderList: {
       title: 'İhaleleri İncele',
@@ -1381,7 +1404,7 @@ export const translations = {
       budget: 'Bütçe:',
       region: 'Bölge:',
     },
-    
+
     tender: {
       title: 'İhaleler',
       createNew: 'Yeni İhale Oluştur',
@@ -1401,7 +1424,7 @@ export const translations = {
       details: 'Detaylar',
       category: 'Kategori',
     },
-    
+
     bid: {
       title: 'Teklifler',
       submitBid: 'Teklif Ver',
@@ -1412,7 +1435,7 @@ export const translations = {
       documents: 'Belgeler',
       submit: 'Gönder',
     },
-    
+
     profile: {
       title: 'Profil',
       subtitle: 'Hesabınızı ve doğrulama belgelerinizi yönetin',
@@ -1431,7 +1454,7 @@ export const translations = {
       uploaded: 'Yüklendi',
       reupload: 'Yeniden Yükle',
     },
-    
+
     admin: {
       title: 'Yönetici Paneli',
       subtitle: 'Kullanıcıları, ihaleleri ve doğrulamaları yönetin',
@@ -1440,7 +1463,7 @@ export const translations = {
       activeTenders: 'Aktif İhaleler',
       pendingVerifications: 'Bekleyen Doğrulamalar',
     },
-    
+
     status: {
       published_receiving_proposals: 'Yayınlandı (Fiyat Teklifleri Alınıyor)',
       under_review: 'İnceleniyor',
@@ -1450,7 +1473,7 @@ export const translations = {
       pending: 'Beklemede',
       draft: 'Taslak',
     },
-    
+
     common: {
       loading: 'Yükleniyor...',
       save: 'Kaydet',
@@ -1472,7 +1495,7 @@ export const translations = {
 export const getTranslation = (lang, keyPath) => {
   const keys = keyPath.split('.');
   let value = translations[lang];
-  
+
   for (const key of keys) {
     if (value && value[key] !== undefined) {
       value = value[key];
@@ -1480,7 +1503,7 @@ export const getTranslation = (lang, keyPath) => {
       return keyPath; // Return key if translation not found
     }
   }
-  
+
   return value;
 };
 
