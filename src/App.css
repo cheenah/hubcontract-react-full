@@ -825,7 +825,7 @@ footer a[href^="tel:"] {
 .logo-text {
     font-size: 24px;
     font-weight: 700;
-    color: #1a202c;
+    color: #1a202c !important;
 }
 
 
