@@ -313,6 +313,7 @@ export const translations = {
 
     // Status
     status: {
+      prequalification: 'Предквалификация',
       published_receiving_proposals: 'Опубликован (прием ценовых предложений)',
       published_receiving_applications: 'Опубликован (прием заявок)',
       under_review: 'Рассмотрение заявок',
@@ -655,6 +656,7 @@ export const translations = {
 
     // Status
     status: {
+      prequalification: 'Предквалификация',
       published_receiving_proposals: 'Жарияланған (бағалық ұсыныстарды қабылдау)',
       published_receiving_applications: 'Жарияланған (өтінімдерді қабылдау)',
       under_review: 'Өтінімдерді қарастыру',
@@ -998,6 +1000,7 @@ export const translations = {
 
     // Status
     status: {
+      prequalification: 'Pre-qualification',
       published_receiving_proposals: 'Published (Receiving Price Proposals)',
       published_receiving_applications: 'Published (Receiving Applications)',
       under_review: 'Under Review',
