@@ -12,14 +12,8 @@ import { Card } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
 import { Shield, Award, FileText, TrendingUp, CheckCircle, Users, Globe, Search, Calendar, MapPin, Banknote, Mail, Phone, MapPin as Location } from 'lucide-react';
-
+import StaticLayout from '@/components/StaticLayout';
 const LandingPage = () => {
   const navigate = useNavigate();
   const { setUser, API } = React.useContext(AppContext);
@@ -46,8 +40,8 @@ const LandingPage = () => {
     role: 'contractor',
     company_name: ''
   });
-console.log(API)
-console.log("Весь process.env:", process.env);
+// console.log(API)
+// console.log("Весь process.env:", process.env);
   // Load tenders on component mount
   useEffect(() => {
     fetchTenders();
@@ -60,8 +54,8 @@ console.log("Весь process.env:", process.env);
 
   const fetchTenders = async () => {
     try {
-      const response = await axios.get(`${API}/tenders`); // Remove status filter to show all active tenders
-      setTenders(response.data.slice(0, 10)); // Show latest 10 tenders
+      const response = await axios.get(`${API}/tenders`);
+      setTenders(response.data.slice(0, 10));
     } catch (error) {
       console.error('Error fetching tenders:', error);
     } finally {
@@ -70,31 +64,43 @@ console.log("Весь process.env:", process.env);
   };
 
   const applyFilters = () => {
+    if (!tenders || tenders.length === 0) {
+      setFilteredTenders([]);
+      return;
+    }
+
     let filtered = [...tenders];
 
-    if (searchTerm) {
-      filtered = filtered.filter(
-        (t) =>
-          t.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          t.description.toLowerCase().includes(searchTerm.toLowerCase())
+    if (searchTerm && searchTerm.trim() !== "") {
+      const lowSearch = searchTerm.toLowerCase().trim();
+      filtered = filtered.filter((t) =>
+        t.title?.toLowerCase().includes(lowSearch) ||
+        t.description?.toLowerCase().includes(lowSearch)
       );
     }
 
     if (categoryFilter && categoryFilter !== 'all') {
-      filtered = filtered.filter((t) => t.category === categoryFilter);
+      const selectedCat = String(categoryFilter).toLowerCase().trim();
+      filtered = filtered.filter((t) =>
+        t.category?.toLowerCase().includes(selectedCat)
+      );
     }
 
     if (regionFilter && regionFilter !== 'all') {
-      filtered = filtered.filter((t) => t.region.toLowerCase().includes(regionFilter.toLowerCase()));
+      const lowRegion = String(regionFilter).toLowerCase().trim();
+      filtered = filtered.filter((t) =>
+        t.region?.toLowerCase().includes(lowRegion)
+      );
     }
 
-    // Budget filters
-    if (budgetMin && !isNaN(budgetMin)) {
-      filtered = filtered.filter((t) => t.budget >= parseFloat(budgetMin));
+    if (budgetMin !== "" && budgetMin !== null && !isNaN(budgetMin)) {
+      const min = parseFloat(budgetMin);
+      filtered = filtered.filter((t) => (t.budget || 0) >= min);
     }
 
-    if (budgetMax && !isNaN(budgetMax)) {
-      filtered = filtered.filter((t) => t.budget <= parseFloat(budgetMax));
+    if (budgetMax !== "" && budgetMax !== null && !isNaN(budgetMax)) {
+      const max = parseFloat(budgetMax);
+      filtered = filtered.filter((t) => (t.budget || 0) <= max);
     }
 
     setFilteredTenders(filtered);
@@ -119,12 +125,11 @@ console.log("Весь process.env:", process.env);
     setLoading(true);
     try {
       const response = await axios.post(`${API}/auth/login`, loginForm);
-      console.log(response)
       localStorage.setItem('token', response.data.token);
       setUser(response.data.user);
-      setShowAuth(false); // Close modal dialog
+      setShowAuth(false);
       toast.success('Login successful!');
-      
+
       // Navigate based on user role
       const userRole = response.data.user.role;
       if (userRole === 'admin') {
@@ -151,52 +156,14 @@ console.log("Весь process.env:", process.env);
 };
 
   return (
-    <div className="landing-page">
-      {/* Header */}
-      <header className="landing-header">
-        <div className="header-container">
-          <div className="logo-section">
-            <img src="/logo.png" alt="HubContract" className="logo-image" />
-            <span className="logo-text">HubContract</span>
-          </div>
-          <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-            {/* Navigation Menu with all options */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="menu-button">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <line x1="3" y1="12" x2="21" y2="12"></line>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <line x1="3" y1="18" x2="21" y2="18"></line>
-                  </svg>
-                  <span style={{ fontSize: '14px', fontWeight: 500 }}>Меню</span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="menu-dropdown">
-                {/* Language Selection Submenu */}
-                <div className="menu-section-title">Выбор языка</div>
-                {languages.map((lang) => (
-                  <DropdownMenuItem
-                    key={lang.code}
-                    onClick={() => changeLanguage(lang.code)}
-                    className={`language-menu-item ${language === lang.code ? 'active-language' : ''}`}
-                  >
-                    <Globe size={14} />
-                    <span className="language-name">{lang.name}</span>
-                    {language === lang.code && <span className="language-check">✓</span>}
-                  </DropdownMenuItem>
-                ))}
-                
-                <div className="menu-divider"></div>
-                
-                <DropdownMenuItem onClick={() => setShowAuth(true)} className="menu-item-primary">
-                  Вход / Регистрация
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-        </div>
-      </header>
+
+        <StaticLayout
+      t={t}
+      language={language}
+      languages={languages}
+      changeLanguage={changeLanguage}
+      setShowAuth={setShowAuth}
+    >
 
       {/* Hero Section */}
       <section className="hero-section">
@@ -215,20 +182,7 @@ console.log("Весь process.env:", process.env);
             </p>
 
             {/* Stats */}
-            <div className="hero-stats">
-              <div className="stat-item">
-                <div className="stat-number">500+</div>
-                <div className="stat-label">{t('landing.stats.activeTenders')}</div>
-              </div>
-              <div className="stat-item">
-                <div className="stat-number">1,200+</div>
-                <div className="stat-label">{t('landing.stats.verifiedContractors')}</div>
-              </div>
-              <div className="stat-item">
-                <div className="stat-number">98%</div>
-                <div className="stat-label">{t('landing.stats.successRate')}</div>
-              </div>
-            </div>
+
           </div>
         </div>
       </section>
@@ -237,13 +191,13 @@ console.log("Весь process.env:", process.env);
       <section className="public-tenders-section">
         <div className="tenders-container">
           <h2 className="section-main-title">{t('tenderList.searchTitle')}</h2>
-          
+
           <div className="search-content-grid">
             {/* Left Column - Advanced Search */}
             <div className="search-panel">
               <div className="search-form-advanced">
                 <h3 className="search-form-title">{t('tenderList.advancedSearch')}</h3>
-                
+
                 {/* Primary Search */}
                 <div className="search-group">
                   <label className="search-label">{t('tenderList.searchByKeywords')}</label>
@@ -276,22 +230,22 @@ console.log("Весь process.env:", process.env);
                     </Select>
                   </div>
 
-<div className="filter-group">
-  <label className="search-label">{t('tenderList.regionLabel')}</label>
-  <Select value={regionFilter} onValueChange={setRegionFilter}>
-    <SelectTrigger className="filter-select-advanced">
-      <SelectValue placeholder={t('tenderList.regions.all')} />
-    </SelectTrigger>
-    <SelectContent>
-      <SelectItem value="all">{t('tenderList.regions.all')}</SelectItem>
-      <SelectItem value="almaty">{t('tenderList.regions.almaty')}</SelectItem>
-      <SelectItem value="astana">{t('tenderList.regions.astana')}</SelectItem>
-      <SelectItem value="shymkent">{t('tenderList.regions.shymkent')}</SelectItem>
-      <SelectItem value="aktobe">{t('tenderList.regions.aktobe')}</SelectItem>
-      <SelectItem value="karaganda">{t('tenderList.regions.karaganda')}</SelectItem>
-    </SelectContent>
-  </Select>
-</div>
+                  <div className="filter-group">
+                    <label className="search-label">{t('tenderList.regionLabel')}</label>
+                    <Select value={regionFilter} onValueChange={setRegionFilter}>
+                      <SelectTrigger className="filter-select-advanced">
+                        <SelectValue placeholder={t('tenderList.allRegions')} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="all">{t('tenderList.allRegions')}</SelectItem>
+                        <SelectItem value="almaty">Алматы</SelectItem>
+                        <SelectItem value="nur-sultan">Нур-Султан</SelectItem>
+                        <SelectItem value="shymkent">Шымкент</SelectItem>
+                        <SelectItem value="aktobe">Актобе</SelectItem>
+                        <SelectItem value="karaganda">Караганда</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
 
                   <div className="filter-group">
                     <label className="search-label">{t('tenderList.typeLabel')}</label>
@@ -337,7 +291,7 @@ console.log("Весь process.env:", process.env);
                     <span className="budget-separator">—</span>
                     <Input
                       placeholder={t('tenderList.budgetTo')}
-                      type="number" 
+                      type="number"
                       value={budgetMax}
                       onChange={(e) => setBudgetMax(e.target.value)}
                       className="budget-input"
@@ -347,23 +301,17 @@ console.log("Весь process.env:", process.env);
 
                 {/* Date Range */}
                 <div className="search-group">
-                  <label className="search-label">Дата размещения</label>
+                  <label className="search-label">{t('common.postDate')}</label>
                   <div className="date-range">
-                    <Input
-                      type="date"
-                      className="date-input"
-                    />
+                    <Input type="date" className="date-input" />
                     <span className="date-separator">—</span>
-                    <Input
-                      type="date"
-                      className="date-input"
-                    />
+                    <Input type="date" className="date-input" />
                   </div>
                 </div>
 
                 {/* Search Buttons */}
                 <div className="search-buttons">
-                  <Button 
+                  <Button
                     onClick={() => navigate('tenders')}
                     className="search-btn-primary"
                     size="lg"
@@ -371,7 +319,7 @@ console.log("Весь process.env:", process.env);
                     <Search size={18} />
                     {t('tenderList.showResults')}
                   </Button>
-                  <Button 
+                  <Button
                     variant="outline"
                     onClick={() => {
                       setSearchTerm('');
@@ -391,15 +339,15 @@ console.log("Весь process.env:", process.env);
             {/* Right Column - Active Tenders */}
             <div className="tenders-panel">
               <div className="tenders-header-advanced">
-                <h3 className="tenders-title-advanced">Активные заказы</h3>
+                <h3 className="tenders-title-advanced">{t('landing.stats.activeTenders')}</h3>
                 <div className="tenders-stats">
-                  <span className="tenders-count">Найдено: {filteredTenders.length}</span>
-                  <Button 
-                    variant="link" 
+                  <span className="tenders-count">{t('tenderList.found')} {filteredTenders.length}</span>
+                  <Button
+                    variant="link"
                     onClick={() => navigate('/tenders')}
                     className="view-all-link"
                   >
-                    Смотреть все →
+                    {t('common.viewAll')}
                   </Button>
                 </div>
               </div>
@@ -407,13 +355,13 @@ console.log("Весь process.env:", process.env);
               {loadingTenders ? (
                 <div className="loading-state">
                   <div className="loading-spinner"></div>
-                  <p>Загрузка заказов...</p>
+                  <p>{t('common.loadingOrders')}</p>
                 </div>
               ) : filteredTenders.length === 0 ? (
                 <div className="empty-state-advanced">
                   <FileText size={48} className="empty-icon" />
-                  <h4>Заказы не найдены</h4>
-                  <p>Попробуйте изменить критерии поиска</p>
+                  <h4>{t('tenderList.noTendersFound')}</h4>
+                  <p>{t('common.tryChangingFilters')}</p>
                 </div>
               ) : (
                 <div className="public-tenders-list-advanced">
@@ -428,29 +376,29 @@ console.log("Весь process.env:", process.env);
                           <span className="tender-number">№ {1161000 + tender.id}</span>
                           <span className="tender-category-badge">{getCategoryLabel(tender.category)}</span>
                         </div>
-                        <span className="tender-status-active">Активный</span>
+                        <span className="tender-status-active">{t('status.active')}</span>
                       </div>
-                      
+
                       <h4 className="tender-title-compact">{tender.title}</h4>
-                      
+
                       <div className="tender-info-row">
                         <div className="tender-budget-highlight">
                           <Banknote size={16} />
-                          <span>{tender.budget?.toLocaleString() ?? ''} $</span>
+                          <span>{tender.budget?.toLocaleString() ?? ''} ₸</span>
                         </div>
                         <div className="tender-location">
                           <MapPin size={14} />
                           <span>{tender.region}</span>
                         </div>
                       </div>
-                      
+
                       <div className="tender-footer-compact">
                         <div className="tender-deadline">
                           <Calendar size={14} />
-                          <span>до {new Date(tender.deadline).toLocaleDateString()}</span>
+                          <span>{t('tenderList.until')} {new Date(tender.deadline).toLocaleDateString()}</span>
                         </div>
                         <div className="tender-action">
-                          Подать предложение →
+                          {t('tenderDetail.submitProposal')} →
                         </div>
                       </div>
                     </div>
@@ -466,197 +414,64 @@ console.log("Весь process.env:", process.env);
       <section className="features-section">
         <div className="features-container">
           <div className="section-header">
-            <h2 className="section-title" data-testid="features-title">{t('landing.features.title')}</h2>
+            <h2 className="section-title">{t('landing.features.title')}</h2>
             <p className="section-description">{t('landing.features.subtitle')}</p>
           </div>
 
           <div className="features-grid">
             <div className="feature-card">
-              <div className="feature-icon primary">
-                <FileText size={28} />
-              </div>
+              <div className="feature-icon primary"><FileText size={28} /></div>
               <h3 className="feature-title">{t('landing.features.tenderCreation')}</h3>
-              <p className="feature-description">
-                {t('landing.features.tenderCreationDesc')}
-              </p>
+              <p className="feature-description">{t('landing.features.tenderCreationDesc')}</p>
             </div>
 
             <div className="feature-card">
-              <div className="feature-icon success">
-                <Shield size={28} />
-              </div>
+              <div className="feature-icon success"><Shield size={28} /></div>
               <h3 className="feature-title">{t('landing.features.autoVerification')}</h3>
-              <p className="feature-description">
-                {t('landing.features.autoVerificationDesc')}
-              </p>
+              <p className="feature-description">{t('landing.features.autoVerificationDesc')}</p>
             </div>
 
             <div className="feature-card">
-              <div className="feature-icon secondary">
-                <Award size={28} />
-              </div>
+              <div className="feature-icon secondary"><Award size={28} /></div>
               <h3 className="feature-title">{t('landing.features.transparentSelection')}</h3>
-              <p className="feature-description">
-                {t('landing.features.transparentSelectionDesc')}
-              </p>
+              <p className="feature-description">{t('landing.features.transparentSelectionDesc')}</p>
             </div>
 
             <div className="feature-card">
-              <div className="feature-icon warning">
-                <TrendingUp size={28} />
-              </div>
+              <div className="feature-icon warning"><TrendingUp size={28} /></div>
               <h3 className="feature-title">{t('landing.features.analytics')}</h3>
-              <p className="feature-description">
-                {t('landing.features.analyticsDesc')}
-              </p>
+              <p className="feature-description">{t('landing.features.analyticsDesc')}</p>
             </div>
 
             <div className="feature-card">
-              <div className="feature-icon accent">
-                <CheckCircle size={28} />
-              </div>
+              <div className="feature-icon accent"><CheckCircle size={28} /></div>
               <h3 className="feature-title">{t('landing.features.compliance')}</h3>
-              <p className="feature-description">
-                {t('landing.features.complianceDesc')}
-              </p>
+              <p className="feature-description">{t('landing.features.complianceDesc')}</p>
             </div>
 
             <div className="feature-card">
-              <div className="feature-icon info">
-                <Users size={28} />
-              </div>
+              <div className="feature-icon info"><Users size={28} /></div>
               <h3 className="feature-title">{t('landing.features.userManagement')}</h3>
-              <p className="feature-description">
-                {t('landing.features.userManagementDesc')}
-              </p>
+              <p className="feature-description">{t('landing.features.userManagementDesc')}</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Footer Section */}
-      <footer className="footer-section">
-        <div className="footer-container">
-          <div className="footer-content">
-            {/* Logo and Company Info */}
-            <div className="footer-brand">
-              <div className="footer-logo">
-                <img src="/logo.png" alt="HubContract" className="footer-logo-image" />
-                <span className="footer-logo-text">HubContract</span>
-              </div>
-              <p className="footer-description">
-                Профессиональная платформа для поиска надежных поставщиков и подрядчиков. 
-                Безопасная, прозрачная и эффективная система подбора исполнителей.
-              </p>
-            </div>
 
-            {/* Contact Information */}
-            <div className="footer-contacts">
-              <h3 className="footer-section-title">Контакты</h3>
-              <div className="contact-list">
-                <div className="contact-item">
-                  <Mail size={18} style={{ color: '#2563eb', flexShrink: 0, marginTop: '2px' }} />
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                    <div style={{ fontSize: '11px', color: '#718096', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                      Email
-                    </div>
-                    <div style={{ color: '#1a202c', fontSize: '15px', fontWeight: 500, lineHeight: '1.4' }}>
-                      <a href="mailto:info@hubcontract.kz" style={{ color: 'inherit', textDecoration: 'none' }}>
-                        info@hubcontract.kz
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div className="contact-item">
-                  <Phone size={18} style={{ color: '#2563eb', flexShrink: 0, marginTop: '2px' }} />
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                    <div style={{ fontSize: '11px', color: '#718096', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                      Телефон
-                    </div>
-                    <div style={{ color: '#1a202c', fontSize: '15px', fontWeight: 500, lineHeight: '1.4' }}>
-                      <a href="tel:+77028700022" style={{ color: 'inherit', textDecoration: 'none' }}>
-                        +7 (702) 870-00-22
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div className="contact-item">
-                  <Location size={18} style={{ color: '#2563eb', flexShrink: 0, marginTop: '2px' }} />
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                    <div style={{ fontSize: '11px', color: '#718096', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                      Адрес
-                    </div>
-                    <div style={{ color: '#1a202c', fontSize: '15px', fontWeight: 500, lineHeight: '1.4' }}>
-                      Казахстан, г. Астана<br />
-                      Проспект Мангилик Ел, 55/7
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Quick Links */}
-            <div className="footer-links">
-              <h3 className="footer-section-title">Быстрые ссылки</h3>
-              <div className="footer-link-list">
-                <Button 
-                  variant="ghost" 
-                  onClick={() => navigate('/tenders')}
-                  className="footer-link"
-                >
-                  Поиск заказов
-                </Button>
-                <Button 
-                  variant="ghost"
-                  onClick={() => setShowAuth(true)}
-                  className="footer-link"
-                >
-                  Регистрация
-                </Button>
-                <Button 
-                  variant="ghost"
-                  onClick={() => setShowAuth(true)}
-                  className="footer-link"
-                >
-                  Войти в систему
-                </Button>
-              </div>
-            </div>
-          </div>
-
-          {/* Footer Bottom */}
-          {/*<div className="footer-bottom">*/}
-          {/*  <div className="footer-copyright">*/}
-          {/*    <p>&copy; 2025 HubContract. Все права защищены.</p>*/}
-          {/*  </div>*/}
-          {/*  <div className="footer-legal">*/}
-          {/*    <button onClick={() => navigate('/privacy-policy')} className="legal-link">*/}
-          {/*      Политика конфиденциальности*/}
-          {/*    </button>*/}
-          {/*    <span className="legal-divider">|</span>*/}
-          {/*    <button onClick={() => navigate('/terms-of-use')} className="legal-link">*/}
-          {/*      Условия использования*/}
-          {/*    </button>*/}
-          {/*    <span className="legal-divider">|</span>*/}
-          {/*    <button onClick={() => navigate('/disclaimer')} className="legal-link">*/}
-          {/*      Отказ от ответственности*/}
-          {/*    </button>*/}
-          {/*  </div>*/}
-          {/*</div>*/}
-        </div>
-      </footer>
 
       {/* Auth Dialog */}
       <Dialog open={showAuth} onOpenChange={setShowAuth}>
-        <DialogContent className="auth-dialog" data-testid="auth-dialog">
+        <DialogContent className="auth-dialog">
           <DialogHeader>
             <DialogTitle className="auth-title">{t('auth.welcomeTitle')}</DialogTitle>
           </DialogHeader>
-          
+
           <Tabs defaultValue="login" className="auth-tabs">
             <TabsList className="auth-tabs-list">
-              <TabsTrigger value="login" data-testid="login-tab">{t('auth.signIn')}</TabsTrigger>
-              <TabsTrigger value="register" data-testid="register-tab">{t('auth.register')}</TabsTrigger>
+              <TabsTrigger value="login">{t('auth.signIn')}</TabsTrigger>
+              <TabsTrigger value="register">{t('auth.register')}</TabsTrigger>
             </TabsList>
 
             <TabsContent value="login">
@@ -685,13 +500,13 @@ console.log("Весь process.env:", process.env);
                     data-testid="login-password-input"
                   />
                 </div>
-                
+
                 <div style={{ textAlign: 'right', marginBottom: '12px' }}>
-                  <a 
-                    href="/forgot-password" 
-                    style={{ 
-                      color: '#1e40af', 
-                      fontSize: '0.875rem', 
+                  <a
+                    href="/forgot-password"
+                    style={{
+                      color: '#1e40af',
+                      fontSize: '0.875rem',
                       textDecoration: 'none',
                       fontWeight: '500',
                       transition: 'color 0.2s'
@@ -702,7 +517,7 @@ console.log("Весь process.env:", process.env);
                     {t('auth.forgotPassword')}
                   </a>
                 </div>
-                
+
                 <Button
                   type="submit"
                   className="btn-primary w-full"
@@ -1481,7 +1296,12 @@ console.log("Весь process.env:", process.env);
           font-weight: 600;
           color: var(--text-primary);
         }
-
+        .search-icon{
+          position: absolute;
+          top: 50%;  
+          left: 10px;
+          transform: translateY(-50%)
+        }
         .search-input-container {
           position: relative;
         }
@@ -2084,7 +1904,7 @@ console.log("Весь process.env:", process.env);
           }
         }
       `}</style>
-    </div>
+</StaticLayout>
   );
 };
 

@@ -108,7 +108,7 @@ const TenderDetail = () => {
     
     // Check if bid price exceeds tender budget
     if (bidPrice > tender.budget) {
-      toast.error(`Цена заявки (${bidPrice.toLocaleString()} ₸) не может превышать бюджет тендера (${tender.budget.toLocaleString()} ₸)`);
+      toast.error(`Цена заявки (${bidPrice.toLocaleString()} $) не может превышать бюджет тендера (${tender.budget.toLocaleString()} $)`);
       return;
     }
     
@@ -268,7 +268,7 @@ const TenderDetail = () => {
                 <Banknote className="info-icon" />
                 <div>
                   <p className="info-label">{t('tenderList.budget')}</p>
-                  <p className="info-value">{tender.budget.toLocaleString()} ₸</p>
+                  <p className="info-value">{tender.budget.toLocaleString()} $</p>
                 </div>
               </div>
 
@@ -351,7 +351,7 @@ const TenderDetail = () => {
                     <div className="bid-header">
                       <div>
                         <p className="bid-contractor">{bid.contractor_email}</p>
-                        <p className="bid-price">{bid.price.toLocaleString()} ₸</p>
+                        <p className="bid-price">{bid.price.toLocaleString()} $</p>
                       </div>
                       <div className="bid-status-info">
                         <span className={`status-badge status-${bid.status}`}>
@@ -393,7 +393,7 @@ const TenderDetail = () => {
 
               {/* Цена предложения */}
               <div className="form-field">
-                <Label htmlFor="price">Цена предложения (₸) *</Label>
+                <Label htmlFor="price">Цена предложения ($) *</Label>
                 <Input
                   id="price"
                   type="number"
@@ -404,7 +404,7 @@ const TenderDetail = () => {
                   required
                   data-testid="bid-price-input"
                 />
-                <p className="field-hint">Максимальный бюджет тендера: {tender.budget.toLocaleString()} ₸</p>
+                <p className="field-hint">Максимальный бюджет тендера: {tender.budget.toLocaleString()} $</p>
               </div>
 
               {/* Срок выполнения */}
