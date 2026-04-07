@@ -4,23 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="baac46ef-bf41-4f73-b09d-490929e58f4a" name="Changes" comment="New Build [Build]">
-      <change afterPath="$PROJECT_DIR$/src/pages/static/Offer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/static/Privacy.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/static/Registration.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/static/TenderList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Layout.backup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout.backup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StaticLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StaticLayout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/LandingPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/LandingPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Settings.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/TenderDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TenderDetail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/TenderList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TenderList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/bereke-theme.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/bereke-theme.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/translations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/translations.js" afterDir="false" />
+    <list default="true" id="baac46ef-bf41-4f73-b09d-490929e58f4a" name="Changes" comment="Build&#10;&#10;(cherry picked from commit 837d9ed81da96e57cebc760d9a077db89ea6bae9)">
+      <changelist_data name="cheenah13" email="cheena.kairliev@gmail.com" date="1775571676000" automatic="true" />
+      <change afterPath="$PROJECT_DIR$/build/static/js/main.cde20eba.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/static/js/main.cde20eba.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/js/main.d434cb87.js.LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/static/js/main.d434cb87.js.LICENSE.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +140,7 @@
       <workItem from="1775659826446" duration="174000" />
       <workItem from="1775660061330" duration="961000" />
       <workItem from="1775661292569" duration="2602000" />
-      <workItem from="1775674333034" duration="6344000" />
+      <workItem from="1775674333034" duration="6711000" />
     </task>
     <task id="LOCAL-00001" summary="Node.js modules versions [Fix]">
       <option name="closed" value="true" />
@@ -218,7 +206,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775131567223</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="New Static">
+      <option name="closed" value="true" />
+      <created>1775724900301</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1775724900301</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,7 +239,9 @@
     <MESSAGE value="Build [build]" />
     <MESSAGE value="Fixes in Layout and new Build [Small Fix, Build]" />
     <MESSAGE value="New Build [Build]" />
-    <option name="LAST_COMMIT_MESSAGE" value="New Build [Build]" />
+    <MESSAGE value="New Static" />
+    <MESSAGE value="Build&#10;&#10;(cherry picked from commit 837d9ed81da96e57cebc760d9a077db89ea6bae9)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Build&#10;&#10;(cherry picked from commit 837d9ed81da96e57cebc760d9a077db89ea6bae9)" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
