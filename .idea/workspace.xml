@@ -4,19 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="baac46ef-bf41-4f73-b09d-490929e58f4a" name="Changes" comment="Small fix">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9ae08674-5fc1-4fc2-863a-793dc1ac6443.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sshConfigs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" />
+    <list default="true" id="baac46ef-bf41-4f73-b09d-490929e58f4a" name="Changes" comment="New build">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/documents/comitee.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/main.cde20eba.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/TenderDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TenderDetail.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +115,7 @@
       <workItem from="1775388759912" duration="188000" />
       <workItem from="1775388972438" duration="7718000" />
       <workItem from="1775478758704" duration="8503000" />
-      <workItem from="1775725799268" duration="1660000" />
+      <workItem from="1775725799268" duration="2661000" />
     </task>
     <task id="LOCAL-00001" summary="Node.js modules versions [Fix]">
       <option name="closed" value="true" />
@@ -192,7 +181,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775131567223</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="New build">
+      <option name="closed" value="true" />
+      <created>1775727654711</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1775727654711</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,7 +214,8 @@
     <MESSAGE value="Build [build]" />
     <MESSAGE value="Fixes in Layout and new Build [Small Fix, Build]" />
     <MESSAGE value="New Build [Build]" />
-    <option name="LAST_COMMIT_MESSAGE" value="New Build [Build]" />
+    <MESSAGE value="New build" />
+    <option name="LAST_COMMIT_MESSAGE" value="New build" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

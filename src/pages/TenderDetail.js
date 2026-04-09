@@ -372,6 +372,22 @@ const TenderDetail = () => {
                                     <span style={{flex: 1}}>Соглашение</span>
                                     <Download size={15} style={{color: 'var(--color-text-secondary)', flexShrink: 0}}/>
                                 </a>
+                                <a href="/documents/comitee.pdf" download style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '10px',
+                                    padding: '10px 14px',
+                                    border: '0.5px solid var(--color-border-secondary)',
+                                    borderRadius: '8px',
+                                    textDecoration: 'none',
+                                    color: 'var(--color-text-primary)',
+                                    background: 'var(--color-background-secondary)',
+                                    fontSize: '14px'
+                                }}>
+                                    <FileText size={16} style={{color: 'var(--color-text-secondary)', flexShrink: 0}}/>
+                                    <span style={{flex: 1}}>Положение о тендерной коммссии</span>
+                                    <Download size={15} style={{color: 'var(--color-text-secondary)', flexShrink: 0}}/>
+                                </a>
                             </div>
                         </div>
                         {tender.requirements && tender.requirements.length > 0 && (
