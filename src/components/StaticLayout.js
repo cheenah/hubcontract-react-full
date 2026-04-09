@@ -215,15 +215,15 @@ const StaticLayout = ({ children }) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="contact-item">
-                                    <Phone size={18} style={{ color: '#2563eb', flexShrink: 0, marginTop: '2px' }} />
-                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                                        <div className="contact-label">{t('auth.phone')}</div>
-                                        <div style={{ color: '#1a202c', fontSize: '15px', fontWeight: 500 }}>
-                                            <a href="tel:+77028700022" style={{ color: 'inherit', textDecoration: 'none' }}>+7 (702) 870-00-22</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                {/*<div className="contact-item">*/}
+                                {/*    <Phone size={18} style={{ color: '#2563eb', flexShrink: 0, marginTop: '2px' }} />*/}
+                                {/*    <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>*/}
+                                {/*        <div className="contact-label">{t('auth.phone')}</div>*/}
+                                {/*        <div style={{ color: '#1a202c', fontSize: '15px', fontWeight: 500 }}>*/}
+                                {/*            <a href="tel:+77028700022" style={{ color: 'inherit', textDecoration: 'none' }}>+7 (702) 870-00-22</a>*/}
+                                {/*        </div>*/}
+                                {/*    </div>*/}
+                                {/*</div>*/}
                                 <div className="contact-item">
                                     <Location size={18} style={{ color: '#2563eb', flexShrink: 0, marginTop: '2px' }} />
                                     <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
