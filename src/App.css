@@ -1241,7 +1241,7 @@ footer a[href^="tel:"] {
 }
 
 .menu-item-primary {
-    color: var(--btn-green) !important;
+    /*color: var(--btn-green) !important;*/
     font-weight: 600 !important;
     background: #f0fdf4 !important;
 }
@@ -2464,9 +2464,9 @@ footer a[href^="tel:"] {
         display: block;
     }
 
-    .mobile-menu {
-        display: ${mobileMenuOpen ? 'flex' : 'none'};
-    }
+    /*.mobile-menu {*/
+    /*    display: ${mobileMenuOpen ? 'flex' : 'none'};*/
+    /*}*/
 
     .user-email {
         display: none;

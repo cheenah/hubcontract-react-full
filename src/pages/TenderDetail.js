@@ -871,9 +871,6 @@ const TenderDetail = () => {
                 </Dialog>
             </div>
 
-            <style jsx>{`
-              
-            `}</style>
         </Layout>
     );
 };
