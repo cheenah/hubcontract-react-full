@@ -43,10 +43,10 @@
   border: 1px solid #E8E4E0;
 }
 
-.stat-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
+/*.stat-card:hover {*/
+/*  transform: translateY(-4px);*/
+/*  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);*/
+/*}*/
 
 .stat-card-icon {
   width: 64px;

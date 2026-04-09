@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Settings as SettingsIcon, Bell, Lock, Globe, Mail, Save } from 'lucide-react';
+import { Settings as SettingsIcon, Bell, Lock, Mail, Save } from 'lucide-react';
 import axios from 'axios';
 import { toast } from 'sonner';
 
@@ -119,7 +119,6 @@ const Settings = () => {
               Уведомления
             </TabsTrigger>
             <TabsTrigger value="preferences">
-              <Globe size={18} />
               Предпочтения
             </TabsTrigger>
             <TabsTrigger value="privacy">

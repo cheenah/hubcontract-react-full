@@ -4,6 +4,7 @@ import axios from 'axios';
 import { AppContext } from '@/App';
 import { useLanguage } from '@/context/LanguageContext';
 import Layout from '@/components/Layout';
+import StaticLayout from '@/components/StaticLayout';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -13,7 +14,7 @@ import { Search, Filter } from 'lucide-react';
 
 const TenderList = () => {
   const navigate = useNavigate();
-  const { API } = React.useContext(AppContext);
+  const { API, user } = React.useContext(AppContext);
   const { t } = useLanguage();
   const [tenders, setTenders] = useState([]);
   const [filteredTenders, setFilteredTenders] = useState([]);
@@ -109,6 +110,7 @@ const TenderList = () => {
   };
 
   return (
+
     <Layout>
       <div className="tender-list-container" data-testid="tender-list">
         <div className="tender-list-header">
@@ -311,10 +313,10 @@ const TenderList = () => {
                   </div>
                   <h3 className="tender-card-title">{tender.title}</h3>
                 </div>
-                
+
                 <div className="tender-card-content">
                   <p className="tender-description">{tender.description}</p>
-                  
+
                   <div className="tender-details-grid">
                     <div className="detail-item">
                       <span className="detail-label">{t('tenderList.budget')}</span>
@@ -334,7 +336,7 @@ const TenderList = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="tender-card-footer">
                   <div className="tender-dates">
                     <span className="date-label">{t('tenderDetail.deadline')}: {new Date(tender.deadline).toLocaleDateString()}</span>
