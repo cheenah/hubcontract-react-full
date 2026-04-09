@@ -5,16 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="baac46ef-bf41-4f73-b09d-490929e58f4a" name="Changes" comment="New Build [Build]">
-      <change afterPath="$PROJECT_DIR$/src/components/StaticLayout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/static/Offer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/static/Privacy.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/static/Registration.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/static/TenderList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout.backup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout.backup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StaticLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StaticLayout.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/LandingPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/LandingPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Settings.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/TenderDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TenderDetail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/TenderList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TenderList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/bereke-theme.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/bereke-theme.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/translations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/translations.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_C:/Users/User/PycharmProjects/hubcontract-react-full" value="3BeuDx1lITJcAzirmUxNDXujc6a" />
+    </persistenceIdMap>
+  </component>
+  <component name="CopilotUserSelectedChatMode">
+    <option name="chatModeId" value="Agent" />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="205" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -24,6 +46,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -47,6 +74,9 @@
   &quot;fromUser&quot;: false
 }</component>
   <component name="ProjectId" id="3BeuDx1lITJcAzirmUxNDXujc6a" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -66,7 +96,7 @@
     &quot;WebServerToolWindowPanel.toolwindow.show.size&quot;: &quot;false&quot;,
     &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
     &quot;com.google.cloudcode.ide_session_index&quot;: &quot;20260405_0000&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;temp-save-branch&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -113,6 +143,16 @@
       <workItem from="1775489296966" duration="2713000" />
       <workItem from="1775557653520" duration="4323000" />
       <workItem from="1775563880602" duration="1387000" />
+      <workItem from="1775592155292" duration="6717000" />
+      <workItem from="1775641647724" duration="207000" />
+      <workItem from="1775646565358" duration="1641000" />
+      <workItem from="1775658379985" duration="98000" />
+      <workItem from="1775658488177" duration="1114000" />
+      <workItem from="1775659665846" duration="128000" />
+      <workItem from="1775659826446" duration="174000" />
+      <workItem from="1775660061330" duration="961000" />
+      <workItem from="1775661292569" duration="2602000" />
+      <workItem from="1775674333034" duration="6344000" />
     </task>
     <task id="LOCAL-00001" summary="Node.js modules versions [Fix]">
       <option name="closed" value="true" />

@@ -9,7 +9,7 @@ import { LanguageProvider } from '@/context/LanguageContext';
 // Pages
 import LandingPage from '@/pages/LandingPage';
 import Dashboard from '@/pages/Dashboard';
-import TenderList from '@/pages/TenderList';
+// import TenderList from '@/pages/TenderList';
 import TenderDetail from '@/pages/TenderDetail';
 import CreateTender from '@/pages/CreateTenderNew';
 import MyTenders from '@/pages/MyTenders';
@@ -47,6 +47,10 @@ import TermsOfUse from '@/pages/TermsOfUse';
 import Disclaimer from '@/pages/Disclaimer';
 import ForgotPassword from '@/pages/ForgotPassword';
 import ResetPassword from '@/pages/ResetPassword';
+import Privacy from '@/pages/static/Privacy';
+import Offer from '@/pages/static/Offer';
+import TenderList from '@/pages/static/TenderList';
+import Registration from '@/pages/static/Registration';
 // const BACKEND_URL = 'http://localhost:8000'
 const BACKEND_URL = 'https://test-api.hubcontract.kz/';
 // const API = `http://localhost:8000/api`;
@@ -106,6 +110,7 @@ function App() {
               <Route path="/" element={user ? <Navigate to={user.role === 'admin' ? '/admin' : user.role === 'contractor' ? '/contractor/dashboard' : '/dashboard'} /> : <LandingPage />} />
               <Route path="/dashboard" element={user && user.role === 'customer' ? <Dashboard /> : user && user.role === 'contractor' ? <Navigate to="/contractor/dashboard" /> : user && user.role === 'admin' ? <Navigate to="/admin" /> : <Navigate to="/" />} />
               <Route path="/tenders" element={<TenderList />} />
+              <Route path="/registration" element={<Registration />} />
               <Route path="/tenders/:id" element={user && user.role === 'contractor' ? <ContractorTenderView /> : <TenderDetail />} />
               <Route path="/tenders/:tenderId/submit-bid" element={user && user.role === 'contractor' ? <SubmitBid /> : <Navigate to="/" />} />
               <Route path="/protocol/:tenderId" element={<ProtocolView />} />
@@ -117,7 +122,7 @@ function App() {
               <Route path="/admin/tenders" element={user && user.role === 'admin' ? <AdminTenders /> : <Navigate to="/" />} />
               <Route path="/admin/contracts" element={user && user.role === 'admin' ? <AdminContracts /> : <Navigate to="/" />} />
               <Route path="/admin/users" element={user && user.role === 'admin' ? <AdminUsers /> : <Navigate to="/" />} />
-              
+
               {/* Customer Personal Account Routes */}
               <Route path="/organization" element={user && user.role === 'customer' ? <OrganizationProfile /> : <Navigate to="/" />} />
               <Route path="/procurement-plans" element={user && user.role === 'customer' ? <ProcurementPlans /> : <Navigate to="/" />} />
@@ -139,13 +144,15 @@ function App() {
               <Route path="/disclaimer" element={<Disclaimer />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
               <Route path="/reset-password" element={<ResetPassword />} />
-              
+
               {/* Contractor Personal Account Routes */}
               <Route path="/contractor/dashboard" element={user && user.role === 'contractor' ? <ContractorDashboard /> : <Navigate to="/" />} />
               <Route path="/contractor/contracts" element={user && user.role === 'contractor' ? <ContractorContracts /> : <Navigate to="/" />} />
               <Route path="/contractor/guarantees" element={user && user.role === 'contractor' ? <ContractorGuarantees /> : <Navigate to="/" />} />
               <Route path="/contractor/qualifications" element={user && user.role === 'contractor' ? <ContractorQualifications /> : <Navigate to="/" />} />
               <Route path="/contractor/finances" element={user && user.role === 'contractor' ? <ContractorFinances /> : <Navigate to="/" />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/offer" element={<Offer />} />
             </Routes>
           </BrowserRouter>
           <Toaster position="top-right" richColors />

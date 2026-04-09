@@ -9,7 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { FileText, Home, User, LogOut, Shield, Menu, X, Globe, Building, Calendar, Users, FileBarChart, MessageSquare, Settings as SettingsIcon, ChevronDown } from 'lucide-react';
+import { FileText, Home, User, LogOut, Shield, Menu, X, Building, Calendar, Users, FileBarChart, MessageSquare, Settings as SettingsIcon, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 
 const Layout = ({ children }) => {
@@ -117,7 +117,6 @@ const Layout = ({ children }) => {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button className="language-selector" data-testid="language-selector">
-                  <Globe size={20} />
                   <span className="language-code">{language.toUpperCase()}</span>
                 </button>
               </DropdownMenuTrigger>
@@ -200,7 +199,6 @@ const Layout = ({ children }) => {
             {/* Mobile Language Selector */}
             <div className="mobile-language-section">
               <div className="mobile-section-title">
-                <Globe size={16} />
                 <span>Language</span>
               </div>
               <div className="mobile-language-options">

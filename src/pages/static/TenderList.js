@@ -4,13 +4,14 @@ import axios from 'axios';
 import { AppContext } from '@/App';
 import { useLanguage } from '@/context/LanguageContext';
 import Layout from '@/components/Layout';
-import StaticLayout from '@/components/StaticLayout';
+
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Search, Filter } from 'lucide-react';
+import StaticLayout from '../../components/StaticLayout';
 
 const TenderList = () => {
   const navigate = useNavigate();
@@ -111,7 +112,7 @@ const TenderList = () => {
 
   return (
 
-    <Layout>
+    <StaticLayout>
       <div className="tender-list-container" data-testid="tender-list">
         <div className="tender-list-header">
           <h1 className="page-title">{t('tenderList.title')}</h1>
@@ -121,7 +122,7 @@ const TenderList = () => {
         {/* Filters Section - Similar to Landing Page */}
         <Card className="filters-card">
           <div className="filters-header">
-            <h3 className="filters-title">Фильтры поиска</h3>
+            <h3 className="filters-title">{t('tenderList.searchTitle')}</h3>
             <Button
               variant="ghost"
               size="sm"
@@ -145,7 +146,7 @@ const TenderList = () => {
             <Search size={20} className="search-icon" />
             <Input
               type="text"
-              placeholder="Поиск по названию, номеру тендера, описанию..."
+              placeholder={t('tenderList.advancedSearch')}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="search-input-main"
@@ -155,67 +156,64 @@ const TenderList = () => {
           {/* Primary Filters Row */}
           <div className="primary-filters">
             <div className="filter-group">
-              <Label>Категория</Label>
+              <Label>{t('tenderList.categoryLabel')}</Label>
               <Select value={categoryFilter} onValueChange={setCategoryFilter}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Все категории" />
+                  <SelectValue placeholder={t('tenderList.allCategories')}/>
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">Все категории</SelectItem>
-                  <SelectItem value="Строительство">Строительство</SelectItem>
-                  <SelectItem value="ИТ услуги">ИТ услуги</SelectItem>
-                  <SelectItem value="Консалтинг">Консалтинг</SelectItem>
-                  <SelectItem value="Логистика">Логистика</SelectItem>
-                  <SelectItem value="Инженерные системы">Инженерные системы</SelectItem>
-                  <SelectItem value="Ремонт дорог">Ремонт дорог</SelectItem>
+                  <SelectItem value="all">{t('tenderList.allCategories')}</SelectItem>
+                  <SelectItem value="construction">{t('tenderList.construction')}</SelectItem>
+                  <SelectItem value="itServices">{t('tenderList.itServices')}</SelectItem>
+                  <SelectItem value="consulting">{t('tenderList.consulting')}</SelectItem>
+                  <SelectItem value="logistics">{t('tenderList.logistics')}</SelectItem>
+                  <SelectItem value="oil_gas_chemistry">{t('tenderList.oil_gas_chemistry')}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             <div className="filter-group">
-              <Label>Регион</Label>
+              <Label>{t('tenderList.regionLabel')}</Label>
               <Select value={regionFilter} onValueChange={setRegionFilter}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Все регионы" />
+                  <SelectValue placeholder={t('tenderList.categoryLabel')} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">Все регионы</SelectItem>
-                  <SelectItem value="Алматы">Алматы</SelectItem>
-                  <SelectItem value="Астана">Астана</SelectItem>
-                  <SelectItem value="Шымкент">Шымкент</SelectItem>
-                  <SelectItem value="Караганда">Караганда</SelectItem>
-                  <SelectItem value="Актобе">Актобе</SelectItem>
-                  <SelectItem value="Атырау">Атырау</SelectItem>
-                  <SelectItem value="Актау">Актау</SelectItem>
+                  <SelectItem value="all">{t('tenderList.regions.all')}</SelectItem>
+                  <SelectItem value="almaty">{t('tenderList.regions.almaty')}</SelectItem>
+                  <SelectItem value="astana">{t('tenderList.regions.astana')}</SelectItem>
+                  <SelectItem value="shymkent">{t('tenderList.regions.shymkent')}</SelectItem>
+                  <SelectItem value="aktobe">{t('tenderList.regions.aktobe')}</SelectItem>
+                  <SelectItem value="karaganda">{t('tenderList.regions.karaganda')}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             <div className="filter-group">
-              <Label>Тип тендера</Label>
+              <Label>{t('tenderList.typeLabel')}</Label>
               <Select value={typeFilter} onValueChange={setTypeFilter}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Все типы" />
+                  <SelectValue placeholder={t('tenderList.allTypes')} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">Все типы</SelectItem>
-                  <SelectItem value="price_proposals">Ценовые предложения</SelectItem>
-                  <SelectItem value="open_competition">Открытый конкурс</SelectItem>
-                  <SelectItem value="auction">Аукцион</SelectItem>
-                  <SelectItem value="single_source">Единственный источник</SelectItem>
+                  <SelectItem value="all">{t('tenderList.allTypes')}</SelectItem>
+                  <SelectItem value="price_proposals">{t('tenderList.priceProposals')}</SelectItem>
+                  <SelectItem value="open_competition">{t('tenderList.allType.openCompetition')}</SelectItem>
+                  <SelectItem value="auction">{t('tenderList.auction')}</SelectItem>
+                  <SelectItem value="single_source">{t('tenderList.singleSource')}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             <div className="filter-group">
-              <Label>Статус</Label>
+              <Label>{t('tenderList.statusLabel')}</Label>
               <Select value={statusFilter} onValueChange={setStatusFilter}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Все статусы" />
+                  <SelectValue placeholder={t('tenderList.allStatuses')} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">Все статусы</SelectItem>
-                  <SelectItem value="published_receiving_proposals">Прием заявок</SelectItem>
+                  <SelectItem value="all">{t('tenderList.allStatuses')}</SelectItem>
+                  <SelectItem value="published_receiving_proposals">{t('tenderList.publishedReceivingProposals')}</SelectItem>
                   <SelectItem value="under_review">На рассмотрении</SelectItem>
                   <SelectItem value="active">Активный</SelectItem>
                   <SelectItem value="closed">Закрыт</SelectItem>
@@ -638,7 +636,7 @@ const TenderList = () => {
           }
         }
       `}</style>
-    </Layout>
+    </StaticLayout>
   );
 };
 
