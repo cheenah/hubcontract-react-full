@@ -650,6 +650,7 @@ const TenderDetail = () => {
                             <h3 className="subsection-title">{t('tenderDetail.technicalSpecs')}</h3>
                             <p className="description-text">{tender.technical_specs}</p>
                         </div>
+                        {tender.id === '508e1745-94d6-40ca-9bd5-1e09327ad4f8' ? (
                         <div className="description-section">
                             <h3 className="subsection-title">Документы тендера</h3>
                             <div style={{display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '8px'}}>
@@ -719,6 +720,24 @@ const TenderDetail = () => {
                                 </a>
                             </div>
                         </div>
+                            ) : (
+                               <a key={index} href={doc.url} download style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '10px',
+                                    padding: '10px 14px',
+                                    border: '0.5px solid var(--color-border-secondary)',
+                                    borderRadius: '8px',
+                                    textDecoration: 'none',
+                                    color: 'var(--color-text-primary)',
+                                    background: 'var(--color-background-secondary)',
+                                    fontSize: '14px'
+                                }}>
+                                    <FileText size={16} style={{color: 'var(--color-text-secondary)', flexShrink: 0}}/>
+                                    <span style={{flex: 1}}>{doc.name || `Документ ${index + 1}`}</span>
+                                    <Download size={15} style={{color: 'var(--color-text-secondary)', flexShrink: 0}}/>
+                                </a>
+                        )}
                         {tender.requirements && tender.requirements.length > 0 && (
                             <div className="description-section">
                                 <h3 className="subsection-title">{t('tenderDetail.requirements')}</h3>
