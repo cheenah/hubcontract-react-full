@@ -21,8 +21,8 @@ import { Input } from "@/components/ui/input";
 import axios from "axios";
 import { toast } from "sonner";
 
-// Константа API (замените на ваш реальный URL, если он берется из env)
-const API = process.env.REACT_APP_API_URL || '';
+
+const API = 'test-api.hubcontract.kz';
 
 const HeaderButton = ({ children, onClick, onMouseEnter, onMouseLeave, style }) => (
     <div
