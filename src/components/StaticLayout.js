@@ -59,13 +59,13 @@ const StaticLayout = ({ children }) => {
         e.preventDefault();
         setLoading(true);
         try {
-            const response = await axios.post(`${API}/auth/login`, loginForm);
+            const response = await axios.post(`${API}/api/auth/login`, loginForm);
             localStorage.setItem('token', response.data.token);
             setUser(response.data.user);
             setShowAuth(false);
             toast.success('Login successful!');
 
-            const userRole = response.data.user.role;
+            const userRole = response.data.user.rol
             if (userRole === 'admin') {
                 navigate('/admin');
             } else if (userRole === 'contractor') {
