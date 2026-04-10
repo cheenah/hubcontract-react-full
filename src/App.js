@@ -114,7 +114,7 @@ function App() {
               <Route path="/tenders/:id" element={user && user.role === 'contractor' ? <ContractorTenderView /> : <TenderDetail />} />
               <Route path="/tenders/:tenderId/submit-bid" element={user && user.role === 'contractor' ? <SubmitBid /> : <Navigate to="/" />} />
               <Route path="/protocol/:tenderId" element={<ProtocolView />} />
-              <Route path="/create-tender" element={user && user.role === 'customer' ? <CreateTender /> : <Navigate to="/" />} />
+              <Route path="/create-tender" element={user && user.role === 'admin' ? <CreateTender /> : <Navigate to="/" />}/>
               <Route path="/my-tenders" element={user && user.role === 'customer' ? <MyTenders /> : <Navigate to="/" />} />
               <Route path="/my-bids" element={user && user.role === 'contractor' ? <MyBids /> : <Navigate to="/" />} />
               <Route path="/profile" element={user ? <Profile /> : <Navigate to="/" />} />
