@@ -385,7 +385,7 @@ const TenderDetail = () => {
                                     fontSize: '14px'
                                 }}>
                                     <FileText size={16} style={{color: 'var(--color-text-secondary)', flexShrink: 0}}/>
-                                    <span style={{flex: 1}}>Положение о тендерной коммссии</span>
+                                    <span style={{flex: 1}}>Положение о тендерной комиссии</span>
                                     <Download size={15} style={{color: 'var(--color-text-secondary)', flexShrink: 0}}/>
                                 </a>
                             </div>
