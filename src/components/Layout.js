@@ -100,6 +100,9 @@ const Layout = ({ children }) => {
 
   const isActive = (path) => location.pathname === path;
 
+  // Filter languages to only include EN, RU, KK, and ZH
+  const allowedLanguages = languages.filter(lang => ['en', 'ru', 'kk', 'zh'].includes(lang.code));
+
   return (
     <div className="layout">
       {/* Top Header Bar */}
@@ -139,7 +142,7 @@ const Layout = ({ children }) => {
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                {languages.map((lang) => (
+                {allowedLanguages.map((lang) => (
                   <DropdownMenuItem
                     key={lang.code}
                     onClick={() => changeLanguage(lang.code)}
@@ -217,10 +220,10 @@ const Layout = ({ children }) => {
             {/* Mobile Language Selector */}
             <div className="mobile-language-section">
               <div className="mobile-section-title">
-                <span>Language</span>
+                <span>{t('common.chooseLanguage')}</span>
               </div>
               <div className="mobile-language-options">
-                {languages.map((lang) => (
+                {allowedLanguages.map((lang) => (
                   <button
                     key={lang.code}
                     onClick={() => {
@@ -359,7 +362,7 @@ const Layout = ({ children }) => {
       <footer className="app-footer">
         <div className="footer-content">
           <div className="footer-section">
-            <h4 className="footer-title">Контакты</h4>
+            <h4 className="footer-title">{t('common.contacts')}</h4>
             <div className="footer-contact">
               <Phone size={14} />
               <a href="tel:+77028700022">+7 (702) 870-00-22</a>
@@ -371,29 +374,29 @@ const Layout = ({ children }) => {
           </div>
 
           <div className="footer-section">
-            <h4 className="footer-title">Информация</h4>
+            <h4 className="footer-title">{t('common.aboutPlatform')}</h4>
             <button onClick={() => navigate('/help')} className="footer-link">
               <HelpCircle size={14} />
-              <span>Центр помощи</span>
+              <span>{t('common.helpCenter')}</span>
             </button>
             <button onClick={() => navigate('/privacy-policy')} className="footer-link">
               <FileText size={14} />
-              <span>Политика конфиденциальности</span>
+              <span>{t('common.privacyPolicy')}</span>
             </button>
             <button onClick={() => navigate('/terms-of-use')} className="footer-link">
               <FileText size={14} />
-              <span>Условия использования</span>
+              <span>{t('common.termsOfUse')}</span>
             </button>
             <button onClick={() => navigate('/disclaimer')} className="footer-link">
               <FileText size={14} />
-              <span>Отказ от ответственности</span>
+              <span>{t('common.disclaimer')}</span>
             </button>
           </div>
 
           <div className="footer-section">
-            <p className="footer-copyright">© 2025 HubContract. Все права защищены.</p>
+            <p className="footer-copyright">&copy; 2025 HubContract. {t('common.allRightsReserved')}</p>
             <p className="footer-description">
-              Электронная платформа для проведения государственных и коммерческих закупок
+              {t('common.landingFooterDesc')}
             </p>
           </div>
         </div>

@@ -36,7 +36,7 @@ const Registration = ({ setShowAuth }) => {
             console.log('Registering:', registerForm);
 
             // Выводим сообщение о технических работах
-            toast.error("На сервере ведутся технические работы, попробуйте позже");
+            toast.error(t('common.registrationUnavailable'));
 
         } catch (error) {
             toast.error(t('common.error') || 'Произошла ошибка');
@@ -56,7 +56,7 @@ const Registration = ({ setShowAuth }) => {
                             <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
                                 {t('auth.register')}
                             </h1>
-                            <p className="text-gray-500 mt-2">Присоединяйтесь к экосистеме HubContract</p>
+                            <p className="text-gray-500 mt-2">{t('common.joinEcosystem')}</p>
                         </div>
 
                         <form onSubmit={handleRegister} className="space-y-5">
@@ -94,7 +94,7 @@ const Registration = ({ setShowAuth }) => {
                                         id="company-bin"
                                         type="text"
                                         className="h-11 mt-1"
-                                        placeholder="12 цифр"
+                                        placeholder={t('auth.binPlaceholder')}
                                         value={registerForm.company_bin}
                                         onChange={(e) => setRegisterForm({...registerForm, company_bin: e.target.value})}
                                         required

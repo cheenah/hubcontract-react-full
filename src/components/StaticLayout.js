@@ -4,7 +4,9 @@ import {
     Phone,
     MapPin as Location,
     ChevronRight,
-    Home
+    ChevronDown,
+    Home,
+    Globe
 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import {
@@ -22,7 +24,9 @@ import axios from "axios";
 import { toast } from "sonner";
 
 
-const API = 'https://test-api.hubcontract.kz';
+// const API = 'https://test-api.hubcontract.kz';
+
+const API = 'http://localhost:8000';
 
 const HeaderButton = ({ children, onClick, onMouseEnter, onMouseLeave, style }) => (
     <div
@@ -65,7 +69,7 @@ const StaticLayout = ({ children }) => {
             setShowAuth(false);
             toast.success('Login successful!');
 
-            const userRole = response.data.user.rol
+            const userRole = response.data.user.role;
             if (userRole === 'admin') {
                 navigate('/admin');
             } else if (userRole === 'contractor') {
@@ -84,11 +88,14 @@ const StaticLayout = ({ children }) => {
     const isHomePage = location.pathname === '/';
     const breadcrumbNameMap = {
         'tenders': t('common.searchOrders'),
-        'privacy': t('common.privacy'),
-        'auth': t('auth.loginTitle'),
+        'privacy': t('common.privacyPolicy'),
+        'auth': t('auth.signIn'),
         '508e1745-94d6-40ca-9bd5-1e09327ad4f8': t('page.mega'),
         'registration': t('auth.register'),
     };
+
+    // Filter languages to only include EN, RU, KK, and ZH
+    const allowedLanguages = languages.filter(lang => ['en', 'ru', 'kk', 'zh'].includes(lang.code));
 
     return (
         <div className="flex flex-col">
@@ -98,29 +105,21 @@ const StaticLayout = ({ children }) => {
                         <img src="/logo.png" alt="HubContract" className="logo-image" />
                         <span className="logo-text">HubContract</span>
                     </div>
-                    <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <div
                                     role="button"
                                     tabIndex={0}
-                                    style={{
-                                        background: 'transparent',
-                                        color: '#2563eb',
-                                        padding: '8px 12px',
-                                        height: '36px',
-                                        border: '1px solid #f5f1ed',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        gap: '6px',
-                                        cursor: 'pointer'
-                                    }}
+                                    className="lang-trigger"
                                 >
-                                    <span style={{ fontSize: '14px', fontWeight: 500 }}>{language.toUpperCase()}</span>
+                                    <Globe size={14} />
+                                    <span>{language.toUpperCase()}</span>
+                                    <ChevronDown size={13} />
                                 </div>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end" className="menu-dropdown">
-                                {languages.map((lang) => (
+                                {allowedLanguages.map((lang) => (
                                     <DropdownMenuItem
                                         key={lang.code}
                                         onClick={() => changeLanguage(lang.code)}
@@ -132,21 +131,24 @@ const StaticLayout = ({ children }) => {
                                 ))}
                             </DropdownMenuContent>
                         </DropdownMenu>
-                        <HeaderButton
+                        <div
+                            role="button"
+                            tabIndex={0}
+                            className="header-signin-btn"
                             onClick={() => setShowAuth(true)}
-                            style={{
-                                background: 'transparent',
-                                color: '#2563eb',
-                                padding: '8px 12px',
-                                height: '36px',
-                                fontSize: '14px',
-                                fontWeight: 500,
-                                border: '1px solid #f5f1ed',
-                                cursor: 'pointer'
-                            }}
+                            onKeyDown={(e) => { if (e.key === 'Enter') setShowAuth(true); }}
                         >
-                            {t('auth.signIn') || 'Вход'}
-                        </HeaderButton>
+                            {t('auth.signIn')}
+                        </div>
+                        <div
+                            role="button"
+                            tabIndex={0}
+                            className="header-register-btn"
+                            onClick={() => toast.info(t('common.registrationUnavailable'))}
+                            onKeyDown={(e) => { if (e.key === 'Enter') toast.info(t('common.registrationUnavailable')); }}
+                        >
+                            {t('auth.register')}
+                        </div>
                     </div>
                 </div>
             </header>
@@ -160,7 +162,7 @@ const StaticLayout = ({ children }) => {
                                 className="flex items-center cursor-pointer hover:text-blue-600 transition-colors text-gray-500"
                             >
                                 <Home size={16} className="mr-1" />
-                                <span>{t('common.home') || 'Главная'}</span>
+                                <span>{t('common.home')}</span>
                             </div>
                             {pathnames.map((value, index) => {
                                 const last = index === pathnames.length - 1;
@@ -215,15 +217,6 @@ const StaticLayout = ({ children }) => {
                                         </div>
                                     </div>
                                 </div>
-                                {/*<div className="contact-item">*/}
-                                {/*    <Phone size={18} style={{ color: '#2563eb', flexShrink: 0, marginTop: '2px' }} />*/}
-                                {/*    <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>*/}
-                                {/*        <div className="contact-label">{t('auth.phone')}</div>*/}
-                                {/*        <div style={{ color: '#1a202c', fontSize: '15px', fontWeight: 500 }}>*/}
-                                {/*            <a href="tel:+77028700022" style={{ color: 'inherit', textDecoration: 'none' }}>+7 (702) 870-00-22</a>*/}
-                                {/*        </div>*/}
-                                {/*    </div>*/}
-                                {/*</div>*/}
                                 <div className="contact-item">
                                     <Location size={18} style={{ color: '#2563eb', flexShrink: 0, marginTop: '2px' }} />
                                     <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
@@ -242,14 +235,16 @@ const StaticLayout = ({ children }) => {
                                 <Button variant="ghost" onClick={() => navigate('/tenders')} className="footer-link">
                                     {t('common.searchOrders')}
                                 </Button>
-                                <Button variant="ghost" onClick={() => setShowAuth(true)} className="footer-link">
+                                <Button variant="ghost" onClick={() => {
+                                    toast.info(t('common.registrationUnavailable'));
+                                }} className="footer-link">
                                     {t('auth.register')}
                                 </Button>
                                 <Button variant="ghost" onClick={() => setShowAuth(true)} className="footer-link">
                                     {t('common.loginSystem')}
                                 </Button>
                                 <Button variant="ghost" onClick={() => navigate('/privacy')} className="footer-link">
-                                    {t('common.privacy')}
+                                    {t('common.privacyPolicy')}
                                 </Button>
                             </div>
                         </div>
@@ -298,7 +293,7 @@ const StaticLayout = ({ children }) => {
                                 <span
                                     onClick={() => {
                                         setShowAuth(false);
-                                        navigate('/registration');
+                                        toast.info(t('common.registrationUnavailable'));
                                     }}
                                     style={{ color: '#1e40af', cursor: 'pointer', fontWeight: '500' }}
                                 >

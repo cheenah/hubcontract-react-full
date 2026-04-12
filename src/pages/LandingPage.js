@@ -87,10 +87,14 @@ const LandingPage = () => {
 
         if (searchTerm && searchTerm.trim() !== "") {
             const lowSearch = searchTerm.toLowerCase().trim();
-            filtered = filtered.filter((t) =>
-                t.title?.toLowerCase().includes(lowSearch) ||
-                t.description?.toLowerCase().includes(lowSearch)
-            );
+            filtered = filtered.filter((tender) => {
+                const fieldsToSearch = [
+                    tender.title, tender.title_en, tender.title_kk, tender.title_zh,
+                    tender.description, tender.description_en, tender.description_kk, tender.description_zh,
+                    tender.tender_number
+                ];
+                return fieldsToSearch.some(field => field?.toLowerCase().includes(lowSearch));
+            });
         }
 
         if (categoryFilter && categoryFilter !== 'all') {
@@ -118,6 +122,12 @@ const LandingPage = () => {
         }
 
         setFilteredTenders(filtered);
+    };
+
+    const getLocalizedField = (item, field) => {
+        if (!item) return '';
+        if (language === 'ru') return item[field] || '';
+        return item[`${field}_${language}`] || item[field] || '';
     };
 
     const getCategoryLabel = (category) => {
@@ -388,12 +398,12 @@ const LandingPage = () => {
                                                 <span className="tender-status-active">{t('status.active')}</span>
                                             </div>
 
-                                            <h4 className="tender-title-compact">{tender.title}</h4>
+                                            <h4 className="tender-title-compact">{getLocalizedField(tender, 'title')}</h4>
 
                                             <p className="tender-description-compact">
-                                                {tender.description?.length > 150
-                                                    ? tender.description.substring(0, 150) + '...'
-                                                    : tender.description}
+                                                {getLocalizedField(tender, 'description')?.length > 150
+                                                    ? getLocalizedField(tender, 'description').substring(0, 150) + '...'
+                                                    : getLocalizedField(tender, 'description')}
                                             </p>
 
                                             <div className="tender-info-row">

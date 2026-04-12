@@ -16,7 +16,7 @@ import StaticLayout from '../../components/StaticLayout';
 const TenderList = () => {
   const navigate = useNavigate();
   const { API, user } = React.useContext(AppContext);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage(); // language вернет 'ru', 'en', 'kk' или 'zh'
   const [tenders, setTenders] = useState([]);
   const [filteredTenders, setFilteredTenders] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -34,7 +34,7 @@ const TenderList = () => {
 
   useEffect(() => {
     applyFilters();
-  }, [searchTerm, categoryFilter, typeFilter, regionFilter, statusFilter, minBudget, maxBudget, tenders]);
+  }, [searchTerm, categoryFilter, typeFilter, regionFilter, statusFilter, minBudget, maxBudget, tenders, language]);
 
   const fetchTenders = async () => {
     try {
@@ -47,16 +47,29 @@ const TenderList = () => {
     }
   };
 
+  // Хелпер для получения переведенного поля из объекта тендера
+  const getLocalizedField = (item, field) => {
+    if (language === 'ru') return item[field];
+    const localizedValue = item[`${field}_${language}`];
+    return localizedValue || item[field]; // Фоллбэк на основной язык
+  };
+
   const applyFilters = () => {
     let filtered = [...tenders];
 
     if (searchTerm) {
-      filtered = filtered.filter(
-        (t) =>
-          t.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          t.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          (t.tender_number && t.tender_number.toLowerCase().includes(searchTerm.toLowerCase()))
-      );
+      const searchLower = searchTerm.toLowerCase();
+      filtered = filtered.filter((t) => {
+        // Поиск по всем языковым версиям заголовка и описания
+        const fieldsToSearch = [
+          t.title, t.title_en, t.title_kk, t.title_zh,
+          t.description, t.description_en, t.description_kk, t.description_zh,
+          t.tender_number
+        ];
+        return fieldsToSearch.some(field =>
+          field?.toLowerCase().includes(searchLower)
+        );
+      });
     }
 
     if (categoryFilter && categoryFilter !== 'all' && categoryFilter !== '') {
@@ -90,8 +103,10 @@ const TenderList = () => {
     const map = {
       construction: t('tenderList.construction'),
       it: t('tenderList.itServices'),
+      itServices: t('tenderList.itServices'),
       consulting: t('tenderList.consulting'),
       logistics: t('tenderList.logistics'),
+      oil_gas_chemistry: t('tenderList.oil_gas_chemistry'),
     };
     return map[category] || category;
   };
@@ -106,12 +121,9 @@ const TenderList = () => {
     return map[type] || type.replace('_', ' ');
   };
 
-  const getStatusLabel = (status) => {
-    return t(`status.${status}`);
-  };
+  const getStatusLabel = (status) => t(`status.${status}`);
 
   return (
-
     <StaticLayout>
       <div className="tender-list-container" data-testid="tender-list">
         <div className="tender-list-header">
@@ -119,7 +131,6 @@ const TenderList = () => {
           <p className="page-subtitle">{t('tenderList.subtitle')}</p>
         </div>
 
-        {/* Filters Section - Similar to Landing Page */}
         <Card className="filters-card">
           <div className="filters-header">
             <h3 className="filters-title">{t('tenderList.searchTitle')}</h3>
@@ -137,11 +148,10 @@ const TenderList = () => {
               }}
               className="clear-all-btn"
             >
-              Очистить все
+              {t('common.clearAll')}
             </Button>
           </div>
 
-          {/* Main Search */}
           <div className="search-box-main">
             <Search size={20} className="search-icon" />
             <Input
@@ -153,7 +163,6 @@ const TenderList = () => {
             />
           </div>
 
-          {/* Primary Filters Row */}
           <div className="primary-filters">
             <div className="filter-group">
               <Label>{t('tenderList.categoryLabel')}</Label>
@@ -176,7 +185,7 @@ const TenderList = () => {
               <Label>{t('tenderList.regionLabel')}</Label>
               <Select value={regionFilter} onValueChange={setRegionFilter}>
                 <SelectTrigger>
-                  <SelectValue placeholder={t('tenderList.categoryLabel')} />
+                  <SelectValue placeholder={t('tenderList.regionLabel')} />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">{t('tenderList.regions.all')}</SelectItem>
@@ -198,7 +207,7 @@ const TenderList = () => {
                 <SelectContent>
                   <SelectItem value="all">{t('tenderList.allTypes')}</SelectItem>
                   <SelectItem value="price_proposals">{t('tenderList.priceProposals')}</SelectItem>
-                  <SelectItem value="open_competition">{t('tenderList.allType.openCompetition')}</SelectItem>
+                  <SelectItem value="open_competition">{t('tenderList.openCompetition')}</SelectItem>
                   <SelectItem value="auction">{t('tenderList.auction')}</SelectItem>
                   <SelectItem value="single_source">{t('tenderList.singleSource')}</SelectItem>
                 </SelectContent>
@@ -213,20 +222,19 @@ const TenderList = () => {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">{t('tenderList.allStatuses')}</SelectItem>
-                  <SelectItem value="published_receiving_proposals">{t('tenderList.publishedReceivingProposals')}</SelectItem>
-                  <SelectItem value="under_review">На рассмотрении</SelectItem>
-                  <SelectItem value="active">Активный</SelectItem>
-                  <SelectItem value="closed">Закрыт</SelectItem>
+                  <SelectItem value="published_receiving_proposals">{t('status.published_receiving_proposals')}</SelectItem>
+                  <SelectItem value="under_review">{t('status.under_review') || 'На рассмотрении'}</SelectItem>
+                  <SelectItem value="active">{t('status.active') || 'Активный'}</SelectItem>
+                  <SelectItem value="closed">{t('status.closed') || 'Закрыт'}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
           </div>
 
-          {/* Advanced Filters - Always Visible */}
           <div className="advanced-filters-panel">
             <div className="advanced-filters-grid">
               <div className="filter-group">
-                <Label>Бюджет от ($)</Label>
+                <Label>{t('tenderList.budgetFrom')}</Label>
                 <Input
                   type="number"
                   placeholder="0"
@@ -236,7 +244,7 @@ const TenderList = () => {
               </div>
 
               <div className="filter-group">
-                <Label>Бюджет до ($)</Label>
+                <Label>{t('tenderList.budgetTo')}</Label>
                 <Input
                   type="number"
                   placeholder="1000000000"
@@ -246,20 +254,20 @@ const TenderList = () => {
               </div>
 
               <div className="filter-group">
-                <Label>Дата публикации от</Label>
-                <Input type="date" />
+                <Label>{t('tenderList.dateFrom')}</Label>
+                <input type="date" className="date-filter-input" />
               </div>
 
               <div className="filter-group">
-                <Label>Дата публикации до</Label>
-                <Input type="date" />
+                <Label>{t('tenderList.dateTo')}</Label>
+                <input type="date" className="date-filter-input" />
               </div>
             </div>
 
             <div className="filter-actions">
               <Button onClick={applyFilters} className="apply-filter-btn">
                 <Search size={16} />
-                Найти
+                {t('common.find')}
               </Button>
               <Button
                 variant="outline"
@@ -273,18 +281,16 @@ const TenderList = () => {
                   setMaxBudget('');
                 }}
               >
-                Сбросить
+                {t('common.reset')}
               </Button>
             </div>
           </div>
 
-          {/* Results Count */}
           <div className="results-info">
-            <p>Найдено тендеров: <strong>{filteredTenders.length}</strong></p>
+            <p>{t('tenderList.foundCount')}: <strong>{filteredTenders.length}</strong></p>
           </div>
         </Card>
 
-        {/* Tenders Grid */}
         {loading ? (
           <div className="loading-state">
             <div className="loading-spinner"></div>
@@ -309,11 +315,13 @@ const TenderList = () => {
                       {getStatusLabel(tender.status)}
                     </span>
                   </div>
-                  <h3 className="tender-card-title">{tender.title}</h3>
+                  {/* ИСПОЛЬЗУЕМ ЛОКАЛИЗОВАННЫЙ ЗАГОЛОВОК */}
+                  <h3 className="tender-card-title">{getLocalizedField(tender, 'title')}</h3>
                 </div>
 
                 <div className="tender-card-content">
-                  <p className="tender-description">{tender.description}</p>
+                  {/* ИСПОЛЬЗУЕМ ЛОКАЛИЗОВАННОЕ ОПИСАНИЕ */}
+                  <p className="tender-description">{getLocalizedField(tender, 'description')}</p>
 
                   <div className="tender-details-grid">
                     <div className="detail-item">
@@ -348,294 +356,6 @@ const TenderList = () => {
           </div>
         )}
       </div>
-
-      <style jsx>{`
-        .tender-list-container {
-          max-width: 1400px;
-          margin: 0 auto;
-          padding: 20px;
-          background: var(--bg-secondary);
-        }
-
-        .tender-list-header {
-          margin-bottom: 30px;
-          background: var(--bg-primary);
-          padding: 30px;
-          border-radius: 4px;
-          border: 1px solid var(--border-light);
-          box-shadow: var(--shadow-card);
-        }
-
-        .page-title {
-          font-size: 28px;
-          font-weight: 700;
-          color: #1a1a1a !important;
-          margin-bottom: 8px;
-        }
-
-        .page-subtitle {
-          font-size: 16px;
-          color: #4a4a4a !important;
-        }
-
-        .filters-card {
-          padding: 24px;
-          margin-bottom: 24px;
-          background: white;
-          border: 1px solid var(--border-light);
-        }
-
-        .filters-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 20px;
-        }
-
-        .filters-title {
-          font-size: 1.25rem;
-          font-weight: 600;
-          color: var(--text-primary);
-          margin: 0;
-        }
-
-        .clear-all-btn {
-          color: var(--primary);
-        }
-
-        .search-box-main {
-          position: relative;
-          margin-bottom: 20px;
-        }
-
-        .search-icon {
-          position: absolute;
-          left: 16px;
-          top: 50%;
-          transform: translateY(-50%);
-          color: var(--text-muted);
-        }
-
-        .search-input-main {
-          width: 100%;
-          padding: 12px 12px 12px 48px;
-          font-size: 1rem;
-          border: 2px solid var(--border-medium);
-          border-radius: 8px;
-        }
-
-        .search-input-main:focus {
-          border-color: var(--primary);
-          outline: none;
-        }
-
-        .primary-filters {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-          gap: 16px;
-          margin-bottom: 16px;
-        }
-
-        .filter-group {
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-        }
-
-        .filter-group label {
-          font-size: 0.875rem;
-          font-weight: 500;
-          color: var(--text-secondary);
-        }
-
-        .advanced-toggle {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-        }
-
-        .advanced-filters-panel {
-          padding-top: 20px;
-          border-top: 1px solid var(--border-light);
-          margin-top: 16px;
-        }
-
-        .advanced-filters-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-          gap: 16px;
-          margin-bottom: 20px;
-        }
-
-        .filter-actions {
-          display: flex;
-          gap: 12px;
-          justify-content: flex-end;
-        }
-
-        .apply-filter-btn {
-          background: #1e40af;
-          color: white;
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          padding: 10px 24px;
-          font-weight: 500;
-        }
-
-        .apply-filter-btn:hover {
-          background: #1e3a8a;
-        }
-
-        .results-info {
-          padding-top: 16px;
-          border-top: 1px solid var(--border-light);
-          margin-top: 16px;
-        }
-
-        .results-info p {
-          color: var(--text-secondary);
-          font-size: 0.875rem;
-          margin: 0;
-        }
-
-        .results-info strong {
-          color: var(--primary);
-          font-weight: 600;
-        }
-
-        .loading-state {
-          display: flex;
-          justify-content: center;
-          padding: 100px 0;
-        }
-
-        .empty-state {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 60px;
-          text-align: center;
-          color: var(--text-primary);
-        }
-
-        .tenders-list {
-          display: flex;
-          flex-direction: column;
-          gap: 0;
-        }
-
-        .tender-card {
-          cursor: pointer;
-        }
-
-        .tender-card-header {
-          margin-bottom: 16px;
-        }
-
-        .tender-meta-top {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 12px;
-        }
-
-        .tender-id {
-          font-size: 14px;
-          color: var(--text-secondary);
-          font-weight: 600;
-        }
-
-        .tender-card-title {
-          font-size: 18px;
-          font-weight: 600;
-          color: #1a1a1a !important;
-          line-height: 1.4;
-          margin: 0;
-        }
-
-        .tender-card-content {
-          margin-bottom: 20px;
-        }
-
-        .tender-description {
-          color: #4a4a4a !important;
-          margin-bottom: 16px;
-          line-height: 1.5;
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-
-        .tender-details-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-          gap: 12px;
-          margin-bottom: 16px;
-        }
-
-        .detail-item {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-
-        .detail-label {
-          font-size: 14px;
-          color: #666666 !important;
-          font-weight: 500;
-        }
-
-        .detail-value {
-          font-size: 14px;
-          font-weight: 600;
-          color: #1a1a1a !important;
-        }
-
-        .tender-card-footer {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding-top: 16px;
-          border-top: 1px solid var(--border-light);
-        }
-
-        .tender-dates {
-          font-size: 14px;
-          color: #666666 !important;
-        }
-
-        .date-label {
-          font-weight: 500;
-          color: #666666 !important;
-        }
-
-        @media (max-width: 768px) {
-          .page-title {
-            font-size: 24px;
-          }
-
-          .tender-details-grid {
-            grid-template-columns: 1fr;
-            gap: 8px;
-          }
-
-          .filter-controls {
-            width: 100%;
-          }
-
-          .filter-select {
-            flex: 1;
-          }
-
-          .tender-card-footer {
-            flex-direction: column;
-            gap: 12px;
-            align-items: flex-start;
-          }
-        }
-      `}</style>
     </StaticLayout>
   );
 };

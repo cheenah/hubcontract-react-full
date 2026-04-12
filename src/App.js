@@ -51,10 +51,10 @@ import Privacy from '@/pages/static/Privacy';
 import Offer from '@/pages/static/Offer';
 import TenderList from '@/pages/static/TenderList';
 import Registration from '@/pages/static/Registration';
-// const BACKEND_URL = 'http://localhost:8000'
-const BACKEND_URL = 'https://test-api.hubcontract.kz/';
-// const API = `http://localhost:8000/api`;
-const API = 'https://test-api.hubcontract.kz/api';
+const BACKEND_URL = 'http://localhost:8000'
+// const BACKEND_URL = 'https://test-api.hubcontract.kz/';
+const API = `http://localhost:8000/api`;
+// const API = 'https://test-api.hubcontract.kz/api';
 // Axios interceptor
 axios.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
@@ -155,7 +155,13 @@ function App() {
               <Route path="/offer" element={<Offer />} />
             </Routes>
           </BrowserRouter>
-          <Toaster position="top-right" richColors />
+          <Toaster
+            position="top-right"
+            richColors
+            closeButton
+            duration={4000}
+            gap={8}
+          />
         </div>
       </AppContext.Provider>
     </LanguageProvider>

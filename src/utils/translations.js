@@ -1,10 +1,9 @@
 // Translation system for the platform
-// Supported languages: Kazakh (kk), Russian (ru), English (en)
+// Supported languages: Kazakh (kk), Russian (ru), English (en), Chinese (zh), Turkish (tr)
 
 export const translations = {
     // RUSSIAN (DEFAULT)
     ru: {
-        // Navigation
         nav: {
             dashboard: 'Панель управления',
             browseTenders: 'Обзор тендеров',
@@ -14,8 +13,6 @@ export const translations = {
             profile: 'Профиль',
             logout: 'Выйти',
         },
-
-        // Landing Page
         landing: {
             platformBadge: 'Надежная платформа для поставщиков и подрядчиков',
             heroTitle: 'Платформа для поиска надежных',
@@ -46,8 +43,6 @@ export const translations = {
                 userManagementDesc: 'Система рейтингов с комплексной верификацией поставщиков и подрядчиков и отзывами заказчиков',
             },
         },
-
-        // Auth
         auth: {
             welcomeTitle: 'Доступ к HubContract',
             signIn: 'Вход',
@@ -100,8 +95,6 @@ export const translations = {
             withdrawnBidWarning: 'Эта заявка была отозвана. После сохранения изменений она будет повторно подана на рассмотрение.',
             saveAndResubmit: 'Сохранить и подать заново',
         },
-
-        // Dashboard
         dashboard: {
             welcomeBack: 'С возвращением,',
             contractorTitle: 'Панель управления',
@@ -131,8 +124,6 @@ export const translations = {
             createFirst: 'Создать первый тендер',
             viewDetails: 'Посмотреть детали',
         },
-
-        // Tender List
         tenderList: {
             title: 'Обзор тендеров',
             subtitle: 'Находите и участвуйте в активных тендерах',
@@ -170,6 +161,9 @@ export const translations = {
             region: 'Регион:',
             until: 'До',
             found: 'Найдено',
+            dateFrom: 'Дата от',
+            dateTo: 'Дата до',
+            foundCount: 'Найдено тендеров',
             regions: {
                 all: 'Все регионы',
                 almaty: 'Алматы',
@@ -179,8 +173,6 @@ export const translations = {
                 karaganda: 'Караганда'
             },
         },
-
-        // Tender Detail
         tenderDetail: {
             submitBid: 'Подать заявку',
             selectWinner: 'Выбрать победителя',
@@ -204,9 +196,23 @@ export const translations = {
             proposalPlaceholder: 'Опишите ваш подход и квалификацию',
             submitButton: 'Подать заявку',
             submitProposal: 'Подать предложение',
+            documents: 'Документы тендера',
+            document1: 'Техническое задание',
+            document2: 'Объявление о тендере',
+            document3: 'Пресс-релиз',
+            document4: 'Соглашение',
+            viewProtocol: 'Посмотреть протокол',
+            agreeToTermsRequired: 'Необходимо согласиться с условиями тендера',
+            invalidPrice: 'Укажите корректную цену предложения',
+            priceExceedsBudget: 'Цена заявки не может превышать бюджет тендера',
+            deliveryTimeRequired: 'Укажите срок выполнения в днях',
+            proposalTooShort: 'Описание предложения должно быть не менее 50 символов',
+            deadlinePassed: 'Срок подачи заявок истёк',
+            bidSubmitSuccess: 'Заявка успешно подана! Заказчик получил уведомление.',
+            bidSubmitError: 'Ошибка при подаче заявки',
+            documentFallback: 'Документ',
+            fileExceedsLimit: 'превышает 10MB',
         },
-
-        // Create Tender
         createTender: {
             title: 'Создать новый тендер',
             subtitle: 'Разместите тендер для поиска квалифицированных подрядчиков',
@@ -244,8 +250,6 @@ export const translations = {
             creating: 'Создание...',
             create: 'Создать тендер',
         },
-
-        // My Tenders
         myTenders: {
             title: 'Мои тендеры',
             subtitle: 'Управляйте всеми размещенными тендерами',
@@ -257,8 +261,6 @@ export const translations = {
             noClosed: 'Нет закрытых тендеров',
             noCancelled: 'Нет отмененных тендеров',
         },
-
-        // My Bids
         myBids: {
             title: 'Мои заявки',
             subtitle: 'Отслеживайте все поданные заявки',
@@ -271,8 +273,6 @@ export const translations = {
             yourProposal: 'Ваше предложение:',
             viewTender: 'Просмотр тендера',
         },
-
-        // Profile
         profile: {
             title: 'Профиль',
             subtitle: 'Управляйте аккаунтом и документами верификации',
@@ -306,8 +306,6 @@ export const translations = {
             rejectionNotice: 'Ваши документы были отклонены. Пожалуйста, перезагрузите исправленные документы.',
             pendingNotice: 'Ваши документы на рассмотрении. Вы будете уведомлены после верификации.',
         },
-
-        // Admin Panel
         admin: {
             title: 'Панель администратора',
             subtitle: 'Управление пользователями, тендерами и верификациями',
@@ -323,8 +321,6 @@ export const translations = {
             reject: 'Отклонить',
             approve: 'Одобрить',
         },
-
-        // Status
         status: {
             published_receiving_proposals: 'Опубликован (прием ценовых предложений)',
             prequalification: 'Предквалификация',
@@ -341,8 +337,6 @@ export const translations = {
             winner: 'победитель',
             stage1_approved: 'этап 1 одобрен',
         },
-
-        // Common
         common: {
             loading: 'Загрузка...',
             save: 'Сохранить',
@@ -377,16 +371,113 @@ export const translations = {
             landingFooterDesc: 'Профессиональная платформа для поиска надежных поставщиков и подрядчиков. Безопасная, прозрачная и эффективная система подбора исполнителей.',
             privacy: 'Политика конфеденциальности',
             home: 'Главная',
-            tryUs: 'Попробуйте нашу платформу уже сейчас'
+            tryUs: 'Попробуйте нашу платформу уже сейчас',
+            registrationUnavailable: 'Регистрация временно недоступна, ведутся технические работы',
+            clearAll: 'Очистить всё',
+            find: 'Найти',
+            reset: 'Сбросить',
+            joinEcosystem: 'Присоединяйтесь к экосистеме HubContract',
+            postDate: 'Дата публикации',
         },
         page: {
             mega: 'EPCM подрядчик'
+        },
+        privacy: {
+            title: 'ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ И ОБРАБОТКИ ПЕРСОНАЛЬНЫХ ДАННЫХ',
+            subtitle: 'PRIVACY POLICY AND PERSONAL DATA PROCESSING POLICY',
+            author: 'ТОО «HubContract»',
+            date: '7 апреля 2026 г.',
+            category: 'Политика конфиденциальности',
+            article1: {
+                title: 'СТАТЬЯ 1. ОБЩИЕ ПОЛОЖЕНИЯ / ARTICLE 1. GENERAL PROVISIONS',
+                p1: '1.1. Настоящая Политика конфиденциальности (далее — «Политика») определяет порядок сбора, обработки, хранения и защиты информации о Пользователях электронной тендерной платформы HubContract (далее — «Платформа»), принадлежащей ТОО «HubContract» (далее — «Оператор»).',
+                p2: '1.2. Политика разработана в соответствии с Законом Республики Казахстан «О персональных данных и их защите» № 94-V от 21 мая 2013 года и иными применимыми нормативно-правовыми актами РК.',
+                p3: '1.3. Используя Платформу, Пользователь выражает свободное, конкретное, информированное и однозначное согласие на обработку его персональных данных в порядке, предусмотренном настоящей Политикой. Согласие фиксируется при регистрации путём проставления отметки и хранится в системных журналах Платформы.',
+                p4: '1.4. Если Пользователь не согласен с условиями настоящей Политики, он обязан прекратить использование Платформы.'
+            },
+            article2: {
+                title: 'СТАТЬЯ 2. СОСТАВ СОБИРАЕМЫХ ДАННЫХ / ARTICLE 2. DATA COLLECTED',
+                p1: '2.1. В зависимости от характера взаимодействия с Платформой Оператор собирает следующие категории данных:',
+                li1: 'Идентификационные данные организации: полное и сокращённое наименование; БИН/ИНН/регистрационный номер; страна и дата регистрации; юридический и фактический адреса; сведения о конечном бенефициарном владельце (UBO).',
+                li2: 'Контактные данные уполномоченного представителя: ФИО; должность; рабочий e-mail; номер телефона.',
+                li3: 'Квалификационные данные (для участия в тендере): финансовая отчётность за последние 3 года; сведения о реализованных проектах; лицензии, сертификаты, допуски СРО; рекомендательные письма и контракты.',
+                li4: 'Финансовые данные: банковские реквизиты; данные о Банковской гарантии (наименование банка-гаранта, реквизиты гарантии); сведения об оплате Регистрационного взноса.',
+                li5: 'Технические данные: IP-адрес; тип и версия браузера; операционная система; данные cookies и аналогичных технологий; временные метки и логи действий на Платформе; идентификаторы сессий.'
+            },
+            article3: {
+                title: 'СТАТЬЯ 3. ЦЕЛИ ОБРАБОТКИ ДАННЫХ / ARTICLE 3. PURPOSES OF PROCESSING',
+                p1: '3.1. Оператор обрабатывает данные Пользователей исключительно в следующих целях:',
+                li1: '(а) регистрация и верификация учётной записи Пользователя;',
+                li2: '(б) проведение предквалификационного отбора и оценки соответствия Участников требованиям тендерной документации;',
+                li3: '(в) организация и администрирование тендерных процедур;',
+                li4: '(г) выставление счетов и контроль оплаты Регистрационного взноса;',
+                li5: '(д) раскрытие Банковской гарантии при наступлении гарантийного случая (предоставление лог-файлов банку-гаранту);',
+                li6: '(е) обеспечение информационной безопасности Платформы и выявление мошеннических действий;',
+                li7: '(ж) соблюдение требований законодательства РК, в том числе в сфере противодействия отмыванию доходов и финансированию терроризма (AML/CFT);',
+                li8: '(з) разрешение споров и защита прав Оператора в судебных и иных разбирательствах.'
+            },
+            article4: {
+                title: 'СТАТЬЯ 4. ПРАВОВЫЕ ОСНОВАНИЯ ОБРАБОТКИ / ARTICLE 4. LEGAL BASIS',
+                p1: '4.1. Обработка данных Пользователей осуществляется на следующих правовых основаниях:',
+                li1: '(а) согласие субъекта персональных данных, выраженное при регистрации на Платформе;',
+                li2: '(б) исполнение договора (Публичной оферты, Договора об оказании услуг), стороной которого является Пользователь;',
+                li3: '(в) соблюдение правового обязательства Оператора, предусмотренного законодательством РК;',
+                li4: '(г) законный интерес Оператора в обеспечении безопасности и надлежащего функционирования Платформы.'
+            },
+            article5: {
+                title: 'СТАТЬЯ 5. ПЕРЕДАЧА ДАННЫХ ТРЕТЬИМ ЛИЦАМ / ARTICLE 5. DATA SHARING',
+                p1: '5.1. Оператор не продаёт и не передаёт персональные данные Пользователей третьим лицам в коммерческих целях.',
+                p2: '5.2. Передача данных допускается исключительно в следующих случаях:',
+                li1: '(а) банкам-гарантам — в объёме, необходимом для раскрытия Банковской гарантии (выписки из лог-файлов, подтверждающие факт оказания услуги);',
+                li2: '(б) уполномоченным государственным органам РК — по их официальному запросу в рамках, предусмотренных законодательством;',
+                li3: '(в) судам и арбитражным органам — в рамках разрешения споров;',
+                li4: '(г) Заказчику тендера — наименование и контактные данные Победителя после подведения итогов;',
+                li5: '(д) техническим партнёрам Оператора (облачные провайдеры, хостинг) — в объёме, необходимом для технического обеспечения работы Платформы, при наличии обязательств конфиденциальности.',
+                p3: '5.3. При передаче данных за пределы Республики Казахстан Оператор обеспечивает, что принимающая сторона соблюдает стандарты защиты персональных данных, не ниже установленных законодательством РК.'
+            },
+            article6: {
+                title: 'СТАТЬЯ 6. ХРАНЕНИЕ И ЗАЩИТА ДАННЫХ / ARTICLE 6. DATA RETENTION AND SECURITY',
+                p1: '6.1. Сроки хранения данных:',
+                li1: '— системные журналы (лог-файлы) — 5 лет с даты совершения соответствующего действия;',
+                li2: '— финансовые документы и данные о транзакциях — 5 лет с даты последней транзакции;',
+                li3: '— квалификационные документы Участников — 3 года с даты подведения итогов тендера;',
+                li4: '— данные учётной записи (при её удалении) — 1 год с даты удаления (в объёме, необходимом для исполнения правовых обязательств).',
+                p2: '6.2. Оператор реализует технические и организационные меры защиты данных, включая: шифрование данных при передаче (TLS/SSL); контроль доступа на основе ролей; двухфакторную аутентификацию для административного доступа; регулярный аудит безопасности; резервное копирование данных.',
+                p3: '6.3. При выявлении утечки данных, которая может нанести ущерб Пользователям, Оператор уведомляет пострадавших Пользователей и уполномоченный орган РК в сроки, установленные законодательством.'
+            },
+            article7: {
+                title: 'СТАТЬЯ 7. ПРАВА СУБЪЕКТА ДАННЫХ / ARTICLE 7. DATA SUBJECT RIGHTS',
+                p1: '7.1. Пользователь имеет право:',
+                li1: '(а) получить подтверждение факта обработки его персональных данных и доступ к ним;',
+                li2: '(б) потребовать исправления неточных или неполных данных;',
+                li3: '(в) потребовать удаления данных (право на забвение) — при условии отсутствия правовых оснований для их дальнейшего хранения;',
+                li4: '(г) отозвать согласие на обработку данных — при условии, что это не затрагивает законность обработки, осуществлённой до отзыва;',
+                li5: '(д) подать жалобу в уполномоченный орган РК по защите персональных данных.',
+                p2: '7.2. Для реализации прав, указанных в п. 7.1, Пользователь направляет мотивированный запрос на адрес: privacy@hubcontract.kz. Оператор рассматривает запрос в течение 15 (пятнадцати) рабочих дней.',
+                p3: '7.3. Удаление учётной записи не влечёт немедленного удаления всех данных — часть данных сохраняется в течение сроков, указанных в п. 6.1, в целях исполнения правовых обязательств Оператора.'
+            },
+            article8: {
+                title: 'СТАТЬЯ 8. COOKIES И ТЕХНОЛОГИИ ОТСЛЕЖИВАНИЯ / ARTICLE 8. COOKIES AND TRACKING',
+                p1: '8.1. Платформа использует cookies и аналогичные технологии для: обеспечения функционирования аккаунта (обязательные cookies); анализа использования Платформы и её улучшения (аналитические cookies); фиксации юридически значимых действий в системных журналах.',
+                p2: '8.2. Пользователь может отключить cookies в настройках браузера. Отключение обязательных cookies может привести к невозможности использования отдельных функций Платформы.'
+            },
+            article9: {
+                title: 'СТАТЬЯ 9. ИЗМЕНЕНИЕ ПОЛИТИКИ / ARTICLE 9. POLICY AMENDMENTS',
+                p1: '9.1. Оператор вправе в одностороннем порядке изменять настоящую Политику. Новая редакция публикуется на Платформе. Продолжение использования Платформы после публикации новой редакции означает согласие с её условиями.'
+            },
+            article10: {
+                title: 'СТАТЬЯ 10. КОНТАКТЫ ПО ВОПРОСАМ ЗАЩИТЫ ДАННЫХ / ARTICLE 10. DATA PROTECTION CONTACTS',
+                resp: 'Ответственный за обработку персональных данных:',
+                email: 'E-mail:',
+                address: 'Адрес:',
+                website: 'Сайт:',
+                addressValue: 'Республика Казахстан, г. Астана'
+            }
         }
     },
 
     // KAZAKH
     kk: {
-        // Navigation
         nav: {
             dashboard: 'Басқару тақтасы',
             browseTenders: 'Тендерлерді шолу',
@@ -396,8 +487,6 @@ export const translations = {
             profile: 'Профиль',
             logout: 'Шығу',
         },
-
-        // Landing Page
         landing: {
             platformBadge: 'Сенімді қосалқы мердігерлік қызметтер платформасы',
             heroTitle: 'Сенімді қосалқы',
@@ -428,8 +517,6 @@ export const translations = {
                 userManagementDesc: 'Пайдаланушыларды кешенді тексеру жүйесімен рөлге негізделген қолжетімділік бақылауы',
             },
         },
-
-        // Auth
         auth: {
             welcomeTitle: 'HubContract-ға кіру',
             signIn: 'Кіру',
@@ -482,8 +569,6 @@ export const translations = {
             withdrawnBidWarning: 'Бұл өтінім қайтарылды. Өзгерістерді сақтағаннан кейін ол қайта қарауға жіберіледі.',
             saveAndResubmit: 'Сақтау және қайта жіберу',
         },
-
-        // Dashboard
         dashboard: {
             welcomeBack: 'Қайта келуіңізбен,',
             contractorTitle: 'Басқару тақтасы',
@@ -513,8 +598,6 @@ export const translations = {
             createFirst: 'Бірінші тендерді жасау',
             viewDetails: 'Толығырақ қарау',
         },
-
-        // Tender List
         tenderList: {
             title: 'Тендерлерді шолу',
             subtitle: 'Белсенді тендерлерді табыңыз және қатысыңыз',
@@ -551,6 +634,9 @@ export const translations = {
             budget: 'Бюджет:',
             until: 'Дейін',
             found: 'Табылды',
+            dateFrom: 'Күні бастап',
+            dateTo: 'Күніне дейін',
+            foundCount: 'Тендерлер табылды',
             region: 'Аймақ:', regions: {
                 all: 'Барлық аймақтар',
                 almaty: 'Алматы',
@@ -560,8 +646,6 @@ export const translations = {
                 karaganda: 'Қарағанды'
             },
         },
-
-        // Tender Detail
         tenderDetail: {
             submitBid: 'Өтінім беру',
             selectWinner: 'Жеңімпазды таңдау',
@@ -584,9 +668,24 @@ export const translations = {
             proposal: 'Ұсыныс',
             proposalPlaceholder: 'Тәсіл мен біліктілігіңізді сипаттаңыз',
             submitButton: 'Өтінім беру',
+            submitProposal: 'Ұсыныс беру',
+            documents: 'Тендер құжаттары',
+            document1: 'Техникалық тапсырма',
+            document2: 'Тендер туралы хабарландыру',
+            document3: 'Баспасөз хабарламасы',
+            document4: 'Келісімшарт',
+            viewProtocol: 'Хаттаманы көру',
+            agreeToTermsRequired: 'Тендер шарттарымен келісу қажет',
+            invalidPrice: 'Дұрыс ұсыным бағасын көрсетіңіз',
+            priceExceedsBudget: 'Өтінімнің бағасы тендер бюджетінен аспауы тиіс',
+            deliveryTimeRequired: 'Орындау мерзімін күнмен көрсетіңіз',
+            proposalTooShort: 'Ұсынымның сипаттамасы кемінде 50 таңба болуы керек',
+            deadlinePassed: 'Өтінімдер беру мерзімі өтті',
+            bidSubmitSuccess: 'Өтінім сәтті берілді! Тапсырыс беруші хабарландырылды.',
+            bidSubmitError: 'Өтінім беру кезінде қате орын алды',
+            documentFallback: 'Құжат',
+            fileExceedsLimit: '10MB-тан асады',
         },
-
-        // Create Tender
         createTender: {
             title: 'Жаңа тендер жасау',
             subtitle: 'Білікті мердігерлерді іздеу үшін тендер орналастырыңыз',
@@ -624,8 +723,6 @@ export const translations = {
             creating: 'Жасалуда...',
             create: 'Тендер жасау',
         },
-
-        // My Tenders
         myTenders: {
             title: 'Менің тендерлерім',
             subtitle: 'Барлық орналастырылған тендерлерді басқару',
@@ -637,8 +734,6 @@ export const translations = {
             noClosed: 'Жабық тендерлер жоқ',
             noCancelled: 'Болдырылмаған тендерлер жоқ',
         },
-
-        // My Bids
         myBids: {
             title: 'Менің өтінімдерім',
             subtitle: 'Барлық берілген өтінімдерді қадағалау',
@@ -651,8 +746,6 @@ export const translations = {
             yourProposal: 'Сіздің ұсынысыңыз:',
             viewTender: 'Тендерді қарау',
         },
-
-        // Profile
         profile: {
             title: 'Профиль',
             subtitle: 'Аккаунт пен тексеру құжаттарын басқару',
@@ -686,8 +779,6 @@ export const translations = {
             rejectionNotice: 'Сіздің құжаттар қабылданбады. Түзетілген құжаттарды қайта жүктеңіз.',
             pendingNotice: 'Сіздің құжаттар қарастырылуда. Тексеруден кейін хабарланасыз.',
         },
-
-        // Admin Panel
         admin: {
             title: 'Әкімші панелі',
             subtitle: 'Пайдаланушыларды, тендерлерді және тексерулерді басқару',
@@ -703,8 +794,6 @@ export const translations = {
             reject: 'Қабылдамау',
             approve: 'Мақұлдау',
         },
-
-        // Status
         status: {
             published_receiving_proposals: 'Жарияланған (бағалық ұсыныстарды қабылдау)',
             prequalification: 'Предквалификация',
@@ -721,8 +810,6 @@ export const translations = {
             winner: 'жеңімпаз',
             stage1_approved: '1-кезең мақұлданған',
         },
-
-        // Common
         common: {
             loading: 'Жүктелуде...',
             save: 'Сақтау',
@@ -755,13 +842,115 @@ export const translations = {
             searchOrders: 'Тапсырыстарды іздеу',
             loginSystem: 'Жүйеге кіру',
             landingFooterDesc: 'Сенімді жеткізушілер мен мердігерлерді іздеуге арналған кәсіби платформа. Орындаушыларды таңдаудың қауіпсіз, ашық және тиімді жүйесі.',
-            privacy: 'Құпиялылық саясаты'
+            privacy: 'Құпиялылық саясаты',
+            home: 'Басты',
+            tryUs: 'Платформамызды дәл қазір қолданып көріңіз',
+            registrationUnavailable: 'Тіркелу уақытша қолжетімсіз, техникалық жұмыстар жүргізілуде',
+            clearAll: 'Барлығын тазарту',
+            find: 'Іздеу',
+            reset: 'Қалпына келтіру',
+            joinEcosystem: 'HubContract экожүйесіне қосылыңыз',
+            postDate: 'Жарияланған күні',
         },
+        page: {
+            mega: 'EPCM мердігер'
+        },
+        privacy: {
+            title: 'ҚҰПИЯЛЫЛЫҚ ЖӘНЕ ДЕРЕКТЕРДІ ӨҢДЕУ САЯСАТЫ',
+            subtitle: 'PRIVACY POLICY AND PERSONAL DATA PROCESSING POLICY',
+            author: '«HubContract» ЖШС',
+            date: '2026 ж. 7 сәуір',
+            category: 'Құпиялылық саясаты',
+            article1: {
+                title: '1-БАП. ЖАЛПЫ ЕРЕЖЕЛЕР / ARTICLE 1. GENERAL PROVISIONS',
+                p1: '1.1. Осы Құпиялылық саясаты (бұдан әрі — «Саясат») «HubContract» ЖШС-не (бұдан әрі — «Оператор») тиесілі HubContract электрондық тендерлік платформасын (бұдан әрі — «Платформа») Пайдаланушылар туралы ақпаратты жинау, өңдеу, сақтау және қорғау тәртібін айқындайды.',
+                p2: '1.2. Саясат «Дербес деректер және оларды қорғау туралы» 2013 жылғы 21 мамырдағы № 94-V Қазақстан Республикасының Заңына және ҚР өзге де қолданыстағы нормативтік-құқықтық актілеріне сәйкес әзірленді.',
+                p3: '1.3. Платформаны пайдалана отырып, Пайдаланушы осы Саясатта көзделген тәртіппен өзінің дербес деректерін өңдеуге еркін, нақты, хабардар етілген және бірмағыналы келісімін білдіреді. Келісім тіркелу кезінде белгі қою арқылы бекітіледі және Платформаның жүйелік журналдарында сақталады.',
+                p4: '1.4. Егер Пайдаланушы осы Саясаттың шарттарымен келіспесе, ол Платформаны пайдалануды тоқтатуға міндетті.'
+            },
+            article2: {
+                title: '2-БАП. ЖИМАЛАНАТЫН ДЕРЕКТЕРДІҢ ҚҰРАМЫ / ARTICLE 2. DATA COLLECTED',
+                p1: '2.1. Платформамен өзара әрекеттесу сипатына байланысты Оператор деректердің келесі санаттарын жинайды:',
+                li1: 'Ұйымның идентификациялық деректері: толық және қысқартылған атауы; БСН/ЖСН/тіркеу нөмірі; тіркелген елі мен күні; заңды және нақты мекенжайлары; түпкілікті бенефициар иесі (UBO) туралы мәліметтер.',
+                li2: 'Уәкілетті өкілдің байланыс деректері: Аты-жөні; лауазымы; жұмыс e-mail; телефон нөмірі.',
+                li3: 'Біліктілік деректері (тендерге қатысу үшін): соңғы 3 жылдағы қаржылық есептілік; іске асырылған жобалар туралы мәліметтер; лицензиялар, сертификаттар, ӨРҰ рұқсаттары; ұсыным хаттар және келісімшарттар.',
+                li4: 'Қаржылық деректер: банк реквизиттері; Банктік кепілдік туралы деректер (кепілгер-банктің атауы, кепілдік реквизиттері); Тіркеу жарнасын төлеу туралы мәліметтер.',
+                li5: 'Техникалық деректер: IP-мекенжайы; браузердің түрі мен нұсқасы; операциялық жүйе; cookies және ұқсас технологиялардың деректері; Платформадағы уақыт белгілері мен әрекеттер логтары; сессия идентификаторлары.'
+            },
+            article3: {
+                title: '3-БАП. ДЕРЕКТЕРДІ ӨҢДЕУ МАҚСАТТАРЫ / ARTICLE 3. PURPOSES OF PROCESSING',
+                p1: '3.1. Оператор Пайдаланушылардың деректерін тек келесі мақсаттарда өңдейді:',
+                li1: '(а) Пайдаланушының есептік жазбасын тіркеу және верификациялау;',
+                li2: '(б) алдын ала біліктілік іріктеуін жүргізу және Қатысушылардың тендерлік құжаттама талаптарына сәйкестігін бағалау;',
+                li3: '(в) тендерлік рәсімдерді ұйымдастыру және әкімшілендіру;',
+                li4: '(г) шоттар ұсыну және Тіркеу жарнасының төленуін бақылау;',
+                li5: '(д) кепілдік жағдайы басталған кезде Банктік кепілдікті ашу (кепілгер-банкке лог-файлдарды ұсыну);',
+                li6: '(е) Платформаның ақпараттық қауіпсіздігін қамтамасыз ету және алаяқтық әрекеттерді анықтау;',
+                li7: '(ж) ҚР заңнамасының, оның ішінде кірістерді жылыстатуға және терроризмді қаржыландыруға қарсы іс-қимыл (AML/CFT) саласындағы талаптарын сақтау;',
+                li8: '(з) дауларды шешу және сот және өзге де талқылауларда Оператордың құқықтарын қорғау.'
+            },
+            article4: {
+                title: '4-БАП. ӨҢДЕУДІҢ ҚҰҚЫҚТЫҚ НЕГІЗДЕРІ / ARTICLE 4. LEGAL BASIS',
+                p1: '4.1. Пайдаланушылардың деректерін өңдеу келесі құқықтық негіздерде жүзеге асырылады:',
+                li1: '(а) Платформада тіркелу кезінде білдірілген дербес деректер субъектісінің келісімі;',
+                li2: '(б) Пайдаланушы тарапы болып табылатын шартты (Жария офертаны, Қызмет көрсету туралы шартты) орындау;',
+                li3: '(в) ҚР заңнамасында көзделген Оператордың құқықтық міндеттемесін сақтау;',
+                li4: '(г) Платформаның қауіпсіздігі мен тиісінше жұмыс істеуін қамтамасыз етудегі Оператордың заңды мүддесі.'
+            },
+            article5: {
+                title: '5-БАП. ДЕРЕКТЕРДІ ҮШІНШІ ТҰЛҒАЛАРҒА БЕРУ / ARTICLE 5. DATA SHARING',
+                p1: '5.1. Оператор Пайдаланушылардың дербес деректерін коммерциялық мақсатта үшінші тұлғаларға сатпайды және бермейді.',
+                p2: '5.2. Деректерді беруге тек келесі жағдайларда жол беріледі:',
+                li1: '(а) кепілгер-банктерге — Банктік кепілдікті ашу үшін қажетті көлемде (қызмет көрсету фактісін растайтын лог-файлдардан үзінділер);',
+                li2: '(б) ҚР уәкілетті мемлекеттік органдарына — заңнамада көзделген шеңберде олардың ресми сұратуы бойынша;',
+                li3: '(в) соттар мен төрелік органдарға — дауларды шешу шеңберінде;',
+                li4: '(г) Тендерге тапсырыс берушіге — қорытынды шығарылғаннан кейін Жеңімпаздың атауы мен байланыс деректері;',
+                li5: '(д) Оператордың техникалық серіктестеріне (бұлтты провайдерлер, хостинг) — құпиялылық міндеттемелері болған кезде Платформаның жұмысын техникалық қамтамасыз ету үшін қажетті көлемде.',
+                p3: '5.3. Деректерді Қазақстан Республикасынан тыс жерлерге берген кезде Оператор қабылдаушы тараптың дербес деректерді қорғау стандарттарын ҚР заңнамасында белгіленгеннен төмен емес сақтауын қамтамасыз етеді.'
+            },
+            article6: {
+                title: '6-БАП. ДЕРЕКТЕРДІ САҚТАУ ЖӘНЕ ҚОРҒАУ / ARTICLE 6. DATA RETENTION AND SECURITY',
+                p1: '6.1. Деректерді сақтау мерзімдері:',
+                li1: '— жүйелік журналдар (лог-файлдар) — тиісті әрекет жасалған күннен бастап 5 жыл;',
+                li2: '— қаржылық құжаттар мен транзакциялар туралы деректер — соңғы транзакция жасалған күннен бастап 5 жыл;',
+                li3: '— Қатысушылардың біліктілік құжаттары — тендер қорытындысы шығарылған күннен бастап 3 жыл;',
+                li4: '— есептік жазба деректері (оны жойған кезде) — жойылған күннен бастап 1 жыл (құқықтық міндеттемелерді орындау үшін қажетті көлемде).',
+                p2: '6.2. Оператор деректерді қорғаудың техникалық және ұйымдастырушылық шараларын іске асырады, оның ішінде: беру кезінде деректерді шифрлау (TLS/SSL); рөлдерге негізделген қолжетімділікті бақылау; әкімшілік қолжетімділік үшін екі факторлы аутентификация; тұрақты қауіпсіздік аудиті; деректердің резервтік көшірмесін жасау.',
+                p3: '6.3. Пайдаланушыларға зиян келтіруі мүмкін деректердің таралып кетуі анықталған кезде Оператор зардап шеккен Пайдаланушыларды және ҚР уәкілетті органын заңнамада белгіленген мерзімде хабардар етеді.'
+            },
+            article7: {
+                title: '7-БАП. ДЕРЕКТЕР СУБЪЕКТІСІНІҢ ҚҰҚЫҚТАРЫ / ARTICLE 7. DATA SUBJECT RIGHTS',
+                p1: '7.1. Пайдаланушының құқығы бар:',
+                li1: '(а) өзінің дербес деректерін өңдеу фактісін растауды және оларға қол жеткізуді алуға;',
+                li2: '(б) дәл емес немесе толық емес деректерді түзетуді талап етуге;',
+                li3: '(в) деректерді жоюды талап етуге (ұмытылу құқығы) — оларды одан әрі сақтау үшін құқықтық негіздер болмаған жағдайда;',
+                li4: '(г) деректерді өңдеуге келісімді кері қайтарып алуға — егер бұл кері қайтарып алғанға дейін жүзеге асырылған өңдеудің заңдылығына әсер етпесе;',
+                li5: '(д) дербес деректерді қорғау жөніндегі ҚР уәкілетті органына шағым беруге.',
+                p2: '7.2. 7.1-тармақта көрсетілген құқықтарды іске асыру үшін Пайдаланушы privacy@hubcontract.kz мекенжайына дәлелді сұрау жібереді. Оператор сұрауды 15 (он бес) жұмыс күні ішінде қарайды.',
+                p3: '7.3. Есептік жазбаны жою барлық деректердің дереу жойылуына әкеп соқпайды — деректердің бір бөлігі Оператордың құқықтық міндеттемелерін орындау мақсатында 6.1-тармақта көрсетілген мерзімдер ішінде сақталады.'
+            },
+            article8: {
+                title: '8-БАП. COOKIES ЖӘНЕ БАҚЫЛАУ ТЕХНОЛОГИЯЛАРЫ / ARTICLE 8. COOKIES AND TRACKING',
+                p1: '8.1. Платформа cookies және ұқсас технологияларды келесі мақсаттарда пайдаланады: аккаунттың жұмыс істеуін қамтамасыз ету (міндетті cookies); Платформаны пайдалануды талдау және оны жақсарту (аналитикалық cookies); жүйелік журналдарда заңдық маңызы бар әрекеттерді тіркеу.',
+                p2: '8.2. Пайдаланушы браузер параметрлерінде cookies-ті өшіре алады. Міндетті cookies-ті өшіру Платформаның жекелеген функцияларын пайдалану мүмкіндігінің болмауына әкелуі мүмкін.'
+            },
+            article9: {
+                title: '9-БАП. САЯСАТТЫ ӨЗГЕРТУ / ARTICLE 9. POLICY AMENDMENTS',
+                p1: '9.1. Оператор осы Саясатты біржақты тәртіппен өзгертуге құқылы. Жаңа редакция Платформада жарияланады. Жаңа редакция жарияланғаннан кейін Платформаны пайдалануды жалғастыру оның шарттарымен келісуді білдіреді.'
+            },
+            article10: {
+                title: '10-БАП. ДЕРЕКТЕРДІ ҚОРҒАУ МӘСЕЛЕЛЕРІ БОЙЫНША КОНТАКТІЛЕР / ARTICLE 10. DATA PROTECTION CONTACTS',
+                resp: 'Дербес деректерді өңдеуге жауапты:',
+                email: 'E-mail:',
+                address: 'Мекенжай:',
+                website: 'Сайт:',
+                addressValue: 'Қазақстан Республикасы, Астана қ.'
+            }
+        }
     },
 
     // ENGLISH
     en: {
-        // Navigation
         nav: {
             dashboard: 'Dashboard',
             browseTenders: 'Browse Tenders',
@@ -771,8 +960,6 @@ export const translations = {
             profile: 'Profile',
             logout: 'Logout',
         },
-
-        // Landing Page
         landing: {
             platformBadge: 'Trusted Subcontractor Services Platform',
             heroTitle: 'Platform for Finding',
@@ -803,8 +990,6 @@ export const translations = {
                 userManagementDesc: 'Role-based access control with comprehensive user verification system',
             },
         },
-
-        // Auth
         auth: {
             welcomeTitle: 'Access HubContract',
             signIn: 'Sign In',
@@ -857,8 +1042,6 @@ export const translations = {
             withdrawnBidWarning: 'This bid was withdrawn. After saving changes it will be resubmitted for consideration.',
             saveAndResubmit: 'Save and Resubmit',
         },
-
-        // Dashboard
         dashboard: {
             welcomeBack: 'Welcome back,',
             contractorTitle: 'Contractor Dashboard',
@@ -888,8 +1071,6 @@ export const translations = {
             createFirst: 'Create Your First Tender',
             viewDetails: 'View Details',
         },
-
-        // Tender List
         tenderList: {
             title: 'Browse Tenders',
             subtitle: 'Find and bid on active tenders',
@@ -927,6 +1108,9 @@ export const translations = {
             region: 'Region:',
             until: 'Until',
             found: 'Found',
+            dateFrom: 'Date from',
+            dateTo: 'Date to',
+            foundCount: 'Tenders found',
             regions: {
                 all: 'All regions',
                 almaty: 'Almaty',
@@ -936,8 +1120,6 @@ export const translations = {
                 karaganda: 'Karaganda'
             },
         },
-
-        // Tender Detail
         tenderDetail: {
             submitBid: 'Submit Bid',
             selectWinner: 'Select Winner',
@@ -960,9 +1142,24 @@ export const translations = {
             proposal: 'Proposal',
             proposalPlaceholder: 'Describe your approach and qualifications',
             submitButton: 'Submit Bid',
+            submitProposal: 'Submit Proposal',
+            documents: 'Tender Documents',
+            document1: 'Terms of Reference',
+            document2: 'Tender Announcement',
+            document3: 'Press Release',
+            document4: 'Agreement',
+            viewProtocol: 'View Protocol',
+            agreeToTermsRequired: 'You must agree to the tender terms',
+            invalidPrice: 'Please enter a valid bid price',
+            priceExceedsBudget: 'Bid price cannot exceed the tender budget',
+            deliveryTimeRequired: 'Please specify the delivery time in days',
+            proposalTooShort: 'Proposal description must be at least 50 characters',
+            deadlinePassed: 'The bid submission deadline has passed',
+            bidSubmitSuccess: 'Bid submitted successfully! The customer has been notified.',
+            bidSubmitError: 'Error submitting bid',
+            documentFallback: 'Document',
+            fileExceedsLimit: 'exceeds 10MB',
         },
-
-        // Create Tender
         createTender: {
             title: 'Create New Tender',
             subtitle: 'Post a tender to find qualified contractors',
@@ -1000,8 +1197,6 @@ export const translations = {
             creating: 'Creating...',
             create: 'Create Tender',
         },
-
-        // My Tenders
         myTenders: {
             title: 'My Tenders',
             subtitle: 'Manage all your posted tenders',
@@ -1013,8 +1208,6 @@ export const translations = {
             noClosed: 'No closed tenders',
             noCancelled: 'No cancelled tenders',
         },
-
-        // My Bids
         myBids: {
             title: 'My Bids',
             subtitle: 'Track all your submitted bids',
@@ -1027,8 +1220,6 @@ export const translations = {
             yourProposal: 'Your Proposal:',
             viewTender: 'View Tender',
         },
-
-        // Profile
         profile: {
             title: 'Profile',
             subtitle: 'Manage your account and verification documents',
@@ -1062,8 +1253,6 @@ export const translations = {
             rejectionNotice: 'Your documents were rejected. Please re-upload corrected documents.',
             pendingNotice: "Your documents are under review. You'll be notified once they're verified.",
         },
-
-        // Admin Panel
         admin: {
             title: 'Admin Panel',
             subtitle: 'Manage users, tenders, and verifications',
@@ -1079,8 +1268,6 @@ export const translations = {
             reject: 'Reject',
             approve: 'Approve',
         },
-
-        // Status
         status: {
             published_receiving_proposals: 'Published (Receiving Price Proposals)',
             prequalification: 'Pre-qualification',
@@ -1097,8 +1284,6 @@ export const translations = {
             winner: 'winner',
             stage1_approved: 'stage 1 approved',
         },
-
-        // Common
         common: {
             loading: 'Loading...',
             save: 'Save',
@@ -1131,8 +1316,111 @@ export const translations = {
             searchOrders: 'Search orders',
             loginSystem: 'Login to system',
             landingFooterDesc: 'Professional platform for finding reliable suppliers and contractors. Secure, transparent and efficient contractor selection system.',
-            privacy: 'Privacy politics'
+            privacy: 'Privacy politics',
+            home: 'Home',
+            tryUs: 'Try our platform right now',
+            registrationUnavailable: 'Registration is temporarily unavailable, maintenance is underway',
+            clearAll: 'Clear all',
+            find: 'Find',
+            reset: 'Reset',
+            joinEcosystem: 'Join the HubContract ecosystem',
+            postDate: 'Publication date',
         },
+        page: {
+            mega: 'EPCM contractor'
+        },
+        privacy: {
+            title: 'PRIVACY POLICY AND PERSONAL DATA PROCESSING POLICY',
+            subtitle: 'ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ И ОБРАБОТКИ ПЕРСОНАЛЬНЫХ ДАННЫХ',
+            author: 'HubContract LLP',
+            date: 'April 7, 2026',
+            category: 'Privacy Policy',
+            article1: {
+                title: 'ARTICLE 1. GENERAL PROVISIONS',
+                p1: '1.1. This Privacy Policy (hereinafter referred to as the "Policy") defines the procedure for collecting, processing, storing, and protecting information about Users of the HubContract electronic tender platform (hereinafter referred to as the "Platform") owned by HubContract LLP (hereinafter referred to as the "Operator").',
+                p2: '1.2. The Policy is developed in accordance with the Law of the Republic of Kazakhstan "On Personal Data and their Protection" No. 94-V dated May 21, 2013, and other applicable regulatory legal acts of the RK.',
+                p3: '1.3. By using the Platform, the User expresses free, specific, informed, and unambiguous consent to the processing of their personal data in the manner prescribed by this Policy. Consent is recorded during registration by checking the box and is stored in the system logs of the Platform.',
+                p4: '1.4. If the User does not agree with the terms of this Policy, they must stop using the Platform.'
+            },
+            article2: {
+                title: 'ARTICLE 2. DATA COLLECTED',
+                p1: '2.1. Depending on the nature of interaction with the Platform, the Operator collects the following categories of data:',
+                li1: 'Organization identification data: full and abbreviated name; BIN/IIN/registration number; country and date of registration; legal and actual addresses; information about the ultimate beneficial owner (UBO).',
+                li2: 'Contact details of the authorized representative: full name; position; work e-mail; phone number.',
+                li3: 'Qualification data (for participation in the tender): financial statements for the last 3 years; information about implemented projects; licenses, certificates, SRO permits; letters of recommendation and contracts.',
+                li4: 'Financial data: bank details; data on the Bank Guarantee (name of the guarantor bank, guarantee details); information on the payment of the Registration fee.',
+                li5: 'Technical data: IP address; browser type and version; operating system; data from cookies and similar technologies; timestamps and action logs on the Platform; session identifiers.'
+            },
+            article3: {
+                title: 'ARTICLE 3. PURPOSES OF PROCESSING',
+                p1: '3.1. The Operator processes User data exclusively for the following purposes:',
+                li1: '(a) registration and verification of the User account;',
+                li2: '(b) conducting pre-qualification selection and assessing the compliance of Participants with the requirements of the tender documentation;',
+                li3: '(c) organization and administration of tender procedures;',
+                li4: '(d) invoicing and monitoring the payment of the Registration fee;',
+                li5: '(e) disclosure of the Bank Guarantee upon the occurrence of a warranty event (provision of log files to the guarantor bank);',
+                li6: '(f) ensuring the information security of the Platform and identifying fraudulent activities;',
+                li7: '(g) compliance with the requirements of the legislation of the RK, including in the field of combating money laundering and terrorist financing (AML/CFT);',
+                li8: '(h) dispute resolution and protection of the rights of the Operator in judicial and other proceedings.'
+            },
+            article4: {
+                title: 'ARTICLE 4. LEGAL BASIS',
+                p1: '4.1. Processing of User data is carried out on the following legal grounds:',
+                li1: '(a) consent of the personal data subject expressed during registration on the Platform;',
+                li2: '(b) execution of a contract (Public Offer, Service Agreement), to which the User is a party;',
+                li3: '(c) compliance with the legal obligation of the Operator provided by the legislation of the RK;',
+                li4: '(d) legitimate interest of the Operator in ensuring the security and proper functioning of the Platform.'
+            },
+            article5: {
+                title: 'ARTICLE 5. DATA SHARING',
+                p1: '5.1. The Operator does not sell or transfer personal data of Users to third parties for commercial purposes.',
+                p2: '5.2. Data transfer is permitted exclusively in the following cases:',
+                li1: '(a) to guarantor banks - to the extent necessary for the disclosure of the Bank Guarantee (extracts from log files confirming the fact of rendering the service);',
+                li2: '(b) to authorized state bodies of the RK - upon their official request within the framework provided by law;',
+                li3: '(c) to courts and arbitration bodies - as part of dispute resolution;',
+                li4: '(d) to the Tender Customer - the name and contact details of the Winner after the results are summarized;',
+                li5: '(e) to the technical partners of the Operator (cloud providers, hosting) - to the extent necessary for the technical provision of the Platform, subject to confidentiality obligations.',
+                p3: '5.3. When transferring data outside the Republic of Kazakhstan, the Operator ensures that the receiving party complies with personal data protection standards not lower than those established by the legislation of the RK.'
+            },
+            article6: {
+                title: 'ARTICLE 6. DATA RETENTION AND SECURITY',
+                p1: '6.1. Data retention periods:',
+                li1: '- system logs (log files) - 5 years from the date of the corresponding action;',
+                li2: '- financial documents and transaction data - 5 years from the date of the last transaction;',
+                li3: '- qualification documents of Participants - 3 years from the date of summarization of the tender results;',
+                li4: '- account data (upon its deletion) - 1 year from the date of deletion (to the extent necessary to fulfill legal obligations).',
+                p2: '6.2. The Operator implements technical and organizational data protection measures, including: data encryption during transmission (TLS/SSL); role-based access control; two-factor authentication for administrative access; regular security audits; data backup.',
+                p3: '6.3. In the event of a data breach that may harm Users, the Operator notifies affected Users and the authorized body of the RK within the time limits established by law.'
+            },
+            article7: {
+                title: 'ARTICLE 7. DATA SUBJECT RIGHTS',
+                p1: '7.1. The User has the right to:',
+                li1: '(a) receive confirmation of the processing of their personal data and access to it;',
+                li2: '(b) require correction of inaccurate or incomplete data;',
+                li3: '(c) require data deletion (right to be forgotten) - provided there are no legal grounds for their further storage;',
+                li4: '(d) withdraw consent to data processing - provided that this does not affect the lawfulness of the processing carried out before the withdrawal;',
+                li5: '(e) file a complaint with the authorized body of the RK for the protection of personal data.',
+                p2: '7.2. To exercise the rights specified in clause 7.1, the User sends a motivated request to: privacy@hubcontract.kz. The Operator considers the request within 15 (fifteen) working days.',
+                p3: '7.3. Deletion of an account does not entail the immediate deletion of all data - part of the data is stored during the periods specified in clause 6.1 in order to fulfill the legal obligations of the Operator.'
+            },
+            article8: {
+                title: 'ARTICLE 8. COOKIES AND TRACKING',
+                p1: '8.1. The Platform uses cookies and similar technologies to: ensure the functioning of the account (essential cookies); analyze the use of the Platform and improve it (analytical cookies); record legally significant actions in system logs.',
+                p2: '8.2. The User can disable cookies in browser settings. Disabling essential cookies may result in the inability to use certain functions of the Platform.'
+            },
+            article9: {
+                title: 'ARTICLE 9. POLICY AMENDMENTS',
+                p1: '9.1. The Operator has the right to unilaterally amend this Policy. The new version is published on the Platform. Continued use of the Platform after the publication of the new version means agreement with its terms.'
+            },
+            article10: {
+                title: 'ARTICLE 10. DATA PROTECTION CONTACTS',
+                resp: 'Responsible for personal data processing:',
+                email: 'E-mail:',
+                address: 'Address:',
+                website: 'Website:',
+                addressValue: 'Republic of Kazakhstan, Astana'
+            }
+        }
     },
 
     // CHINESE (中文)
@@ -1146,7 +1434,6 @@ export const translations = {
             profile: '个人资料',
             logout: '退出',
         },
-
         landing: {
             platformBadge: '可靠的分包服务平台',
             heroTitle: '寻找可靠的',
@@ -1177,7 +1464,6 @@ export const translations = {
                 userManagementDesc: '具有全面验证和客户评价的分包商评级系统',
             },
         },
-
         auth: {
             welcomeTitle: '访问 HubContract',
             signIn: '登录',
@@ -1230,9 +1516,10 @@ export const translations = {
             withdrawnBidWarning: '此投标已撤回。保存更改后将重新提交审核。',
             saveAndResubmit: '保存并重新提交',
         },
-
         dashboard: {
             welcomeBack: '欢迎回来，',
+            contractorTitle: '承包商仪表板',
+            contractorSubtitle: '管理您的投标和合同',
             manageCustomer: '管理招标并寻找承包商',
             browseContractor: '浏览招标并提交投标',
             managePlatform: '管理平台',
@@ -1258,12 +1545,10 @@ export const translations = {
             createFirst: '创建您的第一个招标',
             viewDetails: '查看详情',
         },
-
-        // Tender List
         tenderList: {
             title: '浏览招标',
             subtitle: '查找并参与活跃招标',
-            searchTitle: '分包商订单搜索',
+            searchTitle: '订单搜索',
             searchPlaceholder: '搜索招标...',
             advancedSearch: '高级搜索',
             searchByKeywords: '按关键词搜索',
@@ -1298,16 +1583,22 @@ export const translations = {
             found: '找到:',
             postDate: '发布日期',
             until: '直到',
-
+            dateFrom: '日期从',
+            dateTo: '日期至',
+            foundCount: '找到招标',
+            regions: {
+                all: '所有地区',
+                almaty: '阿拉木图',
+                astana: '阿斯塔纳',
+                shymkent: '奇姆肯特',
+                aktobe: '阿克托别',
+                karaganda: '卡拉干达'
+            },
         },
-
-        tender: {
-            title: '招标',
-            createNew: '创建新招标',
-            allTenders: '所有招标',
-            myTenders: '我的招标',
-            status: '状态',
-            budget: '预算',
+        tenderDetail: {
+            submitBid: '提交投标',
+            selectWinner: '选择中标者',
+            tenderInfo: '招标信息',
             deadline: '截止日期',
             description: '描述',
             technicalSpecs: '技术规格',
@@ -1323,10 +1614,26 @@ export const translations = {
             pricePlaceholder: '输入您的价格',
             deliveryTime: '交付时间',
             deliveryPlaceholder: '例如，2周，1个月',
-            proposal: '提案',
+            提案: '提案',
             proposalPlaceholder: '描述您的方法和资质',
             submitButton: '提交投标',
             submitProposal: '提交提案',
+            documents: '招标文件',
+            document1: '职权范围',
+            document2: '招标公告',
+            document3: '新闻稿',
+            document4: '协议',
+            viewProtocol: '查看协议',
+            agreeToTermsRequired: '您必须同意招标条款',
+            invalidPrice: '请输入有效的投标价格',
+            priceExceedsBudget: '投标价格不能超过招标预算',
+            deliveryTimeRequired: '请以天为单位指定交付时间',
+            proposalTooShort: '提案描述不得少于50个字符',
+            deadlinePassed: '投标提交截止日期已过',
+            bidSubmitSuccess: '投标提交成功！客户已收到通知。',
+            bidSubmitError: '提交投标时出错',
+            documentFallback: '文件',
+            fileExceedsLimit: '超过10MB',
         },
 
         // Create Tender
@@ -1448,6 +1755,7 @@ export const translations = {
         // Status
         status: {
             published_receiving_proposals: '已发布（接收价格提案）',
+            prequalification: '预审',
             published_receiving_applications: '已发布（接收申请）',
             under_review: '审核中',
             completed: '采购完成',
@@ -1495,7 +1803,111 @@ export const translations = {
             searchOrders: '搜索订单',
             loginSystem: '登录系统',
             landingFooterDesc: '寻找可靠供应商和承包商的专业平台。安全、透明、高效的承包商选择系统。',
+            privacy: '隐私政策',
+            home: '主页',
+            tryUs: '立即尝试我们的平台',
+            registrationUnavailable: '注册暂时不可用，正在进行技术维护',
+            clearAll: '清除全部',
+            find: '查找',
+            reset: '重置',
+            joinEcosystem: '加入HubContract生态系统',
+            postDate: '发布日期',
         },
+        page: {
+            mega: 'EPCM承包商'
+        },
+        privacy: {
+            title: '隐私政策与个人数据处理政策',
+            subtitle: 'PRIVACY POLICY AND PERSONAL DATA PROCESSING POLICY',
+            author: 'HubContract LLP',
+            date: '2026年4月7日',
+            category: '隐私政策',
+            article1: {
+                title: '第一条。一般规定 / ARTICLE 1. GENERAL PROVISIONS',
+                p1: '1.1。本隐私政策（以下简称“政策”）定义了收集、处理、存储和保护 HubContract LLP（以下简称“运营商”）拥有的 HubContract 电子招标平台（以下简称“平台”）用户信息的程序。',
+                p2: '1.2。本政策是根据2013年5月21日第94-V号哈萨克斯坦共和国“关于个人数据及其保护”法以及哈萨克斯坦共和国其他适用的法律法规制定的。',
+                p3: '1.3。通过使用本平台，用户表示自由、具体、知情和明确地同意按照本政策规定的方式处理其个人数据。注册时通过选中该框来记录同意，并存储在平台的系统日志中。',
+                p4: '1.4。如果用户不同意本政策的条款，则必须停止使用本平台。'
+            },
+            article2: {
+                title: '第二条。收集的数据 / ARTICLE 2. DATA COLLECTED',
+                p1: '2.1。根据与平台互动的性质，运营商收集以下类别的数据：',
+                li1: '组织识别数据：全称和简称；BIN/IIN/注册号；注册国家和日期；法定和实际地址；有关最终实益拥有人 (UBO) 的信息。',
+                li2: '授权代表的联系方式：全名；职位；工作电子邮箱；电话号码。',
+                li3: '资质数据（参与招标）：过去3年的财务报表；已实施项目的信息；许可证、证书、SRO许可证；推荐信和合同。',
+                li4: '财务数据：银行详细信息；银行担保数据（担保银行名称，担保详细信息）；有关支付注册费的信息。',
+                li5: '技术数据：IP地址；浏览器类型和版本；操作系统；来自cookie和类似技术的数据；平台上的时间戳和操作日志；会话标识符。'
+            },
+            article3: {
+                title: '第三条。处理目的 / ARTICLE 3. PURPOSES OF PROCESSING',
+                p1: '3.1。运营商仅出于以下目的处理用户数据：',
+                li1: '(a) 用户账户的注册和验证；',
+                li2: '(b) 进行资格预审，并评估参与者是否符合招标文件的要求；',
+                li3: '(c) 组织和管理招标程序；',
+                li4: '(d) 开具发票并监控注册费的支付；',
+                li5: '(e) 在发生担保事件时披露银行担保（向担保银行提供日志文件）；',
+                li6: '(f) 确保平台的信息安全并识别欺诈活动；',
+                li7: '(g) 遵守哈萨克斯坦共和国立法的要求，包括在反洗钱和打击资助恐怖主义 (AML/CFT) 领域；',
+                li8: '(h) 争议解决并在司法和其他程序中保护运营商的权利。'
+            },
+            article4: {
+                title: '第四条。法律依据 / ARTICLE 4. LEGAL BASIS',
+                p1: '4.1。处理用户数据的法律依据如下：',
+                li1: '(a) 个人数据主体在平台上注册时表达的同意；',
+                li2: '(b) 履行用户作为一方的合同（公开发价，服务协议）；',
+                li3: '(c) 遵守哈萨克斯坦共和国立法规定的运营商的法定义务；',
+                li4: '(d) 运营商在确保平台安全和正常运行方面的合法利益。'
+            },
+            article5: {
+                title: '第五条。数据共享 / ARTICLE 5. DATA SHARING',
+                p1: '5.1。运营商不会出于商业目的将用户的个人数据出售或转让给第三方。',
+                p2: '5.2。仅在以下情况下允许进行数据传输：',
+                li1: '(a) 向担保银行 - 在披露银行担保所必需的范围内（确认提供服务事实的日志文件摘录）；',
+                li2: '(b) 向哈萨克斯坦共和国授权的国家机构 - 根据其在法律规定的框架内的正式请求；',
+                li3: '(c) 向法院和仲裁机构 - 作为争议解决的一部分；',
+                li4: '(d) 向招标客户 - 在总结结果后，中标者的名称和联系方式；',
+                li5: '(e) 向运营商的技术合作伙伴（云提供商、托管）- 在平台技术提供所必需的范围内，但须遵守保密义务。',
+                p3: '5.3。将数据传输到哈萨克斯坦共和国境外时，运营商确保接收方遵守不低于哈萨克斯坦共和国立法确定的个人数据保护标准。'
+            },
+            article6: {
+                title: '第六条。数据保留和安全 / ARTICLE 6. DATA RETENTION AND SECURITY',
+                p1: '6.1。数据保留期：',
+                li1: '- 系统日志（日志文件）- 自相应操作之日起 5 年；',
+                li2: '- 财务文件和交易数据 - 自最后一次交易之日起 5 年；',
+                li3: '- 参与者的资格文件 - 自招标结果总结之日起 3 年；',
+                li4: '- 帐户数据（删除后）- 自删除之日起 1 年（在履行法律义务所必需的范围内）。',
+                p2: '6.2。运营商实施技术和组织数据保护措施，包括：传输过程中的数据加密 (TLS/SSL)；基于角色的访问控制；用于管理访问的双因素身份验证；定期安全审计；数据备份。',
+                p3: '6.3。如果发生可能对用户造成伤害的数据泄露事件，运营商将在法律规定的期限内通知受影响的用户和哈萨克斯坦共和国授权机构。'
+            },
+            article7: {
+                title: '第七条。数据主体权利 / ARTICLE 7. DATA SUBJECT RIGHTS',
+                p1: '7.1。用户有权：',
+                li1: '(a) 收到有关其个人数据处理的确认并访问其个人数据；',
+                li2: '(b) 要求更正不准确或不完整的数据；',
+                li3: '(c) 要求删除数据（被遗忘权） - 前提是没有进一步存储数据的法律依据；',
+                li4: '(d) 撤回对数据处理的同意 - 前提是这不影响撤回前进行的处理的合法性；',
+                li5: '(e) 向哈萨克斯坦共和国保护个人数据的授权机构提出投诉。',
+                p2: '7.2。为了行使第 7.1 款规定的权利，用户向以下地址发送说明理由的请求：privacy@hubcontract.kz。运营商在 15 个工作日内考虑该请求。',
+                p3: '7.3。删除帐户并不意味着立即删除所有数据 - 为了履行运营商的法律义务，部分数据会在第 6.1 款规定的期限内存储。'
+            },
+            article8: {
+                title: '第八条。COOKIES和跟踪技术 / ARTICLE 8. COOKIES AND TRACKING',
+                p1: '8.1。平台使用 cookie 和类似技术来：确保帐户的运作（基本 cookie）；分析平台的使用情况并进行改进（分析 cookie）；在系统日志中记录具有法律意义的操作。',
+                p2: '8.2。用户可以在浏览器设置中禁用 cookie。禁用基本 cookie 可能会导致无法使用平台的某些功能。'
+            },
+            article9: {
+                title: '第九条。政策修改 / ARTICLE 9. POLICY AMENDMENTS',
+                p1: '9.1。运营商有权单方面修改本政策。新版本在平台上发布。在新版本发布后继续使用该平台即表示同意其条款。'
+            },
+            article10: {
+                title: '第十条。数据保护联系方式 / ARTICLE 10. DATA PROTECTION CONTACTS',
+                resp: '个人数据处理负责人：',
+                email: '电子邮箱：',
+                address: '地址：',
+                website: '网站：',
+                addressValue: '哈萨克斯坦共和国，阿斯塔纳'
+            }
+        }
     },
 
     // TURKISH (Türkçe)
@@ -1509,7 +1921,6 @@ export const translations = {
             profile: 'Profil',
             logout: 'Çıkış',
         },
-
         landing: {
             platformBadge: 'Güvenilir taşeron hizmet platformu',
             heroTitle: 'Güvenilir',
@@ -1540,7 +1951,6 @@ export const translations = {
                 userManagementDesc: 'Kapsamlı doğrulama ve müşteri değerlendirmeleri ile taşeron derecelendirme sistemi',
             },
         },
-
         auth: {
             welcomeTitle: "HubContract'a Erişim",
             signIn: 'Giriş Yap',
@@ -1593,7 +2003,6 @@ export const translations = {
             withdrawnBidWarning: 'Bu teklif geri çekildi. Değişiklikleri kaydettikten sonra yeniden gönderilecektir.',
             saveAndResubmit: 'Kaydet ve Yeniden Gönder',
         },
-
         dashboard: {
             welcomeBack: 'Hoş geldiniz,',
             contractorTitle: 'Kontrol Paneli',
@@ -1660,15 +2069,25 @@ export const translations = {
             noTendersFound: 'İhale bulunamadı',
             budget: 'Bütçe:',
             region: 'Bölge:',
+            found: 'Bulundu:',
+            postDate: 'Yayın Tarihi',
+            until: 'kadar',
+            dateFrom: 'Tarih başlangıç',
+            dateTo: 'Tarih bitiş',
+            foundCount: 'İhale bulundu',
+            regions: {
+                all: 'Tüm bölgeler',
+                almaty: 'Almatı',
+                astana: 'Astana',
+                shymkent: 'Çimkent',
+                aktobe: 'Aktöbe',
+                karaganda: 'Karaganda'
+            },
         },
-
-        tender: {
-            title: 'İhaleler',
-            createNew: 'Yeni İhale Oluştur',
-            allTenders: 'Tüm İhaleler',
-            myTenders: 'İhalelerim',
-            status: 'Durum',
-            budget: 'Bütçe',
+        tenderDetail: {
+            submitBid: 'Teklif Ver',
+            selectWinner: 'Kazananı Seç',
+            tenderInfo: 'İhale Bilgileri',
             deadline: 'Son Tarih',
             description: 'Açıklama',
             technicalSpecs: 'Teknik Özellikler',
@@ -1688,6 +2107,22 @@ export const translations = {
             proposalPlaceholder: 'Yaklaşımınızı ve niteliklerinizi açıklayın',
             submitButton: 'Teklif Gönder',
             submitProposal: 'Teklif Gönder',
+            documents: 'İhale Belgeleri',
+            document1: 'Görev Tanımı',
+            document2: 'İhale Duyurusu',
+            document3: 'Basın Bülteni',
+            document4: 'Sözleşme',
+            viewProtocol: 'Protokolü Görüntüle',
+            agreeToTermsRequired: 'İhale şartlarını kabul etmeniz gerekiyor',
+            invalidPrice: 'Lütfen geçerli bir teklif fiyatı girin',
+            priceExceedsBudget: 'Teklif fiyatı ihale bütçesini aşamaz',
+            deliveryTimeRequired: 'Lütfen teslim süresini gün olarak belirtin',
+            proposalTooShort: 'Teklif açıklaması en az 50 karakter olmalıdır',
+            deadlinePassed: 'Teklif gönderme son tarihi geçti',
+            bidSubmitSuccess: 'Teklif başarıyla gönderildi! Müşteri bilgilendirildi.',
+            bidSubmitError: 'Teklif gönderilirken hata oluştu',
+            documentFallback: 'Belge',
+            fileExceedsLimit: '10MB aşıyor',
         },
 
         // Create Tender
@@ -1808,6 +2243,7 @@ export const translations = {
 
         status: {
             published_receiving_proposals: 'Yayınlandı (Fiyat Teklifleri Alınıyor)',
+            prequalification: 'Ön Yeterlilik',
             published_receiving_applications: 'Yayınlandı (Başvurular Alınıyor)',
             under_review: 'İnceleniyor',
             completed: 'Satın Alma Tamamlandı',
@@ -1854,7 +2290,19 @@ export const translations = {
             searchOrders: 'Siparişleri ara',
             loginSystem: 'Sisteme giriş yap',
             landingFooterDesc: 'Güvenilir tedarikçiler ve yükleniciler bulmak için profesyonel platform. Güvenli, şeffaf ve verimli yüklenici seçim sistemi.',
+            privacy: 'Gizlilik politikası',
+            home: 'Ana Sayfa',
+            tryUs: 'Platformumuzu hemen deneyin',
+            registrationUnavailable: 'Kayıt işlemi geçici olarak durdurulmuştur, teknik çalışmalar devam etmektedir',
+            clearAll: 'Tümünü temizle',
+            find: 'Bul',
+            reset: 'Sıfırla',
+            joinEcosystem: "HubContract ekosistemine katılın",
+            postDate: 'Yayın Tarihi',
         },
+        page: {
+            mega: 'EPCM Yüklenicisi'
+        }
     },
 };
 
@@ -1885,4 +2333,3 @@ export const LANGUAGES = [
     {code: 'zh', name: '中文'},
     {code: 'tr', name: 'Türkçe'},
 ];
-
