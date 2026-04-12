@@ -24,9 +24,9 @@ import axios from "axios";
 import { toast } from "sonner";
 
 
-// const API = 'https://test-api.hubcontract.kz';
+const API = 'https://test-api.hubcontract.kz';
 
-const API = 'http://localhost:8000';
+// const API = 'http://localhost:8000';
 
 const HeaderButton = ({ children, onClick, onMouseEnter, onMouseLeave, style }) => (
     <div
