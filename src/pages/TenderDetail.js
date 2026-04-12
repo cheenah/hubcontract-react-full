@@ -243,7 +243,8 @@ const TenderDetail = () => {
                 <div className="tender-detail-container" data-testid="tender-detail">
                     <div className="tender-header-section">
                         <div>
-                            <h1 className="tender-title" data-testid="tender-title">{getLocalizedField(tender, 'title')}</h1>
+                            <h1 className="tender-title"
+                                data-testid="tender-title">{getLocalizedField(tender, 'title')}</h1>
                             <div className="tender-meta">
               <span className={`status-badge status-${tender.status}`}>
                 {getStatusLabel(tender.status)}
@@ -291,7 +292,7 @@ const TenderDetail = () => {
                                     <Banknote className="info-icon"/>
                                     <div>
                                         <p className="info-label">{t('tenderList.budget')}</p>
-                                        <p className="info-value">{tender.budget.toLocaleString()} $</p>
+                                        <p className="info-value">{tender.budget.toLocaleString()} {tender.id === '508e1745-94d6-40ca-9bd5-1e09327ad4f8' ? `$` : '₸'}</p>
                                     </div>
                                 </div>
 
@@ -328,45 +329,76 @@ const TenderDetail = () => {
                                 <h3 className="subsection-title">{t('tenderDetail.technicalSpecs')}</h3>
                                 <p className="description-text">{getLocalizedField(tender, 'technical_specs')}</p>
                             </div>
-    {String(tender?.id).toLowerCase() === '508e1745-94d6-40ca-9bd5-1e09327ad4f8' ? (
-                            <div className="description-section">
-                                <h3 className="subsection-title">{t('tenderDetail.documents')}</h3>
-                                <div style={{display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '8px'}}>
-                                    {[
-                                        {name: t('tenderDetail.document1'), url: '/documents/tz.pdf'},
-                                        {name: t('tenderDetail.document2'), url: '/documents/tender_announcement.pdf'},
-                                        {name: t('tenderDetail.document3'), url: '/documents/press.pdf'},
-                                        {name: t('tenderDetail.document4'), url: '/documents/agreement.pdf'},
-                                    ].map((doc, idx) => (
-                                        <a key={idx} href={doc.url} download style={linkStyle}>
-                                            <FileText size={16} style={iconStyle}/>
-                                            <span style={{flex: 1}}>{doc.name}</span>
-                                            <Download size={15} style={iconStyle}/>
-                                        </a>
-                                    ))}
-                                </div>
-                            </div>
-                        ) : (
-                            (tender?.documents && tender.documents.length > 0) ? (
-                                <div className="description-section">
-                                    <h3 className="subsection-title">{t('tenderDetail.documents')}</h3>
-                                    <div style={{
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        gap: '10px',
-                                        marginTop: '8px'
-                                    }}>
-                                        {tender.documents.map((doc, index) => (
-                                            <a key={index} href={doc.url} download style={linkStyle}>
-                                                <FileText size={16} style={iconStyle}/>
-                                                <span style={{flex: 1}}>{doc.name || `${t('tenderDetail.documentFallback')} ${index + 1}`}</span>
-                                                <Download size={15} style={iconStyle}/>
-                                            </a>
-                                        ))}
+                            {String(tender?.id).toLowerCase() === '508e1745-94d6-40ca-9bd5-1e09327ad4f8' ? (
+                                    <div className="description-section">
+                                        <h3 className="subsection-title">{t('tenderDetail.documents')}</h3>
+                                        <div style={{
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            gap: '10px',
+                                            marginTop: '8px'
+                                        }}>
+                                            {[
+                                                {name: t('tenderDetail.document1'), url: '/documents/tz.pdf'},
+                                                {
+                                                    name: t('tenderDetail.document2'),
+                                                    url: '/documents/tender_announcement.pdf'
+                                                },
+                                                {name: t('tenderDetail.document3'), url: '/documents/press.pdf'},
+                                                {name: t('tenderDetail.document4'), url: '/documents/agreement.pdf'},
+                                            ].map((doc, idx) => (
+                                                <a key={idx} href={doc.url} download style={linkStyle}>
+                                                    <FileText size={16} style={iconStyle}/><span
+                                                    style={{flex: 1}}>{doc.name}</span><Download size={15}
+                                                                                                 style={iconStyle}/>
+                                                </a>
+                                            ))}
+                                        </div>
                                     </div>
-                                </div>
-                            ) : null
-                        )}
+                                ) : /* Условие для НОВОГО тендера */
+                                String(tender?.id).toLowerCase() === 'd7e8f9a0-b1c2-3d4e-5f6a-7b8c9d0e1f2a' ? (
+                                    <div className="description-section">
+                                        <h3 className="subsection-title">{t('tenderDetail.documents')}</h3>
+                                        <div style={{
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            gap: '10px',
+                                            marginTop: '8px'
+                                        }}>
+                                            {[
+                                                {name: "Техническое задание (TEP)", url: '/documents/tep_tz.pdf'},
+                                                {name: "Объявление о закупке (TEP)", url: '/documents/tep_anounce.pdf'},
+                                            ].map((doc, idx) => (
+                                                <a key={idx} href={doc.url} download style={linkStyle}>
+                                                    <FileText size={16} style={iconStyle}/><span
+                                                    style={{flex: 1}}>{doc.name}</span><Download size={15}
+                                                                                                 style={iconStyle}/>
+                                                </a>
+                                            ))}
+                                        </div>
+                                    </div>
+                                ) : (
+                                    /* Все остальные тендеры */
+                                    (tender?.documents && tender.documents.length > 0) ? (
+                                        <div className="description-section">
+                                            <h3 className="subsection-title">{t('tenderDetail.documents')}</h3>
+                                            <div style={{
+                                                display: 'flex',
+                                                flexDirection: 'column',
+                                                gap: '10px',
+                                                marginTop: '8px'
+                                            }}>
+                                                {tender.documents.map((doc, index) => (
+                                                    <a key={index} href={doc.url} download style={linkStyle}>
+                                                        <FileText size={16} style={iconStyle}/><span
+                                                        style={{flex: 1}}>{doc.name || `${t('tenderDetail.documentFallback')} ${index + 1}`}</span><Download
+                                                        size={15} style={iconStyle}/>
+                                                    </a>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    ) : null
+                                )}
                             {tender.requirements && tender.requirements.length > 0 && (
                                 <div className="description-section">
                                     <h3 className="subsection-title">{t('tenderDetail.requirements')}</h3>
@@ -388,7 +420,7 @@ const TenderDetail = () => {
                                             <div className="bid-header">
                                                 <div>
                                                     <p className="bid-contractor">{bid.contractor_email}</p>
-                                                    <p className="bid-price">{bid.price.toLocaleString()} $</p>
+                                                    <p className="bid-price">{bid.price.toLocaleString()} {tender.id === '508e1745-94d6-40ca-9bd5-1e09327ad4f8' ? `$` : '₸'}</p>
                                                 </div>
                                                 <div className="bid-status-info">
                         <span className={`status-badge status-${bid.status}`}>
@@ -415,7 +447,8 @@ const TenderDetail = () => {
             <div className="tender-detail-container" data-testid="tender-detail">
                 <div className="tender-header-section">
                     <div>
-                        <h1 className="tender-title" data-testid="tender-title">{getLocalizedField(tender, 'title')}</h1>
+                        <h1 className="tender-title"
+                            data-testid="tender-title">{getLocalizedField(tender, 'title')}</h1>
                         <div className="tender-meta">
               <span className={`status-badge status-${tender.status}`}>
                 {getStatusLabel(tender.status)}
@@ -463,7 +496,7 @@ const TenderDetail = () => {
                                 <Banknote className="info-icon"/>
                                 <div>
                                     <p className="info-label">{t('tenderList.budget')}</p>
-                                    <p className="info-value">{tender.budget.toLocaleString()} $</p>
+                                    <p className="info-value">{tender.budget.toLocaleString()} {tender.id === '508e1745-94d6-40ca-9bd5-1e09327ad4f8' ? `$` : '₸'}</p>
                                 </div>
                             </div>
 
@@ -502,25 +535,24 @@ const TenderDetail = () => {
                         </div>
 
                         {String(tender?.id).toLowerCase() === '508e1745-94d6-40ca-9bd5-1e09327ad4f8' ? (
-                            <div className="description-section">
-                                <h3 className="subsection-title">{t('tenderDetail.documents')}</h3>
-                                <div style={{display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '8px'}}>
-                                    {[
-                                        {name: t('tenderDetail.document1'), url: '/documents/tz.pdf'},
-                                        {name: t('tenderDetail.document2'), url: '/documents/tender_announcement.pdf'},
-                                        {name: t('tenderDetail.document3'), url: '/documents/press.pdf'},
-                                        {name: t('tenderDetail.document4'), url: '/documents/agreement.pdf'},
-                                    ].map((doc, idx) => (
-                                        <a key={idx} href={doc.url} download style={linkStyle}>
-                                            <FileText size={16} style={iconStyle}/>
-                                            <span style={{flex: 1}}>{doc.name}</span>
-                                            <Download size={15} style={iconStyle}/>
-                                        </a>
-                                    ))}
+                                <div className="description-section">
+                                    <h3 className="subsection-title">{t('tenderDetail.documents')}</h3>
+                                    <div style={{display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '8px'}}>
+                                        {[
+                                            {name: t('tenderDetail.document1'), url: '/documents/tz.pdf'},
+                                            {name: t('tenderDetail.document2'), url: '/documents/tender_announcement.pdf'},
+                                            {name: t('tenderDetail.document3'), url: '/documents/press.pdf'},
+                                            {name: t('tenderDetail.document4'), url: '/documents/agreement.pdf'},
+                                        ].map((doc, idx) => (
+                                            <a key={idx} href={doc.url} download style={linkStyle}>
+                                                <FileText size={16} style={iconStyle}/><span
+                                                style={{flex: 1}}>{doc.name}</span><Download size={15} style={iconStyle}/>
+                                            </a>
+                                        ))}
+                                    </div>
                                 </div>
-                            </div>
-                        ) : (
-                            (tender?.documents && tender.documents.length > 0) ? (
+                            ) : /* Условие для НОВОГО тендера */
+                            String(tender?.id).toLowerCase() === 'd7e8f9a0-b1c2-3d4e-5f6a-7b8c9d0e1f2a' ? (
                                 <div className="description-section">
                                     <h3 className="subsection-title">{t('tenderDetail.documents')}</h3>
                                     <div style={{
@@ -529,17 +561,40 @@ const TenderDetail = () => {
                                         gap: '10px',
                                         marginTop: '8px'
                                     }}>
-                                        {tender.documents.map((doc, index) => (
-                                            <a key={index} href={doc.url} download style={linkStyle}>
-                                                <FileText size={16} style={iconStyle}/>
-                                                <span style={{flex: 1}}>{doc.name || `${t('tenderDetail.documentFallback')} ${index + 1}`}</span>
-                                                <Download size={15} style={iconStyle}/>
+                                        {[
+                                            {name: "Техническое задание (TEP)", url: '/documents/tep_tz.pdf'},
+                                            {name: "Объявление о закупке (TEP)", url: '/documents/tep_anounce.pdf'},
+                                        ].map((doc, idx) => (
+                                            <a key={idx} href={doc.url} download style={linkStyle}>
+                                                <FileText size={16} style={iconStyle}/><span
+                                                style={{flex: 1}}>{doc.name}</span><Download size={15}
+                                                                                             style={iconStyle}/>
                                             </a>
                                         ))}
                                     </div>
                                 </div>
-                            ) : null
-                        )}
+                            ) : (
+                                /* Все остальные тендеры */
+                                (tender?.documents && tender.documents.length > 0) ? (
+                                    <div className="description-section">
+                                        <h3 className="subsection-title">{t('tenderDetail.documents')}</h3>
+                                        <div style={{
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            gap: '10px',
+                                            marginTop: '8px'
+                                        }}>
+                                            {tender.documents.map((doc, index) => (
+                                                <a key={index} href={doc.url} download style={linkStyle}>
+                                                    <FileText size={16} style={iconStyle}/><span
+                                                    style={{flex: 1}}>{doc.name || `${t('tenderDetail.documentFallback')} ${index + 1}`}</span><Download
+                                                    size={15} style={iconStyle}/>
+                                                </a>
+                                            ))}
+                                        </div>
+                                    </div>
+                                ) : null
+                            )}
                         {tender.requirements && tender.requirements.length > 0 && (
                             <div className="description-section">
                                 <h3 className="subsection-title">{t('tenderDetail.requirements')}</h3>
@@ -561,7 +616,7 @@ const TenderDetail = () => {
                                         <div className="bid-header">
                                             <div>
                                                 <p className="bid-contractor">{bid.contractor_email}</p>
-                                                <p className="bid-price">{bid.price.toLocaleString()} $</p>
+                                                <p className="bid-price">{bid.price.toLocaleString()} {tender.id === '508e1745-94d6-40ca-9bd5-1e09327ad4f8' ? `$` : '₸'}</p>
                                             </div>
                                             <div className="bid-status-info">
                         <span className={`status-badge status-${bid.status}`}>

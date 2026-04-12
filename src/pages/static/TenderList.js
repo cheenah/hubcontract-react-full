@@ -326,7 +326,7 @@ const TenderList = () => {
                   <div className="tender-details-grid">
                     <div className="detail-item">
                       <span className="detail-label">{t('tenderList.budget')}</span>
-                      <span className="price-highlight">{tender.budget.toLocaleString()}$</span>
+                      <span className="price-highlight">{tender.budget.toLocaleString()} {tender.id === '508e1745-94d6-40ca-9bd5-1e09327ad4f8' ? `$` : '₸'}</span>
                     </div>
                     <div className="detail-item">
                       <span className="detail-label">{t('tenderList.typeLabel')}</span>

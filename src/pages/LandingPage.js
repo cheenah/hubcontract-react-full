@@ -409,7 +409,7 @@ const LandingPage = () => {
                                             <div className="tender-info-row">
                                                 <div className="tender-budget-highlight">
                                                     <Banknote size={16}/>
-                                                    <span>{tender.budget?.toLocaleString() ?? ''} $</span>
+                                                    <span>{tender.budget?.toLocaleString() ?? ''} {tender.id === '508e1745-94d6-40ca-9bd5-1e09327ad4f8' ? `$` : '₸'}</span>
                                                 </div>
                                                 <div className="tender-location">
                                                     <MapPin size={14}/>
