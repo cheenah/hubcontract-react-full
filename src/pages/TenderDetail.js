@@ -383,11 +383,11 @@ const TenderDetail = () => {
                                         <h3 className="subsection-title">{t('tenderDetail.documents')}</h3>
                                         <div style={{display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '8px'}}>
                                             {[
-                                                {name: 'EPCM — Контракт (T1)', url: '/documents/q-30/T1_EPCM_Pro_v4.pdf'},
-                                                {name: 'Техническое задание (T2)', url: '/documents/q-30/T2_TZ_Pro_v4.pdf'},
-                                                {name: 'Комитет — Решение (T4)', url: '/documents/q-30/T4_Committee_v4.pdf'},
-                                                {name: 'Состав комитета', url: '/documents/q-30/comitee.pdf'},
-                                                {name: 'Тендерная презентация Q-30', url: '/documents/q-30/tender_presentation_q30_v3.pdf'},
+                                                {name: 'EPCM — Контракт (T1)', url: '/documents/q-30-T1_EPCM_Pro_v4.pdf'},
+                                                {name: 'Техническое задание (T2)', url: '/documents/q-30-T2_TZ_Pro_v4.pdf'},
+                                                {name: 'Комитет — Решение (T4)', url: '/documents/q-30-T4_Committee_v4.pdf'},
+                                                {name: 'Состав комитета', url: '/documents/q-30-comitee.pdf'},
+                                                {name: 'Тендерная презентация Q-30', url: '/documents/q-30-tender_presentation_q30_v3.pdf'},
                                             ].map((doc, idx) => (
                                                 <a
                                                     key={idx}
@@ -682,11 +682,11 @@ const TenderDetail = () => {
                                     <h3 className="subsection-title">{t('tenderDetail.documents')}</h3>
                                     <div style={{display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '8px'}}>
                                         {[
-                                            {name: 'EPCM — Контракт (T1)', url: '/documents/q-30/T1_EPCM_Pro_v4.pdf'},
-                                            {name: 'Техническое задание (T2)', url: '/documents/q-30/T2_TZ_Pro_v4.pdf'},
-                                            {name: 'Комитет — Решение (T4)', url: '/documents/q-30/T4_Committee_v4.pdf'},
-                                            {name: 'Состав комитета', url: '/documents/q-30/comitee.pdf'},
-                                            {name: 'Тендерная презентация Q-30', url: '/documents/q-30/tender_presentation_q30_v3.pdf'},
+                                            {name: 'EPCM — Контракт (T1)', url: '/documents/q-30-T1_EPCM_Pro_v4.pdf'},
+                                            {name: 'Техническое задание (T2)', url: '/documents/q-30-T2_TZ_Pro_v4.pdf'},
+                                            {name: 'Комитет — Решение (T4)', url: '/documents/q-30-T4_Committee_v4.pdf'},
+                                            {name: 'Состав комитета', url: '/documents/q-30-comitee.pdf'},
+                                            {name: 'Тендерная презентация Q-30', url: '/documents/q-30-tender_presentation_q30_v3.pdf'},
                                         ].map((doc, idx) => (
                                             <div
                                                 key={idx}
