@@ -14,6 +14,27 @@ import {Label} from '@/components/ui/label';
 import {Calendar, MapPin, DollarSign, FileText, Banknote, Download} from 'lucide-react';
 import StaticLayout from "@/components/StaticLayout";
 
+const downloadFile = async (url, filename) => {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Файл недоступен');
+        const contentType = response.headers.get('content-type') || '';
+        if (contentType.includes('text/html')) throw new Error('Файл не найден');
+        const blob = await response.blob();
+        const blobUrl = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = blobUrl;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(blobUrl);
+    } catch (e) {
+        // fallback: открыть в новой вкладке
+        window.open(url, '_blank');
+    }
+};
+
 const TenderDetail = () => {
     const {id} = useParams();
     const navigate = useNavigate();
@@ -386,13 +407,17 @@ const TenderDetail = () => {
                                                 {name: 'Техническое задание (T2)', url: '/documents/q-30/T2_TZ_Pro_v4.pdf'},
                                                 {name: 'Комитет — Решение (T4)', url: '/documents/q-30/T4_Committee_v4.pdf'},
                                                 {name: 'Состав комитета', url: '/documents/q-30/comitee.pdf'},
-                                                {name: 'Тендерная презентация Q-30', url: '/documents/q-30/ТЕНДЕРНАЯ_ПРЕЗЕНТАЦИЯ_Q-30_v3.pdf'},
+                                                {name: 'Тендерная презентация Q-30', url: '/documents/q-30/tender_presentation_q30_v3.pdf'},
                                             ].map((doc, idx) => (
-                                                <a key={idx} href={doc.url} download style={linkStyle}>
+                                                <div
+                                                    key={idx}
+                                                    onClick={() => downloadFile(doc.url, doc.name + '.pdf')}
+                                                    style={{...linkStyle, cursor: 'pointer'}}
+                                                >
                                                     <FileText size={16} style={iconStyle}/>
                                                     <span style={{flex: 1}}>{doc.name}</span>
                                                     <Download size={15} style={iconStyle}/>
-                                                </a>
+                                                </div>
                                             ))}
                                         </div>
                                     </div>
@@ -680,13 +705,17 @@ const TenderDetail = () => {
                                             {name: 'Техническое задание (T2)', url: '/documents/q-30/T2_TZ_Pro_v4.pdf'},
                                             {name: 'Комитет — Решение (T4)', url: '/documents/q-30/T4_Committee_v4.pdf'},
                                             {name: 'Состав комитета', url: '/documents/q-30/comitee.pdf'},
-                                            {name: 'Тендерная презентация Q-30', url: '/documents/q-30/ТЕНДЕРНАЯ_ПРЕЗЕНТАЦИЯ_Q-30_v3.pdf'},
+                                            {name: 'Тендерная презентация Q-30', url: '/documents/q-30/tender_presentation_q30_v3.pdf'},
                                         ].map((doc, idx) => (
-                                            <a key={idx} href={doc.url} download style={linkStyle}>
+                                            <div
+                                                key={idx}
+                                                onClick={() => downloadFile(doc.url, doc.name + '.pdf')}
+                                                style={{...linkStyle, cursor: 'pointer'}}
+                                            >
                                                 <FileText size={16} style={iconStyle}/>
                                                 <span style={{flex: 1}}>{doc.name}</span>
                                                 <Download size={15} style={iconStyle}/>
-                                            </a>
+                                            </div>
                                         ))}
                                     </div>
                                 </div>

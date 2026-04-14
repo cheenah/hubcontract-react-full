@@ -6,13 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="baac46ef-bf41-4f73-b09d-490929e58f4a" name="Changes" comment="New build">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StaticLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StaticLayout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/LandingPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/LandingPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/documents/Q-30/ТЕНДЕРНАЯ_ПРЕЗЕНТАЦИЯ_Q-30_v3.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/documents/Q-30/ТЕНДЕРНАЯ_ПРЕЗЕНТАЦИЯ_Q-30_v3.pdf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/TenderDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TenderDetail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/TenderList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TenderList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/bereke-theme.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/bereke-theme.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/translations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/translations.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +131,7 @@
       <workItem from="1775817087110" duration="11251000" />
       <workItem from="1775993247635" duration="2584000" />
       <workItem from="1775998152860" duration="6938000" />
-      <workItem from="1776154717154" duration="5614000" />
+      <workItem from="1776154717154" duration="6920000" />
     </task>
     <task id="LOCAL-00001" summary="Node.js modules versions [Fix]">
       <option name="closed" value="true" />
