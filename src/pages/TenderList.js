@@ -297,10 +297,12 @@ const TenderList = () => {
           </div>
         ) : (
           <div className="tenders-list">
-            {filteredTenders.map((tender) => (
+            {filteredTenders.map((tender) => {
+              const isArchived = tender.status === 'archive';
+              return (
               <div
                 key={tender.id}
-                className="tender-card"
+                className={`tender-card status-${tender.status}${isArchived ? ' tender-archived' : ''}`}
                 onClick={() => navigate(`/tenders/${tender.id}`)}
                 data-testid={`tender-card-${tender.id}`}
               >
@@ -346,7 +348,8 @@ const TenderList = () => {
                   </Button>
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>

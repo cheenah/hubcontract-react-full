@@ -377,6 +377,25 @@ const TenderDetail = () => {
                                             ))}
                                         </div>
                                     </div>
+                                ) : String(tender?.id).toLowerCase() === 'a1b2c3d4-e5f6-7890-abcd-ef1234567890' ? (
+                                    <div className="description-section">
+                                        <h3 className="subsection-title">{t('tenderDetail.documents')}</h3>
+                                        <div style={{display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '8px'}}>
+                                            {[
+                                                {name: 'EPCM — Контракт (T1)', url: '/documents/q-30/T1_EPCM_Pro_v4.pdf'},
+                                                {name: 'Техническое задание (T2)', url: '/documents/q-30/T2_TZ_Pro_v4.pdf'},
+                                                {name: 'Комитет — Решение (T4)', url: '/documents/q-30/T4_Committee_v4.pdf'},
+                                                {name: 'Состав комитета', url: '/documents/q-30/comitee.pdf'},
+                                                {name: 'Тендерная презентация Q-30', url: '/documents/q-30/ТЕНДЕРНАЯ_ПРЕЗЕНТАЦИЯ_Q-30_v3.pdf'},
+                                            ].map((doc, idx) => (
+                                                <a key={idx} href={doc.url} download style={linkStyle}>
+                                                    <FileText size={16} style={iconStyle}/>
+                                                    <span style={{flex: 1}}>{doc.name}</span>
+                                                    <Download size={15} style={iconStyle}/>
+                                                </a>
+                                            ))}
+                                        </div>
+                                    </div>
                                 ) : (
                                     /* Все остальные тендеры */
                                     (tender?.documents && tender.documents.length > 0) ? (
@@ -409,6 +428,56 @@ const TenderDetail = () => {
                                     </ul>
                                 </div>
                             )}
+
+                            {tender.evaluation_criteria && (tender.evaluation_criteria.technical || tender.evaluation_criteria.financial) && (
+                                <div className="description-section">
+                                    <h3 className="subsection-title">{t('tenderDetail.evaluationCriteria')}</h3>
+                                    <div style={{display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '12px'}}>
+                                        {tender.evaluation_criteria.technical && (
+                                            <div className="criteria-block">
+                                                <div className="criteria-block-header">
+                                                    <span className="criteria-block-title">{t('tenderDetail.technicalCriteria')}</span>
+                                                    <span className="criteria-total-weight">{tender.evaluation_criteria.technical.weight_pct}%</span>
+                                                </div>
+                                                {tender.evaluation_criteria.technical.subcriteria && tender.evaluation_criteria.technical.subcriteria.length > 0 && (
+                                                    <div className="criteria-subcriteria">
+                                                        {tender.evaluation_criteria.technical.subcriteria.map((sub, idx) => (
+                                                            <div key={idx} className="criteria-row">
+                                                                <span className="criteria-name">{getLocalizedField(sub, 'name')}</span>
+                                                                <div className="criteria-weight-bar">
+                                                                    <div className="criteria-bar-fill criteria-bar-technical" style={{width: `${(sub.weight_pct / tender.evaluation_criteria.technical.weight_pct) * 100}%`}}/>
+                                                                </div>
+                                                                <span className="criteria-weight-label">{sub.weight_pct}%</span>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                )}
+                                            </div>
+                                        )}
+                                        {tender.evaluation_criteria.financial && (
+                                            <div className="criteria-block">
+                                                <div className="criteria-block-header">
+                                                    <span className="criteria-block-title">{t('tenderDetail.financialCriteria')}</span>
+                                                    <span className="criteria-total-weight">{tender.evaluation_criteria.financial.weight_pct}%</span>
+                                                </div>
+                                                {tender.evaluation_criteria.financial.subcriteria && tender.evaluation_criteria.financial.subcriteria.length > 0 && (
+                                                    <div className="criteria-subcriteria">
+                                                        {tender.evaluation_criteria.financial.subcriteria.map((sub, idx) => (
+                                                            <div key={idx} className="criteria-row">
+                                                                <span className="criteria-name">{getLocalizedField(sub, 'name')}</span>
+                                                                <div className="criteria-weight-bar">
+                                                                    <div className="criteria-bar-fill criteria-bar-financial" style={{width: `${(sub.weight_pct / tender.evaluation_criteria.financial.weight_pct) * 100}%`}}/>
+                                                                </div>
+                                                                <span className="criteria-weight-label">{sub.weight_pct}%</span>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                )}
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            )}
                         </Card>
 
                         {isOwner && bids.length > 0 && (
@@ -434,6 +503,35 @@ const TenderDetail = () => {
                                             <p className="bid-delivery">{t('tenderDetail.delivery')}: {bid.delivery_time}</p>
                                         </div>
                                     ))}
+                                </div>
+                            </Card>
+                        )}
+
+                        {tender.status === 'archive' && (
+                            <Card className="neon-card" style={{
+                                padding: '32px',
+                                textAlign: 'center',
+                                background: 'linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%)',
+                                border: '1px solid #d1d5db'
+                            }}>
+                                <div style={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    gap: '12px'
+                                }}>
+                                    <FileText size={40} style={{color: '#9ca3af'}}/>
+                                    <h2 style={{
+                                        fontSize: '1.5rem',
+                                        fontWeight: '700',
+                                        color: '#6b7280',
+                                        margin: 0
+                                    }}>
+                                        {t('status.archive')}
+                                    </h2>
+                                    <p style={{color: '#9ca3af', margin: 0, fontSize: '0.95rem'}}>
+                                        Тендер завершён, договор с победителем заключён
+                                    </p>
                                 </div>
                             </Card>
                         )}
@@ -573,6 +671,25 @@ const TenderDetail = () => {
                                         ))}
                                     </div>
                                 </div>
+                            ) : String(tender?.id).toLowerCase() === 'a1b2c3d4-e5f6-7890-abcd-ef1234567890' ? (
+                                <div className="description-section">
+                                    <h3 className="subsection-title">{t('tenderDetail.documents')}</h3>
+                                    <div style={{display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '8px'}}>
+                                        {[
+                                            {name: 'EPCM — Контракт (T1)', url: '/documents/q-30/T1_EPCM_Pro_v4.pdf'},
+                                            {name: 'Техническое задание (T2)', url: '/documents/q-30/T2_TZ_Pro_v4.pdf'},
+                                            {name: 'Комитет — Решение (T4)', url: '/documents/q-30/T4_Committee_v4.pdf'},
+                                            {name: 'Состав комитета', url: '/documents/q-30/comitee.pdf'},
+                                            {name: 'Тендерная презентация Q-30', url: '/documents/q-30/ТЕНДЕРНАЯ_ПРЕЗЕНТАЦИЯ_Q-30_v3.pdf'},
+                                        ].map((doc, idx) => (
+                                            <a key={idx} href={doc.url} download style={linkStyle}>
+                                                <FileText size={16} style={iconStyle}/>
+                                                <span style={{flex: 1}}>{doc.name}</span>
+                                                <Download size={15} style={iconStyle}/>
+                                            </a>
+                                        ))}
+                                    </div>
+                                </div>
                             ) : (
                                 /* Все остальные тендеры */
                                 (tender?.documents && tender.documents.length > 0) ? (
@@ -605,6 +722,56 @@ const TenderDetail = () => {
                                 </ul>
                             </div>
                         )}
+
+                        {tender.evaluation_criteria && (tender.evaluation_criteria.technical || tender.evaluation_criteria.financial) && (
+                            <div className="description-section">
+                                <h3 className="subsection-title">{t('tenderDetail.evaluationCriteria')}</h3>
+                                <div style={{display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '12px'}}>
+                                    {tender.evaluation_criteria.technical && (
+                                        <div className="criteria-block">
+                                            <div className="criteria-block-header">
+                                                <span className="criteria-block-title">{t('tenderDetail.technicalCriteria')}</span>
+                                                <span className="criteria-total-weight">{tender.evaluation_criteria.technical.weight_pct}%</span>
+                                            </div>
+                                            {tender.evaluation_criteria.technical.subcriteria && tender.evaluation_criteria.technical.subcriteria.length > 0 && (
+                                                <div className="criteria-subcriteria">
+                                                    {tender.evaluation_criteria.technical.subcriteria.map((sub, idx) => (
+                                                        <div key={idx} className="criteria-row">
+                                                            <span className="criteria-name">{getLocalizedField(sub, 'name')}</span>
+                                                            <div className="criteria-weight-bar">
+                                                                <div className="criteria-bar-fill criteria-bar-technical" style={{width: `${(sub.weight_pct / tender.evaluation_criteria.technical.weight_pct) * 100}%`}}/>
+                                                            </div>
+                                                            <span className="criteria-weight-label">{sub.weight_pct}%</span>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
+                                    {tender.evaluation_criteria.financial && (
+                                        <div className="criteria-block">
+                                            <div className="criteria-block-header">
+                                                <span className="criteria-block-title">{t('tenderDetail.financialCriteria')}</span>
+                                                <span className="criteria-total-weight">{tender.evaluation_criteria.financial.weight_pct}%</span>
+                                            </div>
+                                            {tender.evaluation_criteria.financial.subcriteria && tender.evaluation_criteria.financial.subcriteria.length > 0 && (
+                                                <div className="criteria-subcriteria">
+                                                    {tender.evaluation_criteria.financial.subcriteria.map((sub, idx) => (
+                                                        <div key={idx} className="criteria-row">
+                                                            <span className="criteria-name">{getLocalizedField(sub, 'name')}</span>
+                                                            <div className="criteria-weight-bar">
+                                                                <div className="criteria-bar-fill criteria-bar-financial" style={{width: `${(sub.weight_pct / tender.evaluation_criteria.financial.weight_pct) * 100}%`}}/>
+                                                            </div>
+                                                            <span className="criteria-weight-label">{sub.weight_pct}%</span>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        )}
                     </Card>
 
                     {isOwner && bids.length > 0 && (
@@ -630,6 +797,35 @@ const TenderDetail = () => {
                                         <p className="bid-delivery">{t('tenderDetail.delivery')}: {bid.delivery_time}</p>
                                     </div>
                                 ))}
+                            </div>
+                        </Card>
+                    )}
+
+                    {tender.status === 'archive' && (
+                        <Card className="neon-card" style={{
+                            padding: '32px',
+                            textAlign: 'center',
+                            background: 'linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%)',
+                            border: '1px solid #d1d5db'
+                        }}>
+                            <div style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                gap: '12px'
+                            }}>
+                                <FileText size={40} style={{color: '#9ca3af'}}/>
+                                <h2 style={{
+                                    fontSize: '1.5rem',
+                                    fontWeight: '700',
+                                    color: '#6b7280',
+                                    margin: 0
+                                }}>
+                                    {t('status.archive')}
+                                </h2>
+                                <p style={{color: '#9ca3af', margin: 0, fontSize: '0.95rem'}}>
+                                    Тендер завершён, договор с победителем заключён
+                                </p>
                             </div>
                         </Card>
                     )}

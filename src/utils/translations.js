@@ -212,6 +212,10 @@ export const translations = {
             bidSubmitError: 'Ошибка при подаче заявки',
             documentFallback: 'Документ',
             fileExceedsLimit: 'превышает 10MB',
+            evaluationCriteria: 'Критерии оценки',
+            technicalCriteria: 'Технические критерии',
+            financialCriteria: 'Финансовые критерии',
+            criteriaWeight: 'Вес',
         },
         createTender: {
             title: 'Создать новый тендер',
@@ -336,6 +340,7 @@ export const translations = {
             rejected: 'отклонен',
             winner: 'победитель',
             stage1_approved: 'этап 1 одобрен',
+            archive: 'Договор заключен',
         },
         common: {
             loading: 'Загрузка...',
@@ -685,6 +690,10 @@ export const translations = {
             bidSubmitError: 'Өтінім беру кезінде қате орын алды',
             documentFallback: 'Құжат',
             fileExceedsLimit: '10MB-тан асады',
+            evaluationCriteria: 'Бағалау өлшемдері',
+            technicalCriteria: 'Техникалық өлшемдер',
+            financialCriteria: 'Қаржылық өлшемдер',
+            criteriaWeight: 'Үлесі',
         },
         createTender: {
             title: 'Жаңа тендер жасау',
@@ -809,6 +818,7 @@ export const translations = {
             rejected: 'қабылданбаған',
             winner: 'жеңімпаз',
             stage1_approved: '1-кезең мақұлданған',
+            archive: 'Шарт жасалды',
         },
         common: {
             loading: 'Жүктелуде...',
@@ -1159,6 +1169,10 @@ export const translations = {
             bidSubmitError: 'Error submitting bid',
             documentFallback: 'Document',
             fileExceedsLimit: 'exceeds 10MB',
+            evaluationCriteria: 'Evaluation Criteria',
+            technicalCriteria: 'Technical Criteria',
+            financialCriteria: 'Financial Criteria',
+            criteriaWeight: 'Weight',
         },
         createTender: {
             title: 'Create New Tender',
@@ -1283,6 +1297,7 @@ export const translations = {
             rejected: 'rejected',
             winner: 'winner',
             stage1_approved: 'stage 1 approved',
+            archive: 'Contract concluded',
         },
         common: {
             loading: 'Loading...',
@@ -1634,6 +1649,10 @@ export const translations = {
             bidSubmitError: '提交投标时出错',
             documentFallback: '文件',
             fileExceedsLimit: '超过10MB',
+            evaluationCriteria: '评估标准',
+            technicalCriteria: '技术标准',
+            financialCriteria: '财务标准',
+            criteriaWeight: '权重',
         },
 
         // Create Tender
@@ -1768,6 +1787,7 @@ export const translations = {
             rejected: '已拒绝',
             winner: '中标者',
             stage1_approved: '第一阶段已批准',
+            archive: '合同已签订',
         },
 
         // Common
@@ -2123,6 +2143,10 @@ export const translations = {
             bidSubmitError: 'Teklif gönderilirken hata oluştu',
             documentFallback: 'Belge',
             fileExceedsLimit: '10MB aşıyor',
+            evaluationCriteria: 'Değerlendirme Kriterleri',
+            technicalCriteria: 'Teknik Kriterler',
+            financialCriteria: 'Finansal Kriterler',
+            criteriaWeight: 'Ağırlık',
         },
 
         // Create Tender
@@ -2256,6 +2280,7 @@ export const translations = {
             rejected: 'reddedildi',
             winner: 'kazanan',
             stage1_approved: 'aşama 1 onaylandı',
+            archive: 'Sözleşme imzalandı',
         },
 
         common: {

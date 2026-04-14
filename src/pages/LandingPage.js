@@ -69,7 +69,7 @@ const LandingPage = () => {
     const fetchTenders = async () => {
         try {
             const response = await axios.get(`${API}/tenders`);
-            setTenders(response.data.slice(0, 10));
+            setTenders(response.data.filter(t => t.status !== 'archive').slice(0, 10));
         } catch (error) {
             console.error('Error fetching tenders:', error);
         } finally {
@@ -83,7 +83,7 @@ const LandingPage = () => {
             return;
         }
 
-        let filtered = [...tenders];
+        let filtered = tenders.filter((t) => t.status !== 'archive');
 
         if (searchTerm && searchTerm.trim() !== "") {
             const lowSearch = searchTerm.toLowerCase().trim();

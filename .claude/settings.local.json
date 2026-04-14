@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mv \"T1_EPCM_Pro_v4 \\(1\\).pdf\" \"T1_EPCM_Pro_v4.pdf\")",
+      "Bash(mv \"T2_TZ_Pro_v4 \\(1\\).pdf\" \"T2_TZ_Pro_v4.pdf\")",
+      "Bash(mv \"T4_Committee_v4 \\(1\\).pdf\" \"T4_Committee_v4.pdf\")",
+      "Bash(mv \"ТЕНДЕРНАЯ ПРЕЗЕНТАЦИЯ — ПРОЕКТ «Q-30» \\(v3\\).pdf\" \"ТЕНДЕРНАЯ_ПРЕЗЕНТАЦИЯ_Q-30_v3.pdf\")"
+    ]
+  }
+}
