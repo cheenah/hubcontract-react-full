@@ -1,6 +1,14 @@
 /* Bereke Bank Inspired Design System */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
+/* reCAPTCHA badge — always visible */
+.grecaptcha-badge {
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
+  z-index: 9999 !important;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -825,7 +833,6 @@ footer a[href^="tel:"] {
 .logo-text {
     font-size: 24px;
     font-weight: 700;
-    color: #1a202c !important;
 }
 
 
@@ -2038,9 +2045,6 @@ footer a[href^="tel:"] {
     transition: opacity 0.2s ease;
 }
 
-.navbar-brand:hover {
-    opacity: 0.8;
-}
 
 .logo-image-layout {
     height: 44px;
@@ -2055,7 +2059,7 @@ footer a[href^="tel:"] {
 .logo-text {
     font-size: 20px;
     font-weight: 700;
-    color: var(--text-primary);
+    color: #fff;
 }
 
 .navbar-spacer {

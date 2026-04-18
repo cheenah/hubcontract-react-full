@@ -1,12 +1,11 @@
 import React from 'react';
-import StaticLayout from '../../components/StaticLayout';
 import { useLanguage } from '@/context/LanguageContext';
 
 const Privacy = () => {
     const { t } = useLanguage();
     
     return (
-        <StaticLayout>
+      <>
             <div className="privacy-container">
                 <article className="news-article">
                     <header className="article-header">
@@ -198,7 +197,7 @@ const Privacy = () => {
                     margin: 5px 0;
                 }
             `}</style>
-        </StaticLayout>
+      </>
     );
 };
 

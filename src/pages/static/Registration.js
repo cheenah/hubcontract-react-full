@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import StaticLayout from '../../components/StaticLayout';
+import axios from 'axios';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,11 +12,15 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { useLanguage } from '@/context/LanguageContext';
-import { toast } from "sonner"; // Импортируем toast
+import { toast } from "sonner";
+import useRecaptcha from '@/hooks/useRecaptcha';
+
+const API = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
 
 const Registration = ({ setShowAuth }) => {
     const navigate = useNavigate();
     const { t } = useLanguage();
+    const { getToken } = useRecaptcha();
     const [loading, setLoading] = useState(false);
 
     const [registerForm, setRegisterForm] = useState({
@@ -32,21 +36,36 @@ const Registration = ({ setShowAuth }) => {
         e.preventDefault();
         setLoading(true);
         try {
-            // Имитация задержки или запроса
-            console.log('Registering:', registerForm);
+            // Токен запрашивается здесь — непосредственно в момент нажатия кнопки,
+            // чтобы не истёк 2-минутный TTL
+            const captcha_token = await getToken('registration');
 
-            // Выводим сообщение о технических работах
-            toast.error(t('common.registrationUnavailable'));
+            await axios.post(`${API}/auth/register`, {
+                ...registerForm,
+                captcha_token,
+            });
 
+            toast.success('Регистрация успешна! Проверьте email для подтверждения.');
+            navigate(`/verify-email?email=${encodeURIComponent(registerForm.email)}`);
         } catch (error) {
-            toast.error(t('common.error') || 'Произошла ошибка');
+            const status = error.response?.status;
+            const detail = error.response?.data?.detail;
+
+            if (status === 403 && detail?.toLowerCase().includes('скоринг')) {
+                toast.error(
+                    'Система защиты посчитала действие подозрительным. ' +
+                    'Попробуйте обновить страницу и повторить.',
+                    { duration: 6000 }
+                );
+            } else {
+                toast.error(detail || 'Ошибка регистрации');
+            }
         } finally {
             setLoading(false);
         }
     };
 
     return (
-        <StaticLayout>
             <div className="min-h-[calc(100vh-200px)] flex items-center justify-center py-12 px-4 bg-[#fdfcfb]">
                 <div className="container mx-auto max-w-[1100px] bg-white border border-gray-100 rounded-[2rem] shadow-sm overflow-hidden flex flex-col md:flex-row">
 
@@ -150,12 +169,29 @@ const Registration = ({ setShowAuth }) => {
                             >
                                 {loading ? t('auth.creatingAccount') : t('auth.createAccount')}
                             </Button>
+
+                            <p style={{
+                                textAlign: 'center',
+                                fontSize: '0.72rem',
+                                color: '#9ca3af',
+                                marginTop: 12,
+                            }}>
+                                Эта форма защищена{' '}
+                                <a
+                                    href="https://policies.google.com/privacy"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    style={{ color: '#6b7280', textDecoration: 'underline' }}
+                                >
+                                    reCAPTCHA v3
+                                </a>
+                                {' '}от Google
+                            </p>
                         </form>
                     </div>
                     {/* ПРАВАЯ ЧАСТЬ (если она есть в вашем дизайне, можно добавить здесь) */}
                 </div>
             </div>
-        </StaticLayout>
     );
 };
 

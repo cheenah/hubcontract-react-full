@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import { AppContext } from '@/App';
 import { useLanguage } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
@@ -9,10 +9,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { FileText, Home, User, LogOut, Shield, Menu, X, Building, Calendar, Users, FileBarChart, MessageSquare, Settings as SettingsIcon, ChevronDown, Bell, Award, DollarSign, File, HelpCircle, Phone, Mail } from 'lucide-react';
+import { FileText, Home, User, LogOut, Shield, Menu, X, Building, Calendar, Users, FileBarChart, MessageSquare, Settings as SettingsIcon, ChevronDown, Bell, Award, DollarSign, File, HelpCircle, Phone, Mail, MapPin as Location, BarChart2, Archive, ClipboardList } from 'lucide-react';
 import { useState } from 'react';
 
-const Layout = ({ children }) => {
+const Layout = ({ children } = {}) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { user, logout } = React.useContext(AppContext);
@@ -29,10 +29,10 @@ const Layout = ({ children }) => {
   // Fetch unread notifications count
   React.useEffect(() => {
     if (user) {
-      const API = 'https://test-api.hubcontract.kz';
+      const API = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
       const token = localStorage.getItem('token');
-      
-      fetch(`${API}/api/notifications/unread-count`, {
+
+      fetch(`${API}/notifications/unread-count`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -43,24 +43,38 @@ const Layout = ({ children }) => {
     }
   }, [user]);
 
+  const dashboardPath =
+    user?.role === 'admin' ? '/admin' :
+    user?.role === 'contractor' ? '/contractor/dashboard' :
+    '/customer/dashboard';
+
   const baseNavItems = [
-    { label: t('nav.dashboard'), path: '/dashboard', icon: Home },
+    { label: t('nav.dashboard'), path: dashboardPath, icon: Home },
     { label: t('nav.browseTenders'), path: '/tenders', icon: FileText },
   ];
 
-  // Работочий кабинет (Customer workspace)
+  // Рабочий кабинет (Customer workspace)
   const workspaceItems = [
-    { label: 'Поиск поставщиков', path: '/supplier-search', icon: Users },
-    { label: 'Заявки', path: '/supplier-bids', icon: MessageSquare },
-    { label: 'Аналитика', path: '/analytics', icon: FileBarChart },
+    { label: 'Поиск поставщиков', path: '/customer/supplier-search', icon: Users },
+    { label: 'Заявки', path: '/customer/supplier-bids', icon: MessageSquare },
+    { label: 'Аналитика', path: '/customer/analytics', icon: FileBarChart },
+  ];
+
+  // Личный кабинет исполнителя
+  const contractorWorkspaceItems = [
+    { label: 'Гарантии',      path: '/contractor/guarantees',     icon: Shield },
+    { label: 'Квалификация',  path: '/contractor/qualifications', icon: Award },
+    { label: 'Финансы',       path: '/contractor/finances',       icon: DollarSign },
+    { label: 'Аналитика',     path: '/contractor/analytics',      icon: BarChart2 },
+    { label: 'Архив',         path: '/contractor/archive',        icon: Archive },
   ];
 
   // Профиль заказчика
   const profileItems = [
-    { label: 'Регистрационные данные', path: '/organization', icon: Building },
-    { label: 'Банковские счета', path: '/bank-accounts', icon: Building },
-    { label: 'Сотрудники организации', path: '/employees', icon: Users },
-    { label: 'Документы', path: '/profile', icon: FileText },
+    { label: 'Регистрационные данные', path: '/customer/organization', icon: Building },
+    { label: 'Банковские счета', path: '/customer/bank-accounts', icon: Building },
+    { label: 'Сотрудники организации', path: '/customer/employees', icon: Users },
+    { label: 'Документы', path: '/customer/profile', icon: FileText },
   ];
 
   const navItems = [...baseNavItems];
@@ -71,31 +85,23 @@ const Layout = ({ children }) => {
     navItems.push({ label: 'Договоры', path: '/admin/contracts', icon: File });
     navItems.push({ label: 'Пользователи', path: '/admin/users', icon: Users });
   }
-  
+
   // Меню для заказчика
   if (user?.role === 'customer') {
-    navItems.push({ label: 'Мои тендеры', path: '/my-tenders', icon: FileText });
-    navItems.push({ label: 'Договоры', path: '/contracts', icon: FileText });
+    navItems.push({ label: 'Мои тендеры', path: '/customer/tenders', icon: FileText });
+    navItems.push({ label: 'Договоры', path: '/customer/contracts', icon: FileText });
   }
 
   // Меню для исполнителя
   if (user?.role === 'contractor') {
-    navItems.push({ label: t('nav.myBids'), path: '/my-bids', icon: FileText });
-    navItems.push({ label: 'Договоры', path: '/contracts', icon: FileText });
+    navItems.push({ label: 'Мои заявки', path: '/contractor/bids', icon: ClipboardList });
+    navItems.push({ label: 'Договоры',   path: '/contractor/contracts', icon: FileText });
   }
 
-  // Contractor workspace dropdown (без договоров)
-  const contractorWorkspaceItems = user?.role === 'contractor' ? [
-    { label: 'Банковские гарантии', path: '/contractor/guarantees', icon: Shield },
-    { label: 'Квалификация и опыт', path: '/contractor/qualifications', icon: Award },
-    { label: 'Финансы', path: '/contractor/finances', icon: DollarSign },
-  ] : [];
-
-
-  // Additional navigation items - только 2 кнопки
+  // Additional navigation items
   const additionalNavItems = [
     { label: 'Уведомления', path: '/communications', icon: Bell, hasNotifications: unreadNotifications > 0 },
-    { label: 'Отчеты', path: '/reports', icon: FileText },
+    { label: 'Отчеты', path: '/customer/reports', icon: FileText },
   ];
 
   const isActive = (path) => location.pathname === path;
@@ -108,7 +114,7 @@ const Layout = ({ children }) => {
       {/* Top Header Bar */}
       <nav className="navbar">
         <div className="navbar-container">
-          <div className="navbar-brand" onClick={() => navigate('/dashboard')} data-testid="navbar-brand">
+          <div className="navbar-brand" onClick={() => navigate(dashboardPath)} data-testid="navbar-brand">
             <img src="/logo.png" alt="HubContract" className="logo-image-layout" />
             <span className="logo-text">HubContract</span>
           </div>
@@ -157,33 +163,30 @@ const Layout = ({ children }) => {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            {/* User Menu */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button className="user-menu-trigger" data-testid="user-menu">
-                  <div className="user-avatar">
-                    {user?.email?.charAt(0).toUpperCase()}
-                  </div>
-                  <span className="user-email">{user?.email}</span>
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="user-menu-content">
-                <div className="user-info">
-                  <p className="user-role">{user?.role}</p>
-                  <p className="user-status">
-                    {user?.documents_verified ? `✓ ${t('profile.verified')}` : `⚠️ ${t('profile.pendingReview')}`}
-                  </p>
-                </div>
-                <DropdownMenuItem onClick={() => navigate('/profile')} data-testid="profile-menu-item">
-                  <User size={16} />
-                  <span>{t('nav.profile')}</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={handleLogout} data-testid="logout-menu-item">
-                  <LogOut size={16} />
-                  <span>{t('nav.logout')}</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            {/* Profile button – direct link, no dropdown */}
+            <button
+              className={`user-profile-btn ${location.pathname.includes('/profile') ? 'user-profile-btn--active' : ''}`}
+              onClick={() => navigate(
+                user?.role === 'customer' ? '/customer/profile' :
+                user?.role === 'contractor' ? '/contractor/profile' :
+                '/profile'
+              )}
+              data-testid="user-menu"
+            >
+              <div className="user-avatar">
+                {user?.email?.charAt(0).toUpperCase()}
+              </div>
+              <span className="user-email">{user?.email}</span>
+            </button>
+
+            {/* Logout button */}
+            <button
+              className="logout-btn"
+              onClick={handleLogout}
+              title={t('nav.logout')}
+            >
+              <LogOut size={18} />
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -242,7 +245,7 @@ const Layout = ({ children }) => {
             </div>
             
             <div className="mobile-menu-divider"></div>
-            <button onClick={() => { navigate('/profile'); setMobileMenuOpen(false); }} className="mobile-nav-link">
+            <button onClick={() => { navigate(user?.role === 'customer' ? '/customer/profile' : user?.role === 'contractor' ? '/contractor/profile' : '/profile'); setMobileMenuOpen(false); }} className="mobile-nav-link">
               <User size={18} />
               <span>{t('nav.profile')}</span>
             </button>
@@ -356,54 +359,123 @@ const Layout = ({ children }) => {
         </div>
       )}
 
-      <main className="main-content">{children}</main>
+      <main className="main-content">{children ?? <Outlet />}</main>
 
       {/* Footer */}
-      <footer className="app-footer">
-        <div className="footer-content">
-          <div className="footer-section">
-            <h4 className="footer-title">{t('common.contacts')}</h4>
-            <div className="footer-contact">
-              <Phone size={14} />
-              <a href="tel:+77028700022">+7 (702) 870-00-22</a>
+      <footer className="footer-section">
+        <div className="footer-container">
+          <div className="footer-content">
+            <div className="footer-brand">
+              <div className="footer-logo">
+                <img src="/logo.png" alt="HubContract" className="footer-logo-image" />
+                <span className="footer-logo-text">HubContract</span>
+              </div>
+              <p className="footer-description">{t('common.landingFooterDesc')}</p>
             </div>
-            <div className="footer-contact">
-              <Mail size={14} />
-              <a href="mailto:info@hubcontract.kz">info@hubcontract.kz</a>
+
+            <div className="footer-contacts">
+              <h3 className="footer-section-title">{t('common.contacts')}</h3>
+              <div className="contact-list">
+                <div className="contact-item">
+                  <Mail size={18} style={{ color: '#2563eb', flexShrink: 0, marginTop: '2px' }} />
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                    <div className="contact-label">Email</div>
+                    <div style={{ color: '#1a202c', fontSize: '15px', fontWeight: 500 }}>
+                      <a href="mailto:info@hubcontract.kz" style={{ color: 'inherit', textDecoration: 'none' }}>info@hubcontract.kz</a>
+                    </div>
+                  </div>
+                </div>
+                <div className="contact-item">
+                  <Location size={18} style={{ color: '#2563eb', flexShrink: 0, marginTop: '2px' }} />
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                    <div className="contact-label">{t('common.address')}</div>
+                    <div style={{ color: '#1a202c', fontSize: '15px', fontWeight: 500 }}>
+                      {t('common.astanaAddress')}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div className="footer-section">
-            <h4 className="footer-title">{t('common.aboutPlatform')}</h4>
-            <button onClick={() => navigate('/help')} className="footer-link">
-              <HelpCircle size={14} />
-              <span>{t('common.helpCenter')}</span>
-            </button>
-            <button onClick={() => navigate('/privacy-policy')} className="footer-link">
-              <FileText size={14} />
-              <span>{t('common.privacyPolicy')}</span>
-            </button>
-            <button onClick={() => navigate('/terms-of-use')} className="footer-link">
-              <FileText size={14} />
-              <span>{t('common.termsOfUse')}</span>
-            </button>
-            <button onClick={() => navigate('/disclaimer')} className="footer-link">
-              <FileText size={14} />
-              <span>{t('common.disclaimer')}</span>
-            </button>
-          </div>
-
-          <div className="footer-section">
-            <p className="footer-copyright">&copy; 2025 HubContract. {t('common.allRightsReserved')}</p>
-            <p className="footer-description">
-              {t('common.landingFooterDesc')}
-            </p>
+            <div className="footer-links">
+              <h3 className="footer-section-title">{t('common.quickLinks')}</h3>
+              <div className="footer-link-list">
+                <Button variant="ghost" onClick={() => navigate('/tenders')} className="footer-link">
+                  {t('common.searchOrders')}
+                </Button>
+                <Button variant="ghost" onClick={() => navigate('/help')} className="footer-link">
+                  {t('common.helpCenter')}
+                </Button>
+                <Button variant="ghost" onClick={() => navigate('/privacy-policy')} className="footer-link">
+                  {t('common.privacyPolicy')}
+                </Button>
+                <Button variant="ghost" onClick={() => navigate('/terms-of-use')} className="footer-link">
+                  {t('common.termsOfUse')}
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
 
-      <style jsx>{`
-
+      <style>{`
+        .user-profile-btn {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+          border: none;
+          border-radius: 12px;
+          padding: 6px 14px 6px 6px;
+          cursor: pointer;
+          color: #fff;
+          transition: box-shadow 0.2s, transform 0.15s;
+          box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
+        }
+        .user-profile-btn:hover {
+          box-shadow: 0 4px 16px rgba(37, 99, 235, 0.45);
+          transform: translateY(-1px);
+        }
+        .user-profile-btn--active {
+          box-shadow: 0 0 0 3px rgba(255,255,255,0.4), 0 4px 16px rgba(37,99,235,0.5);
+        }
+        .user-profile-btn .user-avatar {
+          width: 30px;
+          height: 30px;
+          background: rgba(255,255,255,0.25);
+          border-radius: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 700;
+          font-size: 0.95rem;
+          color: #fff;
+        }
+        .user-profile-btn .user-email {
+          font-size: 0.82rem;
+          font-weight: 600;
+          color: #fff;
+          max-width: 150px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        .logout-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: none;
+          border: 1px solid #e5e7eb;
+          border-radius: 10px;
+          padding: 7px 10px;
+          cursor: pointer;
+          color: #ef4444;
+          transition: background 0.15s, border-color 0.15s;
+        }
+        .logout-btn:hover {
+          background: #fef2f2;
+          border-color: #fca5a5;
+        }
       `}</style>
     </div>
   );

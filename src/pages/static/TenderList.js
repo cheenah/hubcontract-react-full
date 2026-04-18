@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AppContext } from '@/App';
 import { useLanguage } from '@/context/LanguageContext';
-import Layout from '@/components/Layout';
 
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -11,7 +10,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Search, Filter } from 'lucide-react';
-import StaticLayout from '../../components/StaticLayout';
 
 const TenderList = () => {
   const navigate = useNavigate();
@@ -124,7 +122,6 @@ const TenderList = () => {
   const getStatusLabel = (status) => t(`status.${status}`);
 
   return (
-    <StaticLayout>
       <div className="tender-list-container" data-testid="tender-list">
         <div className="tender-list-header">
           <h1 className="page-title">{t('tenderList.title')}</h1>
@@ -356,7 +353,6 @@ const TenderList = () => {
           </div>
         )}
       </div>
-    </StaticLayout>
   );
 };
 

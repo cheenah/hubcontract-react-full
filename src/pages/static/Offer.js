@@ -1,9 +1,8 @@
 import React from 'react';
-import StaticLayout from '../../components/StaticLayout';
 
 const Offer = () => {
     return (
-        <StaticLayout>
+      <>
             <div className="offer-container">
                 <article className="news-article">
                     <header className="article-header">
@@ -278,7 +277,7 @@ const Offer = () => {
                     margin: 5px 0;
                 }
             `}</style>
-        </StaticLayout>
+      </>
     );
 };
 
