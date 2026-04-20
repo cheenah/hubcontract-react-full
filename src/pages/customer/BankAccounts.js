@@ -205,67 +205,67 @@ const BankAccounts = () => {
       <style jsx>{`
         .bank-accounts-container {
           margin: 0 auto;
-          padding: 24px;
+          padding: var(--space-6);
         }
 
         .page-header {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-bottom: 32px;
-          background: white;
-          padding: 24px 32px;
-          border-radius: 8px;
-          border: 1px solid var(--border-light);
+          margin-bottom: var(--space-8);
+          background: var(--color-bg-surface);
+          padding: var(--space-6) var(--space-8);
+          border-radius: var(--radius-lg);
+          border: 1px solid var(--color-border);
           box-shadow: var(--shadow-card);
         }
 
         .page-title {
-          font-size: 2rem;
-          font-weight: 700;
-          color: var(--text-primary);
-          margin-bottom: 4px;
+          font-size: var(--font-size-6xl);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-1);
         }
 
         .page-subtitle {
-          font-size: 1rem;
-          color: var(--text-secondary);
+          font-size: var(--font-size-lg);
+          color: var(--color-text-secondary);
         }
 
         .add-btn {
           display: flex;
           align-items: center;
-          gap: 8px;
-          background: var(--primary);
-          color: white;
+          gap: var(--space-2);
+          background: var(--color-primary);
+          color: var(--color-text-inverse);
         }
 
         .form-card {
-          padding: 32px;
-          margin-bottom: 32px;
-          background: white;
-          border: 1px solid var(--border-light);
-          border-radius: 8px;
+          padding: var(--space-8);
+          margin-bottom: var(--space-8);
+          background: var(--color-bg-surface);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-lg);
         }
 
         .form-title {
-          font-size: 1.5rem;
-          font-weight: 600;
-          color: var(--text-primary);
-          margin-bottom: 24px;
+          font-size: var(--font-size-3xl);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-6);
         }
 
         .form-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 20px;
-          margin-bottom: 24px;
+          gap: var(--space-5);
+          margin-bottom: var(--space-6);
         }
 
         .form-field {
           display: flex;
           flex-direction: column;
-          gap: 8px;
+          gap: var(--space-2);
         }
 
         .form-field.full-width {
@@ -273,12 +273,12 @@ const BankAccounts = () => {
         }
 
         .select-input {
-          padding: 8px 12px;
-          border: 1px solid var(--border-medium);
-          border-radius: 6px;
-          background: white;
-          font-size: 0.875rem;
-          color: var(--text-primary);
+          padding: var(--space-2) var(--space-3);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-md);
+          background: var(--color-bg-surface);
+          font-size: var(--font-size-base);
+          color: var(--color-text-dark);
         }
 
         .checkbox-field {
@@ -289,7 +289,7 @@ const BankAccounts = () => {
         .checkbox-label {
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: var(--space-2);
           cursor: pointer;
         }
 
@@ -301,46 +301,46 @@ const BankAccounts = () => {
 
         .form-actions {
           display: flex;
-          gap: 12px;
+          gap: var(--space-3);
           justify-content: flex-end;
         }
 
         .submit-btn {
-          background: var(--primary);
-          color: white;
+          background: var(--color-primary);
+          color: var(--color-text-inverse);
         }
 
         .accounts-list {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-          gap: 24px;
+          gap: var(--space-6);
         }
 
         .account-card {
-          padding: 24px;
-          background: white;
-          border: 1px solid var(--border-light);
-          border-radius: 8px;
+          padding: var(--space-6);
+          background: var(--color-bg-surface);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-lg);
         }
 
         .account-header {
           display: flex;
-          gap: 16px;
+          gap: var(--space-4);
           align-items: center;
-          margin-bottom: 20px;
-          padding-bottom: 16px;
-          border-bottom: 1px solid var(--border-light);
+          margin-bottom: var(--space-5);
+          padding-bottom: var(--space-4);
+          border-bottom: 1px solid var(--color-border);
         }
 
         .account-icon {
           width: 48px;
           height: 48px;
-          background: rgba(30, 64, 175, 0.1);
-          border-radius: 8px;
+          background: var(--color-primary-bg);
+          border-radius: var(--radius-lg);
           display: flex;
           align-items: center;
           justify-content: center;
-          color: var(--primary);
+          color: var(--color-primary);
         }
 
         .account-info {
@@ -348,27 +348,27 @@ const BankAccounts = () => {
         }
 
         .account-name {
-          font-size: 1.125rem;
-          font-weight: 600;
-          color: var(--text-primary);
-          margin-bottom: 4px;
+          font-size: var(--font-size-xl3);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-1);
         }
 
         .primary-badge {
           display: inline-block;
-          padding: 2px 8px;
-          background: rgba(16, 185, 129, 0.1);
-          color: #10b981;
-          border-radius: 12px;
-          font-size: 0.75rem;
-          font-weight: 600;
+          padding: var(--space-05) var(--space-2);
+          background: var(--color-success-tint-10);
+          color: var(--color-success-alt);
+          border-radius: var(--radius-4xl);
+          font-size: var(--font-size-xs);
+          font-weight: var(--font-weight-semibold);
         }
 
         .account-details {
           display: flex;
           flex-direction: column;
-          gap: 12px;
-          margin-bottom: 20px;
+          gap: var(--space-3);
+          margin-bottom: var(--space-5);
         }
 
         .detail-row {
@@ -378,14 +378,14 @@ const BankAccounts = () => {
         }
 
         .detail-label {
-          font-size: 0.875rem;
-          color: var(--text-secondary);
+          font-size: var(--font-size-base);
+          color: var(--color-text-secondary);
         }
 
         .detail-value {
-          font-size: 0.875rem;
-          font-weight: 600;
-          color: var(--text-primary);
+          font-size: var(--font-size-base);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
         }
 
         .detail-value.monospace {
@@ -394,7 +394,7 @@ const BankAccounts = () => {
 
         .account-actions {
           display: flex;
-          gap: 12px;
+          gap: var(--space-3);
         }
 
         .account-actions button {
@@ -402,16 +402,16 @@ const BankAccounts = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 6px;
+          gap: var(--space-1-5);
         }
 
         .delete-btn {
-          color: #ef4444;
-          border-color: #ef4444;
+          color: var(--color-danger);
+          border-color: var(--color-danger);
         }
 
         .delete-btn:hover {
-          background: rgba(239, 68, 68, 0.1);
+          background: var(--color-danger-tint-10);
         }
 
         .loading-container {
@@ -424,9 +424,9 @@ const BankAccounts = () => {
         .loading-spinner {
           width: 40px;
           height: 40px;
-          border: 3px solid var(--border-light);
-          border-top: 3px solid var(--primary);
-          border-radius: 50%;
+          border: 3px solid var(--color-border);
+          border-top: 3px solid var(--color-primary);
+          border-radius: var(--radius-circle);
           animation: spin 1s linear infinite;
         }
 
@@ -438,7 +438,7 @@ const BankAccounts = () => {
         @media (max-width: 768px) {
           .page-header {
             flex-direction: column;
-            gap: 16px;
+            gap: var(--space-4);
             align-items: flex-start;
           }
 

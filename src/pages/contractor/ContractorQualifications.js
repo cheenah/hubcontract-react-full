@@ -364,169 +364,169 @@ const ContractorQualifications = () => {
         .qualifications-page {
           max-width: 1200px;
           margin: 0 auto;
-          padding: 24px;
+          padding: var(--space-6);
         }
 
         .page-header {
-          background: white;
-          padding: 24px 32px;
-          border-radius: 8px;
-          margin-bottom: 24px;
-          border: 1px solid #e5e7eb;
+          background: var(--color-bg-surface);
+          padding: var(--space-6) var(--space-8);
+          border-radius: var(--radius-lg);
+          margin-bottom: var(--space-6);
+          border: 1px solid var(--color-border);
         }
 
         .page-title {
-          font-size: 1.875rem;
-          font-weight: 700;
-          color: #1a1a1a;
-          margin: 0 0 8px 0;
+          font-size: var(--font-size-4xl);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-dark);
+          margin: 0 0 var(--space-2) 0;
         }
 
         .page-subtitle {
-          font-size: 0.875rem;
-          color: #6b7280;
+          font-size: var(--font-size-base);
+          color: var(--color-text-muted);
           margin: 0;
         }
 
         .ai-score-card {
-          padding: 20px;
-          margin-bottom: 24px;
-          border: 2px solid #10b981;
+          padding: var(--space-5);
+          margin-bottom: var(--space-6);
+          border: 2px solid var(--color-success-alt);
         }
 
         .ai-score-content {
           display: flex;
           align-items: center;
-          gap: 16px;
+          gap: var(--space-4);
         }
 
         .ai-score-icon {
-          color: #10b981;
+          color: var(--color-success-alt);
           width: 48px;
           height: 48px;
         }
 
         .ai-score {
-          font-size: 2rem;
-          font-weight: 700;
-          color: #10b981;
-          margin: 8px 0 0 0;
+          font-size: var(--font-size-6xl);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-success-alt);
+          margin: var(--space-2) 0 0 0;
         }
 
         .tabs {
           display: flex;
-          gap: 8px;
-          margin-bottom: 24px;
-          background: white;
-          padding: 8px;
-          border-radius: 8px;
+          gap: var(--space-2);
+          margin-bottom: var(--space-6);
+          background: var(--color-bg-surface);
+          padding: var(--space-2);
+          border-radius: var(--radius-lg);
         }
 
         .tab {
           display: flex;
           align-items: center;
-          gap: 8px;
-          padding: 12px 24px;
+          gap: var(--space-2);
+          padding: var(--space-3) var(--space-6);
           border: none;
           background: transparent;
-          border-radius: 6px;
+          border-radius: var(--radius-md);
           cursor: pointer;
-          font-weight: 500;
-          color: #6b7280;
-          transition: all 0.2s;
+          font-weight: var(--font-weight-medium);
+          color: var(--color-text-muted);
+          transition: var(--transition-normal);
         }
 
         .tab.active {
-          background: #1e40af;
-          color: white;
+          background: var(--color-primary-dark);
+          color: var(--color-text-inverse);
         }
 
         .tab:hover {
-          background: rgba(30, 64, 175, 0.1);
+          background: var(--color-primary-bg);
         }
 
         .tab-content {
-          background: white;
-          padding: 24px;
-          border-radius: 8px;
-          border: 1px solid #e5e7eb;
+          background: var(--color-bg-surface);
+          padding: var(--space-6);
+          border-radius: var(--radius-lg);
+          border: 1px solid var(--color-border);
         }
 
         .section-header {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-bottom: 20px;
+          margin-bottom: var(--space-5);
         }
 
         .section-header h2 {
-          font-size: 1.25rem;
-          font-weight: 600;
-          color: #1a1a1a;
+          font-size: var(--font-size-xl3);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
           margin: 0;
         }
 
         .add-button {
           display: inline-flex;
           align-items: center;
-          gap: 8px;
-          padding: 10px 20px;
-          background: #1e40af;
-          color: white;
+          gap: var(--space-2);
+          padding: var(--space-2-5) var(--space-5);
+          background: var(--color-primary-dark);
+          color: var(--color-text-inverse);
           border: none;
-          border-radius: 6px;
-          font-size: 0.875rem;
-          font-weight: 500;
+          border-radius: var(--radius-md);
+          font-size: var(--font-size-base);
+          font-weight: var(--font-weight-medium);
           cursor: pointer;
-          transition: all 0.2s;
+          transition: var(--transition-normal);
         }
 
         .add-button:hover {
-          background: #1e3a8a;
+          background: var(--color-primary-darker);
         }
 
         .items-grid {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-          gap: 16px;
+          gap: var(--space-4);
         }
 
         .item-card {
-          padding: 20px;
-          border: 1px solid #e5e7eb;
+          padding: var(--space-5);
+          border: 1px solid var(--color-border);
         }
 
         .item-card h3 {
-          font-size: 1rem;
-          font-weight: 600;
-          color: #1a1a1a;
-          margin: 0 0 8px 0;
+          font-size: var(--font-size-lg);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
+          margin: 0 0 var(--space-2) 0;
         }
 
         .item-card p {
-          font-size: 0.875rem;
-          color: #6b7280;
-          margin: 4px 0;
+          font-size: var(--font-size-base);
+          color: var(--color-text-muted);
+          margin: var(--space-1) 0;
         }
 
         .doc-type {
           text-transform: capitalize;
-          color: #3b82f6;
-          font-weight: 500;
+          color: var(--color-primary-light);
+          font-weight: var(--font-weight-medium);
         }
 
         .doc-date {
-          font-size: 0.75rem;
+          font-size: var(--font-size-xs);
         }
 
         .project-dates {
-          font-size: 0.75rem;
-          color: #9ca3af;
+          font-size: var(--font-size-xs);
+          color: var(--color-text-placeholder);
         }
 
         .staff-position {
-          color: #3b82f6;
-          font-weight: 500;
+          color: var(--color-primary-light);
+          font-weight: var(--font-weight-medium);
         }
 
         .staff-quals {
@@ -547,9 +547,9 @@ const ContractorQualifications = () => {
         }
 
         .modal {
-          background: white;
-          padding: 24px;
-          border-radius: 12px;
+          background: var(--color-bg-surface);
+          padding: var(--space-6);
+          border-radius: var(--radius-2xl);
           max-width: 500px;
           width: 90%;
           max-height: 90vh;
@@ -557,84 +557,84 @@ const ContractorQualifications = () => {
         }
 
         .modal h2 {
-          font-size: 1.5rem;
-          font-weight: 700;
-          color: #1a1a1a;
-          margin: 0 0 20px 0;
+          font-size: var(--font-size-3xl);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-dark);
+          margin: 0 0 var(--space-5) 0;
         }
 
         .form-group {
-          margin: 16px 0;
+          margin: var(--space-4) 0;
         }
 
         .form-group label {
           display: block;
-          font-size: 0.875rem;
-          font-weight: 500;
-          color: #374151;
-          margin-bottom: 6px;
+          font-size: var(--font-size-base);
+          font-weight: var(--font-weight-medium);
+          color: var(--color-text-secondary);
+          margin-bottom: var(--space-1-5);
         }
 
         .form-group input,
         .form-group select {
           width: 100%;
-          padding: 10px 12px;
-          border: 1px solid #d1d5db;
-          border-radius: 6px;
-          font-size: 0.875rem;
-          color: #1a1a1a;
-          background: white;
+          padding: var(--space-2-5) var(--space-3);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-md);
+          font-size: var(--font-size-base);
+          color: var(--color-text-dark);
+          background: var(--color-bg-surface);
         }
 
         .form-group input[type="file"] {
-          padding: 8px;
+          padding: var(--space-2);
         }
 
         .modal-actions {
           display: flex;
-          gap: 12px;
-          margin-top: 24px;
+          gap: var(--space-3);
+          margin-top: var(--space-6);
         }
 
         .modal-button {
           flex: 1;
-          padding: 10px 20px;
+          padding: var(--space-2-5) var(--space-5);
           border: none;
-          border-radius: 6px;
-          font-size: 0.875rem;
-          font-weight: 500;
+          border-radius: var(--radius-md);
+          font-size: var(--font-size-base);
+          font-weight: var(--font-weight-medium);
           cursor: pointer;
-          transition: all 0.2s;
+          transition: var(--transition-normal);
         }
 
         .modal-button.primary {
-          background: #1e40af;
-          color: white;
+          background: var(--color-primary-dark);
+          color: var(--color-text-inverse);
         }
 
         .modal-button.primary:hover {
-          background: #1e3a8a;
+          background: var(--color-primary-darker);
         }
 
         .modal-button.secondary {
-          background: white;
-          color: #374151;
-          border: 1px solid #d1d5db;
+          background: var(--color-bg-surface);
+          color: var(--color-text-secondary);
+          border: 1px solid var(--color-border);
         }
 
         .modal-button.secondary:hover {
-          background: #f9fafb;
+          background: var(--color-bg-subtle);
         }
 
         .empty-state {
           text-align: center;
-          padding: 48px;
-          color: #6b7280;
+          padding: var(--space-12);
+          color: var(--color-text-muted);
         }
 
         .empty-state svg {
-          color: #9ca3af;
-          margin-bottom: 16px;
+          color: var(--color-text-placeholder);
+          margin-bottom: var(--space-4);
         }
 
         .loading-container {
@@ -647,9 +647,9 @@ const ContractorQualifications = () => {
         .loading-spinner {
           width: 40px;
           height: 40px;
-          border: 3px solid #e5e7eb;
-          border-top: 3px solid #1e40af;
-          border-radius: 50%;
+          border: 3px solid var(--color-border);
+          border-top: 3px solid var(--color-primary-dark);
+          border-radius: var(--radius-circle);
           animation: spin 1s linear infinite;
         }
 
@@ -660,7 +660,7 @@ const ContractorQualifications = () => {
 
         @media (max-width: 768px) {
           .qualifications-page {
-            padding: 16px;
+            padding: var(--space-4);
           }
 
           .items-grid {

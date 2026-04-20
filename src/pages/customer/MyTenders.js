@@ -373,23 +373,23 @@ const MyTenders = () => {
           justify-content: space-between;
           align-items: center;
           margin-bottom: 32px;
-          background: white;
+          background: var(--color-bg-surface);
           padding: 24px 32px;
           border-radius: 8px;
-          border: 1px solid var(--border-light);
+          border: 1px solid var(--color-border);
           box-shadow: var(--shadow-card);
         }
 
         .page-title {
-          font-size: 2rem;
-          font-weight: 700;
-          color: var(--text-primary);
+          font-size: var(--font-size-6xl);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-dark);
           margin-bottom: 4px;
         }
 
         .page-subtitle {
-          font-size: 1rem;
-          color: var(--text-secondary);
+          font-size: var(--font-size-lg);
+          color: var(--color-text-secondary);
         }
 
         .header-actions {
@@ -401,8 +401,8 @@ const MyTenders = () => {
           display: flex;
           align-items: center;
           gap: 8px;
-          background: var(--primary);
-          color: white;
+          background: var(--color-primary);
+          color: var(--color-text-inverse);
         }
 
         .tenders-tabs {
@@ -417,11 +417,11 @@ const MyTenders = () => {
           height: 20px;
           padding: 0 6px;
           margin-left: 8px;
-          background: var(--primary);
-          color: white;
-          border-radius: 10px;
-          font-size: 0.75rem;
-          font-weight: 600;
+          background: var(--color-primary);
+          color: var(--color-text-inverse);
+          border-radius: var(--radius-4xl);
+          font-size: var(--font-size-xs);
+          font-weight: var(--font-weight-semibold);
         }
 
         .tenders-grid {
@@ -433,17 +433,17 @@ const MyTenders = () => {
 
         .tender-card {
           padding: 20px;
-          background: white;
-          border: 1px solid var(--border-light);
-          border-radius: 8px;
-          transition: all 0.2s ease;
+          background: var(--color-bg-surface);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-lg);
+          transition: var(--transition-normal) ease;
           display: flex;
           flex-direction: column;
         }
 
         .tender-card:hover {
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-          border-color: var(--primary);
+          box-shadow: var(--shadow-card-hover);
+          border-color: var(--color-primary);
           transform: translateY(-2px);
         }
 
@@ -453,7 +453,7 @@ const MyTenders = () => {
           align-items: flex-start;
           margin-bottom: 16px;
           padding-bottom: 12px;
-          border-bottom: 1px solid var(--border-light);
+          border-bottom: 1px solid var(--color-border);
         }
 
         .tender-info {
@@ -461,51 +461,51 @@ const MyTenders = () => {
         }
 
         .tender-title {
-          font-size: 1.125rem;
-          font-weight: 600;
-          color: var(--text-primary);
+          font-size: var(--font-size-xl3);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
           margin-bottom: 4px;
         }
 
         .tender-id {
-          font-size: 0.75rem;
-          color: var(--text-muted);
+          font-size: var(--font-size-xs);
+          color: var(--color-text-muted);
           margin: 0;
         }
 
         .status-badge {
-          padding: 4px 12px;
-          border-radius: 12px;
-          font-size: 0.75rem;
-          font-weight: 600;
+          padding: var(--space-1) var(--space-3);
+          border-radius: var(--radius-4xl);
+          font-size: var(--font-size-xs);
+          font-weight: var(--font-weight-semibold);
           text-transform: capitalize;
         }
 
         .status-badge.status-published,
         .status-badge.status-active {
-          background: rgba(16, 185, 129, 0.1);
-          color: #10b981;
+          background: var(--color-success-tint-10);
+          color: var(--color-success-alt);
         }
 
         .status-badge.status-published_receiving_applications {
-          background: rgba(59, 130, 246, 0.1);
-          color: #3b82f6;
+          background: var(--color-primary-bg);
+          color: var(--color-primary-light);
         }
 
         .status-badge.status-closed,
         .status-badge.status-completed {
-          background: rgba(107, 114, 128, 0.1);
-          color: #6b7280;
+          background: var(--color-bg-muted);
+          color: var(--color-text-muted);
         }
 
         .status-badge.status-cancelled {
-          background: rgba(239, 68, 68, 0.1);
-          color: #ef4444;
+          background: var(--color-danger-tint-10);
+          color: var(--color-danger);
         }
 
         .tender-description {
-          font-size: 0.875rem;
-          color: var(--text-secondary);
+          font-size: var(--font-size-base);
+          color: var(--color-text-secondary);
           margin-bottom: 16px;
           line-height: 1.5;
         }
@@ -516,7 +516,7 @@ const MyTenders = () => {
           gap: 12px;
           margin-bottom: 16px;
           padding: 12px;
-          background: var(--bg-tertiary);
+          background: var(--color-bg-subtle);
           border-radius: 6px;
         }
 
@@ -527,18 +527,18 @@ const MyTenders = () => {
         }
 
         .detail-label {
-          font-size: 0.75rem;
-          color: var(--text-muted);
+          font-size: var(--font-size-xs);
+          color: var(--color-text-muted);
         }
 
         .detail-value {
-          font-size: 0.875rem;
-          font-weight: 600;
-          color: var(--text-primary);
+          font-size: var(--font-size-base);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
         }
 
         .detail-value.budget {
-          color: var(--accent);
+          color: var(--color-primary);
         }
 
         .tender-actions {
@@ -552,66 +552,66 @@ const MyTenders = () => {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          gap: 6px;
-          padding: 8px 16px;
-          font-size: 0.875rem;
+          gap: var(--space-1-5);
+          padding: var(--space-2) var(--space-4);
+          font-size: var(--font-size-base);
           white-space: nowrap;
           flex: 0 1 auto;
           min-width: auto;
         }
 
         .delete-btn {
-          color: #ef4444;
-          border-color: #ef4444;
+          color: var(--color-danger);
+          border-color: var(--color-danger);
         }
 
         .delete-btn:hover {
-          background: rgba(239, 68, 68, 0.1);
+          background: var(--color-danger-tint-10);
         }
 
         .publish-btn {
-          color: #16a34a;
-          border-color: #16a34a;
+          color: var(--color-success-mid);
+          border-color: var(--color-success-mid);
         }
 
         .publish-btn:hover {
-          background: rgba(22, 163, 74, 0.1);
+          background: var(--color-success-tint-10);
         }
 
         .cancel-btn {
-          color: #f59e0b;
-          border-color: #f59e0b;
+          color: var(--color-warning);
+          border-color: var(--color-warning);
         }
 
         .cancel-btn:hover {
-          background: rgba(245, 158, 11, 0.1);
+          background: var(--color-bg-muted);
         }
 
         .create-contract-btn {
-          color: #8b5cf6;
-          border-color: #8b5cf6;
+          color: var(--color-primary);
+          border-color: var(--color-primary);
         }
 
         .create-contract-btn:hover {
-          background: rgba(139, 92, 246, 0.1);
+          background: var(--color-primary-bg);
         }
 
         .empty-state {
           padding: 60px 40px;
           text-align: center;
           background: white;
-          border: 1px solid var(--border-light);
+          border: 1px solid var(--color-border);
           border-radius: 8px;
         }
 
         .empty-icon {
-          color: var(--text-muted);
+          color: var(--color-text-muted);
           margin-bottom: 16px;
         }
 
         .empty-state p {
-          font-size: 1rem;
-          color: var(--text-secondary);
+          font-size: var(--font-size-lg);
+          color: var(--color-text-secondary);
         }
 
         .loading-container {
@@ -624,8 +624,8 @@ const MyTenders = () => {
         .loading-spinner {
           width: 40px;
           height: 40px;
-          border: 3px solid var(--border-light);
-          border-top: 3px solid var(--primary);
+          border: 3px solid var(--color-border);
+          border-top: 3px solid var(--color-primary);
           border-radius: 50%;
           animation: spin 1s linear infinite;
         }
@@ -648,7 +648,7 @@ const MyTenders = () => {
           }
 
           .page-title {
-            font-size: 1.5rem;
+            font-size: var(--font-size-3xl);
           }
 
           .tenders-grid {

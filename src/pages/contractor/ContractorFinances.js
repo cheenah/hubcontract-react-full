@@ -136,100 +136,100 @@ const ContractorFinances = () => {
         .finances-page {
           max-width: 1200px;
           margin: 0 auto;
-          padding: 24px;
+          padding: var(--space-6);
         }
 
         .page-header {
-          background: white;
-          padding: 24px 32px;
-          border-radius: 8px;
-          margin-bottom: 24px;
-          border: 1px solid #e5e7eb;
+          background: var(--color-bg-surface);
+          padding: var(--space-6) var(--space-8);
+          border-radius: var(--radius-lg);
+          margin-bottom: var(--space-6);
+          border: 1px solid var(--color-border);
         }
 
         .page-title {
-          font-size: 1.875rem;
-          font-weight: 700;
-          color: #1a1a1a;
-          margin: 0 0 8px 0;
+          font-size: var(--font-size-4xl);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-dark);
+          margin: 0 0 var(--space-2) 0;
         }
 
         .page-subtitle {
-          font-size: 0.875rem;
-          color: #6b7280;
+          font-size: var(--font-size-base);
+          color: var(--color-text-muted);
           margin: 0;
         }
 
         .stats-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-          gap: 16px;
-          margin-bottom: 24px;
+          gap: var(--space-4);
+          margin-bottom: var(--space-6);
         }
 
         .stat-card {
-          padding: 20px;
-          border: 1px solid #e5e7eb;
+          padding: var(--space-5);
+          border: 1px solid var(--color-border);
         }
 
         .stat-content {
           display: flex;
           align-items: center;
-          gap: 16px;
+          gap: var(--space-4);
         }
 
         .stat-icon-wrapper {
           width: 48px;
           height: 48px;
-          border-radius: 12px;
+          border-radius: var(--radius-2xl);
           display: flex;
           align-items: center;
           justify-content: center;
         }
 
         .earnings .stat-icon-wrapper {
-          background: rgba(16, 185, 129, 0.1);
-          color: #10b981;
+          background: var(--color-success-tint-10);
+          color: var(--color-success-alt);
         }
 
         .pending .stat-icon-wrapper {
-          background: rgba(251, 191, 36, 0.1);
-          color: #f59e0b;
+          background: var(--color-bg-muted);
+          color: var(--color-warning);
         }
 
         .contracts .stat-icon-wrapper {
-          background: rgba(59, 130, 246, 0.1);
-          color: #3b82f6;
+          background: var(--color-primary-bg);
+          color: var(--color-primary-light);
         }
 
         .stat-value {
-          font-size: 1.875rem;
-          font-weight: 700;
-          color: #1a1a1a;
+          font-size: var(--font-size-4xl);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-dark);
           margin: 0;
         }
 
         .stat-label {
-          font-size: 0.875rem;
-          color: #6b7280;
-          margin: 4px 0 0 0;
+          font-size: var(--font-size-base);
+          color: var(--color-text-muted);
+          margin: var(--space-1) 0 0 0;
         }
 
         .payments-section {
-          padding: 24px;
+          padding: var(--space-6);
         }
 
         .section-header {
-          margin-bottom: 20px;
+          margin-bottom: var(--space-5);
         }
 
         .section-title {
           display: flex;
           align-items: center;
-          gap: 8px;
-          font-size: 1.25rem;
-          font-weight: 600;
-          color: #1a1a1a;
+          gap: var(--space-2);
+          font-size: var(--font-size-xl3);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
           margin: 0;
         }
 
@@ -243,61 +243,61 @@ const ContractorFinances = () => {
         }
 
         thead {
-          background: #f9fafb;
+          background: var(--color-bg-subtle);
         }
 
         th {
           text-align: left;
-          padding: 12px 16px;
-          font-size: 0.875rem;
-          font-weight: 600;
-          color: #374151;
-          border-bottom: 2px solid #e5e7eb;
+          padding: var(--space-3) var(--space-4);
+          font-size: var(--font-size-base);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-secondary);
+          border-bottom: 2px solid var(--color-border);
         }
 
         td {
-          padding: 12px 16px;
-          font-size: 0.875rem;
-          color: #6b7280;
-          border-bottom: 1px solid #e5e7eb;
+          padding: var(--space-3) var(--space-4);
+          font-size: var(--font-size-base);
+          color: var(--color-text-muted);
+          border-bottom: 1px solid var(--color-border);
         }
 
         tbody tr:hover {
-          background: #f9fafb;
+          background: var(--color-bg-subtle);
         }
 
         .amount {
-          font-weight: 600;
-          color: #10b981;
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-success-alt);
         }
 
         .status {
-          padding: 4px 12px;
-          border-radius: 12px;
-          font-size: 0.75rem;
-          font-weight: 500;
+          padding: var(--space-1) var(--space-3);
+          border-radius: var(--radius-4xl);
+          font-size: var(--font-size-xs);
+          font-weight: var(--font-weight-medium);
           text-transform: uppercase;
         }
 
         .status-paid {
-          background: rgba(16, 185, 129, 0.1);
-          color: #10b981;
+          background: var(--color-success-tint-10);
+          color: var(--color-success-alt);
         }
 
         .status-pending {
-          background: rgba(251, 191, 36, 0.1);
-          color: #f59e0b;
+          background: var(--color-bg-muted);
+          color: var(--color-warning);
         }
 
         .empty-state {
           text-align: center;
-          padding: 48px;
-          color: #6b7280;
+          padding: var(--space-12);
+          color: var(--color-text-muted);
         }
 
         .empty-state svg {
-          color: #9ca3af;
-          margin-bottom: 16px;
+          color: var(--color-text-placeholder);
+          margin-bottom: var(--space-4);
         }
 
         .loading-container {
@@ -310,9 +310,9 @@ const ContractorFinances = () => {
         .loading-spinner {
           width: 40px;
           height: 40px;
-          border: 3px solid #e5e7eb;
-          border-top: 3px solid #1e40af;
-          border-radius: 50%;
+          border: 3px solid var(--color-border);
+          border-top: 3px solid var(--color-primary-dark);
+          border-radius: var(--radius-circle);
           animation: spin 1s linear infinite;
         }
 
@@ -323,7 +323,7 @@ const ContractorFinances = () => {
 
         @media (max-width: 768px) {
           .finances-page {
-            padding: 16px;
+            padding: var(--space-4);
           }
 
           .stats-grid {
@@ -331,12 +331,12 @@ const ContractorFinances = () => {
           }
 
           table {
-            font-size: 0.75rem;
+            font-size: var(--font-size-xs);
           }
 
           th,
           td {
-            padding: 8px 12px;
+            padding: var(--space-2) var(--space-3);
           }
         }
       `}</style>

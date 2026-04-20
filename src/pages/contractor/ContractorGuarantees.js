@@ -213,91 +213,91 @@ const ContractorGuarantees = () => {
         .guarantees-page {
           max-width: 1200px;
           margin: 0 auto;
-          padding: 24px;
+          padding: var(--space-6);
         }
 
         .page-header {
-          background: white;
-          padding: 24px 32px;
-          border-radius: 8px;
-          margin-bottom: 24px;
-          border: 1px solid #e5e7eb;
+          background: var(--color-bg-surface);
+          padding: var(--space-6) var(--space-8);
+          border-radius: var(--radius-lg);
+          margin-bottom: var(--space-6);
+          border: 1px solid var(--color-border);
           display: flex;
           justify-content: space-between;
           align-items: center;
         }
 
         .page-title {
-          font-size: 1.875rem;
-          font-weight: 700;
-          color: #1a1a1a;
-          margin: 0 0 8px 0;
+          font-size: var(--font-size-4xl);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-dark);
+          margin: 0 0 var(--space-2) 0;
         }
 
         .page-subtitle {
-          font-size: 0.875rem;
-          color: #6b7280;
+          font-size: var(--font-size-base);
+          color: var(--color-text-muted);
           margin: 0;
         }
 
         .guarantees-grid {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-          gap: 20px;
+          gap: var(--space-5);
         }
 
         .guarantee-card {
-          padding: 20px;
-          border: 1px solid #e5e7eb;
+          padding: var(--space-5);
+          border: 1px solid var(--color-border);
         }
 
         .guarantee-header {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-bottom: 16px;
+          margin-bottom: var(--space-4);
         }
 
         .guarantee-icon {
-          color: #10b981;
+          color: var(--color-success-alt);
         }
 
         .status {
-          padding: 4px 12px;
-          border-radius: 12px;
-          font-size: 0.75rem;
-          font-weight: 500;
+          padding: var(--space-1) var(--space-3);
+          border-radius: var(--radius-4xl);
+          font-size: var(--font-size-xs);
+          font-weight: var(--font-weight-medium);
         }
 
         .status-active {
-          background: rgba(16, 185, 129, 0.1);
-          color: #10b981;
+          background: var(--color-success-tint-10);
+          color: var(--color-success-alt);
         }
 
         .guarantee-number {
-          font-size: 1.125rem;
-          font-weight: 600;
-          color: #1a1a1a;
-          margin: 0 0 8px 0;
+          font-size: var(--font-size-xl3);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
+          margin: 0 0 var(--space-2) 0;
         }
 
         .guarantee-bank,
         .guarantee-amount,
         .guarantee-date {
-          font-size: 0.875rem;
-          color: #6b7280;
-          margin: 4px 0;
+          font-size: var(--font-size-base);
+          color: var(--color-text-muted);
+          margin: var(--space-1) 0;
         }
 
         .guarantee-amount {
-          font-weight: 600;
-          color: #10b981;
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-success-alt);
         }
 
         .guarantee-actions {
-          margin-top: 12px;
-          padding-top: 12px;
-          border-top: 1px solid #e5e7eb;
+          margin-top: var(--space-3);
+          padding-top: var(--space-3);
+          border-top: 1px solid var(--color-border);
         }
 
         .modal-overlay {
@@ -314,9 +314,9 @@ const ContractorGuarantees = () => {
         }
 
         .modal {
-          background: white;
-          padding: 24px;
-          border-radius: 12px;
+          background: var(--color-bg-surface);
+          padding: var(--space-6);
+          border-radius: var(--radius-2xl);
           max-width: 500px;
           width: 90%;
           max-height: 90vh;
@@ -324,29 +324,29 @@ const ContractorGuarantees = () => {
         }
 
         .modal h2 {
-          font-size: 1.5rem;
-          font-weight: 700;
-          margin: 0 0 20px 0;
+          font-size: var(--font-size-3xl);
+          font-weight: var(--font-weight-bold);
+          margin: 0 0 var(--space-5) 0;
         }
 
         .form-group {
-          margin: 16px 0;
+          margin: var(--space-4) 0;
         }
 
         .form-group label {
           display: block;
-          font-size: 0.875rem;
-          font-weight: 500;
-          color: #374151;
-          margin-bottom: 6px;
+          font-size: var(--font-size-base);
+          font-weight: var(--font-weight-medium);
+          color: var(--color-text-secondary);
+          margin-bottom: var(--space-1-5);
         }
 
         .form-group input {
           width: 100%;
-          padding: 10px 12px;
-          border: 1px solid #d1d5db;
-          border-radius: 6px;
-          font-size: 0.875rem;
+          padding: var(--space-2-5) var(--space-3);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-md);
+          font-size: var(--font-size-base);
         }
 
         .file-upload {
@@ -360,34 +360,34 @@ const ContractorGuarantees = () => {
         .file-upload-label {
           display: flex;
           align-items: center;
-          gap: 8px;
-          padding: 10px 16px;
-          border: 2px dashed #d1d5db;
-          border-radius: 6px;
+          gap: var(--space-2);
+          padding: var(--space-2-5) var(--space-4);
+          border: 2px dashed var(--color-border);
+          border-radius: var(--radius-md);
           cursor: pointer;
-          transition: all 0.2s;
+          transition: var(--transition-normal);
         }
 
         .file-upload-label:hover {
-          border-color: #1e40af;
-          background: rgba(30, 64, 175, 0.05);
+          border-color: var(--color-primary-dark);
+          background: var(--color-primary-bg);
         }
 
         .modal-actions {
           display: flex;
-          gap: 12px;
-          margin-top: 24px;
+          gap: var(--space-3);
+          margin-top: var(--space-6);
         }
 
         .empty-state {
           text-align: center;
-          padding: 48px;
-          color: #6b7280;
+          padding: var(--space-12);
+          color: var(--color-text-muted);
         }
 
         .empty-state svg {
-          color: #9ca3af;
-          margin-bottom: 16px;
+          color: var(--color-text-placeholder);
+          margin-bottom: var(--space-4);
         }
 
         .loading-container {
@@ -400,9 +400,9 @@ const ContractorGuarantees = () => {
         .loading-spinner {
           width: 40px;
           height: 40px;
-          border: 3px solid #e5e7eb;
-          border-top: 3px solid #1e40af;
-          border-radius: 50%;
+          border: 3px solid var(--color-border);
+          border-top: 3px solid var(--color-primary-dark);
+          border-radius: var(--radius-circle);
           animation: spin 1s linear infinite;
         }
 
@@ -413,13 +413,13 @@ const ContractorGuarantees = () => {
 
         @media (max-width: 768px) {
           .guarantees-page {
-            padding: 16px;
+            padding: var(--space-4);
           }
 
           .page-header {
             flex-direction: column;
             align-items: flex-start;
-            gap: 16px;
+            gap: var(--space-4);
           }
 
           .guarantees-grid {

@@ -61,9 +61,9 @@ const ProcurementPlans = () => {
 
   const getStatusBadge = (status) => {
     const badges = {
-      active: { text: 'Активный', color: '#10b981' },
-      draft: { text: 'Черновик', color: '#f59e0b' },
-      completed: { text: 'Завершён', color: '#6b7280' }
+      active: { text: 'Активный', bg: 'var(--color-success-tint-10)', color: 'var(--color-success-alt)' },
+      draft: { text: 'Черновик', bg: 'var(--color-bg-muted)', color: 'var(--color-warning)' },
+      completed: { text: 'Завершён', bg: 'var(--color-bg-muted)', color: 'var(--color-text-muted)' }
     };
     return badges[status] || badges.draft;
   };
@@ -166,7 +166,7 @@ const ProcurementPlans = () => {
                         {plan.year} • {plan.items_count || 0} позиций
                       </p>
                     </div>
-                    <span className="status-badge" style={{ background: `${statusBadge.color}20`, color: statusBadge.color }}>
+                    <span className="status-badge" style={{ background: statusBadge.bg, color: statusBadge.color }}>
                       {statusBadge.text}
                     </span>
                   </div>
@@ -199,67 +199,67 @@ const ProcurementPlans = () => {
         .procurement-plans-container {
           max-width: 1400px;
           margin: 0 auto;
-          padding: 24px;
+          padding: var(--space-6);
         }
 
         .page-header {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-bottom: 32px;
-          background: white;
-          padding: 24px 32px;
-          border-radius: 8px;
-          border: 1px solid var(--border-light);
+          margin-bottom: var(--space-8);
+          background: var(--color-bg-surface);
+          padding: var(--space-6) var(--space-8);
+          border-radius: var(--radius-lg);
+          border: 1px solid var(--color-border);
           box-shadow: var(--shadow-card);
         }
 
         .page-title {
-          font-size: 2rem;
-          font-weight: 700;
-          color: var(--text-primary);
-          margin-bottom: 4px;
+          font-size: var(--font-size-6xl);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-1);
         }
 
         .page-subtitle {
-          font-size: 1rem;
-          color: var(--text-secondary);
+          font-size: var(--font-size-lg);
+          color: var(--color-text-secondary);
         }
 
         .create-btn {
           display: flex;
           align-items: center;
-          gap: 8px;
-          background: var(--primary);
-          color: white;
+          gap: var(--space-2);
+          background: var(--color-primary);
+          color: var(--color-text-inverse);
         }
 
         .create-form {
-          padding: 32px;
-          margin-bottom: 32px;
-          background: white;
-          border: 1px solid var(--border-light);
-          border-radius: 8px;
+          padding: var(--space-8);
+          margin-bottom: var(--space-8);
+          background: var(--color-bg-surface);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-lg);
         }
 
         .form-title {
-          font-size: 1.5rem;
-          font-weight: 600;
-          color: var(--text-primary);
-          margin-bottom: 24px;
+          font-size: var(--font-size-3xl);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-6);
         }
 
         .form-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 20px;
-          margin-bottom: 24px;
+          gap: var(--space-5);
+          margin-bottom: var(--space-6);
         }
 
         .form-field {
           display: flex;
           flex-direction: column;
-          gap: 8px;
+          gap: var(--space-2);
         }
 
         .form-field.full-width {
@@ -268,50 +268,50 @@ const ProcurementPlans = () => {
 
         .form-actions {
           display: flex;
-          gap: 12px;
+          gap: var(--space-3);
           justify-content: flex-end;
         }
 
         .submit-btn {
-          background: var(--primary);
-          color: white;
+          background: var(--color-primary);
+          color: var(--color-text-inverse);
         }
 
         .plans-grid {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-          gap: 24px;
+          gap: var(--space-6);
         }
 
         .plan-card {
-          padding: 24px;
-          background: white;
-          border: 1px solid var(--border-light);
-          border-radius: 8px;
-          transition: all 0.2s ease;
+          padding: var(--space-6);
+          background: var(--color-bg-surface);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-lg);
+          transition: var(--transition-base);
         }
 
         .plan-card:hover {
-          box-shadow: var(--shadow-md);
-          border-color: var(--border-medium);
+          box-shadow: var(--shadow-card-hover);
+          border-color: var(--color-border-dark);
         }
 
         .plan-header {
           display: flex;
           align-items: flex-start;
-          gap: 12px;
-          margin-bottom: 16px;
+          gap: var(--space-3);
+          margin-bottom: var(--space-4);
         }
 
         .plan-icon {
           width: 48px;
           height: 48px;
-          background: rgba(30, 64, 175, 0.1);
-          border-radius: 8px;
+          background: var(--color-primary-bg);
+          border-radius: var(--radius-lg);
           display: flex;
           align-items: center;
           justify-content: center;
-          color: var(--primary);
+          color: var(--color-primary);
           flex-shrink: 0;
         }
 
@@ -320,56 +320,56 @@ const ProcurementPlans = () => {
         }
 
         .plan-title {
-          font-size: 1.125rem;
-          font-weight: 600;
-          color: var(--text-primary);
-          margin-bottom: 4px;
+          font-size: var(--font-size-xl3);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-1);
         }
 
         .plan-meta {
-          font-size: 0.875rem;
-          color: var(--text-secondary);
+          font-size: var(--font-size-base);
+          color: var(--color-text-secondary);
           margin: 0;
         }
 
         .status-badge {
-          padding: 4px 12px;
-          border-radius: 12px;
-          font-size: 0.75rem;
-          font-weight: 600;
+          padding: var(--space-1) var(--space-3);
+          border-radius: var(--radius-4xl);
+          font-size: var(--font-size-xs);
+          font-weight: var(--font-weight-semibold);
           flex-shrink: 0;
         }
 
         .plan-description {
-          color: var(--text-secondary);
+          color: var(--color-text-secondary);
           line-height: 1.6;
-          margin-bottom: 16px;
+          margin-bottom: var(--space-4);
         }
 
         .plan-budget {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 12px 16px;
-          background: var(--bg-tertiary);
-          border-radius: 6px;
-          margin-bottom: 16px;
+          padding: var(--space-3) var(--space-4);
+          background: var(--color-bg-subtle);
+          border-radius: var(--radius-md);
+          margin-bottom: var(--space-4);
         }
 
         .budget-label {
-          font-size: 0.875rem;
-          color: var(--text-secondary);
+          font-size: var(--font-size-base);
+          color: var(--color-text-secondary);
         }
 
         .budget-value {
-          font-size: 1.125rem;
-          font-weight: 700;
-          color: var(--accent);
+          font-size: var(--font-size-xl3);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-primary);
         }
 
         .plan-actions {
           display: flex;
-          gap: 8px;
+          gap: var(--space-2);
         }
 
         .plan-actions button {
@@ -377,39 +377,39 @@ const ProcurementPlans = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 4px;
+          gap: var(--space-1);
         }
 
         .delete-btn {
-          color: #ef4444;
-          border-color: #ef4444;
+          color: var(--color-danger);
+          border-color: var(--color-danger);
         }
 
         .delete-btn:hover {
-          background: rgba(239, 68, 68, 0.1);
+          background: var(--color-danger-tint-10);
         }
 
         .empty-state {
           text-align: center;
-          padding: 60px 40px;
-          background: white;
+          padding: var(--space-15) var(--space-10);
+          background: var(--color-bg-surface);
         }
 
         .empty-icon {
-          color: var(--text-muted);
-          margin-bottom: 16px;
+          color: var(--color-text-muted);
+          margin-bottom: var(--space-4);
         }
 
         .empty-state h3 {
-          font-size: 1.25rem;
-          font-weight: 600;
-          color: var(--text-primary);
-          margin-bottom: 8px;
+          font-size: var(--font-size-2xl);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-2);
         }
 
         .empty-state p {
-          color: var(--text-secondary);
-          margin-bottom: 24px;
+          color: var(--color-text-secondary);
+          margin-bottom: var(--space-6);
         }
 
         .loading-container {
@@ -422,9 +422,9 @@ const ProcurementPlans = () => {
         .loading-spinner {
           width: 40px;
           height: 40px;
-          border: 3px solid var(--border-light);
-          border-top: 3px solid var(--primary);
-          border-radius: 50%;
+          border: 3px solid var(--color-border);
+          border-top: 3px solid var(--color-primary);
+          border-radius: var(--radius-circle);
           animation: spin 1s linear infinite;
         }
 
@@ -436,7 +436,7 @@ const ProcurementPlans = () => {
         @media (max-width: 768px) {
           .page-header {
             flex-direction: column;
-            gap: 16px;
+            gap: var(--space-4);
             align-items: flex-start;
           }
 

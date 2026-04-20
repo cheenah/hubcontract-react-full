@@ -183,141 +183,141 @@ const Support = () => {
         .support-container {
           max-width: 1200px;
           margin: 0 auto;
-          padding: 24px;
+          padding: var(--space-6);
         }
 
         .page-header {
-          margin-bottom: 32px;
-          background: white;
-          padding: 24px 32px;
-          border-radius: 8px;
-          border: 1px solid var(--border-light);
+          margin-bottom: var(--space-8);
+          background: var(--color-bg-surface);
+          padding: var(--space-6) var(--space-8);
+          border-radius: var(--radius-lg);
+          border: 1px solid var(--color-border);
           box-shadow: var(--shadow-card);
         }
 
         .page-title {
-          font-size: 2rem;
-          font-weight: 700;
-          color: var(--text-primary);
-          margin-bottom: 4px;
+          font-size: var(--font-size-6xl);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-1);
         }
 
         .page-subtitle {
-          font-size: 1rem;
-          color: var(--text-secondary);
+          font-size: var(--font-size-lg);
+          color: var(--color-text-secondary);
         }
 
         .support-content {
           display: flex;
           flex-direction: column;
-          gap: 32px;
+          gap: var(--space-8);
         }
 
         .contact-cards {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 24px;
+          gap: var(--space-6);
         }
 
         .contact-card {
-          padding: 24px;
+          padding: var(--space-6);
           text-align: center;
-          background: white;
-          border: 1px solid var(--border-light);
-          border-radius: 8px;
+          background: var(--color-bg-surface);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-lg);
         }
 
         .contact-icon {
           width: 64px;
           height: 64px;
-          margin: 0 auto 16px;
-          border-radius: 12px;
+          margin: 0 auto var(--space-4);
+          border-radius: var(--radius-4xl);
           display: flex;
           align-items: center;
           justify-content: center;
         }
 
         .contact-icon.phone {
-          background: rgba(59, 130, 246, 0.1);
-          color: #3b82f6;
+          background: var(--color-primary-bg);
+          color: var(--color-primary-light);
         }
 
         .contact-icon.email {
-          background: rgba(16, 185, 129, 0.1);
-          color: #10b981;
+          background: var(--color-success-tint-10);
+          color: var(--color-success-alt);
         }
 
         .contact-icon.chat {
-          background: rgba(245, 158, 11, 0.1);
-          color: #f59e0b;
+          background: var(--color-bg-muted);
+          color: var(--color-warning);
         }
 
         .contact-title {
-          font-size: 1.125rem;
-          font-weight: 600;
-          color: var(--text-primary);
-          margin-bottom: 8px;
+          font-size: var(--font-size-xl3);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-2);
         }
 
         .contact-value {
-          font-size: 1rem;
-          font-weight: 600;
-          color: var(--primary);
-          margin-bottom: 4px;
+          font-size: var(--font-size-lg);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-primary);
+          margin-bottom: var(--space-1);
         }
 
         .contact-time {
-          font-size: 0.875rem;
-          color: var(--text-secondary);
+          font-size: var(--font-size-base);
+          color: var(--color-text-secondary);
         }
 
         .chat-btn {
-          margin-top: 12px;
+          margin-top: var(--space-3);
         }
 
         .form-card {
-          padding: 32px;
-          background: white;
-          border: 1px solid var(--border-light);
-          border-radius: 8px;
+          padding: var(--space-8);
+          background: var(--color-bg-surface);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-lg);
         }
 
         .form-header {
           display: flex;
-          gap: 16px;
+          gap: var(--space-4);
           align-items: center;
-          margin-bottom: 32px;
-          padding-bottom: 24px;
-          border-bottom: 1px solid var(--border-light);
+          margin-bottom: var(--space-8);
+          padding-bottom: var(--space-6);
+          border-bottom: 1px solid var(--color-border);
         }
 
         .form-icon {
-          color: var(--primary);
+          color: var(--color-primary);
         }
 
         .form-title {
-          font-size: 1.5rem;
-          font-weight: 600;
-          color: var(--text-primary);
-          margin-bottom: 4px;
+          font-size: var(--font-size-3xl);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-1);
         }
 
         .form-subtitle {
-          font-size: 0.875rem;
-          color: var(--text-secondary);
+          font-size: var(--font-size-base);
+          color: var(--color-text-secondary);
         }
 
         .form-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 20px;
-          margin-bottom: 24px;
+          gap: var(--space-5);
+          margin-bottom: var(--space-6);
         }
 
         .form-field {
           display: flex;
           flex-direction: column;
-          gap: 8px;
+          gap: var(--space-2);
         }
 
         .form-field.full-width {
@@ -325,59 +325,59 @@ const Support = () => {
         }
 
         .select-input {
-          padding: 8px 12px;
-          border: 1px solid var(--border-medium);
-          border-radius: 6px;
-          background: white;
-          font-size: 0.875rem;
-          color: var(--text-primary);
+          padding: var(--space-2) var(--space-3);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-md);
+          background: var(--color-bg-surface);
+          font-size: var(--font-size-base);
+          color: var(--color-text-dark);
         }
 
         .submit-btn {
           display: flex;
           align-items: center;
-          gap: 8px;
-          background: var(--primary);
-          color: white;
+          gap: var(--space-2);
+          background: var(--color-primary);
+          color: var(--color-text-inverse);
         }
 
         .faq-card {
-          padding: 32px;
-          background: white;
-          border: 1px solid var(--border-light);
-          border-radius: 8px;
+          padding: var(--space-8);
+          background: var(--color-bg-surface);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-lg);
         }
 
         .faq-title {
-          font-size: 1.5rem;
-          font-weight: 600;
-          color: var(--text-primary);
-          margin-bottom: 24px;
+          font-size: var(--font-size-3xl);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-6);
         }
 
         .faq-list {
           display: flex;
           flex-direction: column;
-          gap: 24px;
+          gap: var(--space-6);
         }
 
         .faq-item {
-          padding: 20px;
-          background: var(--bg-tertiary);
-          border-radius: 8px;
-          border-left: 3px solid var(--primary);
+          padding: var(--space-5);
+          background: var(--color-bg-subtle);
+          border-radius: var(--radius-lg);
+          border-left: 3px solid var(--color-primary);
         }
 
         .faq-item h4 {
-          font-size: 1rem;
-          font-weight: 600;
-          color: var(--text-primary);
-          margin-bottom: 8px;
+          font-size: var(--font-size-lg);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-2);
         }
 
         .faq-item p {
-          font-size: 0.875rem;
-          color: var(--text-secondary);
+          font-size: var(--font-size-base);
+          color: var(--color-text-secondary);
           line-height: 1.6;
           margin: 0;
         }

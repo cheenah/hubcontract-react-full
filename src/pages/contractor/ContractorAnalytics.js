@@ -42,7 +42,7 @@ const ContractorAnalytics = () => {
 
   return (
       <div style={{ padding: 'var(--space-6)', maxWidth: '1100px', margin: '0 auto' }}>
-        <h1 style={{ fontSize: '1.5rem', fontWeight: 'var(--font-weight-bold)', color: 'var(--color-text-primary)', marginBottom: 'var(--space-1-5)' }}>
+        <h1 style={{ fontSize: 'var(--font-size-3xl)', fontWeight: 'var(--font-weight-bold)', color: 'var(--color-text-primary)', marginBottom: 'var(--space-1-5)' }}>
           Аналитика
         </h1>
         <p style={{ color: 'var(--color-text-muted)', marginBottom: 'var(--space-6)', fontSize: 'var(--font-size-base)' }}>
@@ -64,8 +64,8 @@ const ContractorAnalytics = () => {
                     <Icon size={22} style={{ color }} />
                   </div>
                   <div>
-                    <div style={{ fontSize: '1.6rem', fontWeight: 'var(--font-weight-bold)', color: 'var(--color-text-primary)' }}>{value}</div>
-                    <div style={{ fontSize: '0.8rem', color: 'var(--color-text-muted)', marginTop: '2px' }}>{label}</div>
+                    <div style={{ fontSize: 'var(--font-size-3xl)', fontWeight: 'var(--font-weight-bold)', color: 'var(--color-text-primary)' }}>{value}</div>
+                    <div style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-muted)', marginTop: 'var(--space-05)' }}>{label}</div>
                   </div>
                 </div>
               </Card>

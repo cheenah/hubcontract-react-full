@@ -62,13 +62,13 @@ const Contracts = () => {
 
   const getStatusBadge = (status) => {
     const badges = {
-      draft: { text: 'Черновик', color: '#9ca3af', icon: <FileText size={14} /> },
-      pending_approval: { text: 'На согласовании', color: '#f59e0b', icon: <Clock size={14} /> },
-      approved: { text: 'Согласован', color: '#3b82f6', icon: <CheckCircle size={14} /> },
-      pending_signature: { text: 'На подписании', color: '#8b5cf6', icon: <FileSignature size={14} /> },
-      signed: { text: 'Подписан', color: '#10b981', icon: <CheckCircle size={14} /> },
-      active: { text: 'Действующий', color: '#16a34a', icon: <CheckCircle size={14} /> },
-      terminated: { text: 'Расторгнут', color: '#ef4444', icon: <Ban size={14} /> }
+      draft: { text: 'Черновик', bg: 'var(--color-bg-muted)', color: 'var(--color-text-placeholder)', icon: <FileText size={14} /> },
+      pending_approval: { text: 'На согласовании', bg: 'var(--color-bg-muted)', color: 'var(--color-warning)', icon: <Clock size={14} /> },
+      approved: { text: 'Согласован', bg: 'var(--color-primary-bg)', color: 'var(--color-primary-light)', icon: <CheckCircle size={14} /> },
+      pending_signature: { text: 'На подписании', bg: 'var(--color-primary-bg)', color: 'var(--color-primary)', icon: <FileSignature size={14} /> },
+      signed: { text: 'Подписан', bg: 'var(--color-success-tint-10)', color: 'var(--color-success-alt)', icon: <CheckCircle size={14} /> },
+      active: { text: 'Действующий', bg: 'var(--color-success-tint-10)', color: 'var(--color-success-mid)', icon: <CheckCircle size={14} /> },
+      terminated: { text: 'Расторгнут', bg: 'var(--color-danger-tint-10)', color: 'var(--color-danger)', icon: <Ban size={14} /> }
     };
     return badges[status] || badges.draft;
   };
@@ -185,7 +185,7 @@ const Contracts = () => {
                       <td>{contract.contract_amount?.toLocaleString()}</td>
                       <td>{user?.role === 'customer' ? contract.contractor_name : contract.customer_name}</td>
                       <td>
-                        <span className="status-badge" style={{ background: `${statusBadge.color}20`, color: statusBadge.color }}>
+                        <span className="status-badge" style={{ background: statusBadge.bg, color: statusBadge.color }}>
                           {statusBadge.icon}
                           {statusBadge.text}
                         </span>
@@ -205,26 +205,26 @@ const Contracts = () => {
         )}
 
         <style jsx>{`
-          .contracts-page { padding: 24px; max-width: 1400px; margin: 0 auto; }
-          .page-title { font-size: 2rem; font-weight: 700; margin: 0; }
-          .page-subtitle { color: #666; margin-top: 4px; }
-          .page-header { margin-bottom: 24px; }
-          .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
-          .stat-card { padding: 20px; display: flex; flex-direction: column; gap: 8px; }
-          .stat-label { font-size: 0.875rem; color: #666; }
-          .stat-value { font-size: 2rem; font-weight: 700; }
-          .filters-card { padding: 16px; margin-bottom: 24px; display: flex; gap: 16px; flex-wrap: wrap; }
-          .search-box { flex: 1; display: flex; align-items: center; gap: 12px; min-width: 300px; }
-          .filter-buttons { display: flex; gap: 8px; }
+          .contracts-page { padding: var(--space-6); max-width: 1400px; margin: 0 auto; }
+          .page-title { font-size: var(--font-size-6xl); font-weight: var(--font-weight-bold); margin: 0; }
+          .page-subtitle { color: var(--color-text-muted); margin-top: var(--space-1); }
+          .page-header { margin-bottom: var(--space-6); }
+          .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); margin-bottom: var(--space-6); }
+          .stat-card { padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); }
+          .stat-label { font-size: var(--font-size-base); color: var(--color-text-muted); }
+          .stat-value { font-size: var(--font-size-6xl); font-weight: var(--font-weight-bold); }
+          .filters-card { padding: var(--space-4); margin-bottom: var(--space-6); display: flex; gap: var(--space-4); flex-wrap: wrap; }
+          .search-box { flex: 1; display: flex; align-items: center; gap: var(--space-3); min-width: 300px; }
+          .filter-buttons { display: flex; gap: var(--space-2); }
           .table-card { overflow-x: auto; }
           table { width: 100%; border-collapse: collapse; }
-          th { text-align: left; padding: 12px 16px; font-weight: 600; color: #666; font-size: 0.875rem; border-bottom: 2px solid #e5e7eb; }
-          td { padding: 16px; border-bottom: 1px solid #f3f4f6; }
-          tr:hover { background: #f9fafb; }
-          .status-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 6px; font-size: 0.875rem; font-weight: 500; }
-          .empty-state { padding: 60px; text-align: center; color: #9ca3af; }
-          .loading-container { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 400px; gap: 16px; }
-          .spinner { width: 40px; height: 40px; border: 4px solid #f3f4f6; border-top-color: #3b82f6; border-radius: 50%; animation: spin 1s linear infinite; }
+          th { text-align: left; padding: var(--space-3) var(--space-4); font-weight: var(--font-weight-semibold); color: var(--color-text-muted); font-size: var(--font-size-base); border-bottom: 2px solid var(--color-border); }
+          td { padding: var(--space-4); border-bottom: 1px solid var(--color-bg-muted); }
+          tr:hover { background: var(--color-bg-subtle); }
+          .status-badge { display: inline-flex; align-items: center; gap: var(--space-1-5); padding: var(--space-1-5) var(--space-3); border-radius: var(--radius-md); font-size: var(--font-size-base); font-weight: var(--font-weight-medium); }
+          .empty-state { padding: var(--space-15); text-align: center; color: var(--color-text-placeholder); }
+          .loading-container { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 400px; gap: var(--space-4); }
+          .spinner { width: 40px; height: 40px; border: 4px solid var(--color-bg-muted); border-top-color: var(--color-primary-light); border-radius: var(--radius-circle); animation: spin 1s linear infinite; }
           @keyframes spin { to { transform: rotate(360deg); } }
         `}</style>
       </div>

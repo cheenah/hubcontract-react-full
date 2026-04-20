@@ -92,7 +92,7 @@ const styles = `
   .protocol-stat-count-success {
     font-size: 24px;
     font-weight: var(--font-weight-bold);
-    color: #16a34a;
+    color: var(--color-success-mid);
   }
   .protocol-info-card {
     padding: 30px;
@@ -117,8 +117,8 @@ const styles = `
   .protocol-winner-card {
     padding: 30px;
     margin-bottom: 30px;
-    background: #f0fdf4;
-    border: 2px solid #16a34a;
+    background: var(--color-success-bg-alt);
+    border: 2px solid var(--color-success-mid);
   }
   .protocol-winner-header {
     display: flex;
@@ -129,7 +129,7 @@ const styles = `
   .protocol-winner-title {
     font-size: 20px;
     font-weight: var(--font-weight-bold);
-    color: #16a34a;
+    color: var(--color-success-mid);
   }
   .protocol-winner-field {
     font-size: 16px;
@@ -138,7 +138,7 @@ const styles = `
   .protocol-winner-price {
     font-size: 20px;
     font-weight: var(--font-weight-bold);
-    color: #16a34a;
+    color: var(--color-success-mid);
   }
   .protocol-winner-price-icon {
     display: inline;
@@ -336,7 +336,7 @@ const ProtocolView = () => {
           {protocol.winner_id && (
             <Card className="protocol-winner-card">
               <div className="protocol-winner-header">
-                <Award size={28} color="#16a34a" />
+                <Award size={28} color="var(--color-success-mid)" />
                 <h2 className="protocol-winner-title">
                   Победитель закупки
                 </h2>
@@ -384,18 +384,18 @@ const ProtocolView = () => {
                         key={index}
                         style={{
                           borderBottom: '1px solid var(--color-border)',
-                          background: bid.status === 'winner' ? '#f0fdf4' : 'var(--color-bg-surface)'
+                          background: bid.status === 'winner' ? 'var(--color-success-bg-alt)' : 'var(--color-bg-surface)'
                         }}
                       >
                         <td>{index + 1}</td>
                         <td style={{ fontWeight: bid.status === 'winner' ? 'var(--font-weight-semibold)' : 'normal' }}>
                           {bid.contractor_name}
                           {bid.status === 'winner' && (
-                            <Award size={16} color="#16a34a" style={{ display: 'inline', marginLeft: '8px' }} />
+                            <Award size={16} color="var(--color-success-mid)" style={{ display: 'inline', marginLeft: '8px' }} />
                           )}
                         </td>
                         <td className="td-muted">{bid.contractor_email}</td>
-                        <td style={{ fontWeight: 'var(--font-weight-semibold)', color: bid.status === 'winner' ? '#16a34a' : 'var(--color-text-secondary)' }}>
+                        <td style={{ fontWeight: 'var(--font-weight-semibold)', color: bid.status === 'winner' ? 'var(--color-success-mid)' : 'var(--color-text-secondary)' }}>
                           {bid.price?.toLocaleString()} ₸
                         </td>
                         <td>

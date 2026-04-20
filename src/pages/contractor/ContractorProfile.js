@@ -408,7 +408,7 @@ const ContractorProfile = () => {
           background: var(--color-bg-subtle);
         }
 
-        .cp-doc-label { font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); color: var(--color-text-primary); margin-bottom: 2px; }
+        .cp-doc-label { font-size: var(--font-size-base); font-weight: var(--font-weight-semibold); color: var(--color-text-primary); margin-bottom: 2px; }
         .cp-doc-desc  { font-size: 0.78rem; color: var(--color-text-placeholder); }
         .cp-doc-ok    { font-size: 0.78rem; color: var(--color-success-alt); margin-top: var(--space-1); }
 
@@ -421,9 +421,9 @@ const ContractorProfile = () => {
           line-height: var(--line-height-normal);
         }
         .cp-notice--mt    { margin-top: var(--space-4); }
-        .cp-notice--warn  { background: var(--color-warning-bg); border: 1px solid #fcd34d; color: #92400e; }
-        .cp-notice--error { background: var(--color-danger-bg); border: 1px solid #fca5a5; color: var(--color-danger-darker); }
-        .cp-notice--info  { background: var(--color-primary-bg); border: 1px solid #93c5fd; color: var(--color-primary-dark); }
+        .cp-notice--warn  { background: var(--color-bg-muted); border: 1px solid var(--color-warning); color: var(--color-text-secondary); }
+        .cp-notice--error { background: var(--color-danger-tint-05); border: 1px solid var(--color-danger-tint-20); color: var(--color-danger-alt); }
+        .cp-notice--info  { background: var(--color-primary-bg); border: 1px solid var(--color-primary-border); color: var(--color-primary-dark); }
 
         /* toggle rows */
         .cp-toggle-row {

@@ -16,28 +16,32 @@ const Reports = () => {
       title: 'Отчет по тендерам',
       description: 'Сводка по всем тендерам за период',
       icon: FileText,
-      color: '#3b82f6'
+      bg: 'var(--color-primary-bg)',
+      color: 'var(--color-primary-light)'
     },
     {
       id: 'financial',
       title: 'Финансовый отчет',
       description: 'Отчет по бюджетам и расходам',
       icon: TrendingUp,
-      color: '#10b981'
+      bg: 'var(--color-success-tint-10)',
+      color: 'var(--color-success-alt)'
     },
     {
       id: 'contracts',
       title: 'Отчет по договорам',
       description: 'Статистика исполнения договоров',
       icon: FileText,
-      color: '#8b5cf6'
+      bg: 'var(--color-primary-bg)',
+      color: 'var(--color-primary)'
     },
     {
       id: 'suppliers',
       title: 'Отчет по поставщикам',
       description: 'Рейтинг и статистика по подрядчикам',
       icon: FileText,
-      color: '#f59e0b'
+      bg: 'var(--color-bg-muted)',
+      color: 'var(--color-warning)'
     }
   ];
 
@@ -77,7 +81,7 @@ const Reports = () => {
             const Icon = report.icon;
             return (
               <Card key={report.id} className="report-card">
-                <div className="report-icon" style={{ background: `${report.color}20` }}>
+                <div className="report-icon" style={{ background: report.bg }}>
                   <Icon size={32} color={report.color} />
                 </div>
                 <h3 className="report-title">{report.title}</h3>
@@ -120,72 +124,72 @@ const Reports = () => {
         .reports-container {
           max-width: 1400px;
           margin: 0 auto;
-          padding: 24px;
+          padding: var(--space-6);
         }
 
         .page-header {
-          margin-bottom: 32px;
-          background: white;
-          padding: 24px 32px;
-          border-radius: 8px;
-          border: 1px solid var(--border-light);
+          margin-bottom: var(--space-8);
+          background: var(--color-bg-surface);
+          padding: var(--space-6) var(--space-8);
+          border-radius: var(--radius-lg);
+          border: 1px solid var(--color-border);
           box-shadow: var(--shadow-card);
         }
 
         .page-title {
-          font-size: 2rem;
-          font-weight: 700;
-          color: var(--text-primary);
-          margin-bottom: 4px;
+          font-size: var(--font-size-6xl);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-1);
         }
 
         .page-subtitle {
-          font-size: 1rem;
-          color: var(--text-secondary);
+          font-size: var(--font-size-lg);
+          color: var(--color-text-secondary);
         }
 
         .reports-grid {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-          gap: 24px;
-          margin-bottom: 32px;
+          gap: var(--space-6);
+          margin-bottom: var(--space-8);
         }
 
         .report-card {
-          padding: 32px 24px;
-          background: white;
-          border: 1px solid var(--border-light);
-          border-radius: 8px;
+          padding: var(--space-8) var(--space-6);
+          background: var(--color-bg-surface);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-lg);
           text-align: center;
-          transition: all 0.2s ease;
+          transition: var(--transition-base);
         }
 
         .report-card:hover {
-          box-shadow: var(--shadow-md);
-          border-color: var(--border-medium);
+          box-shadow: var(--shadow-card-hover);
+          border-color: var(--color-border-dark);
         }
 
         .report-icon {
           width: 80px;
           height: 80px;
-          margin: 0 auto 20px;
-          border-radius: 12px;
+          margin: 0 auto var(--space-5);
+          border-radius: var(--radius-4xl);
           display: flex;
           align-items: center;
           justify-content: center;
         }
 
         .report-title {
-          font-size: 1.25rem;
-          font-weight: 600;
-          color: var(--text-primary);
-          margin-bottom: 12px;
+          font-size: var(--font-size-2xl);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-3);
         }
 
         .report-description {
-          font-size: 0.875rem;
-          color: var(--text-secondary);
-          margin-bottom: 24px;
+          font-size: var(--font-size-base);
+          color: var(--color-text-secondary);
+          margin-bottom: var(--space-6);
         }
 
         .download-btn {
@@ -193,63 +197,63 @@ const Reports = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 8px;
-          background: var(--primary);
-          color: white;
+          gap: var(--space-2);
+          background: var(--color-primary);
+          color: var(--color-text-inverse);
         }
 
         .custom-report {
-          padding: 32px;
-          background: white;
-          border: 1px solid var(--border-light);
-          border-radius: 8px;
+          padding: var(--space-8);
+          background: var(--color-bg-surface);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-lg);
         }
 
         .section-title {
-          font-size: 1.5rem;
-          font-weight: 600;
-          color: var(--text-primary);
-          margin-bottom: 24px;
+          font-size: var(--font-size-3xl);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-6);
         }
 
         .custom-form {
           display: flex;
           flex-direction: column;
-          gap: 20px;
+          gap: var(--space-5);
         }
 
         .form-row {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 20px;
+          gap: var(--space-5);
         }
 
         .form-field {
           display: flex;
           flex-direction: column;
-          gap: 8px;
+          gap: var(--space-2);
         }
 
         .form-field label {
-          font-size: 0.875rem;
-          font-weight: 600;
-          color: var(--text-primary);
+          font-size: var(--font-size-base);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
         }
 
         .date-input {
-          padding: 8px 12px;
-          border: 1px solid var(--border-medium);
-          border-radius: 6px;
-          font-size: 0.875rem;
+          padding: var(--space-2) var(--space-3);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-md);
+          font-size: var(--font-size-base);
         }
 
         .generate-btn {
           width: fit-content;
           display: flex;
           align-items: center;
-          gap: 8px;
-          background: var(--accent);
-          color: white;
+          gap: var(--space-2);
+          background: var(--color-primary);
+          color: var(--color-text-inverse);
         }
 
         @media (max-width: 768px) {

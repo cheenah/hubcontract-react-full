@@ -79,11 +79,11 @@ const SupplierBids = () => {
 
   const getStatusBadge = (status) => {
     const badges = {
-      pending: { text: 'На рассмотрении', color: '#f59e0b', icon: <Clock size={14} /> },
-      stage1_approved: { text: 'Этап 1 одобрен', color: '#3b82f6', icon: <CheckCircle size={14} /> },
-      accepted: { text: 'Принята', color: '#10b981', icon: <CheckCircle size={14} /> },
-      winner: { text: 'Победитель - Завершен', color: '#16a34a', icon: <CheckCircle size={14} /> },
-      rejected: { text: 'Отклонена', color: '#ef4444', icon: <XCircle size={14} /> }
+      pending: { text: 'На рассмотрении', bg: 'var(--color-bg-muted)', color: 'var(--color-warning)', icon: <Clock size={14} /> },
+      stage1_approved: { text: 'Этап 1 одобрен', bg: 'var(--color-primary-bg)', color: 'var(--color-primary-light)', icon: <CheckCircle size={14} /> },
+      accepted: { text: 'Принята', bg: 'var(--color-success-tint-10)', color: 'var(--color-success-alt)', icon: <CheckCircle size={14} /> },
+      winner: { text: 'Победитель - Завершен', bg: 'var(--color-success-tint-10)', color: 'var(--color-success-mid)', icon: <CheckCircle size={14} /> },
+      rejected: { text: 'Отклонена', bg: 'var(--color-danger-tint-10)', color: 'var(--color-danger)', icon: <XCircle size={14} /> }
     };
     return badges[status] || badges.pending;
   };
@@ -245,7 +245,7 @@ const SupplierBids = () => {
                     <div className="bid-status">
                       <span
                         className="status-badge"
-                        style={{ background: `${statusBadge.color}20`, color: statusBadge.color }}
+                        style={{ background: statusBadge.bg, color: statusBadge.color }}
                       >
                         {statusBadge.icon}
                         {statusBadge.text}
@@ -338,88 +338,88 @@ const SupplierBids = () => {
         .supplier-bids-container {
           max-width: 1400px;
           margin: 0 auto;
-          padding: 24px;
+          padding: var(--space-6);
         }
 
         .page-header {
-          margin-bottom: 32px;
-          background: white;
-          padding: 24px 32px;
-          border-radius: 8px;
-          border: 1px solid var(--border-light);
+          margin-bottom: var(--space-8);
+          background: var(--color-bg-surface);
+          padding: var(--space-6) var(--space-8);
+          border-radius: var(--radius-lg);
+          border: 1px solid var(--color-border);
           box-shadow: var(--shadow-card);
         }
 
         .page-title {
-          font-size: 2rem;
-          font-weight: 700;
-          color: var(--text-primary);
-          margin-bottom: 4px;
+          font-size: var(--font-size-6xl);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-1);
         }
 
         .page-subtitle {
-          font-size: 1rem;
-          color: var(--text-secondary);
+          font-size: var(--font-size-lg);
+          color: var(--color-text-secondary);
         }
 
         .stats-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-          gap: 20px;
-          margin-bottom: 24px;
+          gap: var(--space-5);
+          margin-bottom: var(--space-6);
         }
 
         .stat-card {
-          padding: 20px;
-          background: white;
-          border: 1px solid var(--border-light);
-          border-radius: 8px;
+          padding: var(--space-5);
+          background: var(--color-bg-surface);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-lg);
         }
 
         .stat-card.total {
-          border-left: 4px solid #3b82f6;
+          border-left: 4px solid var(--color-primary-light);
         }
 
         .stat-card.pending {
-          border-left: 4px solid #f59e0b;
+          border-left: 4px solid var(--color-warning);
         }
 
         .stat-card.accepted {
-          border-left: 4px solid #10b981;
+          border-left: 4px solid var(--color-success-alt);
         }
 
         .stat-card.rejected {
-          border-left: 4px solid #ef4444;
+          border-left: 4px solid var(--color-danger);
         }
 
         .stat-content {
           display: flex;
           flex-direction: column;
-          gap: 8px;
+          gap: var(--space-2);
         }
 
         .stat-label {
-          font-size: 0.875rem;
-          color: var(--text-secondary);
+          font-size: var(--font-size-base);
+          color: var(--color-text-secondary);
         }
 
         .stat-value {
-          font-size: 2rem;
-          font-weight: 700;
-          color: var(--text-primary);
+          font-size: var(--font-size-6xl);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-dark);
         }
 
         .filters-card {
-          padding: 20px;
-          background: white;
-          border: 1px solid var(--border-light);
-          border-radius: 8px;
-          margin-bottom: 24px;
+          padding: var(--space-5);
+          background: var(--color-bg-surface);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-lg);
+          margin-bottom: var(--space-6);
         }
 
         .filters-content {
           display: flex;
-          gap: 16px;
+          gap: var(--space-4);
           align-items: center;
           flex-wrap: wrap;
         }
@@ -428,42 +428,42 @@ const SupplierBids = () => {
           flex: 1;
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: var(--space-2);
           min-width: 300px;
         }
 
         .filter-buttons {
           display: flex;
-          gap: 8px;
+          gap: var(--space-2);
           flex-wrap: wrap;
         }
 
         .bids-list {
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          gap: var(--space-4);
         }
 
         .bid-card {
-          padding: 24px;
-          background: white;
-          border: 1px solid var(--border-light);
-          border-radius: 8px;
-          transition: all 0.2s ease;
+          padding: var(--space-6);
+          background: var(--color-bg-surface);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-lg);
+          transition: var(--transition-base);
         }
 
         .bid-card:hover {
-          box-shadow: var(--shadow-md);
-          border-color: var(--border-medium);
+          box-shadow: var(--shadow-card-hover);
+          border-color: var(--color-border-dark);
         }
 
         .bid-header {
           display: flex;
           justify-content: space-between;
           align-items: flex-start;
-          margin-bottom: 20px;
-          padding-bottom: 16px;
-          border-bottom: 1px solid var(--border-light);
+          margin-bottom: var(--space-5);
+          padding-bottom: var(--space-4);
+          border-bottom: 1px solid var(--color-border);
         }
 
         .bid-info {
@@ -471,86 +471,86 @@ const SupplierBids = () => {
         }
 
         .bid-tender-title {
-          font-size: 1.25rem;
-          font-weight: 600;
-          color: var(--text-primary);
-          margin-bottom: 8px;
+          font-size: var(--font-size-2xl);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-2);
         }
 
         .bid-contractor {
-          font-size: 1rem;
-          color: var(--text-secondary);
-          margin-bottom: 4px;
+          font-size: var(--font-size-lg);
+          color: var(--color-text-secondary);
+          margin-bottom: var(--space-1);
         }
 
         .bid-date {
-          font-size: 0.875rem;
-          color: var(--text-muted);
+          font-size: var(--font-size-base);
+          color: var(--color-text-muted);
           margin: 0;
         }
 
         .bid-status .status-badge {
           display: inline-flex;
           align-items: center;
-          gap: 6px;
-          padding: 6px 12px;
-          border-radius: 12px;
-          font-size: 0.875rem;
-          font-weight: 600;
+          gap: var(--space-1-5);
+          padding: var(--space-1-5) var(--space-3);
+          border-radius: var(--radius-4xl);
+          font-size: var(--font-size-base);
+          font-weight: var(--font-weight-semibold);
         }
 
         .bid-details {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-          gap: 16px;
-          margin-bottom: 20px;
+          gap: var(--space-4);
+          margin-bottom: var(--space-5);
         }
 
         .detail-item {
           display: flex;
           flex-direction: column;
-          gap: 4px;
+          gap: var(--space-1);
         }
 
         .detail-label {
-          font-size: 0.875rem;
-          color: var(--text-secondary);
+          font-size: var(--font-size-base);
+          color: var(--color-text-secondary);
         }
 
         .detail-value {
-          font-size: 1rem;
-          font-weight: 600;
-          color: var(--text-primary);
+          font-size: var(--font-size-lg);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
         }
 
         .detail-value.price {
-          color: var(--primary);
-          font-size: 1.125rem;
+          color: var(--color-primary);
+          font-size: var(--font-size-xl3);
         }
 
         .detail-value.savings {
-          color: var(--accent);
+          color: var(--color-success-alt);
         }
 
         .bid-proposal {
-          margin-top: 16px;
-          padding: 16px;
-          background: #f9fafb;
-          border-radius: 8px;
-          border-left: 3px solid #3b82f6;
+          margin-top: var(--space-4);
+          padding: var(--space-4);
+          background: var(--color-bg-subtle);
+          border-radius: var(--radius-lg);
+          border-left: 3px solid var(--color-primary-light);
         }
 
         .proposal-title {
-          font-size: 0.875rem;
-          font-weight: 600;
-          color: #374151;
-          margin-bottom: 8px;
+          font-size: var(--font-size-base);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-2);
         }
 
         .proposal-text {
-          font-size: 0.9rem;
+          font-size: var(--font-size-base);
           line-height: 1.6;
-          color: #4b5563;
+          color: var(--color-text-secondary);
           margin: 0;
           max-height: 100px;
           overflow-y: auto;
@@ -558,54 +558,54 @@ const SupplierBids = () => {
 
         .bid-actions {
           display: flex;
-          gap: 12px;
+          gap: var(--space-3);
           flex-wrap: wrap;
         }
 
         .bid-actions button {
           display: flex;
           align-items: center;
-          gap: 6px;
+          gap: var(--space-1-5);
         }
 
         .accept-btn {
-          background: #10b981;
-          color: white;
+          background: var(--color-success-alt);
+          color: var(--color-text-inverse);
         }
 
         .accept-btn:hover {
-          background: #059669;
+          background: var(--color-success-mid);
         }
 
         .reject-btn {
-          color: #ef4444;
-          border-color: #ef4444;
+          color: var(--color-danger);
+          border-color: var(--color-danger);
         }
 
         .reject-btn:hover {
-          background: rgba(239, 68, 68, 0.1);
+          background: var(--color-danger-tint-10);
         }
 
         .empty-state {
           text-align: center;
-          padding: 60px 40px;
-          background: white;
+          padding: var(--space-15) var(--space-10);
+          background: var(--color-bg-surface);
         }
 
         .empty-icon {
-          color: var(--text-muted);
-          margin-bottom: 16px;
+          color: var(--color-text-muted);
+          margin-bottom: var(--space-4);
         }
 
         .empty-state h3 {
-          font-size: 1.25rem;
-          font-weight: 600;
-          color: var(--text-primary);
-          margin-bottom: 8px;
+          font-size: var(--font-size-2xl);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-2);
         }
 
         .empty-state p {
-          color: var(--text-secondary);
+          color: var(--color-text-secondary);
         }
 
         .loading-container {
@@ -618,9 +618,9 @@ const SupplierBids = () => {
         .loading-spinner {
           width: 40px;
           height: 40px;
-          border: 3px solid var(--border-light);
-          border-top: 3px solid var(--primary);
-          border-radius: 50%;
+          border: 3px solid var(--color-border);
+          border-top: 3px solid var(--color-primary);
+          border-radius: var(--radius-circle);
           animation: spin 1s linear infinite;
         }
 
@@ -645,7 +645,7 @@ const SupplierBids = () => {
 
           .bid-header {
             flex-direction: column;
-            gap: 12px;
+            gap: var(--space-3);
           }
 
           .bid-details {

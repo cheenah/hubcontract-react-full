@@ -145,7 +145,7 @@ const SupplierSearch = () => {
                   </div>
                 </div>
                 <div className="supplier-rating">
-                  <Star size={18} fill="#f59e0b" color="#f59e0b" />
+                  <Star size={18} fill="var(--color-warning)" color="var(--color-warning)" />
                   <span>{supplier.rating || 0}</span>
                 </div>
               </div>
@@ -197,43 +197,43 @@ const SupplierSearch = () => {
         .supplier-search-container {
           max-width: 1400px;
           margin: 0 auto;
-          padding: 24px;
+          padding: var(--space-6);
         }
 
         .page-header {
-          margin-bottom: 32px;
-          background: white;
-          padding: 24px 32px;
-          border-radius: 8px;
-          border: 1px solid var(--border-light);
+          margin-bottom: var(--space-8);
+          background: var(--color-bg-surface);
+          padding: var(--space-6) var(--space-8);
+          border-radius: var(--radius-lg);
+          border: 1px solid var(--color-border);
           box-shadow: var(--shadow-card);
         }
 
         .page-title {
-          font-size: 2rem;
-          font-weight: 700;
-          color: var(--text-primary);
-          margin-bottom: 4px;
+          font-size: var(--font-size-6xl);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-1);
         }
 
         .page-subtitle {
-          font-size: 1rem;
-          color: var(--text-secondary);
+          font-size: var(--font-size-lg);
+          color: var(--color-text-secondary);
         }
 
         .search-card {
-          padding: 24px;
-          margin-bottom: 24px;
-          background: white;
-          border: 1px solid var(--border-light);
-          border-radius: 8px;
+          padding: var(--space-6);
+          margin-bottom: var(--space-6);
+          background: var(--color-bg-surface);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-lg);
         }
 
         .search-bar {
           display: flex;
           align-items: center;
-          gap: 12px;
-          margin-bottom: 20px;
+          gap: var(--space-3);
+          margin-bottom: var(--space-5);
         }
 
         .search-input {
@@ -242,65 +242,65 @@ const SupplierSearch = () => {
 
         .filters {
           display: flex;
-          gap: 12px;
+          gap: var(--space-3);
           flex-wrap: wrap;
         }
 
         .filter-select {
-          padding: 8px 16px;
-          border: 1px solid var(--border-medium);
-          border-radius: 6px;
-          background: white;
-          font-size: 0.875rem;
-          color: var(--text-primary);
+          padding: var(--space-2) var(--space-4);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-md);
+          background: var(--color-bg-surface);
+          font-size: var(--font-size-base);
+          color: var(--color-text-dark);
           cursor: pointer;
         }
 
         .results-header {
-          margin-bottom: 20px;
+          margin-bottom: var(--space-5);
         }
 
         .results-count {
-          font-size: 1rem;
-          font-weight: 600;
-          color: var(--text-primary);
+          font-size: var(--font-size-lg);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
         }
 
         .suppliers-grid {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
-          gap: 24px;
+          gap: var(--space-6);
         }
 
         .supplier-card {
-          padding: 24px;
-          background: white;
-          border: 1px solid var(--border-light);
-          border-radius: 8px;
-          transition: all 0.2s ease;
+          padding: var(--space-6);
+          background: var(--color-bg-surface);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-lg);
+          transition: var(--transition-base);
         }
 
         .supplier-card:hover {
-          box-shadow: var(--shadow-md);
-          border-color: var(--border-medium);
+          box-shadow: var(--shadow-card-hover);
+          border-color: var(--color-border-dark);
         }
 
         .supplier-header {
           display: flex;
-          gap: 16px;
+          gap: var(--space-4);
           align-items: flex-start;
-          margin-bottom: 16px;
+          margin-bottom: var(--space-4);
         }
 
         .supplier-icon {
           width: 48px;
           height: 48px;
-          background: rgba(30, 64, 175, 0.1);
-          border-radius: 8px;
+          background: var(--color-primary-bg);
+          border-radius: var(--radius-lg);
           display: flex;
           align-items: center;
           justify-content: center;
-          color: var(--primary);
+          color: var(--color-primary);
           flex-shrink: 0;
         }
 
@@ -309,99 +309,99 @@ const SupplierSearch = () => {
         }
 
         .supplier-name {
-          font-size: 1.125rem;
-          font-weight: 600;
-          color: var(--text-primary);
-          margin-bottom: 8px;
+          font-size: var(--font-size-xl3);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-2);
         }
 
         .supplier-meta {
           display: flex;
-          gap: 12px;
+          gap: var(--space-3);
           flex-wrap: wrap;
         }
 
         .category-badge {
-          padding: 4px 12px;
-          background: rgba(30, 64, 175, 0.1);
-          color: var(--primary);
-          border-radius: 12px;
-          font-size: 0.75rem;
-          font-weight: 600;
+          padding: var(--space-1) var(--space-3);
+          background: var(--color-primary-bg);
+          color: var(--color-primary);
+          border-radius: var(--radius-4xl);
+          font-size: var(--font-size-xs);
+          font-weight: var(--font-weight-semibold);
         }
 
         .region-badge {
           display: flex;
           align-items: center;
-          gap: 4px;
-          font-size: 0.875rem;
-          color: var(--text-secondary);
+          gap: var(--space-1);
+          font-size: var(--font-size-base);
+          color: var(--color-text-secondary);
         }
 
         .supplier-rating {
           display: flex;
           align-items: center;
-          gap: 4px;
-          font-size: 1rem;
-          font-weight: 700;
-          color: var(--text-primary);
+          gap: var(--space-1);
+          font-size: var(--font-size-lg);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-dark);
         }
 
         .supplier-description {
-          font-size: 0.875rem;
-          color: var(--text-secondary);
+          font-size: var(--font-size-base);
+          color: var(--color-text-secondary);
           line-height: 1.5;
-          margin-bottom: 16px;
+          margin-bottom: var(--space-4);
         }
 
         .supplier-stats {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 12px;
-          margin-bottom: 16px;
-          padding: 16px;
-          background: var(--bg-tertiary);
-          border-radius: 6px;
+          gap: var(--space-3);
+          margin-bottom: var(--space-4);
+          padding: var(--space-4);
+          background: var(--color-bg-subtle);
+          border-radius: var(--radius-md);
         }
 
         .stat {
           display: flex;
           flex-direction: column;
-          gap: 4px;
+          gap: var(--space-1);
         }
 
         .stat-label {
-          font-size: 0.75rem;
-          color: var(--text-secondary);
+          font-size: var(--font-size-xs);
+          color: var(--color-text-secondary);
         }
 
         .stat-value {
-          font-size: 1rem;
-          font-weight: 600;
-          color: var(--text-primary);
+          font-size: var(--font-size-lg);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
         }
 
         .supplier-contacts {
           display: flex;
           flex-direction: column;
-          gap: 8px;
-          margin-bottom: 16px;
-          padding: 12px;
-          background: var(--bg-tertiary);
-          border-radius: 6px;
+          gap: var(--space-2);
+          margin-bottom: var(--space-4);
+          padding: var(--space-3);
+          background: var(--color-bg-subtle);
+          border-radius: var(--radius-md);
         }
 
         .contact {
           display: flex;
           align-items: center;
-          gap: 8px;
-          font-size: 0.875rem;
-          color: var(--text-secondary);
+          gap: var(--space-2);
+          font-size: var(--font-size-base);
+          color: var(--color-text-secondary);
         }
 
         .supplier-actions {
           display: flex;
-          gap: 12px;
+          gap: var(--space-3);
         }
 
         .action-btn {
@@ -409,8 +409,8 @@ const SupplierSearch = () => {
         }
 
         .action-btn.primary {
-          background: var(--primary);
-          color: white;
+          background: var(--color-primary);
+          color: var(--color-text-inverse);
         }
 
         .loading-container {
@@ -423,9 +423,9 @@ const SupplierSearch = () => {
         .loading-spinner {
           width: 40px;
           height: 40px;
-          border: 3px solid var(--border-light);
-          border-top: 3px solid var(--primary);
-          border-radius: 50%;
+          border: 3px solid var(--color-border);
+          border-top: 3px solid var(--color-primary);
+          border-radius: var(--radius-circle);
           animation: spin 1s linear infinite;
         }
 

@@ -445,39 +445,39 @@ const Settings = () => {
         .settings-container {
           max-width: 1000px;
           margin: 0 auto;
-          padding: 24px;
+          padding: var(--space-6);
         }
 
         .page-header {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-bottom: 32px;
-          background: white;
-          padding: 24px 32px;
-          border-radius: 8px;
-          border: 1px solid var(--border-light);
+          margin-bottom: var(--space-8);
+          background: var(--color-bg-surface);
+          padding: var(--space-6) var(--space-8);
+          border-radius: var(--radius-lg);
+          border: 1px solid var(--color-border);
           box-shadow: var(--shadow-card);
         }
 
         .page-title {
-          font-size: 2rem;
-          font-weight: 700;
-          color: var(--text-primary);
-          margin-bottom: 4px;
+          font-size: var(--font-size-6xl);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-1);
         }
 
         .page-subtitle {
-          font-size: 1rem;
-          color: var(--text-secondary);
+          font-size: var(--font-size-lg);
+          color: var(--color-text-secondary);
         }
 
         .save-btn {
           display: flex;
           align-items: center;
-          gap: 8px;
-          background: var(--primary);
-          color: white;
+          gap: var(--space-2);
+          background: var(--color-primary);
+          color: var(--color-text-inverse);
         }
 
         .settings-tabs {
@@ -485,27 +485,27 @@ const Settings = () => {
         }
 
         .settings-card {
-          padding: 32px;
-          background: white;
-          border: 1px solid var(--border-light);
-          border-radius: 8px;
+          padding: var(--space-8);
+          background: var(--color-bg-surface);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-lg);
         }
 
         .card-title {
-          font-size: 1.5rem;
-          font-weight: 600;
-          color: var(--text-primary);
-          margin-bottom: 8px;
+          font-size: var(--font-size-3xl);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-2);
         }
 
         .card-description {
-          font-size: 0.875rem;
-          color: var(--text-secondary);
-          margin-bottom: 32px;
+          font-size: var(--font-size-base);
+          color: var(--color-text-secondary);
+          margin-bottom: var(--space-8);
         }
 
         .settings-section {
-          margin-bottom: 32px;
+          margin-bottom: var(--space-8);
         }
 
         .settings-section:last-child {
@@ -513,30 +513,30 @@ const Settings = () => {
         }
 
         .section-title {
-          font-size: 1.125rem;
-          font-weight: 600;
-          color: var(--text-primary);
-          margin-bottom: 20px;
+          font-size: var(--font-size-xl3);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-5);
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: var(--space-2);
         }
 
         .settings-list {
           display: flex;
           flex-direction: column;
-          gap: 20px;
+          gap: var(--space-5);
         }
 
         .setting-item {
           display: flex;
           justify-content: space-between;
           align-items: flex-start;
-          gap: 20px;
-          padding: 20px;
-          background: var(--bg-tertiary);
-          border-radius: 8px;
-          border: 1px solid var(--border-light);
+          gap: var(--space-5);
+          padding: var(--space-5);
+          background: var(--color-bg-subtle);
+          border-radius: var(--radius-lg);
+          border: 1px solid var(--color-border);
         }
 
         .setting-item.full-width {
@@ -549,16 +549,16 @@ const Settings = () => {
         }
 
         .setting-info Label {
-          font-size: 1rem;
-          font-weight: 600;
-          color: var(--text-primary);
+          font-size: var(--font-size-lg);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
           display: block;
-          margin-bottom: 4px;
+          margin-bottom: var(--space-1);
         }
 
         .setting-description {
-          font-size: 0.875rem;
-          color: var(--text-secondary);
+          font-size: var(--font-size-base);
+          color: var(--color-text-secondary);
           line-height: 1.5;
           margin: 0;
         }
@@ -566,29 +566,29 @@ const Settings = () => {
         .form-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 20px;
+          gap: var(--space-5);
         }
 
         .form-field {
           display: flex;
           flex-direction: column;
-          gap: 8px;
+          gap: var(--space-2);
         }
 
         .select-input {
           width: 100%;
-          padding: 8px 12px;
-          border: 1px solid var(--border-medium);
-          border-radius: 6px;
-          background: white;
-          font-size: 0.875rem;
-          color: var(--text-primary);
+          padding: var(--space-2) var(--space-3);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-md);
+          background: var(--color-bg-surface);
+          font-size: var(--font-size-base);
+          color: var(--color-text-dark);
           cursor: pointer;
         }
 
         .select-input:focus {
           outline: none;
-          border-color: var(--primary);
+          border-color: var(--color-primary);
         }
 
         .timeout-input {
@@ -597,32 +597,32 @@ const Settings = () => {
 
         .security-actions {
           display: flex;
-          gap: 12px;
+          gap: var(--space-3);
           flex-wrap: wrap;
-          margin-top: 24px;
-          padding-top: 24px;
-          border-top: 1px solid var(--border-light);
+          margin-top: var(--space-6);
+          padding-top: var(--space-6);
+          border-top: 1px solid var(--color-border);
         }
 
         .security-btn {
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: var(--space-2);
         }
 
         .security-btn.danger {
-          color: #ef4444;
-          border-color: #ef4444;
+          color: var(--color-danger);
+          border-color: var(--color-danger);
         }
 
         .security-btn.danger:hover {
-          background: rgba(239, 68, 68, 0.1);
+          background: var(--color-danger-tint-10);
         }
 
         @media (max-width: 768px) {
           .page-header {
             flex-direction: column;
-            gap: 16px;
+            gap: var(--space-4);
             align-items: flex-start;
           }
 
@@ -633,7 +633,7 @@ const Settings = () => {
 
           .setting-item {
             flex-direction: column;
-            gap: 12px;
+            gap: var(--space-3);
           }
 
           .form-grid {

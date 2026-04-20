@@ -367,13 +367,13 @@ const Dashboard = () => {
         .dashboard-title {
           font-size: 2rem;
           font-weight: 700;
-          color: var(--text-primary);
+          color: var(--color-text-dark);
           margin-bottom: 4px;
         }
 
         .dashboard-subtitle {
           font-size: 1rem;
-          color: var(--text-secondary);
+          color: var(--color-text-dark3);
         }
 
         .header-actions {
@@ -405,23 +405,23 @@ const Dashboard = () => {
 
         .stat-card:hover {
           box-shadow: var(--shadow-md);
-          border-color: var(--border-medium);
+          border-color: var(--color-border-medium);
         }
 
         .stat-card.active-tenders {
-          border-left: 4px solid #3b82f6;
+          border-left: 4px solid var(--color-primary-light);
         }
 
         .stat-card.under-review {
-          border-left: 4px solid #f59e0b;
+          border-left: 4px solid var(--color-warning);
         }
 
         .stat-card.completed {
-          border-left: 4px solid #10b981;
+          border-left: 4px solid var(--color-success-alt);
         }
 
         .stat-card.contracts {
-          border-left: 4px solid #8b5cf6;
+          border-left: 4px solid var(--color-primary);
         }
 
         .stat-content {
@@ -441,7 +441,7 @@ const Dashboard = () => {
         }
 
         .stat-icon {
-          color: #3b82f6;
+          color: var(--color-primary-light);
         }
 
         .under-review .stat-icon-wrapper {
@@ -449,7 +449,7 @@ const Dashboard = () => {
         }
 
         .under-review .stat-icon {
-          color: #f59e0b;
+          color: var(--color-warning);
         }
 
         .completed .stat-icon-wrapper {
@@ -457,7 +457,7 @@ const Dashboard = () => {
         }
 
         .completed .stat-icon {
-          color: #10b981;
+          color: var(--color-success-alt);
         }
 
         .contracts .stat-icon-wrapper {
@@ -465,19 +465,19 @@ const Dashboard = () => {
         }
 
         .contracts .stat-icon {
-          color: #8b5cf6;
+          color: var(--color-primary);
         }
 
         .stat-value {
           font-size: 2rem;
           font-weight: 700;
-          color: var(--text-primary);
+          color: var(--color-text-dark);
           margin: 0;
         }
 
         .stat-label {
           font-size: 0.875rem;
-          color: var(--text-secondary);
+          color: var(--color-text-dark3);
           margin: 4px 0 0 0;
         }
 
@@ -513,7 +513,7 @@ const Dashboard = () => {
         .section-title {
           font-size: 1.25rem;
           font-weight: 600;
-          color: var(--text-primary);
+          color: var(--color-text-dark);
           display: flex;
           align-items: center;
           gap: 8px;
@@ -521,7 +521,7 @@ const Dashboard = () => {
         }
 
         .view-all-btn {
-          color: var(--primary);
+          color: var(--color-primary);
           font-weight: 500;
           padding: 0;
           height: auto;
@@ -557,8 +557,8 @@ const Dashboard = () => {
         }
 
         .tender-item:hover {
-          background: var(--bg-hover);
-          border-color: var(--border-medium);
+          background: var(--color-bg-warm-hover);
+          border-color: var(--color-border-medium);
         }
 
         .tender-item-header {
@@ -572,19 +572,19 @@ const Dashboard = () => {
         }
 
         .status-icon.active {
-          color: #3b82f6;
+          color: var(--color-primary-light);
         }
 
         .status-icon.review {
-          color: #f59e0b;
+          color: var(--color-warning);
         }
 
         .status-icon.completed {
-          color: #10b981;
+          color: var(--color-success-alt);
         }
 
         .status-icon.cancelled {
-          color: #ef4444;
+          color: var(--color-danger);
         }
 
         .tender-info {
@@ -594,13 +594,13 @@ const Dashboard = () => {
         .tender-title {
           font-size: 1rem;
           font-weight: 600;
-          color: var(--text-primary);
+          color: var(--color-text-dark);
           margin: 0 0 4px 0;
         }
 
         .tender-budget {
           font-size: 0.875rem;
-          color: var(--accent);
+          color: var(--color-success);
           font-weight: 600;
           margin: 0;
         }
@@ -617,28 +617,28 @@ const Dashboard = () => {
         .tender-status.published_receiving_applications,
         .tender-status.active {
           background: rgba(59, 130, 246, 0.1);
-          color: #3b82f6;
+          color: var(--color-primary-light);
         }
 
         .tender-status.under_review {
           background: rgba(245, 158, 11, 0.1);
-          color: #f59e0b;
+          color: var(--color-warning);
         }
 
         .tender-status.completed {
           background: rgba(16, 185, 129, 0.1);
-          color: #10b981;
+          color: var(--color-success-alt);
         }
 
         /* Empty State */
         .empty-state {
           text-align: center;
           padding: 40px 20px;
-          color: var(--text-secondary);
+          color: var(--color-text-dark3);
         }
 
         .empty-icon {
-          color: var(--text-muted);
+          color: var(--color-text-muted);
           margin-bottom: 16px;
         }
 
@@ -655,35 +655,35 @@ const Dashboard = () => {
           gap: 12px;
           flex: 1;
           padding: 16px;
-          background: var(--bg-tertiary);
+          background: var(--color-bg-warm-secondary);
           border-radius: 8px;
         }
 
         .budget-icon {
-          color: var(--primary);
+          color: var(--color-primary);
         }
 
         .budget-label {
           font-size: 0.875rem;
-          color: var(--text-secondary);
+          color: var(--color-text-dark3);
           margin: 0 0 4px 0;
         }
 
         .budget-value {
           font-size: 1.25rem;
           font-weight: 700;
-          color: var(--text-primary);
+          color: var(--color-text-dark);
           margin: 0;
         }
 
         .savings-value {
-          color: var(--accent);
+          color: var(--color-success);
         }
 
         .distribution-title {
           font-size: 1rem;
           font-weight: 600;
-          color: var(--text-primary);
+          color: var(--color-text-dark);
           margin-bottom: 16px;
         }
 
@@ -699,20 +699,20 @@ const Dashboard = () => {
 
         .category-name {
           font-size: 0.875rem;
-          color: var(--text-primary);
+          color: var(--color-text-dark);
           font-weight: 500;
         }
 
         .category-amount {
           font-size: 0.875rem;
-          color: var(--accent);
+          color: var(--color-success);
           font-weight: 600;
         }
 
         .progress-bar {
           width: 100%;
           height: 6px;
-          background: var(--bg-tertiary);
+          background: var(--color-bg-warm-secondary);
           border-radius: 3px;
           overflow: hidden;
           margin-bottom: 4px;
@@ -720,13 +720,13 @@ const Dashboard = () => {
 
         .progress-fill {
           height: 100%;
-          background: linear-gradient(90deg, var(--primary), var(--accent));
+          background: linear-gradient(90deg, var(--color-primary), var(--color-success));
           border-radius: 3px;
         }
 
         .percentage-label {
           font-size: 0.75rem;
-          color: var(--text-muted);
+          color: var(--color-text-muted);
         }
 
         /* Notifications */
@@ -746,7 +746,7 @@ const Dashboard = () => {
 
         .notification-item.unread {
           background: rgba(59, 130, 246, 0.05);
-          border-left: 3px solid var(--primary);
+          border-left: 3px solid var(--color-primary);
         }
 
         .notification-icon {
@@ -755,15 +755,15 @@ const Dashboard = () => {
         }
 
         .notification-icon.new-bid {
-          color: #3b82f6;
+          color: var(--color-primary-light);
         }
 
         .notification-icon.deadline {
-          color: #f59e0b;
+          color: var(--color-warning);
         }
 
         .notification-icon.success {
-          color: #10b981;
+          color: var(--color-success-alt);
         }
 
         .notification-content {
@@ -773,20 +773,20 @@ const Dashboard = () => {
         .notification-title {
           font-size: 0.875rem;
           font-weight: 600;
-          color: var(--text-primary);
+          color: var(--color-text-dark);
           margin: 0 0 4px 0;
         }
 
         .notification-message {
           font-size: 0.75rem;
-          color: var(--text-secondary);
+          color: var(--color-text-dark3);
           line-height: 1.4;
           margin: 0 0 4px 0;
         }
 
         .notification-time {
           font-size: 0.75rem;
-          color: var(--text-muted);
+          color: var(--color-text-muted);
         }
 
         /* Loading */
@@ -801,7 +801,7 @@ const Dashboard = () => {
           width: 40px;
           height: 40px;
           border: 3px solid var(--border-light);
-          border-top: 3px solid var(--primary);
+          border-top: 3px solid var(--color-primary);
           border-radius: 50%;
           animation: spin 1s linear infinite;
         }

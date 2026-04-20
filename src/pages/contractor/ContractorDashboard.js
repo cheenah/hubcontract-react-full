@@ -204,198 +204,196 @@ const ContractorDashboard = () => {
         .contractor-dashboard {
           max-width: 1400px;
           margin: 0 auto;
-          padding: 24px;
+          padding: var(--space-6);
         }
 
-   
-
         .page-title {
-          font-size: 1.875rem;
-          font-weight: 700;
-          color: #1a1a1a;
-          margin: 0 0 8px 0;
+          font-size: var(--font-size-4xl);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-dark);
+          margin: 0 0 var(--space-2) 0;
         }
 
         .page-subtitle {
-          font-size: 0.875rem;
-          color: #6b7280;
+          font-size: var(--font-size-base);
+          color: var(--color-text-muted);
           margin: 0;
         }
 
         .stats-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-          gap: 16px;
-          margin-bottom: 24px;
+          gap: var(--space-4);
+          margin-bottom: var(--space-6);
         }
 
         .stat-card {
-          padding: 20px;
-          border: 1px solid #e5e7eb;
-          transition: all 0.2s ease;
+          padding: var(--space-5);
+          border: 1px solid var(--color-border);
+          transition: var(--transition-normal) ease;
         }
 
         .stat-card:hover {
-          border-color: #1e40af;
-          box-shadow: 0 4px 12px rgba(30, 64, 175, 0.1);
+          border-color: var(--color-primary-dark);
+          box-shadow: var(--shadow-card-hover);
         }
 
         .stat-content {
           display: flex;
           align-items: center;
-          gap: 16px;
+          gap: var(--space-4);
         }
 
         .stat-icon-wrapper {
           width: 48px;
           height: 48px;
-          border-radius: 12px;
+          border-radius: var(--radius-2xl);
           display: flex;
           align-items: center;
           justify-content: center;
         }
 
         .total-bids .stat-icon-wrapper {
-          background: rgba(59, 130, 246, 0.1);
-          color: #3b82f6;
+          background: var(--color-primary-bg);
+          color: var(--color-primary-light);
         }
 
         .active-bids .stat-icon-wrapper {
-          background: rgba(251, 191, 36, 0.1);
-          color: #f59e0b;
+          background: var(--color-bg-muted);
+          color: var(--color-warning);
         }
 
         .won-bids .stat-icon-wrapper {
-          background: rgba(16, 185, 129, 0.1);
-          color: #10b981;
+          background: var(--color-success-tint-10);
+          color: var(--color-success-alt);
         }
 
         .success-rate .stat-icon-wrapper {
-          background: rgba(168, 85, 247, 0.1);
-          color: #a855f7;
+          background: var(--color-primary-bg);
+          color: var(--color-primary);
         }
 
         .active-contracts .stat-icon-wrapper {
-          background: rgba(34, 197, 94, 0.1);
-          color: #22c55e;
+          background: var(--color-success-tint-10);
+          color: var(--color-success-alt);
         }
 
         .earnings .stat-icon-wrapper {
-          background: rgba(16, 185, 129, 0.1);
-          color: #10b981;
+          background: var(--color-success-tint-10);
+          color: var(--color-success-alt);
         }
 
         .stat-value {
-          font-size: 1.875rem;
-          font-weight: 700;
-          color: #1a1a1a;
+          font-size: var(--font-size-4xl);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-dark);
           margin: 0;
         }
 
         .stat-label {
-          font-size: 0.875rem;
-          color: #6b7280;
-          margin: 4px 0 0 0;
+          font-size: var(--font-size-base);
+          color: var(--color-text-muted);
+          margin: var(--space-1) 0 0 0;
         }
 
         .recent-tenders-section {
-          padding: 24px;
+          padding: var(--space-6);
         }
 
         .section-header {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-bottom: 20px;
+          margin-bottom: var(--space-5);
         }
 
         .section-title {
           display: flex;
           align-items: center;
-          gap: 8px;
-          font-size: 1.25rem;
-          font-weight: 600;
-          color: #1a1a1a;
+          gap: var(--space-2);
+          font-size: var(--font-size-xl3);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
           margin: 0;
         }
 
         .view-all-btn {
-          color: #1e40af;
-          font-size: 0.875rem;
+          color: var(--color-primary-dark);
+          font-size: var(--font-size-base);
         }
 
         .tenders-list {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-          gap: 16px;
+          gap: var(--space-4);
         }
 
         .tender-card {
-          padding: 16px;
-          border: 1px solid #e5e7eb;
-          border-radius: 8px;
+          padding: var(--space-4);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-lg);
           cursor: pointer;
-          transition: all 0.2s ease;
+          transition: var(--transition-normal) ease;
         }
 
         .tender-card:hover {
-          border-color: #1e40af;
-          box-shadow: 0 4px 12px rgba(30, 64, 175, 0.1);
+          border-color: var(--color-primary-dark);
+          box-shadow: var(--shadow-card-hover);
         }
 
         .tender-header {
           display: flex;
           justify-content: space-between;
           align-items: start;
-          gap: 12px;
-          margin-bottom: 8px;
+          gap: var(--space-3);
+          margin-bottom: var(--space-2);
         }
 
         .tender-title {
-          font-size: 1rem;
-          font-weight: 600;
-          color: #1a1a1a;
+          font-size: var(--font-size-lg);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
           margin: 0;
           flex: 1;
         }
 
         .tender-budget {
-          font-size: 1rem;
-          font-weight: 700;
-          color: #10b981;
+          font-size: var(--font-size-lg);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-success-alt);
           white-space: nowrap;
         }
 
         .tender-category,
         .tender-region {
-          font-size: 0.875rem;
-          color: #6b7280;
-          margin: 4px 0;
+          font-size: var(--font-size-base);
+          color: var(--color-text-muted);
+          margin: var(--space-1) 0;
         }
 
         .tender-footer {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-top: 12px;
-          padding-top: 12px;
-          border-top: 1px solid #e5e7eb;
+          margin-top: var(--space-3);
+          padding-top: var(--space-3);
+          border-top: 1px solid var(--color-border);
         }
 
         .tender-date {
-          font-size: 0.75rem;
-          color: #9ca3af;
+          font-size: var(--font-size-xs);
+          color: var(--color-text-placeholder);
         }
 
         .empty-state {
           text-align: center;
-          padding: 48px 24px;
-          color: #6b7280;
+          padding: var(--space-12) var(--space-6);
+          color: var(--color-text-muted);
         }
 
         .empty-icon {
-          color: #9ca3af;
-          margin-bottom: 16px;
+          color: var(--color-text-placeholder);
+          margin-bottom: var(--space-4);
         }
 
         .loading-container {
@@ -408,9 +406,9 @@ const ContractorDashboard = () => {
         .loading-spinner {
           width: 40px;
           height: 40px;
-          border: 3px solid #e5e7eb;
-          border-top: 3px solid #1e40af;
-          border-radius: 50%;
+          border: 3px solid var(--color-border);
+          border-top: 3px solid var(--color-primary-dark);
+          border-radius: var(--radius-circle);
           animation: spin 1s linear infinite;
         }
 
@@ -421,7 +419,7 @@ const ContractorDashboard = () => {
 
         @media (max-width: 768px) {
           .contractor-dashboard {
-            padding: 16px;
+            padding: var(--space-4);
           }
 
           .stats-grid {

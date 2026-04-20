@@ -1224,38 +1224,38 @@ const SubmitBid = () => {
           .submit-bid-page {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 24px;
+            padding: var(--space-6);
           }
 
           .page-header {
-            margin-bottom: 32px;
+            margin-bottom: var(--space-8);
           }
 
           .page-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1a202c;
-            margin-bottom: 8px;
+            font-size: var(--font-size-6xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text-dark);
+            margin-bottom: var(--space-2);
           }
 
           .page-subtitle {
-            font-size: 1.125rem;
-            color: #2d3748;
-            font-weight: 600;
+            font-size: var(--font-size-xl3);
+            color: var(--color-text-secondary);
+            font-weight: var(--font-weight-semibold);
           }
 
           .workflow-status {
-            margin-bottom: 32px;
-            padding: 24px;
-            background: #f9fafb;
-            border-radius: 8px;
+            margin-bottom: var(--space-8);
+            padding: var(--space-6);
+            background: var(--color-bg-subtle);
+            border-radius: var(--radius-lg);
           }
 
           .status-flow {
             display: flex;
             justify-content: space-between;
-            gap: 12px;
-            margin-top: 20px;
+            gap: var(--space-3);
+            margin-top: var(--space-5);
           }
 
           .status-step {
@@ -1272,94 +1272,94 @@ const SubmitBid = () => {
             position: absolute;
             right: -20px;
             top: 20px;
-            font-size: 1.5rem;
-            color: #d1d5db;
+            font-size: var(--font-size-3xl);
+            color: var(--color-border);
           }
 
           .status-step.active .step-number {
-            background: #3b82f6;
-            color: white;
-            border-color: #3b82f6;
+            background: var(--color-primary-light);
+            color: var(--color-text-inverse);
+            border-color: var(--color-primary-light);
           }
 
           .status-step.completed .step-number {
-            background: #10b981;
-            color: white;
-            border-color: #10b981;
+            background: var(--color-success-alt);
+            color: var(--color-text-inverse);
+            border-color: var(--color-success-alt);
           }
 
           .status-step.completed:not(:last-child)::after {
-            color: #10b981;
+            color: var(--color-success-alt);
           }
 
           .step-number {
             width: 40px;
             height: 40px;
-            border-radius: 50%;
-            border: 3px solid #d1d5db;
-            background: white;
+            border-radius: var(--radius-circle);
+            border: 3px solid var(--color-border);
+            background: var(--color-bg-surface);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
-            font-size: 1.125rem;
-            margin-bottom: 8px;
+            font-weight: var(--font-weight-bold);
+            font-size: var(--font-size-xl3);
+            margin-bottom: var(--space-2);
           }
 
           .step-info {
           }
 
           .step-title {
-            font-weight: 600;
-            font-size: 0.875rem;
-            color: #1a1a1a;
-            margin-bottom: 4px;
+            font-weight: var(--font-weight-semibold);
+            font-size: var(--font-size-base);
+            color: var(--color-text-dark);
+            margin-bottom: var(--space-1);
           }
 
           .step-desc {
-            font-size: 0.75rem;
-            color: #666;
-            line-height: 1.4;
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+            line-height: var(--line-height-normal);
           }
 
           .form-container {
-            margin-bottom: 24px;
+            margin-bottom: var(--space-6);
           }
 
           .form-navigation {
             display: flex;
-            gap: 16px;
-            margin-top: 32px;
-            padding-top: 24px;
-            border-top: 1px solid #e5e7eb;
+            gap: var(--space-4);
+            margin-top: var(--space-8);
+            padding-top: var(--space-6);
+            border-top: 1px solid var(--color-border);
           }
 
           @media (max-width: 768px) {
             .submit-bid-page {
-              padding: 16px;
+              padding: var(--space-4);
             }
 
             .page-title {
-              font-size: 1.5rem;
+              font-size: var(--font-size-3xl);
             }
 
             .status-flow {
-              gap: 8px;
+              gap: var(--space-2);
             }
-            
+
             .step-desc {
-              font-size: 0.7rem;
+              font-size: var(--font-size-xxs);
             }
-            
+
             .status-step:not(:last-child)::after {
               right: -15px;
-              font-size: 1.2rem;
+              font-size: var(--font-size-xl3);
             }
-            
+
             .step-number {
               width: 36px;
               height: 36px;
-              font-size: 1rem;
+              font-size: var(--font-size-lg);
             }
           }
         `}</style>

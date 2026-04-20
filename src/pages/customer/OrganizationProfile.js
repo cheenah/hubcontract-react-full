@@ -293,55 +293,55 @@ const OrganizationProfile = () => {
         .org-profile-container {
           max-width: 1200px;
           margin: 0 auto;
-          padding: 24px;
+          padding: var(--space-6);
         }
 
         .page-header {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-bottom: 32px;
-          background: white;
-          padding: 24px 32px;
-          border-radius: 8px;
-          border: 1px solid var(--border-light);
+          margin-bottom: var(--space-8);
+          background: var(--color-bg-surface);
+          padding: var(--space-6) var(--space-8);
+          border-radius: var(--radius-lg);
+          border: 1px solid var(--color-border);
           box-shadow: var(--shadow-card);
         }
 
         .page-title {
-          font-size: 2rem;
-          font-weight: 700;
-          color: var(--text-primary);
-          margin-bottom: 4px;
+          font-size: var(--font-size-6xl);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-1);
         }
 
         .page-subtitle {
-          font-size: 1rem;
-          color: var(--text-secondary);
+          font-size: var(--font-size-lg);
+          color: var(--color-text-secondary);
         }
 
         .header-actions {
           display: flex;
-          gap: 12px;
+          gap: var(--space-3);
         }
 
         .edit-actions {
           display: flex;
-          gap: 12px;
+          gap: var(--space-3);
         }
 
         .edit-btn, .save-btn {
           display: flex;
           align-items: center;
-          gap: 8px;
-          background: var(--primary);
-          color: white;
+          gap: var(--space-2);
+          background: var(--color-primary);
+          color: var(--color-text-inverse);
         }
 
         .cancel-btn {
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: var(--space-2);
         }
 
         .org-tabs {
@@ -349,32 +349,32 @@ const OrganizationProfile = () => {
         }
 
         .section-card {
-          background: white;
-          padding: 32px;
-          border-radius: 8px;
-          border: 1px solid var(--border-light);
+          background: var(--color-bg-surface);
+          padding: var(--space-8);
+          border-radius: var(--radius-lg);
+          border: 1px solid var(--color-border);
           box-shadow: var(--shadow-card);
         }
 
         .section-title {
-          font-size: 1.5rem;
-          font-weight: 600;
-          color: var(--text-primary);
-          margin-bottom: 24px;
-          padding-bottom: 16px;
-          border-bottom: 1px solid var(--border-light);
+          font-size: var(--font-size-3xl);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-6);
+          padding-bottom: var(--space-4);
+          border-bottom: 1px solid var(--color-border);
         }
 
         .form-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 20px;
+          gap: var(--space-5);
         }
 
         .form-field {
           display: flex;
           flex-direction: column;
-          gap: 8px;
+          gap: var(--space-2);
         }
 
         .form-field.full-width {
@@ -384,63 +384,63 @@ const OrganizationProfile = () => {
         .info-section {
           display: flex;
           flex-direction: column;
-          gap: 24px;
+          gap: var(--space-6);
         }
 
         .info-item {
           display: flex;
           align-items: flex-start;
-          gap: 16px;
-          padding: 20px;
-          background: var(--bg-tertiary);
-          border-radius: 8px;
-          border: 1px solid var(--border-light);
+          gap: var(--space-4);
+          padding: var(--space-5);
+          background: var(--color-bg-subtle);
+          border-radius: var(--radius-lg);
+          border: 1px solid var(--color-border);
         }
 
         .info-icon {
           width: 48px;
           height: 48px;
-          background: rgba(30, 64, 175, 0.1);
-          border-radius: 8px;
+          background: var(--color-primary-bg);
+          border-radius: var(--radius-lg);
           display: flex;
           align-items: center;
           justify-content: center;
-          color: var(--primary);
+          color: var(--color-primary);
         }
 
         .info-item h4 {
-          font-size: 1rem;
-          font-weight: 600;
-          color: var(--text-primary);
-          margin-bottom: 4px;
+          font-size: var(--font-size-lg);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-1);
         }
 
         .info-item p {
-          color: var(--text-secondary);
+          color: var(--color-text-secondary);
           margin: 0;
         }
 
         .status-badge {
           display: inline-block;
-          padding: 4px 12px;
-          border-radius: 12px;
-          font-size: 0.875rem;
-          font-weight: 600;
+          padding: var(--space-1) var(--space-3);
+          border-radius: var(--radius-4xl);
+          font-size: var(--font-size-base);
+          font-weight: var(--font-weight-semibold);
         }
 
         .status-badge.verified {
-          background: rgba(16, 185, 129, 0.1);
-          color: #10b981;
+          background: var(--color-success-tint-10);
+          color: var(--color-success-alt);
         }
 
         .status-badge.pending {
-          background: rgba(245, 158, 11, 0.1);
-          color: #f59e0b;
+          background: var(--color-bg-muted);
+          color: var(--color-warning);
         }
 
         .account-type {
           text-transform: capitalize;
-          font-weight: 600;
+          font-weight: var(--font-weight-semibold);
         }
 
         .loading-container {
@@ -453,9 +453,9 @@ const OrganizationProfile = () => {
         .loading-spinner {
           width: 40px;
           height: 40px;
-          border: 3px solid var(--border-light);
-          border-top: 3px solid var(--primary);
-          border-radius: 50%;
+          border: 3px solid var(--color-border);
+          border-top: 3px solid var(--color-primary);
+          border-radius: var(--radius-circle);
           animation: spin 1s linear infinite;
         }
 
@@ -467,7 +467,7 @@ const OrganizationProfile = () => {
         @media (max-width: 768px) {
           .page-header {
             flex-direction: column;
-            gap: 16px;
+            gap: var(--space-4);
             align-items: flex-start;
           }
 
