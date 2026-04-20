@@ -7,6 +7,184 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { FileText, Award, DollarSign, Users, Calendar } from 'lucide-react';
 
+const styles = `
+  .protocol-loading {
+    display: flex;
+    justify-content: center;
+    padding: 100px;
+  }
+  .protocol-not-found {
+    padding: var(--space-10);
+    text-align: center;
+  }
+  .protocol-not-found-back {
+    margin-top: var(--space-5);
+  }
+  .protocol-page {
+    padding: var(--space-5);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .protocol-back-btn {
+    margin-bottom: var(--space-5);
+  }
+  .protocol-header-card {
+    padding: 30px;
+    margin-bottom: 30px;
+  }
+  .protocol-header-title-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: var(--space-5);
+  }
+  .protocol-header-icon {
+    color: var(--color-primary-dark);
+  }
+  .protocol-header-title {
+    font-size: 24px;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 5px;
+  }
+  .protocol-header-subtitle {
+    color: var(--color-text-muted);
+    font-size: 14px;
+  }
+  .protocol-status-badge {
+    display: inline-block;
+    margin-bottom: var(--space-5);
+  }
+  .protocol-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-5);
+    margin-top: var(--space-5);
+  }
+  .protocol-stat-item {
+    padding: 15px;
+    background: var(--color-bg-subtle);
+    border-radius: var(--radius-lg);
+  }
+  .protocol-stat-item-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .protocol-stat-icon-primary {
+    color: var(--color-primary-dark);
+  }
+  .protocol-stat-icon-success {
+    color: var(--color-success-mid);
+  }
+  .protocol-stat-label {
+    font-weight: var(--font-weight-semibold);
+  }
+  .protocol-stat-date {
+    font-size: 14px;
+    color: var(--color-text-muted);
+  }
+  .protocol-stat-count {
+    font-size: 24px;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary-dark);
+  }
+  .protocol-stat-count-success {
+    font-size: 24px;
+    font-weight: var(--font-weight-bold);
+    color: #16a34a;
+  }
+  .protocol-info-card {
+    padding: 30px;
+    margin-bottom: 30px;
+  }
+  .protocol-info-title {
+    font-size: 20px;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 15px;
+  }
+  .protocol-info-text {
+    color: var(--color-text-secondary);
+    font-size: 16px;
+  }
+  .protocol-reason-box {
+    margin-top: var(--space-5);
+    padding: 15px;
+    background: var(--color-primary-bg);
+    border-left: 4px solid var(--color-primary-dark);
+    border-radius: var(--radius-sm);
+  }
+  .protocol-winner-card {
+    padding: 30px;
+    margin-bottom: 30px;
+    background: #f0fdf4;
+    border: 2px solid #16a34a;
+  }
+  .protocol-winner-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+  .protocol-winner-title {
+    font-size: 20px;
+    font-weight: var(--font-weight-bold);
+    color: #16a34a;
+  }
+  .protocol-winner-field {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  .protocol-winner-price {
+    font-size: 20px;
+    font-weight: var(--font-weight-bold);
+    color: #16a34a;
+  }
+  .protocol-winner-price-icon {
+    display: inline;
+    margin-right: 5px;
+  }
+  .protocol-bids-card {
+    padding: 30px;
+  }
+  .protocol-bids-title {
+    font-size: 20px;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-5);
+  }
+  .protocol-table-wrap {
+    overflow-x: auto;
+  }
+  .protocol-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .protocol-table thead tr {
+    background: var(--color-bg-subtle);
+    border-bottom: 2px solid var(--color-border);
+  }
+  .protocol-table th {
+    padding: 12px;
+    text-align: left;
+    font-weight: var(--font-weight-semibold);
+  }
+  .protocol-table td {
+    padding: 12px;
+  }
+  .protocol-table .td-muted {
+    color: var(--color-text-muted);
+  }
+  .protocol-badge-sm {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+  .protocol-empty-bids {
+    color: var(--color-text-muted);
+    text-align: center;
+    padding: var(--space-10);
+  }
+`;
+
 const ProtocolView = () => {
   const { tenderId } = useParams();
   const navigate = useNavigate();
@@ -34,7 +212,7 @@ const ProtocolView = () => {
 
   if (loading) {
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', padding: '100px' }}>
+        <div className="protocol-loading">
           <div className="loading-spinner"></div>
         </div>
     );
@@ -42,12 +220,15 @@ const ProtocolView = () => {
 
   if (!protocol) {
     return (
-        <div className="container" style={{ padding: '40px', textAlign: 'center' }}>
-          <h2>Протокол не найден</h2>
-          <Button onClick={() => navigate('/tenders')} style={{ marginTop: '20px' }}>
-            Вернуться к тендерам
-          </Button>
-        </div>
+        <>
+          <style>{styles}</style>
+          <div className="container protocol-not-found">
+            <h2>Протокол не найден</h2>
+            <Button onClick={() => navigate('/tenders')} className="protocol-not-found-back">
+              Вернуться к тендерам
+            </Button>
+          </div>
+        </>
     );
   }
 
@@ -78,173 +259,175 @@ const ProtocolView = () => {
   };
 
   return (
-      <div className="container" style={{ padding: '20px', maxWidth: '1200px', margin: '0 auto' }}>
-        <Button 
-          variant="outline" 
-          onClick={() => navigate(`/tenders/${protocol.tender_id}`)}
-          style={{ marginBottom: '20px' }}
-        >
-          ← Вернуться к тендеру
-        </Button>
+      <>
+        <style>{styles}</style>
+        <div className="container protocol-page">
+          <Button
+            variant="outline"
+            onClick={() => navigate(`/tenders/${protocol.tender_id}`)}
+            className="protocol-back-btn"
+          >
+            ← Вернуться к тендеру
+          </Button>
 
-        <Card style={{ padding: '30px', marginBottom: '30px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '20px' }}>
-            <FileText size={32} color="#1e40af" />
-            <div>
-              <h1 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '5px' }}>
-                Протокол итогов закупки
-              </h1>
-              <p style={{ color: '#666', fontSize: '14px' }}>
-                Тендер №{protocol.tender_number}
-              </p>
-            </div>
-          </div>
-
-          <div className={getStatusBadgeClass(protocol.status)} style={{ display: 'inline-block', marginBottom: '20px' }}>
-            {getStatusText(protocol.status)}
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px', marginTop: '20px' }}>
-            <div style={{ padding: '15px', background: '#f8f9fa', borderRadius: '8px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
-                <Calendar size={20} color="#1e40af" />
-                <span style={{ fontWeight: '600' }}>Дата закрытия</span>
-              </div>
-              <p style={{ fontSize: '14px', color: '#666' }}>
-                {new Date(protocol.created_at).toLocaleString('ru-RU')}
-              </p>
-            </div>
-
-            <div style={{ padding: '15px', background: '#f8f9fa', borderRadius: '8px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
-                <Users size={20} color="#1e40af" />
-                <span style={{ fontWeight: '600' }}>Всего заявок</span>
-              </div>
-              <p style={{ fontSize: '24px', fontWeight: 'bold', color: '#1e40af' }}>
-                {protocol.total_bids}
-              </p>
-            </div>
-
-            <div style={{ padding: '15px', background: '#f8f9fa', borderRadius: '8px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
-                <Award size={20} color="#16a34a" />
-                <span style={{ fontWeight: '600' }}>Квалифицировано</span>
-              </div>
-              <p style={{ fontSize: '24px', fontWeight: 'bold', color: '#16a34a' }}>
-                {protocol.stage1_passed}
-              </p>
-            </div>
-          </div>
-        </Card>
-
-        <Card style={{ padding: '30px', marginBottom: '30px' }}>
-          <h2 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '15px' }}>
-            Название тендера
-          </h2>
-          <p style={{ color: '#333', fontSize: '16px' }}>{protocol.tender_title}</p>
-
-          {protocol.reason && (
-            <div style={{ marginTop: '20px', padding: '15px', background: '#f0f9ff', borderLeft: '4px solid #1e40af', borderRadius: '4px' }}>
-              <strong>Причина:</strong> {protocol.reason}
-            </div>
-          )}
-        </Card>
-
-        {protocol.winner_id && (
-          <Card style={{ padding: '30px', marginBottom: '30px', background: '#f0fdf4', border: '2px solid #16a34a' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
-              <Award size={28} color="#16a34a" />
-              <h2 style={{ fontSize: '20px', fontWeight: 'bold', color: '#16a34a' }}>
-                Победитель закупки
-              </h2>
-            </div>
-            {protocol.bids_details && protocol.bids_details.find(b => b.status === 'winner') && (
+          <Card className="protocol-header-card">
+            <div className="protocol-header-title-row">
+              <FileText size={32} className="protocol-header-icon" />
               <div>
-                <p style={{ fontSize: '16px', marginBottom: '10px' }}>
-                  <strong>Компания:</strong>{' '}
-                  {protocol.bids_details.find(b => b.status === 'winner').contractor_name}
+                <h1 className="protocol-header-title">
+                  Протокол итогов закупки
+                </h1>
+                <p className="protocol-header-subtitle">
+                  Тендер №{protocol.tender_number}
                 </p>
-                <p style={{ fontSize: '16px', marginBottom: '10px' }}>
-                  <strong>Email:</strong>{' '}
-                  {protocol.bids_details.find(b => b.status === 'winner').contractor_email}
+              </div>
+            </div>
+
+            <div className={`${getStatusBadgeClass(protocol.status)} protocol-status-badge`}>
+              {getStatusText(protocol.status)}
+            </div>
+
+            <div className="protocol-stats-grid">
+              <div className="protocol-stat-item">
+                <div className="protocol-stat-item-header">
+                  <Calendar size={20} className="protocol-stat-icon-primary" />
+                  <span className="protocol-stat-label">Дата закрытия</span>
+                </div>
+                <p className="protocol-stat-date">
+                  {new Date(protocol.created_at).toLocaleString('ru-RU')}
                 </p>
-                <p style={{ fontSize: '20px', fontWeight: 'bold', color: '#16a34a' }}>
-                  <DollarSign size={20} style={{ display: 'inline', marginRight: '5px' }} />
-                  {protocol.winner_price?.toLocaleString()} ₸
+              </div>
+
+              <div className="protocol-stat-item">
+                <div className="protocol-stat-item-header">
+                  <Users size={20} className="protocol-stat-icon-primary" />
+                  <span className="protocol-stat-label">Всего заявок</span>
+                </div>
+                <p className="protocol-stat-count">
+                  {protocol.total_bids}
                 </p>
+              </div>
+
+              <div className="protocol-stat-item">
+                <div className="protocol-stat-item-header">
+                  <Award size={20} className="protocol-stat-icon-success" />
+                  <span className="protocol-stat-label">Квалифицировано</span>
+                </div>
+                <p className="protocol-stat-count-success">
+                  {protocol.stage1_passed}
+                </p>
+              </div>
+            </div>
+          </Card>
+
+          <Card className="protocol-info-card">
+            <h2 className="protocol-info-title">
+              Название тендера
+            </h2>
+            <p className="protocol-info-text">{protocol.tender_title}</p>
+
+            {protocol.reason && (
+              <div className="protocol-reason-box">
+                <strong>Причина:</strong> {protocol.reason}
               </div>
             )}
           </Card>
-        )}
 
-        <Card style={{ padding: '30px' }}>
-          <h2 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '20px' }}>
-            Список всех участников ({protocol.bids_details?.length || 0})
-          </h2>
-
-          {protocol.bids_details && protocol.bids_details.length > 0 ? (
-            <div style={{ overflowX: 'auto' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                <thead>
-                  <tr style={{ background: '#f8f9fa', borderBottom: '2px solid #e5e7eb' }}>
-                    <th style={{ padding: '12px', textAlign: 'left', fontWeight: '600' }}>№</th>
-                    <th style={{ padding: '12px', textAlign: 'left', fontWeight: '600' }}>Компания</th>
-                    <th style={{ padding: '12px', textAlign: 'left', fontWeight: '600' }}>Email</th>
-                    <th style={{ padding: '12px', textAlign: 'left', fontWeight: '600' }}>Цена предложения</th>
-                    <th style={{ padding: '12px', textAlign: 'left', fontWeight: '600' }}>AI-оценка</th>
-                    <th style={{ padding: '12px', textAlign: 'left', fontWeight: '600' }}>Статус</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {protocol.bids_details.map((bid, index) => (
-                    <tr 
-                      key={index} 
-                      style={{ 
-                        borderBottom: '1px solid #e5e7eb',
-                        background: bid.status === 'winner' ? '#f0fdf4' : 'white'
-                      }}
-                    >
-                      <td style={{ padding: '12px' }}>{index + 1}</td>
-                      <td style={{ padding: '12px', fontWeight: bid.status === 'winner' ? '600' : 'normal' }}>
-                        {bid.contractor_name}
-                        {bid.status === 'winner' && (
-                          <Award size={16} color="#16a34a" style={{ display: 'inline', marginLeft: '8px' }} />
-                        )}
-                      </td>
-                      <td style={{ padding: '12px', color: '#666' }}>{bid.contractor_email}</td>
-                      <td style={{ padding: '12px', fontWeight: '600', color: bid.status === 'winner' ? '#16a34a' : '#333' }}>
-                        {bid.price?.toLocaleString()} ₸
-                      </td>
-                      <td style={{ padding: '12px' }}>
-                        {bid.ai_score ? `${bid.ai_score} баллов` : '-'}
-                      </td>
-                      <td style={{ padding: '12px' }}>
-                        <span 
-                          className={`status-badge ${
-                            bid.status === 'winner' ? 'status-closed' : 
-                            bid.status === 'rejected' ? 'status-cancelled' : 
-                            'status-draft'
-                          }`}
-                          style={{ fontSize: '12px', padding: '4px 8px' }}
-                        >
-                          {bid.status === 'winner' ? 'Победитель' :
-                           bid.status === 'rejected' ? 'Отклонено' :
-                           bid.status === 'not_qualified' ? 'Не квалифицирован' :
-                           bid.status}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          ) : (
-            <p style={{ color: '#666', textAlign: 'center', padding: '40px' }}>
-              Заявки отсутствуют
-            </p>
+          {protocol.winner_id && (
+            <Card className="protocol-winner-card">
+              <div className="protocol-winner-header">
+                <Award size={28} color="#16a34a" />
+                <h2 className="protocol-winner-title">
+                  Победитель закупки
+                </h2>
+              </div>
+              {protocol.bids_details && protocol.bids_details.find(b => b.status === 'winner') && (
+                <div>
+                  <p className="protocol-winner-field">
+                    <strong>Компания:</strong>{' '}
+                    {protocol.bids_details.find(b => b.status === 'winner').contractor_name}
+                  </p>
+                  <p className="protocol-winner-field">
+                    <strong>Email:</strong>{' '}
+                    {protocol.bids_details.find(b => b.status === 'winner').contractor_email}
+                  </p>
+                  <p className="protocol-winner-price">
+                    <DollarSign size={20} className="protocol-winner-price-icon" />
+                    {protocol.winner_price?.toLocaleString()} ₸
+                  </p>
+                </div>
+              )}
+            </Card>
           )}
-        </Card>
-      </div>
+
+          <Card className="protocol-bids-card">
+            <h2 className="protocol-bids-title">
+              Список всех участников ({protocol.bids_details?.length || 0})
+            </h2>
+
+            {protocol.bids_details && protocol.bids_details.length > 0 ? (
+              <div className="protocol-table-wrap">
+                <table className="protocol-table">
+                  <thead>
+                    <tr>
+                      <th>№</th>
+                      <th>Компания</th>
+                      <th>Email</th>
+                      <th>Цена предложения</th>
+                      <th>AI-оценка</th>
+                      <th>Статус</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {protocol.bids_details.map((bid, index) => (
+                      <tr
+                        key={index}
+                        style={{
+                          borderBottom: '1px solid var(--color-border)',
+                          background: bid.status === 'winner' ? '#f0fdf4' : 'var(--color-bg-surface)'
+                        }}
+                      >
+                        <td>{index + 1}</td>
+                        <td style={{ fontWeight: bid.status === 'winner' ? 'var(--font-weight-semibold)' : 'normal' }}>
+                          {bid.contractor_name}
+                          {bid.status === 'winner' && (
+                            <Award size={16} color="#16a34a" style={{ display: 'inline', marginLeft: '8px' }} />
+                          )}
+                        </td>
+                        <td className="td-muted">{bid.contractor_email}</td>
+                        <td style={{ fontWeight: 'var(--font-weight-semibold)', color: bid.status === 'winner' ? '#16a34a' : 'var(--color-text-secondary)' }}>
+                          {bid.price?.toLocaleString()} ₸
+                        </td>
+                        <td>
+                          {bid.ai_score ? `${bid.ai_score} баллов` : '-'}
+                        </td>
+                        <td>
+                          <span
+                            className={`status-badge protocol-badge-sm ${
+                              bid.status === 'winner' ? 'status-closed' :
+                              bid.status === 'rejected' ? 'status-cancelled' :
+                              'status-draft'
+                            }`}
+                          >
+                            {bid.status === 'winner' ? 'Победитель' :
+                             bid.status === 'rejected' ? 'Отклонено' :
+                             bid.status === 'not_qualified' ? 'Не квалифицирован' :
+                             bid.status}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <p className="protocol-empty-bids">
+                Заявки отсутствуют
+              </p>
+            )}
+          </Card>
+        </div>
+      </>
   );
 };
 

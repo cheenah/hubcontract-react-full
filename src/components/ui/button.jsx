@@ -10,15 +10,15 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-gradient-to-br from-[#00CC00] to-[#00B300] text-white shadow-lg hover:shadow-xl hover:scale-105 hover:-translate-y-1 active:scale-100 active:translate-y-0",
+          "bg-gradient-to-br from-[var(--color-success-light)] to-[var(--color-success)] text-white shadow-lg hover:shadow-xl hover:scale-105 hover:-translate-y-1 active:scale-100 active:translate-y-0",
         destructive:
           "bg-gradient-to-br from-red-500 to-red-600 text-white shadow-md hover:shadow-lg hover:scale-105",
         outline:
-          "border-2 border-[#00B300] text-[#00B300] bg-white shadow-sm hover:bg-[#00B300] hover:text-white hover:shadow-md",
+          "border-2 border-[var(--color-success)] text-[var(--color-success)] bg-white shadow-sm hover:bg-[var(--color-success)] hover:text-white hover:shadow-md",
         secondary:
-          "bg-white text-[#00B300] border-2 border-[#00B300] shadow-sm hover:bg-[#00B300] hover:text-white",
-        ghost: "hover:bg-gray-100 hover:text-[#00B300]",
-        link: "text-[#00B300] underline-offset-4 hover:underline",
+          "bg-white text-[var(--color-success)] border-2 border-[var(--color-success)] shadow-sm hover:bg-[var(--color-success)] hover:text-white",
+        ghost: "hover:bg-gray-100 hover:text-[var(--color-success)]",
+        link: "text-[var(--color-success)] underline-offset-4 hover:underline",
       },
       size: {
         default: "h-11 px-6 py-3",

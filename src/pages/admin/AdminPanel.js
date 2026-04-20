@@ -351,15 +351,15 @@ const AdminPanel = () => {
         }
 
         .page-title {
-          font-size: 2.5rem;
-          font-weight: 700;
-          color: #1a1a1a !important;
-          margin-bottom: 8px;
+          font-size: var(--font-size-7xl);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-dark) !important;
+          margin-bottom: var(--space-2);
         }
 
         .page-subtitle {
-          font-size: 1.1rem;
-          color: var(--text-secondary);
+          font-size: var(--font-size-lg);
+          color: var(--color-text-dark3);
         }
 
         .stats-grid {
@@ -382,28 +382,28 @@ const AdminPanel = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          background: rgba(0, 255, 170, 0.1);
-          border: 2px solid var(--neon-primary);
-          border-radius: 12px;
-          color: var(--neon-primary);
+          background: var(--color-success-tint-10);
+          border: 2px solid var(--color-primary);
+          border-radius: var(--radius-2xl);
+          color: var(--color-primary);
         }
 
         .stat-icon.alert {
           background: rgba(255, 170, 0, 0.1);
-          border-color: var(--neon-warning);
-          color: var(--neon-warning);
+          border-color: var(--color-warning);
+          color: var(--color-warning);
         }
 
         .stat-label {
-          font-size: 0.9rem;
-          color: var(--text-secondary);
-          margin-bottom: 4px;
+          font-size: var(--font-size-base);
+          color: var(--color-text-dark3);
+          margin-bottom: var(--space-1);
         }
 
         .stat-value {
-          font-size: 2rem;
-          font-weight: 700;
-          color: #1a1a1a !important;
+          font-size: var(--font-size-6xl);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-dark) !important;
         }
 
         .admin-tabs {
@@ -411,9 +411,9 @@ const AdminPanel = () => {
         }
 
         .tabs-list {
-          background: var(--bg-secondary);
-          border: 1px solid rgba(0, 255, 170, 0.2);
-          margin-bottom: 32px;
+          background: var(--color-bg-warm);
+          border: 1px solid var(--color-border);
+          margin-bottom: var(--space-8);
         }
 
         .tab-content {
@@ -430,8 +430,8 @@ const AdminPanel = () => {
         }
 
         .empty-icon {
-          color: var(--neon-primary);
-          margin-bottom: 16px;
+          color: var(--color-primary);
+          margin-bottom: var(--space-4);
         }
 
         .verifications-list, .users-list {
@@ -449,99 +449,99 @@ const AdminPanel = () => {
         }
 
         .user-email {
-          font-size: 1.2rem;
-          font-weight: 600;
-          color: #1a1a1a !important;
-          margin-bottom: 6px;
+          font-size: var(--font-size-xl3);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark) !important;
+          margin-bottom: var(--space-1-5);
         }
 
         .user-meta {
-          font-size: 0.9rem;
-          color: var(--text-secondary);
+          font-size: var(--font-size-base);
+          color: var(--color-text-dark3);
           text-transform: capitalize;
-          margin-top: 4px;
+          margin-top: var(--space-1);
         }
 
         .documents-section {
-          margin-bottom: 20px;
-          padding: 16px;
-          background: rgba(0, 255, 170, 0.05);
-          border-radius: 8px;
+          margin-bottom: var(--space-5);
+          padding: var(--space-4);
+          background: var(--color-success-tint-10);
+          border-radius: var(--radius-lg);
         }
 
         .section-title {
-          font-size: 1rem;
-          font-weight: 600;
-          color: var(--neon-primary);
-          margin-bottom: 12px;
+          font-size: var(--font-size-lg);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-primary);
+          margin-bottom: var(--space-3);
         }
 
         .documents-grid {
           display: flex;
           flex-wrap: wrap;
-          gap: 12px;
+          gap: var(--space-3);
         }
 
         .document-badge {
           display: flex;
           align-items: center;
-          gap: 6px;
-          padding: 6px 12px;
-          background: rgba(0, 255, 170, 0.1);
-          border: 1px solid var(--neon-primary);
-          border-radius: 20px;
-          font-size: 0.85rem;
-          color: var(--neon-primary);
+          gap: var(--space-1-5);
+          padding: var(--space-1-5) var(--space-3);
+          background: var(--color-primary-bg);
+          border: 1px solid var(--color-primary);
+          border-radius: var(--radius-pill);
+          font-size: var(--font-size-base);
+          color: var(--color-primary);
           text-transform: capitalize;
         }
 
         .no-documents {
-          color: var(--text-secondary);
-          font-size: 0.9rem;
+          color: var(--color-text-dark3);
+          font-size: var(--font-size-base);
         }
 
         .verification-actions {
           display: flex;
           justify-content: flex-end;
-          gap: 12px;
+          gap: var(--space-3);
         }
 
         .reject-btn {
-          color: #ff4444;
-          border-color: #ff4444;
+          color: var(--color-danger);
+          border-color: var(--color-danger);
         }
 
         .reject-btn:hover {
-          background: rgba(255, 68, 68, 0.1);
+          background: var(--color-danger-tint-10);
         }
 
         .user-info {
           display: flex;
           justify-content: space-between;
           align-items: start;
-          gap: 16px;
+          gap: var(--space-4);
         }
 
         .user-badges {
           display: flex;
-          gap: 8px;
+          gap: var(--space-2);
           flex-wrap: wrap;
         }
 
         .role-badge {
-          padding: 6px 12px;
-          background: rgba(0, 212, 255, 0.1);
-          color: var(--neon-secondary);
-          border: 1px solid var(--neon-secondary);
-          border-radius: 20px;
-          font-size: 0.85rem;
-          font-weight: 600;
+          padding: var(--space-1-5) var(--space-3);
+          background: var(--color-primary-bg);
+          color: var(--color-secondary);
+          border: 1px solid var(--color-secondary);
+          border-radius: var(--radius-pill);
+          font-size: var(--font-size-base);
+          font-weight: var(--font-weight-semibold);
           text-transform: capitalize;
         }
 
         @media (max-width: 768px) {
           .page-title {
-            font-size: 2rem;
+            font-size: var(--font-size-6xl);
           }
 
           .stats-grid {
@@ -580,33 +580,33 @@ const AdminPanel = () => {
 
         .tender-title,
         .contract-title {
-          font-size: 1.1rem;
-          font-weight: 600;
-          color: #1a1a1a;
-          margin-bottom: 8px;
+          font-size: var(--font-size-lg);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-2);
         }
 
         .tender-meta,
         .contract-meta {
-          font-size: 0.9rem;
-          color: #666;
-          margin: 4px 0;
+          font-size: var(--font-size-base);
+          color: var(--color-text-muted);
+          margin: var(--space-1) 0;
         }
 
         .card-actions {
           display: flex;
-          gap: 8px;
-          margin-top: 12px;
+          gap: var(--space-2);
+          margin-top: var(--space-3);
         }
 
         .delete-btn {
-          color: #dc2626;
-          border-color: #dc2626;
+          color: var(--color-danger-alt);
+          border-color: var(--color-danger-alt);
         }
 
         .delete-btn:hover {
-          background: #fee2e2;
-          border-color: #dc2626;
+          background: var(--color-danger-tint-10);
+          border-color: var(--color-danger-alt);
         }
       `}</style>
     </>

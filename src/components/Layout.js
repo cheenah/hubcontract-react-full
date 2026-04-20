@@ -377,19 +377,19 @@ const Layout = ({ children } = {}) => {
               <h3 className="footer-section-title">{t('common.contacts')}</h3>
               <div className="contact-list">
                 <div className="contact-item">
-                  <Mail size={18} style={{ color: '#2563eb', flexShrink: 0, marginTop: '2px' }} />
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                  <Mail size={18} className="contact-icon" />
+                  <div className="contact-info">
                     <div className="contact-label">Email</div>
-                    <div style={{ color: '#1a202c', fontSize: '15px', fontWeight: 500 }}>
-                      <a href="mailto:info@hubcontract.kz" style={{ color: 'inherit', textDecoration: 'none' }}>info@hubcontract.kz</a>
+                    <div className="contact-value">
+                      <a href="mailto:info@hubcontract.kz" className="contact-link">info@hubcontract.kz</a>
                     </div>
                   </div>
                 </div>
                 <div className="contact-item">
-                  <Location size={18} style={{ color: '#2563eb', flexShrink: 0, marginTop: '2px' }} />
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                  <Location size={18} className="contact-icon" />
+                  <div className="contact-info">
                     <div className="contact-label">{t('common.address')}</div>
-                    <div style={{ color: '#1a202c', fontSize: '15px', fontWeight: 500 }}>
+                    <div className="contact-value">
                       {t('common.astanaAddress')}
                     </div>
                   </div>
@@ -422,39 +422,39 @@ const Layout = ({ children } = {}) => {
         .user-profile-btn {
           display: flex;
           align-items: center;
-          gap: 10px;
-          background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+          gap: var(--space-2-5);
+          background: var(--color-primary-gradient);
           border: none;
-          border-radius: 12px;
+          border-radius: var(--radius-2xl);
           padding: 6px 14px 6px 6px;
           cursor: pointer;
-          color: #fff;
-          transition: box-shadow 0.2s, transform 0.15s;
-          box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
+          color: var(--color-text-inverse);
+          transition: box-shadow var(--transition-normal), transform var(--transition-fast);
+          box-shadow: var(--shadow-blue-md);
         }
         .user-profile-btn:hover {
-          box-shadow: 0 4px 16px rgba(37, 99, 235, 0.45);
+          box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
           transform: translateY(-1px);
         }
         .user-profile-btn--active {
-          box-shadow: 0 0 0 3px rgba(255,255,255,0.4), 0 4px 16px rgba(37,99,235,0.5);
+          box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4), 0 4px 16px rgba(37, 99, 235, 0.35);
         }
         .user-profile-btn .user-avatar {
           width: 30px;
           height: 30px;
-          background: rgba(255,255,255,0.25);
-          border-radius: 8px;
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: var(--radius-lg);
           display: flex;
           align-items: center;
           justify-content: center;
-          font-weight: 700;
-          font-size: 0.95rem;
-          color: #fff;
+          font-weight: var(--font-weight-bold);
+          font-size: var(--font-size-base);
+          color: var(--color-text-inverse);
         }
         .user-profile-btn .user-email {
-          font-size: 0.82rem;
-          font-weight: 600;
-          color: #fff;
+          font-size: var(--font-size-sm);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-inverse);
           max-width: 150px;
           overflow: hidden;
           text-overflow: ellipsis;
@@ -465,16 +465,39 @@ const Layout = ({ children } = {}) => {
           align-items: center;
           justify-content: center;
           background: none;
-          border: 1px solid #e5e7eb;
-          border-radius: 10px;
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-xl);
           padding: 7px 10px;
           cursor: pointer;
-          color: #ef4444;
-          transition: background 0.15s, border-color 0.15s;
+          color: var(--color-danger);
+          transition: background var(--transition-fast), border-color var(--transition-fast);
         }
         .logout-btn:hover {
-          background: #fef2f2;
-          border-color: #fca5a5;
+          background: var(--color-danger-tint-05);
+          border-color: var(--color-danger-tint-20);
+        }
+        .contact-icon {
+          color: var(--color-primary);
+          flex-shrink: 0;
+          margin-top: 2px;
+        }
+        .contact-info {
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-1);
+        }
+        .contact-value {
+          color: var(--color-text-dark2);
+          font-size: var(--font-size-px-lg);
+          font-weight: var(--font-weight-medium);
+        }
+        .contact-link {
+          color: inherit;
+          text-decoration: none;
+        }
+        .contact-link:hover {
+          color: var(--color-primary);
+          text-decoration: underline;
         }
       `}</style>
     </div>

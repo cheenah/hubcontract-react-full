@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* HubContract Design Tokens */
+@import './styles/variables.css';
+
 /* Import Roboto font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
@@ -10,7 +13,7 @@ body {
     font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: #FCF8F5;
+    background: var(--color-bg-warm);
 }
 
 code {

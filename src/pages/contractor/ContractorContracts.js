@@ -237,23 +237,23 @@ const ContractorContracts = () => {
         }
 
         .page-header {
-          background: white;
-          padding: 24px 32px;
-          border-radius: 8px;
-          margin-bottom: 24px;
-          border: 1px solid #e5e7eb;
+          background: var(--color-bg-surface);
+          padding: var(--space-6) var(--space-8);
+          border-radius: var(--radius-lg);
+          margin-bottom: var(--space-6);
+          border: 1px solid var(--color-border);
         }
 
         .page-title {
-          font-size: 1.875rem;
-          font-weight: 700;
-          color: #1a1a1a;
-          margin: 0 0 8px 0;
+          font-size: var(--font-size-3xl);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-dark);
+          margin: 0 0 var(--space-2) 0;
         }
 
         .page-subtitle {
-          font-size: 0.875rem;
-          color: #6b7280;
+          font-size: var(--font-size-base);
+          color: var(--color-text-muted);
           margin: 0;
         }
 
@@ -264,95 +264,95 @@ const ContractorContracts = () => {
         }
 
         .contract-card {
-          padding: 20px;
-          border: 1px solid #e5e7eb;
+          padding: var(--space-5);
+          border: 1px solid var(--color-border);
         }
 
         .contract-header {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-bottom: 16px;
-          padding-bottom: 12px;
-          border-bottom: 1px solid #e5e7eb;
+          margin-bottom: var(--space-4);
+          padding-bottom: var(--space-3);
+          border-bottom: 1px solid var(--color-border);
         }
 
         .contract-number {
-          font-size: 1.125rem;
-          font-weight: 600;
-          color: #1a1a1a;
+          font-size: var(--font-size-xl3);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
           margin: 0;
         }
 
         .contract-status {
-          padding: 4px 12px;
-          border-radius: 12px;
-          font-size: 0.75rem;
-          font-weight: 500;
+          padding: var(--space-1) var(--space-3);
+          border-radius: var(--radius-2xl);
+          font-size: var(--font-size-xs);
+          font-weight: var(--font-weight-medium);
         }
 
         .status-active {
-          background: rgba(59, 130, 246, 0.1);
-          color: #3b82f6;
+          background: var(--color-primary-bg);
+          color: var(--color-primary-light);
         }
 
         .status-signed {
-          background: rgba(16, 185, 129, 0.1);
-          color: #10b981;
+          background: var(--color-success-tint-10);
+          color: var(--color-success-alt);
         }
 
         .status-completed {
-          background: rgba(107, 114, 128, 0.1);
-          color: #6b7280;
+          background: var(--color-bg-muted);
+          color: var(--color-text-muted);
         }
 
         .contract-body {
-          margin-bottom: 16px;
+          margin-bottom: var(--space-4);
         }
 
         .contract-title {
-          font-size: 1rem;
-          font-weight: 600;
-          color: #1a1a1a;
-          margin: 0 0 8px 0;
+          font-size: var(--font-size-lg);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
+          margin: 0 0 var(--space-2) 0;
         }
 
         .contract-customer,
         .contract-amount {
-          font-size: 0.875rem;
-          color: #6b7280;
-          margin: 4px 0;
+          font-size: var(--font-size-base);
+          color: var(--color-text-muted);
+          margin: var(--space-1) 0;
         }
 
         .contract-amount {
-          font-weight: 600;
-          color: #10b981;
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-success-alt);
         }
 
         .progress-section {
-          margin-top: 12px;
+          margin-top: var(--space-3);
         }
 
         .progress-header {
           display: flex;
           justify-content: space-between;
-          font-size: 0.875rem;
-          color: #6b7280;
-          margin-bottom: 8px;
+          font-size: var(--font-size-base);
+          color: var(--color-text-muted);
+          margin-bottom: var(--space-2);
         }
 
         .progress-bar {
           width: 100%;
           height: 8px;
-          background: #e5e7eb;
-          border-radius: 4px;
+          background: var(--color-border);
+          border-radius: var(--radius-sm);
           overflow: hidden;
         }
 
         .progress-fill {
           height: 100%;
-          background: linear-gradient(90deg, #3b82f6, #10b981);
-          transition: width 0.3s ease;
+          background: linear-gradient(90deg, var(--color-primary-light), var(--color-success-alt));
+          transition: width var(--transition-slow) ease;
         }
 
         .contract-actions {
@@ -380,9 +380,9 @@ const ContractorContracts = () => {
         }
 
         .modal {
-          background: white;
-          padding: 24px;
-          border-radius: 12px;
+          background: var(--color-bg-surface);
+          padding: var(--space-6);
+          border-radius: var(--radius-2xl);
           max-width: 500px;
           width: 90%;
           max-height: 90vh;
@@ -390,36 +390,36 @@ const ContractorContracts = () => {
         }
 
         .modal h2 {
-          font-size: 1.5rem;
-          font-weight: 700;
-          color: #1a1a1a;
-          margin: 0 0 16px 0;
+          font-size: var(--font-size-3xl);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-dark);
+          margin: 0 0 var(--space-4) 0;
         }
 
         .modal p {
-          margin: 8px 0;
-          color: #6b7280;
+          margin: var(--space-2) 0;
+          color: var(--color-text-muted);
         }
 
         .form-group {
-          margin: 16px 0;
+          margin: var(--space-4) 0;
         }
 
         .form-group label {
           display: block;
-          font-size: 0.875rem;
-          font-weight: 500;
-          color: #374151;
-          margin-bottom: 6px;
+          font-size: var(--font-size-base);
+          font-weight: var(--font-weight-medium);
+          color: var(--color-text-secondary);
+          margin-bottom: var(--space-1-5);
         }
 
         .form-group input,
         .form-group textarea {
           width: 100%;
-          padding: 10px 12px;
-          border: 1px solid #d1d5db;
-          border-radius: 6px;
-          font-size: 0.875rem;
+          padding: var(--space-2-5) var(--space-3);
+          border: 1px solid var(--color-border-gray);
+          border-radius: var(--radius-md);
+          font-size: var(--font-size-base);
         }
 
         .form-group textarea {
@@ -428,19 +428,19 @@ const ContractorContracts = () => {
 
         .modal-actions {
           display: flex;
-          gap: 12px;
-          margin-top: 24px;
+          gap: var(--space-3);
+          margin-top: var(--space-6);
         }
 
         .empty-state {
           text-align: center;
-          padding: 48px;
-          color: #6b7280;
+          padding: var(--space-12);
+          color: var(--color-text-muted);
         }
 
         .empty-state svg {
-          color: #9ca3af;
-          margin-bottom: 16px;
+          color: var(--color-text-placeholder);
+          margin-bottom: var(--space-4);
         }
 
         .loading-container {
@@ -453,9 +453,9 @@ const ContractorContracts = () => {
         .loading-spinner {
           width: 40px;
           height: 40px;
-          border: 3px solid #e5e7eb;
-          border-top: 3px solid #1e40af;
-          border-radius: 50%;
+          border: 3px solid var(--color-border);
+          border-top: 3px solid var(--color-primary-dark);
+          border-radius: var(--radius-circle);
           animation: spin 1s linear infinite;
         }
 

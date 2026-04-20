@@ -274,10 +274,10 @@ const CreateTenderNew = () => {
       <div className="form-step">
         <Card>
           <CardHeader>
-            <CardTitle style={{ fontSize: '1.5rem', fontWeight: '700', color: '#1a202c' }}>
+            <CardTitle style={{ fontSize: 'var(--font-size-3xl)', fontWeight: 'var(--font-weight-bold)', color: 'var(--color-text-dark2)' }}>
               Общие данные тендера
             </CardTitle>
-            <CardDescription style={{ fontSize: '1rem', color: '#2d3748', fontWeight: '500' }}>
+            <CardDescription style={{ fontSize: 'var(--font-size-lg)', color: 'var(--color-text-dark3)', fontWeight: 'var(--font-weight-medium)' }}>
               Укажите основную информацию о закупке
             </CardDescription>
           </CardHeader>
@@ -538,10 +538,10 @@ const CreateTenderNew = () => {
       <div className="form-step">
         <Card>
           <CardHeader>
-            <CardTitle style={{ fontSize: '1.5rem', fontWeight: '700', color: '#1a202c' }}>
+            <CardTitle style={{ fontSize: 'var(--font-size-3xl)', fontWeight: 'var(--font-weight-bold)', color: 'var(--color-text-dark2)' }}>
               Лоты тендера
             </CardTitle>
-            <CardDescription style={{ fontSize: '1rem', color: '#2d3748', fontWeight: '500' }}>
+            <CardDescription style={{ fontSize: 'var(--font-size-lg)', color: 'var(--color-text-dark3)', fontWeight: 'var(--font-weight-medium)' }}>
               Добавьте информацию о закупаемых товарах/услугах
             </CardDescription>
           </CardHeader>
@@ -761,16 +761,16 @@ const CreateTenderNew = () => {
           }
 
           .page-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1a202c;
-            margin-bottom: 8px;
+            font-size: var(--font-size-6xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text-dark2);
+            margin-bottom: var(--space-2);
           }
 
           .page-subtitle {
-            font-size: 1.125rem;
-            color: #2d3748;
-            font-weight: 600;
+            font-size: var(--font-size-xl3);
+            color: var(--color-text-dark3);
+            font-weight: var(--font-weight-semibold);
           }
 
           .progress-container {
@@ -792,7 +792,7 @@ const CreateTenderNew = () => {
             left: 80px;
             right: 80px;
             height: 3px;
-            background: #cbd5e0;
+            background: var(--color-border-gray);
             z-index: 0;
           }
 
@@ -807,34 +807,34 @@ const CreateTenderNew = () => {
           .step-circle {
             width: 48px;
             height: 48px;
-            border-radius: 50%;
-            background: white;
-            border: 3px solid #cbd5e0;
+            border-radius: var(--radius-circle);
+            background: var(--color-bg-surface);
+            border: 3px solid var(--color-border-gray);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
-            font-size: 1.125rem;
-            color: #4a5568;
-            transition: all 0.3s ease;
+            font-weight: var(--font-weight-bold);
+            font-size: var(--font-size-xl3);
+            color: var(--color-text-tertiary);
+            transition: all var(--transition-slow) ease;
           }
 
           .progress-step.active .step-circle {
-            background: var(--btn-green);
-            border-color: var(--btn-green);
-            color: white;
+            background: var(--color-success);
+            border-color: var(--color-success);
+            color: var(--color-text-inverse);
           }
 
           .step-label {
-            margin-top: 8px;
-            font-size: 0.9375rem;
-            color: #4a5568;
-            font-weight: 600;
+            margin-top: var(--space-2);
+            font-size: var(--font-size-lg);
+            color: var(--color-text-tertiary);
+            font-weight: var(--font-weight-semibold);
           }
 
           .progress-step.active .step-label {
-            color: #1a202c;
-            font-weight: 700;
+            color: var(--color-text-dark2);
+            font-weight: var(--font-weight-bold);
           }
 
           .form-step {
@@ -846,35 +846,35 @@ const CreateTenderNew = () => {
           }
 
           .form-field label {
-            color: var(--text-dark-gray);
-            font-weight: 500;
-            font-size: 0.9375rem;
-            margin-bottom: 8px;
+            color: var(--color-text-secondary);
+            font-weight: var(--font-weight-medium);
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--space-2);
             display: block;
           }
 
           .form-field input,
           .form-field textarea {
-            color: var(--text-dark-gray);
-            font-size: 1rem;
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-lg);
           }
 
           .form-field input::placeholder,
           .form-field textarea::placeholder {
-            color: #9ca3af;
+            color: var(--color-text-placeholder);
           }
 
           .lot-card {
-            background: #f9fafb;
-            border: 1px solid #e5e7eb;
+            background: var(--color-bg-subtle);
+            border: 1px solid var(--color-border);
           }
 
           .form-navigation {
             display: flex;
-            gap: 16px;
-            margin-top: 32px;
-            padding-top: 24px;
-            border-top: 1px solid #e5e7eb;
+            gap: var(--space-4);
+            margin-top: var(--space-8);
+            padding-top: var(--space-6);
+            border-top: 1px solid var(--color-border);
           }
 
           @media (max-width: 768px) {
@@ -883,7 +883,7 @@ const CreateTenderNew = () => {
             }
 
             .page-title {
-              font-size: 1.5rem;
+              font-size: var(--font-size-3xl);
             }
 
             .progress-bar {

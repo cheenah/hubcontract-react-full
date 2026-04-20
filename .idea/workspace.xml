@@ -5,8 +5,51 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="baac46ef-bf41-4f73-b09d-490929e58f4a" name="Changes" comment="New build">
+      <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.development" beforeDir="false" afterPath="$PROJECT_DIR$/.env.development" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/nginx.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/asset-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/css/main.6ed9d6c5.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/css/main.6ed9d6c5.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/js/main.f949e468.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/js/main.f949e468.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/static/js/main.f949e468.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ContractorLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ContractorLayout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FAQSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FAQSection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProtectedRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProtectedRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StaticLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StaticLayout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/button.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/button.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/dropdown-menu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/dropdown-menu.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/CreateTender.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/CreateTender.js.backup" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/CreateTenderNew.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/AdminContracts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/AdminContracts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/AdminPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/AdminPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/AdminTenders.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/AdminTenders.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/CreateTenderNew.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/CreateTenderNew.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/contractor/ContractorAnalytics.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/contractor/ContractorAnalytics.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/contractor/ContractorArchive.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/contractor/ContractorArchive.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/contractor/ContractorContracts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/contractor/ContractorContracts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/contractor/ContractorProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/contractor/ContractorProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/contractor/MyBids.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/contractor/MyBids.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/shared/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/shared/Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/shared/ProtocolView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/shared/ProtocolView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/static/Disclaimer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/static/Disclaimer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/static/ForgotPassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/static/ForgotPassword.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/static/PrivacyPolicy.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/static/PrivacyPolicy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/static/Registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/static/Registration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/static/TenderDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/static/TenderDetail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/static/TermsOfUse.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/static/TermsOfUse.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/static/VerifyEmailPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/static/VerifyEmailPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/bereke-theme.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/bereke-theme.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/translations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/translations.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +62,7 @@
     </persistenceIdMap>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="211" />
+    <option name="cachedIndexableFilesCount" value="241" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -130,6 +173,10 @@
       <workItem from="1775993247635" duration="2584000" />
       <workItem from="1775998152860" duration="6938000" />
       <workItem from="1776154717154" duration="7847000" />
+      <workItem from="1776251293483" duration="3530000" />
+      <workItem from="1776361684971" duration="38472000" />
+      <workItem from="1776619091729" duration="5872000" />
+      <workItem from="1776667016464" duration="5497000" />
     </task>
     <task id="LOCAL-00001" summary="Node.js modules versions [Fix]">
       <option name="closed" value="true" />

@@ -33,12 +33,12 @@ const Profile = () => {
 
   const getStatus = () => {
     if (user?.documents_verified)
-      return { text: t('profile.verified'),      color: '#10b981', Icon: CheckCircle };
+      return { text: t('profile.verified'),      color: 'var(--color-success-alt)', Icon: CheckCircle };
     if (user?.verification_status === 'pending')
-      return { text: t('profile.pendingReview'), color: '#f59e0b', Icon: Clock };
+      return { text: t('profile.pendingReview'), color: 'var(--color-warning)', Icon: Clock };
     if (user?.verification_status === 'rejected')
-      return { text: t('profile.rejected'),      color: '#ef4444', Icon: AlertCircle };
-    return   { text: t('profile.notVerified'),   color: '#9ca3af', Icon: Shield };
+      return { text: t('profile.rejected'),      color: 'var(--color-danger)', Icon: AlertCircle };
+    return   { text: t('profile.notVerified'),   color: 'var(--color-text-placeholder)', Icon: Shield };
   };
 
   const { text: statusText, color: statusColor, Icon: StatusIcon } = getStatus();
@@ -79,7 +79,7 @@ const Profile = () => {
         {/* Title row */}
         <div className="pf-title-row">
           <h1 className="pf-title">{t('profile.title')}</h1>
-          <div className="pf-status-badge" style={{ borderColor: statusColor, color: statusColor }}>
+          <div className="pf-status-badge" style={{ '--badge-color': statusColor, borderColor: 'var(--badge-color)', color: 'var(--badge-color)' }}>
             <StatusIcon size={15} />
             <span>{statusText}</span>
           </div>
@@ -213,7 +213,7 @@ const Profile = () => {
                     <Input type="password" placeholder="••••••••" disabled />
                   </Field>
                 </div>
-                <div className="pf-notice pf-notice--info" style={{ marginTop: 16 }}>
+                <div className="pf-notice pf-notice--info pf-notice--mt">
                   Смена пароля доступна через страницу восстановления.
                 </div>
               </Card>
@@ -233,7 +233,7 @@ const Profile = () => {
                 ].map((label) => (
                   <label key={label} className="pf-toggle-row">
                     <span>{label}</span>
-                    <input type="checkbox" defaultChecked style={{ accentColor: '#2563eb', width: 18, height: 18, cursor: 'pointer' }} />
+                    <input type="checkbox" defaultChecked className="pf-checkbox" />
                   </label>
                 ))}
               </Card>
@@ -246,37 +246,37 @@ const Profile = () => {
         .pf-page {
           max-width: 1100px;
           margin: 0 auto;
-          padding: 28px 24px;
+          padding: var(--space-7) var(--space-6);
         }
 
         .pf-title-row {
           display: flex;
           align-items: center;
-          gap: 16px;
-          margin-bottom: 24px;
+          gap: var(--space-4);
+          margin-bottom: var(--space-6);
         }
 
         .pf-title {
           font-size: 1.6rem;
-          font-weight: 700;
-          color: #111827;
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-primary);
           margin: 0;
         }
 
         .pf-status-badge {
           display: flex;
           align-items: center;
-          gap: 6px;
+          gap: var(--space-1-5);
           padding: 5px 14px;
           border: 2px solid;
-          border-radius: 20px;
-          font-size: 0.8rem;
-          font-weight: 600;
+          border-radius: var(--radius-4xl);
+          font-size: var(--font-size-sm);
+          font-weight: var(--font-weight-semibold);
         }
 
         .pf-layout {
           display: flex;
-          gap: 20px;
+          gap: var(--space-5);
           align-items: flex-start;
         }
 
@@ -284,8 +284,8 @@ const Profile = () => {
         .pf-sidebar {
           width: 230px;
           flex-shrink: 0;
-          background: #fff;
-          border: 1px solid #e5e7eb;
+          background: var(--color-bg-surface);
+          border: 1px solid var(--color-border);
           border-radius: 14px;
           overflow: hidden;
           position: sticky;
@@ -293,54 +293,54 @@ const Profile = () => {
         }
 
         .pf-avatar-block {
-          padding: 24px 20px 18px;
+          padding: var(--space-6) var(--space-5) 18px;
           text-align: center;
-          border-bottom: 1px solid #f3f4f6;
+          border-bottom: 1px solid var(--color-border-muted);
         }
 
         .pf-avatar-circle {
           width: 64px;
           height: 64px;
-          border-radius: 50%;
-          background: linear-gradient(135deg, #1e40af, #2563eb);
-          color: #fff;
+          border-radius: var(--radius-circle);
+          background: var(--color-primary-gradient);
+          color: var(--color-text-inverse);
           font-size: 1.6rem;
-          font-weight: 700;
+          font-weight: var(--font-weight-bold);
           display: flex;
           align-items: center;
           justify-content: center;
-          margin: 0 auto 12px;
-          box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+          margin: 0 auto var(--space-3);
+          box-shadow: 0 4px 14px var(--color-primary-tint-35);
         }
 
         .pf-avatar-name {
           font-size: 0.92rem;
-          font-weight: 600;
-          color: #111827;
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-primary);
           margin-bottom: 2px;
         }
 
         .pf-avatar-email {
-          font-size: 0.72rem;
-          color: #9ca3af;
+          font-size: var(--font-size-xxs);
+          color: var(--color-text-placeholder);
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
-          margin-bottom: 6px;
+          margin-bottom: var(--space-1-5);
         }
 
         .pf-avatar-role {
           display: inline-block;
           padding: 2px 10px;
-          background: #eff6ff;
-          color: #1e40af;
-          border-radius: 20px;
-          font-size: 0.72rem;
-          font-weight: 600;
+          background: var(--color-primary-bg);
+          color: var(--color-primary-dark);
+          border-radius: var(--radius-4xl);
+          font-size: var(--font-size-xxs);
+          font-weight: var(--font-weight-semibold);
         }
 
         .pf-nav {
-          padding: 10px 8px 12px;
+          padding: var(--space-2-5) var(--space-2) var(--space-3);
           display: flex;
           flex-direction: column;
           gap: 2px;
@@ -349,96 +349,104 @@ const Profile = () => {
         .pf-nav-item {
           display: flex;
           align-items: center;
-          gap: 10px;
-          padding: 10px 12px;
+          gap: var(--space-2-5);
+          padding: var(--space-2-5) var(--space-3);
           border: none;
           background: none;
-          border-radius: 10px;
+          border-radius: var(--radius-xl);
           cursor: pointer;
-          font-size: 0.875rem;
-          font-weight: 500;
-          color: #4b5563;
+          font-size: var(--font-size-base);
+          font-weight: var(--font-weight-medium);
+          color: var(--color-text-tertiary);
           width: 100%;
           text-align: left;
-          transition: background 0.15s, color 0.15s;
+          transition: background var(--transition-fast), color var(--transition-fast);
         }
-        .pf-nav-item:hover { background: #eff6ff; color: #1e40af; }
-        .pf-nav-item--active { background: #eff6ff; color: #1e40af; font-weight: 600; }
+        .pf-nav-item:hover { background: var(--color-primary-bg); color: var(--color-primary-dark); }
+        .pf-nav-item--active { background: var(--color-primary-bg); color: var(--color-primary-dark); font-weight: var(--font-weight-semibold); }
 
         /* content */
         .pf-content { flex: 1; min-width: 0; }
 
         .pf-card {
-          padding: 28px 28px 24px;
-          border: 1px solid #e5e7eb;
+          padding: var(--space-7) var(--space-7) var(--space-6);
+          border: 1px solid var(--color-border);
           border-radius: 14px;
         }
 
         .pf-section-title {
           font-size: 1.15rem;
-          font-weight: 700;
-          color: #111827;
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-primary);
           margin: 0 0 18px;
         }
 
         .pf-section-sub {
-          font-size: 0.875rem;
-          color: #6b7280;
-          margin: -10px 0 16px;
+          font-size: var(--font-size-base);
+          color: var(--color-text-muted);
+          margin: -10px 0 var(--space-4);
         }
 
         .pf-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 16px;
+          gap: var(--space-4);
         }
 
-        .pf-field { display: flex; flex-direction: column; gap: 6px; }
+        .pf-field { display: flex; flex-direction: column; gap: var(--space-1-5); }
         .pf-field--wide { grid-column: 1 / -1; }
-        .pf-field label { font-size: 0.8rem; font-weight: 600; color: #374151; }
+        .pf-field label { font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); color: var(--color-text-secondary); }
 
         /* documents */
-        .pf-doc-list { display: flex; flex-direction: column; gap: 12px; }
+        .pf-doc-list { display: flex; flex-direction: column; gap: var(--space-3); }
 
         .pf-doc-item {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          gap: 16px;
-          padding: 14px 16px;
-          border: 1px solid #e5e7eb;
-          border-radius: 10px;
-          background: #fafafa;
+          gap: var(--space-4);
+          padding: 14px var(--space-4);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-xl);
+          background: var(--color-bg-subtle);
         }
 
-        .pf-doc-label { font-size: 0.9rem; font-weight: 600; color: #111827; margin-bottom: 2px; }
-        .pf-doc-desc  { font-size: 0.78rem; color: #9ca3af; }
-        .pf-doc-ok    { font-size: 0.78rem; color: #10b981; margin-top: 4px; }
+        .pf-doc-label { font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); color: var(--color-text-primary); margin-bottom: 2px; }
+        .pf-doc-desc  { font-size: 0.78rem; color: var(--color-text-placeholder); }
+        .pf-doc-ok    { font-size: 0.78rem; color: var(--color-success-alt); margin-top: var(--space-1); }
 
         /* notices */
         .pf-notice {
-          padding: 12px 16px;
-          border-radius: 8px;
-          font-size: 0.875rem;
-          margin-top: 16px;
-          line-height: 1.5;
+          padding: var(--space-3) var(--space-4);
+          border-radius: var(--radius-lg);
+          font-size: var(--font-size-base);
+          margin-top: var(--space-4);
+          line-height: var(--line-height-normal);
         }
-        .pf-notice--warn  { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
-        .pf-notice--error { background: #fef2f2; border: 1px solid #fca5a5; color: #991b1b; }
-        .pf-notice--info  { background: #eff6ff; border: 1px solid #93c5fd; color: #1e40af; }
+        .pf-notice--mt  { margin-top: var(--space-4); }
+        .pf-notice--warn  { background: var(--color-warning-bg); border: 1px solid #fcd34d; color: #92400e; }
+        .pf-notice--error { background: var(--color-danger-bg); border: 1px solid #fca5a5; color: var(--color-danger-darker); }
+        .pf-notice--info  { background: var(--color-primary-bg); border: 1px solid #93c5fd; color: var(--color-primary-dark); }
 
         /* toggle rows */
         .pf-toggle-row {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 12px 0;
-          border-bottom: 1px solid #f3f4f6;
-          font-size: 0.875rem;
-          color: #374151;
+          padding: var(--space-3) 0;
+          border-bottom: 1px solid var(--color-border-muted);
+          font-size: var(--font-size-base);
+          color: var(--color-text-secondary);
           cursor: pointer;
         }
         .pf-toggle-row:last-child { border-bottom: none; }
+
+        .pf-checkbox {
+          accent-color: var(--color-primary);
+          width: 18px;
+          height: 18px;
+          cursor: pointer;
+        }
 
         .capitalize { text-transform: capitalize; }
 

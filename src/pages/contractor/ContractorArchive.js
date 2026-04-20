@@ -7,9 +7,9 @@ import { getContractStatusText } from '@/utils/statusHelpers';
 const API = process.env.REACT_APP_BACKEND_URL;
 
 const statusColor = (status) => {
-  if (['completed', 'signed'].includes(status)) return '#10b981';
-  if (['rejected', 'cancelled'].includes(status)) return '#ef4444';
-  return '#6b7280';
+  if (['completed', 'signed'].includes(status)) return 'var(--color-success-alt)';
+  if (['rejected', 'cancelled'].includes(status)) return 'var(--color-danger)';
+  return 'var(--color-text-muted)';
 };
 
 const ContractorArchive = () => {
@@ -48,28 +48,28 @@ const ContractorArchive = () => {
   ];
 
   return (
-      <div style={{ padding: '24px', maxWidth: '1100px', margin: '0 auto' }}>
-        <h1 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#111827', marginBottom: '6px' }}>
+      <div style={{ padding: 'var(--space-6)', maxWidth: '1100px', margin: '0 auto' }}>
+        <h1 style={{ fontSize: '1.5rem', fontWeight: 'var(--font-weight-bold)', color: 'var(--color-text-dark)', marginBottom: 'var(--space-1-5)' }}>
           Архив
         </h1>
-        <p style={{ color: '#6b7280', marginBottom: '20px', fontSize: '0.9rem' }}>
+        <p style={{ color: 'var(--color-text-muted)', marginBottom: 'var(--space-5)', fontSize: 'var(--font-size-base)' }}>
           Завершённые, подписанные и отклонённые документы
         </p>
 
         {/* Tabs */}
-        <div style={{ display: 'flex', gap: '4px', marginBottom: '20px', background: '#f3f4f6', borderRadius: '10px', padding: '4px', width: 'fit-content' }}>
+        <div style={{ display: 'flex', gap: 'var(--space-1)', marginBottom: 'var(--space-5)', background: 'var(--color-bg-muted)', borderRadius: 'var(--radius-xl)', padding: 'var(--space-1)', width: 'fit-content' }}>
           {tabs.map(({ key, label, icon: Icon }) => (
             <button
               key={key}
               onClick={() => setTab(key)}
               style={{
-                display: 'flex', alignItems: 'center', gap: '6px',
-                padding: '7px 16px', borderRadius: '8px', border: 'none', cursor: 'pointer',
-                fontSize: '0.875rem', fontWeight: tab === key ? 600 : 500,
-                background: tab === key ? '#fff' : 'transparent',
-                color: tab === key ? '#1e40af' : '#6b7280',
+                display: 'flex', alignItems: 'center', gap: 'var(--space-1-5)',
+                padding: '7px var(--space-4)', borderRadius: 'var(--radius-lg)', border: 'none', cursor: 'pointer',
+                fontSize: 'var(--font-size-base)', fontWeight: tab === key ? 'var(--font-weight-semibold)' : 'var(--font-weight-medium)',
+                background: tab === key ? 'var(--color-bg-surface)' : 'transparent',
+                color: tab === key ? 'var(--color-primary-dark)' : 'var(--color-text-muted)',
                 boxShadow: tab === key ? '0 1px 3px rgba(0,0,0,0.08)' : 'none',
-                transition: 'all 0.15s',
+                transition: 'all var(--transition-fast)',
               }}
             >
               <Icon size={15} />
@@ -79,27 +79,27 @@ const ContractorArchive = () => {
         </div>
 
         {loading ? (
-          <div style={{ textAlign: 'center', padding: '60px', color: '#9ca3af' }}>Загрузка...</div>
+          <div style={{ textAlign: 'center', padding: '60px', color: 'var(--color-text-placeholder)' }}>Загрузка...</div>
         ) : (
           <>
             {tab === 'contracts' && (
               contracts.length === 0 ? (
                 <EmptyState label="Архивных договоров нет" />
               ) : (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2-5)' }}>
                   {contracts.map((c) => (
-                    <Card key={c.id} style={{ padding: '16px 20px', border: '1px solid #e5e7eb' }}>
+                    <Card key={c.id} style={{ padding: 'var(--space-4) var(--space-5)', border: '1px solid var(--color-border)' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <div>
-                          <div style={{ fontWeight: 600, color: '#111827', marginBottom: '4px' }}>
+                          <div style={{ fontWeight: 'var(--font-weight-semibold)', color: 'var(--color-text-dark)', marginBottom: 'var(--space-1)' }}>
                             {c.title || `Договор #${c.id}`}
                           </div>
-                          <div style={{ fontSize: '0.8rem', color: '#9ca3af' }}>
+                          <div style={{ fontSize: '0.8rem', color: 'var(--color-text-placeholder)' }}>
                             {c.created_at ? new Date(c.created_at).toLocaleDateString('ru-RU') : '—'}
                           </div>
                         </div>
                         <span style={{
-                          padding: '4px 12px', borderRadius: '20px', fontSize: '0.75rem', fontWeight: 600,
+                          padding: 'var(--space-1) var(--space-3)', borderRadius: 'var(--radius-4xl)', fontSize: 'var(--font-size-xs)', fontWeight: 'var(--font-weight-semibold)',
                           background: `${statusColor(c.status)}18`, color: statusColor(c.status),
                         }}>
                           {getContractStatusText(c.status)}
@@ -115,20 +115,20 @@ const ContractorArchive = () => {
               bids.length === 0 ? (
                 <EmptyState label="Архивных заявок нет" />
               ) : (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2-5)' }}>
                   {bids.map((b) => (
-                    <Card key={b.id} style={{ padding: '16px 20px', border: '1px solid #e5e7eb' }}>
+                    <Card key={b.id} style={{ padding: 'var(--space-4) var(--space-5)', border: '1px solid var(--color-border)' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <div>
-                          <div style={{ fontWeight: 600, color: '#111827', marginBottom: '4px' }}>
+                          <div style={{ fontWeight: 'var(--font-weight-semibold)', color: 'var(--color-text-dark)', marginBottom: 'var(--space-1)' }}>
                             {b.tender_title || `Заявка #${b.id}`}
                           </div>
-                          <div style={{ fontSize: '0.8rem', color: '#9ca3af' }}>
+                          <div style={{ fontSize: '0.8rem', color: 'var(--color-text-placeholder)' }}>
                             {b.created_at ? new Date(b.created_at).toLocaleDateString('ru-RU') : '—'}
                           </div>
                         </div>
                         <span style={{
-                          padding: '4px 12px', borderRadius: '20px', fontSize: '0.75rem', fontWeight: 600,
+                          padding: 'var(--space-1) var(--space-3)', borderRadius: 'var(--radius-4xl)', fontSize: 'var(--font-size-xs)', fontWeight: 'var(--font-weight-semibold)',
                           background: `${statusColor(b.status)}18`, color: statusColor(b.status),
                         }}>
                           {b.status}
@@ -146,8 +146,8 @@ const ContractorArchive = () => {
 };
 
 const EmptyState = ({ label }) => (
-  <div style={{ textAlign: 'center', padding: '60px 24px', color: '#9ca3af' }}>
-    <Archive size={48} style={{ margin: '0 auto 12px', opacity: 0.4 }} />
+  <div style={{ textAlign: 'center', padding: '60px var(--space-6)', color: 'var(--color-text-placeholder)' }}>
+    <Archive size={48} style={{ margin: '0 auto var(--space-3)', opacity: 0.4 }} />
     <p>{label}</p>
   </div>
 );

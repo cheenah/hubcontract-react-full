@@ -8,18 +8,20 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Mail, ArrowLeft, CheckCircle } from 'lucide-react';
 import { toast } from 'sonner';
+import useRecaptcha from '@/hooks/useRecaptcha';
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
   const { API } = React.useContext(AppContext);
   const { t } = useLanguage();
+  const { getToken } = useRecaptcha();
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!email) {
       toast.error(t('auth.email'));
       return;
@@ -27,15 +29,20 @@ const ForgotPassword = () => {
 
     try {
       setLoading(true);
-      
-      await axios.post(`${API}/auth/forgot-password`, { email });
-      
+
+      const captcha_token = await getToken('forgot_password');
+      await axios.post(`${API}/auth/forgot-password`, { email, captcha_token });
+
       setEmailSent(true);
       toast.success(t('auth.emailSentMessage'));
-      
     } catch (error) {
-      const errorMsg = error.response?.data?.detail || t('auth.sending');
-      toast.error(typeof errorMsg === 'string' ? errorMsg : JSON.stringify(errorMsg));
+      const status = error.response?.status;
+      const detail = error.response?.data?.detail;
+      if (status === 403 && detail?.toLowerCase().includes('скоринг')) {
+        toast.error('Система защиты посчитала действие подозрительным. Попробуйте обновить страницу.', { duration: 6000 });
+      } else {
+        toast.error(typeof detail === 'string' ? detail : t('auth.sending'));
+      }
     } finally {
       setLoading(false);
     }
@@ -75,7 +82,7 @@ const ForgotPassword = () => {
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            //background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 20px;
           }
 
@@ -94,7 +101,7 @@ const ForgotPassword = () => {
           }
 
           .success-icon {
-            color: #10b981;
+            color: var(--color-success-alt);
             animation: scaleIn 0.5s ease-out;
           }
 
@@ -110,39 +117,39 @@ const ForgotPassword = () => {
           }
 
           .success-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1a1a1a;
+            font-size: var(--font-size-6xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text-dark);
             margin: 0;
           }
 
           .success-message {
-            font-size: 1rem;
-            color: #666;
+            font-size: var(--font-size-lg);
+            color: var(--color-text-muted);
             margin: 0;
           }
 
           .email-display {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #1e40af;
-            background: #f0f9ff;
-            padding: 12px 20px;
-            border-radius: 8px;
-            border: 1px solid #bfdbfe;
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-primary-dark);
+            background: var(--color-primary-bg);
+            padding: var(--space-3) var(--space-5);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-primary-border);
             word-break: break-all;
           }
 
           .success-info {
-            font-size: 0.95rem;
-            color: #666;
+            font-size: var(--font-size-base);
+            color: var(--color-text-muted);
             line-height: 1.6;
             margin: 0;
           }
 
           .success-hint {
-            font-size: 0.875rem;
-            color: #999;
+            font-size: var(--font-size-base);
+            color: var(--color-text-placeholder);
             margin: 0;
           }
 
@@ -190,6 +197,14 @@ const ForgotPassword = () => {
             {loading ? t('auth.sending') : t('auth.sendResetLink')}
           </Button>
 
+          <p style={{ textAlign: 'center', fontSize: 'var(--font-size-xxs)', color: 'var(--color-text-placeholder)', margin: '-8px 0 0' }}>
+            Защищено{' '}
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer"
+               style={{ color: 'var(--color-text-muted)', textDecoration: 'underline' }}>
+              reCAPTCHA v3
+            </a>
+          </p>
+
           <div className="back-link">
             <Link to="/" className="link-button">
               <ArrowLeft size={16} />
@@ -205,7 +220,7 @@ const ForgotPassword = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          //background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
           padding: 20px;
         }
 
@@ -221,20 +236,20 @@ const ForgotPassword = () => {
         }
 
         .header-icon {
-          color: #1e40af;
+          color: var(--color-primary-dark);
           margin-bottom: 16px;
         }
 
         .card-title {
-          font-size: 2rem;
-          font-weight: 700;
-          color: #1a1a1a;
+          font-size: var(--font-size-6xl);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-dark);
           margin: 0 0 12px 0;
         }
 
         .card-subtitle {
-          font-size: 0.95rem;
-          color: #666;
+          font-size: var(--font-size-base);
+          color: var(--color-text-muted);
           line-height: 1.5;
           margin: 0;
         }
@@ -252,9 +267,9 @@ const ForgotPassword = () => {
         }
 
         .form-label {
-          font-size: 0.95rem;
-          font-weight: 500;
-          color: #333;
+          font-size: var(--font-size-base);
+          font-weight: var(--font-weight-medium);
+          color: var(--color-text-secondary);
         }
 
         .submit-button {
@@ -271,16 +286,16 @@ const ForgotPassword = () => {
         .link-button {
           display: inline-flex;
           align-items: center;
-          gap: 8px;
-          color: #1e40af;
+          gap: var(--space-2);
+          color: var(--color-primary-dark);
           text-decoration: none;
-          font-size: 0.95rem;
-          font-weight: 500;
+          font-size: var(--font-size-base);
+          font-weight: var(--font-weight-medium);
           transition: all 0.2s;
         }
 
         .link-button:hover {
-          color: #1e3a8a;
+          color: var(--color-primary-dark);
           gap: 12px;
         }
 
@@ -290,7 +305,7 @@ const ForgotPassword = () => {
           }
 
           .card-title {
-            font-size: 1.75rem;
+            font-size: var(--font-size-4xl);
           }
         }
       `}</style>

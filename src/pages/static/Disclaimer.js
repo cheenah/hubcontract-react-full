@@ -165,56 +165,56 @@ const Disclaimer = () => {
           }
 
           .document-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1a202c;
-            margin-bottom: 8px;
+            font-size: var(--font-size-6xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text-dark2);
+            margin-bottom: var(--space-2);
           }
 
           .document-date {
-            font-size: 0.875rem;
-            color: #718096;
+            font-size: var(--font-size-base);
+            color: var(--color-text-muted2);
           }
 
           .document-section {
-            margin-bottom: 32px;
+            margin-bottom: var(--space-8);
           }
 
           .document-section h2 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #2d3748;
-            margin-bottom: 16px;
-            margin-top: 24px;
+            font-size: var(--font-size-3xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text-dark3);
+            margin-bottom: var(--space-4);
+            margin-top: var(--space-6);
           }
 
           .document-section p {
-            font-size: 0.9375rem;
-            color: #4a5568;
+            font-size: var(--font-size-lg);
+            color: var(--color-text-tertiary);
             line-height: 1.7;
-            margin-bottom: 12px;
+            margin-bottom: var(--space-3);
           }
 
           .document-section ul {
             list-style: disc;
-            padding-left: 24px;
-            margin-bottom: 12px;
+            padding-left: var(--space-6);
+            margin-bottom: var(--space-3);
           }
 
           .document-section li {
-            font-size: 0.9375rem;
-            color: #4a5568;
+            font-size: var(--font-size-lg);
+            color: var(--color-text-tertiary);
             line-height: 1.7;
-            margin-bottom: 8px;
+            margin-bottom: var(--space-2);
           }
 
           .document-section a {
-            color: #3182ce;
+            color: var(--color-primary);
             text-decoration: underline;
           }
 
           .document-section a:hover {
-            color: #2c5282;
+            color: var(--color-primary-dark);
           }
 
           .contact-info {

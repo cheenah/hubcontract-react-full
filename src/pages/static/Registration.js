@@ -66,7 +66,7 @@ const Registration = ({ setShowAuth }) => {
     };
 
     return (
-            <div className="min-h-[calc(100vh-200px)] flex items-center justify-center py-12 px-4 bg-[#fdfcfb]">
+            <div className="min-h-[calc(100vh-200px)] flex items-center justify-center py-12 px-4 bg-[var(--color-bg-warm)]">
                 <div className="container mx-auto max-w-[1100px] bg-white border border-gray-100 rounded-[2rem] shadow-sm overflow-hidden flex flex-col md:flex-row">
 
                     {/* ЛЕВАЯ ЧАСТЬ: ФОРМА */}
@@ -170,18 +170,13 @@ const Registration = ({ setShowAuth }) => {
                                 {loading ? t('auth.creatingAccount') : t('auth.createAccount')}
                             </Button>
 
-                            <p style={{
-                                textAlign: 'center',
-                                fontSize: '0.72rem',
-                                color: '#9ca3af',
-                                marginTop: 12,
-                            }}>
+                            <p className="text-center mt-3" style={{ fontSize: 'var(--font-size-xxs)', color: 'var(--color-text-placeholder)' }}>
                                 Эта форма защищена{' '}
                                 <a
                                     href="https://policies.google.com/privacy"
                                     target="_blank"
                                     rel="noreferrer"
-                                    style={{ color: '#6b7280', textDecoration: 'underline' }}
+                                    style={{ color: 'var(--color-text-muted)', textDecoration: 'underline' }}
                                 >
                                     reCAPTCHA v3
                                 </a>

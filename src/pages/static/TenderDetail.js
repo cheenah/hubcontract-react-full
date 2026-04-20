@@ -14,6 +14,41 @@ import {Label} from '@/components/ui/label';
 import {Calendar, MapPin, DollarSign, FileText, Banknote, Download} from 'lucide-react';
 import StaticLayout from "@/components/StaticLayout";
 
+const styles = `
+  .tender-detail-protocol-icon {
+    margin-right: var(--space-2);
+  }
+  .tender-detail-doc-span {
+    flex: 1;
+  }
+  .tender-detail-archive-card {
+    padding: var(--space-8);
+    text-align: center;
+    background: linear-gradient(135deg, var(--color-bg-muted) 0%, var(--color-border) 100%);
+    border: 1px solid var(--color-border-gray);
+  }
+  .tender-detail-archive-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  .tender-detail-archive-icon {
+    color: var(--color-text-placeholder);
+  }
+  .tender-detail-archive-title {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+  .tender-detail-archive-text {
+    color: var(--color-text-placeholder);
+    margin: 0;
+    font-size: var(--font-size-base);
+  }
+`;
+
 
 const TenderDetail = () => {
     const {id} = useParams();
@@ -85,14 +120,14 @@ const TenderDetail = () => {
     const linkStyle = {
         display: 'flex',
         alignItems: 'center',
-        gap: '10px',
-        padding: '10px 14px',
-        border: '0.5px solid var(--color-border-secondary)',
-        borderRadius: '8px',
+        gap: 'var(--space-2-5)',
+        padding: 'var(--space-2-5) var(--space-3-5)',
+        border: '0.5px solid var(--color-border)',
+        borderRadius: 'var(--radius-lg)',
         textDecoration: 'none',
-        color: 'var(--color-text-primary)',
-        background: 'var(--color-background-secondary)',
-        fontSize: '14px'
+        color: 'var(--color-text-dark)',
+        background: 'var(--color-bg-warm-secondary)',
+        fontSize: 'var(--font-size-base)'
     };
 
     const iconStyle = {
@@ -241,6 +276,7 @@ const TenderDetail = () => {
     if (!isAuth) {
         return (
             <StaticLayout>
+                <style>{styles}</style>
                 <div className="tender-detail-container" data-testid="tender-detail">
                     <div className="tender-header-section">
                         <div>
@@ -278,7 +314,7 @@ const TenderDetail = () => {
                                 className="neon-button-filled"
                                 data-testid="view-protocol-btn"
                             >
-                                <FileText size={16} style={{marginRight: '8px'}}/>
+                                <FileText size={16} className="tender-detail-protocol-icon"/>
                                 {t('tenderDetail.viewProtocol')}
                             </Button>
                         )}
@@ -350,7 +386,7 @@ const TenderDetail = () => {
                                             ].map((doc, idx) => (
                                                 <a key={idx} href={doc.url} download style={linkStyle}>
                                                     <FileText size={16} style={iconStyle}/><span
-                                                    style={{flex: 1}}>{doc.name}</span><Download size={15}
+                                                    className="tender-detail-doc-span">{doc.name}</span><Download size={15}
                                                                                                  style={iconStyle}/>
                                                 </a>
                                             ))}
@@ -372,7 +408,7 @@ const TenderDetail = () => {
                                             ].map((doc, idx) => (
                                                 <a key={idx} href={doc.url} download style={linkStyle}>
                                                     <FileText size={16} style={iconStyle}/><span
-                                                    style={{flex: 1}}>{doc.name}</span><Download size={15}
+                                                    className="tender-detail-doc-span">{doc.name}</span><Download size={15}
                                                                                                  style={iconStyle}/>
                                                 </a>
                                             ))}
@@ -396,7 +432,7 @@ const TenderDetail = () => {
                                                     style={linkStyle}
                                                 >
                                                     <FileText size={16} style={iconStyle}/>
-                                                    <span style={{flex: 1}}>{doc.name}</span>
+                                                    <span className="tender-detail-doc-span">{doc.name}</span>
                                                     <Download size={15} style={iconStyle}/>
                                                 </a>
                                             ))}
@@ -416,7 +452,7 @@ const TenderDetail = () => {
                                                 {tender.documents.map((doc, index) => (
                                                     <a key={index} href={doc.url} download style={linkStyle}>
                                                         <FileText size={16} style={iconStyle}/><span
-                                                        style={{flex: 1}}>{doc.name || `${t('tenderDetail.documentFallback')} ${index + 1}`}</span><Download
+                                                        className="tender-detail-doc-span">{doc.name || `${t('tenderDetail.documentFallback')} ${index + 1}`}</span><Download
                                                         size={15} style={iconStyle}/>
                                                     </a>
                                                 ))}
@@ -514,28 +550,13 @@ const TenderDetail = () => {
                         )}
 
                         {tender.status === 'archive' && (
-                            <Card className="neon-card" style={{
-                                padding: '32px',
-                                textAlign: 'center',
-                                background: 'linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%)',
-                                border: '1px solid #d1d5db'
-                            }}>
-                                <div style={{
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    alignItems: 'center',
-                                    gap: '12px'
-                                }}>
-                                    <FileText size={40} style={{color: '#9ca3af'}}/>
-                                    <h2 style={{
-                                        fontSize: '1.5rem',
-                                        fontWeight: '700',
-                                        color: '#6b7280',
-                                        margin: 0
-                                    }}>
+                            <Card className="neon-card tender-detail-archive-card">
+                                <div className="tender-detail-archive-inner">
+                                    <FileText size={40} className="tender-detail-archive-icon"/>
+                                    <h2 className="tender-detail-archive-title">
                                         {t('status.archive')}
                                     </h2>
-                                    <p style={{color: '#9ca3af', margin: 0, fontSize: '0.95rem'}}>
+                                    <p className="tender-detail-archive-text">
                                         Тендер завершён, договор с победителем заключён
                                     </p>
                                 </div>
@@ -548,6 +569,7 @@ const TenderDetail = () => {
     }
     return (
         <Layout>
+            <style>{styles}</style>
             <div className="tender-detail-container" data-testid="tender-detail">
                 <div className="tender-header-section">
                     <div>
@@ -585,7 +607,7 @@ const TenderDetail = () => {
                             className="neon-button-filled"
                             data-testid="view-protocol-btn"
                         >
-                            <FileText size={16} style={{marginRight: '8px'}}/>
+                            <FileText size={16} className="tender-detail-protocol-icon"/>
                             {t('tenderDetail.viewProtocol')}
                         </Button>
                     )}
@@ -650,7 +672,7 @@ const TenderDetail = () => {
                                         ].map((doc, idx) => (
                                             <a key={idx} href={doc.url} download style={linkStyle}>
                                                 <FileText size={16} style={iconStyle}/><span
-                                                style={{flex: 1}}>{doc.name}</span><Download size={15} style={iconStyle}/>
+                                                className="tender-detail-doc-span">{doc.name}</span><Download size={15} style={iconStyle}/>
                                             </a>
                                         ))}
                                     </div>
@@ -671,7 +693,7 @@ const TenderDetail = () => {
                                         ].map((doc, idx) => (
                                             <a key={idx} href={doc.url} download style={linkStyle}>
                                                 <FileText size={16} style={iconStyle}/><span
-                                                style={{flex: 1}}>{doc.name}</span><Download size={15}
+                                                className="tender-detail-doc-span">{doc.name}</span><Download size={15}
                                                                                              style={iconStyle}/>
                                             </a>
                                         ))}
@@ -694,7 +716,7 @@ const TenderDetail = () => {
                                                 style={{...linkStyle, cursor: 'pointer'}}
                                             >
                                                 <FileText size={16} style={iconStyle}/>
-                                                <span style={{flex: 1}}>{doc.name}</span>
+                                                <span className="tender-detail-doc-span">{doc.name}</span>
                                                 <Download size={15} style={iconStyle}/>
                                             </div>
                                         ))}
@@ -714,7 +736,7 @@ const TenderDetail = () => {
                                             {tender.documents.map((doc, index) => (
                                                 <a key={index} href={doc.url} download style={linkStyle}>
                                                     <FileText size={16} style={iconStyle}/><span
-                                                    style={{flex: 1}}>{doc.name || `${t('tenderDetail.documentFallback')} ${index + 1}`}</span><Download
+                                                    className="tender-detail-doc-span">{doc.name || `${t('tenderDetail.documentFallback')} ${index + 1}`}</span><Download
                                                     size={15} style={iconStyle}/>
                                                 </a>
                                             ))}
@@ -813,27 +835,27 @@ const TenderDetail = () => {
 
                     {tender.status === 'archive' && (
                         <Card className="neon-card" style={{
-                            padding: '32px',
+                            padding: 'var(--space-8)',
                             textAlign: 'center',
-                            background: 'linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%)',
-                            border: '1px solid #d1d5db'
+                            background: 'linear-gradient(135deg, var(--color-bg-muted) 0%, var(--color-border) 100%)',
+                            border: '1px solid var(--color-border-gray)'
                         }}>
                             <div style={{
                                 display: 'flex',
                                 flexDirection: 'column',
                                 alignItems: 'center',
-                                gap: '12px'
+                                gap: 'var(--space-3)'
                             }}>
-                                <FileText size={40} style={{color: '#9ca3af'}}/>
+                                <FileText size={40} style={{color: 'var(--color-text-placeholder)'}}/>
                                 <h2 style={{
-                                    fontSize: '1.5rem',
-                                    fontWeight: '700',
-                                    color: '#6b7280',
+                                    fontSize: 'var(--font-size-3xl)',
+                                    fontWeight: 'var(--font-weight-bold)',
+                                    color: 'var(--color-text-muted)',
                                     margin: 0
                                 }}>
                                     {t('status.archive')}
                                 </h2>
-                                <p style={{color: '#9ca3af', margin: 0, fontSize: '0.95rem'}}>
+                                <p style={{color: 'var(--color-text-placeholder)', margin: 0, fontSize: 'var(--font-size-lg)'}}>
                                     Тендер завершён, договор с победителем заключён
                                 </p>
                             </div>

@@ -176,29 +176,29 @@ const ContractorLayout = ({ children } = {}) => {
           display: flex;
           flex-direction: column;
           min-height: 100vh;
-          background: #f5f6fa;
+          background: var(--color-bg-warm);
           font-family: inherit;
         }
 
         /* ── HEADER ── */
         .cl-header {
           height: 60px;
-          background: #fff;
-          border-bottom: 1px solid #e5e7eb;
+          background: var(--color-bg-surface);
+          border-bottom: 1px solid var(--color-border);
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 0 20px;
+          padding: 0 var(--space-5);
           position: sticky;
           top: 0;
           z-index: 100;
-          box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+          box-shadow: var(--shadow-xs);
         }
 
         .cl-header-left {
           display: flex;
           align-items: center;
-          gap: 12px;
+          gap: var(--space-3);
         }
 
         .cl-hamburger {
@@ -206,30 +206,30 @@ const ContractorLayout = ({ children } = {}) => {
           background: none;
           border: none;
           cursor: pointer;
-          color: #374151;
-          padding: 4px;
-          border-radius: 6px;
+          color: var(--color-text-secondary);
+          padding: var(--space-1);
+          border-radius: var(--radius-md);
         }
-        .cl-hamburger:hover { background: #f3f4f6; }
+        .cl-hamburger:hover { background: var(--color-bg-muted); }
 
         .cl-logo {
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: var(--space-2);
           cursor: pointer;
         }
         .cl-logo-img { width: 28px; height: 28px; object-fit: contain; }
         .cl-logo-text {
-          font-size: 1.1rem;
-          font-weight: 700;
-          color: #1e40af;
+          font-size: var(--font-size-xl3);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-primary-dark);
           letter-spacing: -0.3px;
         }
 
         .cl-header-right {
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: var(--space-2);
         }
 
         /* Language button */
@@ -237,62 +237,62 @@ const ContractorLayout = ({ children } = {}) => {
           display: flex;
           align-items: center;
           gap: 5px;
-          background: #f3f4f6;
+          background: var(--color-bg-muted);
           border: none;
-          border-radius: 8px;
-          padding: 6px 10px;
-          font-size: 0.8rem;
-          font-weight: 600;
-          color: #374151;
+          border-radius: var(--radius-lg);
+          padding: var(--space-1-5) var(--space-2-5);
+          font-size: var(--font-size-sm);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-secondary);
           cursor: pointer;
-          transition: background 0.15s;
+          transition: background var(--transition-fast);
         }
-        .cl-lang-btn:hover { background: #e5e7eb; }
+        .cl-lang-btn:hover { background: var(--color-border); }
 
         /* Notifications */
         .cl-notif-btn {
           background: none;
           border: none;
           cursor: pointer;
-          color: #6b7280;
-          padding: 8px;
-          border-radius: 8px;
-          transition: background 0.15s, color 0.15s;
+          color: var(--color-text-muted);
+          padding: var(--space-2);
+          border-radius: var(--radius-lg);
+          transition: background var(--transition-fast), color var(--transition-fast);
         }
-        .cl-notif-btn:hover { background: #f3f4f6; color: #1e40af; }
+        .cl-notif-btn:hover { background: var(--color-bg-muted); color: var(--color-primary-dark); }
 
         /* ── PROFILE BUTTON (prominent) ── */
         .cl-profile-btn {
           display: flex;
           align-items: center;
-          gap: 10px;
-          background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+          gap: var(--space-2-5);
+          background: var(--color-primary-gradient);
           border: none;
-          border-radius: 12px;
+          border-radius: var(--radius-2xl);
           padding: 6px 14px 6px 6px;
           cursor: pointer;
-          color: #fff;
-          transition: box-shadow 0.2s, transform 0.15s;
-          box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
+          color: var(--color-text-inverse);
+          transition: box-shadow var(--transition-normal), transform var(--transition-fast);
+          box-shadow: var(--shadow-blue-md);
         }
         .cl-profile-btn:hover {
-          box-shadow: 0 4px 16px rgba(37, 99, 235, 0.45);
+          box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
           transform: translateY(-1px);
         }
         .cl-profile-btn--active {
-          box-shadow: 0 0 0 3px rgba(255,255,255,0.4), 0 4px 16px rgba(37,99,235,0.5);
+          box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4), 0 4px 16px rgba(37, 99, 235, 0.35);
         }
 
         .cl-profile-avatar {
           width: 30px;
           height: 30px;
-          background: rgba(255,255,255,0.25);
-          border-radius: 8px;
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: var(--radius-lg);
           display: flex;
           align-items: center;
           justify-content: center;
-          font-weight: 700;
-          font-size: 0.95rem;
+          font-weight: var(--font-weight-bold);
+          font-size: var(--font-size-base);
           flex-shrink: 0;
         }
 
@@ -300,18 +300,18 @@ const ContractorLayout = ({ children } = {}) => {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          line-height: 1.2;
+          line-height: var(--line-height-tight);
         }
         .cl-profile-name {
-          font-size: 0.82rem;
-          font-weight: 600;
+          font-size: var(--font-size-sm);
+          font-weight: var(--font-weight-semibold);
           white-space: nowrap;
           max-width: 130px;
           overflow: hidden;
           text-overflow: ellipsis;
         }
         .cl-profile-role {
-          font-size: 0.7rem;
+          font-size: var(--font-size-xxs);
           opacity: 0.8;
         }
 
@@ -327,8 +327,8 @@ const ContractorLayout = ({ children } = {}) => {
         .cl-sidebar {
           width: 220px;
           flex-shrink: 0;
-          background: #fff;
-          border-right: 1px solid #e5e7eb;
+          background: var(--color-bg-surface);
+          border-right: 1px solid var(--color-border);
           display: flex;
           flex-direction: column;
           justify-content: space-between;
@@ -341,43 +341,43 @@ const ContractorLayout = ({ children } = {}) => {
         .cl-nav {
           display: flex;
           flex-direction: column;
-          padding: 12px 8px;
+          padding: var(--space-3) var(--space-2);
           gap: 2px;
         }
 
         .cl-nav-item {
           display: flex;
           align-items: center;
-          gap: 10px;
+          gap: var(--space-2-5);
           background: none;
           border: none;
           width: 100%;
-          padding: 10px 12px;
-          border-radius: 10px;
+          padding: var(--space-2-5) var(--space-3);
+          border-radius: var(--radius-xl);
           cursor: pointer;
-          color: #4b5563;
-          font-size: 0.875rem;
-          font-weight: 500;
-          transition: background 0.15s, color 0.15s;
+          color: var(--color-text-tertiary);
+          font-size: var(--font-size-base);
+          font-weight: var(--font-weight-medium);
+          transition: background var(--transition-fast), color var(--transition-fast);
           position: relative;
           text-align: left;
         }
         .cl-nav-item:hover {
-          background: #eff6ff;
-          color: #1e40af;
+          background: var(--color-primary-bg);
+          color: var(--color-primary-dark);
         }
         .cl-nav-item--active {
-          background: #eff6ff;
-          color: #1e40af;
-          font-weight: 600;
+          background: var(--color-primary-bg);
+          color: var(--color-primary-dark);
+          font-weight: var(--font-weight-semibold);
         }
         .cl-nav-icon { flex-shrink: 0; }
         .cl-nav-label { flex: 1; }
         .cl-nav-indicator {
           width: 4px;
           height: 20px;
-          background: #2563eb;
-          border-radius: 2px;
+          background: var(--color-primary);
+          border-radius: var(--radius-sm);
           position: absolute;
           right: -8px;
           top: 50%;
@@ -385,42 +385,42 @@ const ContractorLayout = ({ children } = {}) => {
         }
 
         .cl-sidebar-footer {
-          padding: 12px 8px 16px;
-          border-top: 1px solid #f3f4f6;
+          padding: var(--space-3) var(--space-2) var(--space-4);
+          border-top: 1px solid var(--color-border-muted);
         }
 
         .cl-logout-btn {
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: var(--space-2);
           background: none;
           border: none;
           width: 100%;
-          padding: 10px 12px;
-          border-radius: 10px;
+          padding: var(--space-2-5) var(--space-3);
+          border-radius: var(--radius-xl);
           cursor: pointer;
-          color: #ef4444;
-          font-size: 0.875rem;
-          font-weight: 500;
-          transition: background 0.15s;
+          color: var(--color-danger);
+          font-size: var(--font-size-base);
+          font-weight: var(--font-weight-medium);
+          transition: background var(--transition-fast);
         }
-        .cl-logout-btn:hover { background: #fef2f2; }
+        .cl-logout-btn:hover { background: var(--color-danger-tint-05); }
 
         .cl-logout-header-btn {
           display: flex;
           align-items: center;
           justify-content: center;
           background: none;
-          border: 1px solid rgba(255,255,255,0.25);
-          border-radius: 9px;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-radius: var(--radius-md);
           padding: 7px 9px;
           cursor: pointer;
-          color: #ef4444;
-          transition: background 0.15s, border-color 0.15s;
+          color: var(--color-danger);
+          transition: background var(--transition-fast), border-color var(--transition-fast);
         }
         .cl-logout-header-btn:hover {
-          background: #fef2f2;
-          border-color: #fca5a5;
+          background: var(--color-danger-tint-05);
+          border-color: var(--color-danger-tint-20);
         }
 
         /* ── OVERLAY ── */
@@ -428,8 +428,8 @@ const ContractorLayout = ({ children } = {}) => {
           display: none;
           position: fixed;
           inset: 0;
-          background: rgba(0,0,0,0.35);
-          z-index: 90;
+          background: rgba(0, 0, 0, 0.15);
+          z-index: var(--z-overlay);
         }
 
         /* ── MAIN ── */
@@ -450,14 +450,14 @@ const ContractorLayout = ({ children } = {}) => {
             top: 60px;
             left: 0;
             height: calc(100vh - 60px);
-            z-index: 95;
+            z-index: 200;
             transform: translateX(-100%);
-            transition: transform 0.25s ease;
+            transition: transform var(--transition-slow) ease;
           }
           .cl-sidebar--open {
             transform: translateX(0);
           }
-          .cl-overlay { display: block; }
+          .cl-overlay { display: block; z-index: 150; }
 
           .cl-nav-indicator { display: none; }
         }

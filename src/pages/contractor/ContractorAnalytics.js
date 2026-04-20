@@ -32,40 +32,40 @@ const ContractorAnalytics = () => {
   const stats = data.stats;
 
   const cards = [
-    { label: 'Всего заявок',           value: stats.total_bids,                          icon: BarChart2,    color: '#3b82f6' },
-    { label: 'Выиграно',               value: stats.won_bids,                            icon: Award,        color: '#10b981' },
-    { label: 'Успешность',             value: `${stats.success_rate}%`,                  icon: TrendingUp,   color: '#a855f7' },
-    { label: 'Активных контрактов',    value: stats.active_contracts,                    icon: Clock,        color: '#f59e0b' },
-    { label: 'Выполнено контрактов',   value: stats.completed_contracts,                 icon: CheckCircle,  color: '#22c55e' },
-    { label: 'Общий доход',            value: `${(stats.total_earnings || 0).toLocaleString()} ₸`, icon: DollarSign, color: '#0ea5e9' },
+    { label: 'Всего заявок',           value: stats.total_bids,                          icon: BarChart2,    color: 'var(--color-primary-light)' },
+    { label: 'Выиграно',               value: stats.won_bids,                            icon: Award,        color: 'var(--color-success-alt)' },
+    { label: 'Успешность',             value: `${stats.success_rate}%`,                  icon: TrendingUp,   color: 'var(--color-primary)' },
+    { label: 'Активных контрактов',    value: stats.active_contracts,                    icon: Clock,        color: 'var(--color-warning)' },
+    { label: 'Выполнено контрактов',   value: stats.completed_contracts,                 icon: CheckCircle,  color: 'var(--color-success-mid)' },
+    { label: 'Общий доход',            value: `${(stats.total_earnings || 0).toLocaleString()} ₸`, icon: DollarSign, color: 'var(--color-secondary)' },
   ];
 
   return (
-      <div style={{ padding: '24px', maxWidth: '1100px', margin: '0 auto' }}>
-        <h1 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#111827', marginBottom: '6px' }}>
+      <div style={{ padding: 'var(--space-6)', maxWidth: '1100px', margin: '0 auto' }}>
+        <h1 style={{ fontSize: '1.5rem', fontWeight: 'var(--font-weight-bold)', color: 'var(--color-text-primary)', marginBottom: 'var(--space-1-5)' }}>
           Аналитика
         </h1>
-        <p style={{ color: '#6b7280', marginBottom: '24px', fontSize: '0.9rem' }}>
+        <p style={{ color: 'var(--color-text-muted)', marginBottom: 'var(--space-6)', fontSize: 'var(--font-size-base)' }}>
           Статистика вашей деятельности на платформе
         </p>
 
         {loading ? (
-          <div style={{ textAlign: 'center', padding: '60px', color: '#9ca3af' }}>Загрузка...</div>
+          <div style={{ textAlign: 'center', padding: '60px', color: 'var(--color-text-placeholder)' }}>Загрузка...</div>
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '16px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 'var(--space-4)' }}>
             {cards.map(({ label, value, icon: Icon, color }) => (
-              <Card key={label} style={{ padding: '20px', border: '1px solid #e5e7eb' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+              <Card key={label} style={{ padding: 'var(--space-5)', border: '1px solid var(--color-border)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3-5)' }}>
                   <div style={{
-                    width: 48, height: 48, borderRadius: 12,
+                    width: 48, height: 48, borderRadius: 'var(--radius-2xl)',
                     background: `${color}18`,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                   }}>
                     <Icon size={22} style={{ color }} />
                   </div>
                   <div>
-                    <div style={{ fontSize: '1.6rem', fontWeight: 700, color: '#111827' }}>{value}</div>
-                    <div style={{ fontSize: '0.8rem', color: '#6b7280', marginTop: '2px' }}>{label}</div>
+                    <div style={{ fontSize: '1.6rem', fontWeight: 'var(--font-weight-bold)', color: 'var(--color-text-primary)' }}>{value}</div>
+                    <div style={{ fontSize: '0.8rem', color: 'var(--color-text-muted)', marginTop: '2px' }}>{label}</div>
                   </div>
                 </div>
               </Card>

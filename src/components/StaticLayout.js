@@ -141,6 +141,10 @@ const StaticLayout = ({ children } = {}) => {
         resetAuthDialog();
         toast.success('Вход выполнен');
 
+        if (data.user?.onboarding_completed === false) {
+            navigate('/complete-registration');
+            return;
+        }
         const role = data.user?.role;
         if (role === 'admin') navigate('/admin');
         else if (role === 'contractor') navigate('/contractor/dashboard');
@@ -166,9 +170,9 @@ const StaticLayout = ({ children } = {}) => {
                 <div className="header-container">
                     <div className="logo-section"  onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
                         <img src="/logo.png" alt="HubContract" className="logo-image" />
-                        <span className="logo-text" style={{ color: '#000'}}>HubContract</span>
+                        <span className="logo-text">HubContract</span>
                     </div>
-                    <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                    <div className="sl-header-actions">
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <div
@@ -217,7 +221,7 @@ const StaticLayout = ({ children } = {}) => {
             </header>
 
             {!isHomePage && (
-                <header className="header-secondary bg-[#fdfcfb] border-b border-gray-100">
+                <header className="header-secondary bg-[var(--color-bg-warm)] border-b border-gray-100">
                     <div className="header-container-secondary mx-auto px-6 py-3 flex items-center justify-between">
                         <div className="breadcrumbs flex items-center gap-2 text-sm">
                             <div
@@ -272,19 +276,19 @@ const StaticLayout = ({ children } = {}) => {
                             <h3 className="footer-section-title">{t('common.contacts')}</h3>
                             <div className="contact-list">
                                 <div className="contact-item">
-                                    <Mail size={18} style={{ color: '#2563eb', flexShrink: 0, marginTop: '2px' }} />
-                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                                    <Mail size={18} className="contact-icon" />
+                                    <div className="contact-info">
                                         <div className="contact-label">Email</div>
-                                        <div style={{ color: '#1a202c', fontSize: '15px', fontWeight: 500 }}>
-                                            <a href="mailto:info@hubcontract.kz" style={{ color: 'inherit', textDecoration: 'none' }}>info@hubcontract.kz</a>
+                                        <div className="contact-value">
+                                            <a href="mailto:info@hubcontract.kz" className="contact-link">info@hubcontract.kz</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="contact-item">
-                                    <Location size={18} style={{ color: '#2563eb', flexShrink: 0, marginTop: '2px' }} />
-                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                                    <Location size={18} className="contact-icon" />
+                                    <div className="contact-info">
                                         <div className="contact-label">{t('common.address')}</div>
-                                        <div style={{ color: '#1a202c', fontSize: '15px', fontWeight: 500 }}>
+                                        <div className="contact-value">
                                             {t('common.astanaAddress')}
                                         </div>
                                     </div>
@@ -318,8 +322,8 @@ const StaticLayout = ({ children } = {}) => {
                     <DialogHeader>
                         <DialogTitle className="auth-title">
                             {otpStep ? (
-                                <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                                    <ShieldCheck size={20} style={{ color: '#2563eb' }} />
+                                <span className="sl-otp-title">
+                                    <ShieldCheck size={20} className="sl-otp-icon" />
                                     Подтверждение входа
                                 </span>
                             ) : t('auth.welcomeTitle')}
@@ -354,26 +358,17 @@ const StaticLayout = ({ children } = {}) => {
                                     />
                                 </div>
 
-                                <div style={{
-                                    display: 'flex',
-                                    justifyContent: 'space-between',
-                                    alignItems: 'center',
-                                    marginBottom: '20px',
-                                    fontSize: '0.875rem'
-                                }}>
+                                <div className="sl-auth-links">
                                     <span
                                         onClick={() => {
                                             setShowAuth(false);
                                             navigate('/registration');
                                         }}
-                                        style={{ color: '#1e40af', cursor: 'pointer', fontWeight: '500' }}
+                                        className="sl-auth-link"
                                     >
                                         {t('auth.register')}
                                     </span>
-                                    <a
-                                        href="/forgot-password"
-                                        style={{ color: '#1e40af', textDecoration: 'none', fontWeight: '500' }}
-                                    >
+                                    <a href="/forgot-password" className="sl-auth-link">
                                         {t('auth.forgotPassword')}
                                     </a>
                                 </div>
@@ -381,18 +376,13 @@ const StaticLayout = ({ children } = {}) => {
                                 <Button type="submit" className="btn-primary w-full" disabled={loading}>
                                     {loading ? t('auth.signingIn') : t('auth.signIn')}
                                 </Button>
-                                <p style={{
-                                    textAlign: 'center',
-                                    fontSize: '0.72rem',
-                                    color: '#9ca3af',
-                                    marginTop: 10,
-                                }}>
+                                <p className="sl-recaptcha-note">
                                     Этот вход защищён{' '}
                                     <a
                                         href="https://policies.google.com/privacy"
                                         target="_blank"
                                         rel="noreferrer"
-                                        style={{ color: '#6b7280', textDecoration: 'underline' }}
+                                        className="sl-recaptcha-link"
                                     >
                                         reCAPTCHA v3
                                     </a>
@@ -403,7 +393,7 @@ const StaticLayout = ({ children } = {}) => {
                         {/* ── ШАГ 2: OTP-код ── */}
                         {otpStep && (
                             <form onSubmit={handleVerifyOtp} className="auth-form">
-                                <p style={{ fontSize: '0.875rem', color: '#6b7280', marginBottom: 20 }}>
+                                <p className="sl-otp-hint">
                                     Мы отправили 6-значный код на <strong>{otpEmail}</strong>. Введите его ниже.
                                 </p>
                                 <div className="form-field">
@@ -429,16 +419,7 @@ const StaticLayout = ({ children } = {}) => {
                                 <button
                                     type="button"
                                     onClick={resetAuthDialog}
-                                    style={{
-                                        marginTop: 12,
-                                        background: 'none',
-                                        border: 'none',
-                                        color: '#6b7280',
-                                        fontSize: '0.8rem',
-                                        cursor: 'pointer',
-                                        textDecoration: 'underline',
-                                        width: '100%',
-                                    }}
+                                    className="sl-back-btn"
                                 >
                                     ← Вернуться
                                 </button>

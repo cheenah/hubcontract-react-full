@@ -30,6 +30,7 @@ import AboutPlatform from '@/pages/static/AboutPlatform';
 import ForgotPassword from '@/pages/static/ForgotPassword';
 import ResetPassword from '@/pages/static/ResetPassword';
 import VerifyEmailPage from '@/pages/static/VerifyEmailPage';
+import CompleteRegistration from '@/pages/CompleteRegistration';
 
 // Admin pages
 import AdminPanel from '@/pages/admin/AdminPanel';
@@ -121,6 +122,7 @@ function App() {
   }
 
   const roleHome =
+    user?.onboarding_completed === false ? '/complete-registration' :
     user?.role === 'admin' ? '/admin' :
     user?.role === 'contractor' ? '/contractor/dashboard' :
     user?.role === 'customer' ? '/customer/dashboard' : '/';
@@ -128,7 +130,7 @@ function App() {
   return (
     <GoogleReCaptchaProvider reCaptchaKey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}>
     <LanguageProvider>
-      <AppContext.Provider value={{ user, setUser, logout, API }}>
+      <AppContext.Provider value={{ user, setUser, logout, API, checkAuth }}>
         <div className="App">
           <BrowserRouter>
             <Routes>
@@ -153,10 +155,29 @@ function App() {
               <Route path="/my-tenders" element={<Navigate to="/customer/tenders" replace />} />
               <Route path="/create-tender" element={<Navigate to="/admin/create-tender" replace />} />
 
+              {/* Onboarding — only for authenticated users with onboarding_completed === false */}
+              <Route element={<PublicLayout />}>
+                <Route
+                  path="/complete-registration"
+                  element={
+                    !user ? <Navigate to="/" replace /> :
+                    user.onboarding_completed !== false ? <Navigate to={roleHome} replace /> :
+                    <CompleteRegistration />
+                  }
+                />
+              </Route>
+
               {/* Public routes — StaticLayout */}
               <Route element={<PublicLayout />}>
                 <Route path="/tenders" element={<TenderList />} />
-                <Route path="/registration" element={<Registration />} />
+                <Route
+                  path="/registration"
+                  element={
+                    user?.onboarding_completed === false
+                      ? <Navigate to="/complete-registration" replace />
+                      : <Registration />
+                  }
+                />
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="/offer" element={<Offer />} />
                 <Route path="/help" element={<HelpCenter />} />

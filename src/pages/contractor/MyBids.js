@@ -223,8 +223,7 @@ const MyBids = () => {
             <p>{t('myBids.noSubmitted')}</p>
             <Button
               onClick={() => navigate('/tenders')}
-              className="neon-button-filled"
-              style={{ marginTop: '16px' }}
+              className="neon-button-filled mb-bid-actions"
             >
               {t('myBids.browseTenders')}
             </Button>
@@ -308,52 +307,52 @@ const MyBids = () => {
                     </div>
                   </div>
 
-                  <div className="bid-actions" style={{ marginTop: '16px', display: 'flex', gap: '8px', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                  <div className="bid-actions mb-bid-row">
+                    <div className="mb-bid-row-left">
                       {canEditBid(bid, tender) && (
                         <>
                           <button 
                             onClick={(e) => { e.stopPropagation(); handleEditBid(bid); }} 
                             title="Редактировать"
                             style={{
-                              padding: '6px',
+                              padding: 'var(--space-1-5)',
                               background: 'transparent',
                               border: 'none',
                               cursor: 'pointer',
-                              color: '#6b7280',
-                              borderRadius: '4px',
-                              transition: 'all 0.2s'
+                              color: 'var(--color-text-muted)',
+                              borderRadius: 'var(--radius-sm)',
+                              transition: 'all var(--transition-normal)'
                             }}
                             onMouseEnter={(e) => {
-                              e.currentTarget.style.background = '#f3f4f6';
-                              e.currentTarget.style.color = '#1f2937';
+                              e.currentTarget.style.background = 'var(--color-bg-muted)';
+                              e.currentTarget.style.color = 'var(--color-text-dark2)';
                             }}
                             onMouseLeave={(e) => {
                               e.currentTarget.style.background = 'transparent';
-                              e.currentTarget.style.color = '#6b7280';
+                              e.currentTarget.style.color = 'var(--color-text-muted)';
                             }}
                           >
                             <Edit size={18} />
                           </button>
-                          <button 
-                            onClick={(e) => { e.stopPropagation(); handleWithdrawBid(bid.id); }} 
+                          <button
+                            onClick={(e) => { e.stopPropagation(); handleWithdrawBid(bid.id); }}
                             title="Отозвать заявку"
                             style={{
-                              padding: '6px',
+                              padding: 'var(--space-1-5)',
                               background: 'transparent',
                               border: 'none',
                               cursor: 'pointer',
-                              color: '#6b7280',
-                              borderRadius: '4px',
-                              transition: 'all 0.2s'
+                              color: 'var(--color-text-muted)',
+                              borderRadius: 'var(--radius-sm)',
+                              transition: 'all var(--transition-normal)'
                             }}
                             onMouseEnter={(e) => {
-                              e.currentTarget.style.background = '#fee2e2';
-                              e.currentTarget.style.color = '#ef4444';
+                              e.currentTarget.style.background = 'var(--color-danger-tint-10)';
+                              e.currentTarget.style.color = 'var(--color-danger)';
                             }}
                             onMouseLeave={(e) => {
                               e.currentTarget.style.background = 'transparent';
-                              e.currentTarget.style.color = '#6b7280';
+                              e.currentTarget.style.color = 'var(--color-text-muted)';
                             }}
                           >
                             <ArrowLeft size={18} />
@@ -366,21 +365,21 @@ const MyBids = () => {
                           onClick={(e) => { e.stopPropagation(); handleDeleteBid(bid.id); }} 
                           title="Удалить заявку полностью"
                           style={{
-                            padding: '6px',
+                            padding: 'var(--space-1-5)',
                             background: 'transparent',
                             border: 'none',
                             cursor: 'pointer',
-                            color: '#6b7280',
-                            borderRadius: '4px',
-                            transition: 'all 0.2s'
+                            color: 'var(--color-text-muted)',
+                            borderRadius: 'var(--radius-sm)',
+                            transition: 'all var(--transition-normal)'
                           }}
                           onMouseEnter={(e) => {
-                            e.currentTarget.style.background = '#fef2f2';
-                            e.currentTarget.style.color = '#dc2626';
+                            e.currentTarget.style.background = 'var(--color-danger-tint-05)';
+                            e.currentTarget.style.color = 'var(--color-danger-alt)';
                           }}
                           onMouseLeave={(e) => {
                             e.currentTarget.style.background = 'transparent';
-                            e.currentTarget.style.color = '#6b7280';
+                            e.currentTarget.style.color = 'var(--color-text-muted)';
                           }}
                         >
                           <Trash2 size={18} />
@@ -389,15 +388,14 @@ const MyBids = () => {
                     </div>
                     
                     {bid.status === 'withdrawn' && (
-                      <span style={{ padding: '4px 12px', background: '#fef2f2', border: '1px solid #ef4444', borderRadius: '12px', color: '#ef4444', fontSize: '0.75rem', fontWeight: '500' }}>
+                      <span className="mb-cancel-tag">
                         Заявка отозвана
                       </span>
                     )}
                     
                     <Button 
-                      className="neon-button-filled" 
+                      className="neon-button-filled mb-ml-auto"
                       size="sm"
-                      style={{ marginLeft: 'auto' }}
                     >
                       {t('myBids.viewTender')}
                     </Button>
@@ -414,12 +412,12 @@ const MyBids = () => {
 
       {/* Edit Bid Dialog */}
       <Dialog open={showEditDialog} onOpenChange={setShowEditDialog}>
-        <DialogContent style={{ maxWidth: '600px' }}>
+        <DialogContent className="mb-dialog">
           <DialogHeader>
             <DialogTitle>Редактировать заявку</DialogTitle>
           </DialogHeader>
           
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '16px', maxHeight: '500px', overflowY: 'auto', paddingRight: '8px' }}>
+          <div className="mb-dialog-body">
             <div>
               <Label>Цена предложения (₸) *</Label>
               <Input
@@ -461,19 +459,12 @@ const MyBids = () => {
             </div>
             
             {editingBid && editingBid.status === 'withdrawn' && (
-              <div style={{ 
-                padding: '12px', 
-                background: '#fef3c7', 
-                border: '1px solid #fbbf24', 
-                borderRadius: '6px',
-                fontSize: '0.875rem',
-                color: '#92400e'
-              }}>
+              <div className="mb-withdrawn-notice">
                 <strong>Внимание:</strong> Эта заявка была отозвана. После сохранения изменений она будет повторно подана на рассмотрение.
               </div>
             )}
             
-            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px', marginTop: '8px' }}>
+            <div className="mb-dialog-footer">
               <Button variant="outline" onClick={() => setShowEditDialog(false)}>
                 Отмена
               </Button>
@@ -503,15 +494,15 @@ const MyBids = () => {
         }
 
         .page-title {
-          font-size: 2.5rem;
-          font-weight: 700;
-          color: #1a1a1a;
-          margin-bottom: 8px;
+          font-size: var(--font-size-7xl);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-2);
         }
 
         .page-subtitle {
-          font-size: 1.1rem;
-          color: #666;
+          font-size: var(--font-size-lg);
+          color: var(--color-text-muted);
         }
 
         .empty-state {
@@ -521,13 +512,13 @@ const MyBids = () => {
           justify-content: center;
           padding: 60px 24px;
           text-align: center;
-          color: #1a1a1a;
-          border: 1px solid #e0e0e0;
+          color: var(--color-text-dark);
+          border: 1px solid var(--color-border);
         }
 
         .empty-icon {
-          color: #666;
-          margin-bottom: 16px;
+          color: var(--color-text-muted);
+          margin-bottom: var(--space-4);
         }
 
         .bids-list {
@@ -538,14 +529,14 @@ const MyBids = () => {
 
         .bid-card {
           cursor: pointer;
-          padding: 24px;
-          transition: all 0.3s ease;
-          border: 1px solid #e0e0e0;
+          padding: var(--space-6);
+          transition: all var(--transition-slow) ease;
+          border: 1px solid var(--color-border);
         }
 
         .bid-card:hover {
           transform: translateY(-4px);
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+          box-shadow: var(--shadow-card-hover);
         }
 
         .bid-header {
@@ -557,15 +548,15 @@ const MyBids = () => {
         }
 
         .tender-title {
-          font-size: 1.5rem;
-          font-weight: 600;
-          color: #1a1a1a;
-          margin-bottom: 6px;
+          font-size: var(--font-size-3xl);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
+          margin-bottom: var(--space-1-5);
         }
 
         .tender-meta {
-          font-size: 0.9rem;
-          color: #666;
+          font-size: var(--font-size-base);
+          color: var(--color-text-muted);
           text-transform: capitalize;
         }
 
@@ -578,53 +569,53 @@ const MyBids = () => {
         .bid-info-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-          gap: 16px;
-          padding: 16px;
-          background: #f8f9fa;
-          border-radius: 8px;
+          gap: var(--space-4);
+          padding: var(--space-4);
+          background: var(--color-bg-subtle);
+          border-radius: var(--radius-lg);
         }
 
         .info-item {
           display: flex;
           flex-direction: column;
-          gap: 4px;
+          gap: var(--space-1);
         }
 
         .info-label {
-          font-size: 0.85rem;
-          color: #666;
+          font-size: var(--font-size-base);
+          color: var(--color-text-muted);
         }
 
         .info-value {
-          font-size: 1.1rem;
-          font-weight: 600;
-          color: #1a1a1a;
+          font-size: var(--font-size-lg);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark);
         }
 
         .info-value.bid-price {
-          font-size: 1.3rem;
-          color: #2563eb;
+          font-size: var(--font-size-xl3);
+          color: var(--color-primary);
         }
 
         .info-value.score {
-          color: #16a34a;
+          color: var(--color-success-mid);
         }
 
         .proposal-section {
-          padding: 16px;
-          background: #f0f9ff;
-          border-radius: 8px;
+          padding: var(--space-4);
+          background: var(--color-primary-bg);
+          border-radius: var(--radius-lg);
         }
 
         .proposal-label {
-          font-size: 0.9rem;
-          color: #666;
-          margin-bottom: 8px;
+          font-size: var(--font-size-base);
+          color: var(--color-text-muted);
+          margin-bottom: var(--space-2);
         }
 
         .proposal-text {
-          color: #1a1a1a;
-          line-height: 1.6;
+          color: var(--color-text-dark);
+          line-height: var(--line-height-relaxed);
           word-wrap: break-word;
           white-space: pre-wrap;
           overflow-wrap: break-word;
@@ -633,34 +624,97 @@ const MyBids = () => {
 
         /* Tabs styling */
         :global(.my-bids-container [role="tablist"]) {
-          background: white;
-          border: 1px solid #e0e0e0;
-          border-radius: 8px;
-          padding: 4px;
+          background: var(--color-bg-surface);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-lg);
+          padding: var(--space-1);
         }
 
         :global(.my-bids-container [role="tab"]) {
-          font-weight: 500;
-          color: #666;
-          padding: 12px 20px;
-          border-radius: 6px;
-          transition: all 0.2s;
+          font-weight: var(--font-weight-medium);
+          color: var(--color-text-muted);
+          padding: var(--space-3) var(--space-5);
+          border-radius: var(--radius-md);
+          transition: all var(--transition-normal);
         }
 
         :global(.my-bids-container [role="tab"]:hover) {
-          background: #f5f5f5;
-          color: #1a1a1a;
+          background: var(--color-bg-muted);
+          color: var(--color-text-dark);
         }
 
         :global(.my-bids-container [role="tab"][data-state="active"]) {
-          background: #1e40af;
-          color: white;
-          font-weight: 600;
+          background: var(--color-primary-dark);
+          color: var(--color-text-inverse);
+          font-weight: var(--font-weight-semibold);
+        }
+
+        /* Utility classes extracted from inline styles */
+        .mb-bid-actions {
+          margin-top: var(--space-4);
+        }
+
+        .mb-bid-row {
+          margin-top: var(--space-4);
+          display: flex;
+          gap: var(--space-2);
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .mb-bid-row-left {
+          display: flex;
+          gap: var(--space-2);
+          align-items: center;
+        }
+
+        .mb-cancel-tag {
+          padding: var(--space-1) var(--space-3);
+          background: var(--color-danger-tint-05);
+          border: 1px solid var(--color-danger);
+          border-radius: var(--radius-4xl);
+          color: var(--color-danger);
+          font-size: var(--font-size-xs);
+          font-weight: var(--font-weight-medium);
+        }
+
+        .mb-ml-auto {
+          margin-left: auto;
+        }
+
+        :global(.mb-dialog) {
+          max-width: 600px;
+        }
+
+        .mb-dialog-body {
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-4);
+          margin-top: var(--space-4);
+          max-height: 500px;
+          overflow-y: auto;
+          padding-right: var(--space-2);
+        }
+
+        .mb-withdrawn-notice {
+          padding: var(--space-3);
+          background: var(--color-bg-muted);
+          border: 1px solid var(--color-warning);
+          border-radius: var(--radius-md);
+          font-size: var(--font-size-base);
+          color: var(--color-text-secondary);
+        }
+
+        .mb-dialog-footer {
+          display: flex;
+          justify-content: flex-end;
+          gap: var(--space-2);
+          margin-top: var(--space-2);
         }
 
         @media (max-width: 768px) {
           .page-title {
-            font-size: 2rem;
+            font-size: var(--font-size-6xl);
           }
 
           .bid-info-grid {
@@ -673,8 +727,8 @@ const MyBids = () => {
           }
 
           :global(.my-bids-container [role="tab"]) {
-            font-size: 0.875rem;
-            padding: 10px 12px;
+            font-size: var(--font-size-base);
+            padding: var(--space-2-5) var(--space-3);
           }
         }
       `}</style>

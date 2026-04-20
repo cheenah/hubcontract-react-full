@@ -5,7 +5,27 @@
       "Bash(mv \"T2_TZ_Pro_v4 \\(1\\).pdf\" \"T2_TZ_Pro_v4.pdf\")",
       "Bash(mv \"T4_Committee_v4 \\(1\\).pdf\" \"T4_Committee_v4.pdf\")",
       "Bash(mv \"ТЕНДЕРНАЯ ПРЕЗЕНТАЦИЯ — ПРОЕКТ «Q-30» \\(v3\\).pdf\" \"ТЕНДЕРНАЯ_ПРЕЗЕНТАЦИЯ_Q-30_v3.pdf\")",
-      "Bash(ls *)"
+      "Bash(ls *)",
+      "Bash(python3 -)",
+      "Bash(where python *)",
+      "Bash(where node *)",
+      "Bash(node -e ' *)",
+      "Bash(npm run *)",
+      "Bash(grep -v \"\\\\.js$\")",
+      "Bash(node move-pages.js)",
+      "Bash(rm move-pages.js)",
+      "Bash(npm install *)",
+      "Bash(npm ls *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(grep -oP \"\\(get|post|put|patch|delete\\)\\\\\\(['\\\\`][^'\\\\`\\)]*\")",
+      "Bash(grep -rh \":\\\\s*['\\\\\"]?\\\\\\(#[0-9a-fA-F]{3,6}\\\\|rgb\\\\|rgba\\\\|hsl\\\\|hsla\\\\|[0-9.]*px\\\\|[0-9.]*rem\\\\|[0-9.]*em\\\\\\)['\\\\\"]?\" --include=\"*.css\" --include=\"*.js\" --include=\"*.jsx\")",
+      "Bash(grep -oE \"\\(#[0-9a-fA-F]{3,6}|rgba?\\\\\\([^\\)]+\\\\\\)|hsl[a]?\\\\\\([^\\)]+\\\\\\)\\)\")",
+      "Bash(sed -n '275,282p' C:/Users/User/PycharmProjects/hubcontract-react-full/src/pages/admin/CreateTenderNew.js)",
+      "Bash(sed -n '539,546p' C:/Users/User/PycharmProjects/hubcontract-react-full/src/pages/admin/CreateTenderNew.js)",
+      "Bash(grep -v \"dynamic\\\\|runtime\\\\|color.*\\\\${\")",
+      "Bash(wc *)",
+      "Bash(grep -v \"^$\")"
     ]
   }
 }

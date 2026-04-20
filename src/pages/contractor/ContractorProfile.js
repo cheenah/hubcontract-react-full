@@ -34,12 +34,12 @@ const ContractorProfile = () => {
   /* ── verification status ── */
   const getStatus = () => {
     if (user?.documents_verified)
-      return { text: 'Верифицирован', color: '#10b981', icon: CheckCircle };
+      return { text: 'Верифицирован', color: 'var(--color-success-alt)', icon: CheckCircle };
     if (user?.verification_status === 'pending')
-      return { text: 'На проверке', color: '#f59e0b', icon: Clock };
+      return { text: 'На проверке', color: 'var(--color-warning)', icon: Clock };
     if (user?.verification_status === 'rejected')
-      return { text: 'Отклонено', color: '#ef4444', icon: AlertCircle };
-    return { text: 'Не верифицирован', color: '#9ca3af', icon: Shield };
+      return { text: 'Отклонено', color: 'var(--color-danger)', icon: AlertCircle };
+    return { text: 'Не верифицирован', color: 'var(--color-text-placeholder)', icon: Shield };
   };
   const status = getStatus();
   const StatusIcon = status.icon;
@@ -81,7 +81,7 @@ const ContractorProfile = () => {
         {/* ── Page title ── */}
         <div className="cp-title-row">
           <h1 className="cp-title">Профиль</h1>
-          <div className="cp-status-badge" style={{ borderColor: status.color, color: status.color }}>
+          <div className="cp-status-badge" style={{ '--badge-color': status.color, borderColor: 'var(--badge-color)', color: 'var(--badge-color)' }}>
             <StatusIcon size={15} />
             <span>{status.text}</span>
           </div>
@@ -217,7 +217,7 @@ const ContractorProfile = () => {
                     <Input type="password" placeholder="••••••••" disabled />
                   </Field>
                 </div>
-                <div className="cp-notice cp-notice--info" style={{ marginTop: 16 }}>
+                <div className="cp-notice cp-notice--info cp-notice--mt">
                   Смена пароля доступна через страницу восстановления.
                 </div>
               </Card>
@@ -227,7 +227,7 @@ const ContractorProfile = () => {
             {section === 'notices' && (
               <Card className="cp-card">
                 <h2 className="cp-section-title">Уведомления</h2>
-                <p className="cp-section-sub" style={{ marginBottom: 20 }}>
+                <p className="cp-section-sub cp-section-sub--mb">
                   Настройте какие уведомления вы хотите получать.
                 </p>
                 {[
@@ -239,7 +239,7 @@ const ContractorProfile = () => {
                 ].map((label) => (
                   <label key={label} className="cp-toggle-row">
                     <span>{label}</span>
-                    <input type="checkbox" defaultChecked style={{ accentColor: '#2563eb', width: 18, height: 18, cursor: 'pointer' }} />
+                    <input type="checkbox" defaultChecked className="cp-checkbox" />
                   </label>
                 ))}
               </Card>
@@ -252,38 +252,38 @@ const ContractorProfile = () => {
         .cp-page {
           max-width: 1100px;
           margin: 0 auto;
-          padding: 28px 24px;
+          padding: var(--space-7) var(--space-6);
         }
 
         .cp-title-row {
           display: flex;
           align-items: center;
-          gap: 16px;
-          margin-bottom: 24px;
+          gap: var(--space-4);
+          margin-bottom: var(--space-6);
         }
 
         .cp-title {
           font-size: 1.6rem;
-          font-weight: 700;
-          color: #111827;
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-primary);
           margin: 0;
         }
 
         .cp-status-badge {
           display: flex;
           align-items: center;
-          gap: 6px;
+          gap: var(--space-1-5);
           padding: 5px 14px;
           border: 2px solid;
-          border-radius: 20px;
-          font-size: 0.8rem;
-          font-weight: 600;
+          border-radius: var(--radius-4xl);
+          font-size: var(--font-size-sm);
+          font-weight: var(--font-weight-semibold);
         }
 
         /* layout */
         .cp-layout {
           display: flex;
-          gap: 20px;
+          gap: var(--space-5);
           align-items: flex-start;
         }
 
@@ -291,8 +291,8 @@ const ContractorProfile = () => {
         .cp-sidebar {
           width: 230px;
           flex-shrink: 0;
-          background: #fff;
-          border: 1px solid #e5e7eb;
+          background: var(--color-bg-surface);
+          border: 1px solid var(--color-border);
           border-radius: 14px;
           overflow: hidden;
           position: sticky;
@@ -300,43 +300,43 @@ const ContractorProfile = () => {
         }
 
         .cp-avatar-block {
-          padding: 24px 20px 20px;
+          padding: var(--space-6) var(--space-5) var(--space-5);
           text-align: center;
-          border-bottom: 1px solid #f3f4f6;
+          border-bottom: 1px solid var(--color-border-muted);
         }
 
         .cp-avatar-circle {
           width: 64px;
           height: 64px;
-          border-radius: 50%;
-          background: linear-gradient(135deg, #1e40af, #2563eb);
-          color: #fff;
+          border-radius: var(--radius-circle);
+          background: var(--color-primary-gradient);
+          color: var(--color-text-inverse);
           font-size: 1.6rem;
-          font-weight: 700;
+          font-weight: var(--font-weight-bold);
           display: flex;
           align-items: center;
           justify-content: center;
-          margin: 0 auto 12px;
-          box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+          margin: 0 auto var(--space-3);
+          box-shadow: 0 4px 14px var(--color-primary-tint-35);
         }
 
         .cp-avatar-name {
           font-size: 0.92rem;
-          font-weight: 600;
-          color: #111827;
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-primary);
           margin-bottom: 2px;
         }
 
         .cp-avatar-email {
-          font-size: 0.75rem;
-          color: #9ca3af;
+          font-size: var(--font-size-xs);
+          color: var(--color-text-placeholder);
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
         }
 
         .cp-nav {
-          padding: 10px 8px 12px;
+          padding: var(--space-2-5) var(--space-2) var(--space-3);
           display: flex;
           flex-direction: column;
           gap: 2px;
@@ -345,96 +345,105 @@ const ContractorProfile = () => {
         .cp-nav-item {
           display: flex;
           align-items: center;
-          gap: 10px;
-          padding: 10px 12px;
+          gap: var(--space-2-5);
+          padding: var(--space-2-5) var(--space-3);
           border: none;
           background: none;
-          border-radius: 10px;
+          border-radius: var(--radius-xl);
           cursor: pointer;
-          font-size: 0.875rem;
-          font-weight: 500;
-          color: #4b5563;
+          font-size: var(--font-size-base);
+          font-weight: var(--font-weight-medium);
+          color: var(--color-text-tertiary);
           width: 100%;
           text-align: left;
-          transition: background 0.15s, color 0.15s;
+          transition: background var(--transition-fast), color var(--transition-fast);
         }
-        .cp-nav-item:hover { background: #eff6ff; color: #1e40af; }
-        .cp-nav-item--active { background: #eff6ff; color: #1e40af; font-weight: 600; }
+        .cp-nav-item:hover { background: var(--color-primary-bg); color: var(--color-primary-dark); }
+        .cp-nav-item--active { background: var(--color-primary-bg); color: var(--color-primary-dark); font-weight: var(--font-weight-semibold); }
 
         /* content */
         .cp-content { flex: 1; min-width: 0; }
 
         .cp-card {
-          padding: 28px 28px 24px;
-          border: 1px solid #e5e7eb;
+          padding: var(--space-7) var(--space-7) var(--space-6);
+          border: 1px solid var(--color-border);
           border-radius: 14px;
         }
 
         .cp-section-title {
           font-size: 1.15rem;
-          font-weight: 700;
-          color: #111827;
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-primary);
           margin: 0 0 18px;
         }
 
         .cp-section-sub {
-          font-size: 0.875rem;
-          color: #6b7280;
-          margin: -10px 0 16px;
+          font-size: var(--font-size-base);
+          color: var(--color-text-muted);
+          margin: -10px 0 var(--space-4);
         }
+        .cp-section-sub--mb { margin-bottom: var(--space-5); }
 
         .cp-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 16px;
+          gap: var(--space-4);
         }
 
-        .cp-field { display: flex; flex-direction: column; gap: 6px; }
+        .cp-field { display: flex; flex-direction: column; gap: var(--space-1-5); }
         .cp-field--wide { grid-column: 1 / -1; }
-        .cp-field label { font-size: 0.8rem; font-weight: 600; color: #374151; }
+        .cp-field label { font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); color: var(--color-text-secondary); }
 
         /* documents */
-        .cp-doc-list { display: flex; flex-direction: column; gap: 12px; }
+        .cp-doc-list { display: flex; flex-direction: column; gap: var(--space-3); }
 
         .cp-doc-item {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          gap: 16px;
-          padding: 14px 16px;
-          border: 1px solid #e5e7eb;
-          border-radius: 10px;
-          background: #fafafa;
+          gap: var(--space-4);
+          padding: 14px var(--space-4);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-xl);
+          background: var(--color-bg-subtle);
         }
 
-        .cp-doc-label { font-size: 0.9rem; font-weight: 600; color: #111827; margin-bottom: 2px; }
-        .cp-doc-desc  { font-size: 0.78rem; color: #9ca3af; }
-        .cp-doc-ok    { font-size: 0.78rem; color: #10b981; margin-top: 4px; }
+        .cp-doc-label { font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); color: var(--color-text-primary); margin-bottom: 2px; }
+        .cp-doc-desc  { font-size: 0.78rem; color: var(--color-text-placeholder); }
+        .cp-doc-ok    { font-size: 0.78rem; color: var(--color-success-alt); margin-top: var(--space-1); }
 
         /* notices */
         .cp-notice {
-          padding: 12px 16px;
-          border-radius: 8px;
-          font-size: 0.875rem;
-          margin-top: 16px;
-          line-height: 1.5;
+          padding: var(--space-3) var(--space-4);
+          border-radius: var(--radius-lg);
+          font-size: var(--font-size-base);
+          margin-top: var(--space-4);
+          line-height: var(--line-height-normal);
         }
-        .cp-notice--warn  { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
-        .cp-notice--error { background: #fef2f2; border: 1px solid #fca5a5; color: #991b1b; }
-        .cp-notice--info  { background: #eff6ff; border: 1px solid #93c5fd; color: #1e40af; }
+        .cp-notice--mt    { margin-top: var(--space-4); }
+        .cp-notice--warn  { background: var(--color-warning-bg); border: 1px solid #fcd34d; color: #92400e; }
+        .cp-notice--error { background: var(--color-danger-bg); border: 1px solid #fca5a5; color: var(--color-danger-darker); }
+        .cp-notice--info  { background: var(--color-primary-bg); border: 1px solid #93c5fd; color: var(--color-primary-dark); }
 
         /* toggle rows */
         .cp-toggle-row {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 12px 0;
-          border-bottom: 1px solid #f3f4f6;
-          font-size: 0.875rem;
-          color: #374151;
+          padding: var(--space-3) 0;
+          border-bottom: 1px solid var(--color-border-muted);
+          font-size: var(--font-size-base);
+          color: var(--color-text-secondary);
           cursor: pointer;
         }
         .cp-toggle-row:last-child { border-bottom: none; }
+
+        .cp-checkbox {
+          accent-color: var(--color-primary);
+          width: 18px;
+          height: 18px;
+          cursor: pointer;
+        }
 
         @media (max-width: 768px) {
           .cp-layout { flex-direction: column; }
