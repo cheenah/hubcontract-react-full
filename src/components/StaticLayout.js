@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
     Mail,
     Phone,
@@ -25,6 +25,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import useRecaptcha from '@/hooks/useRecaptcha';
 import ResendOtpButton from '@/components/ResendOtpButton';
+import { AppContext } from '@/App';
 
 const API = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
 
@@ -53,6 +54,7 @@ const StaticLayout = ({ children } = {}) => {
     const location = useLocation();
     const { t, language, changeLanguage, languages } = useLanguage();
     const { getToken } = useRecaptcha();
+    const { setUser } = useContext(AppContext);
 
     // Auth dialog state
     const [showAuth, setShowAuth] = useState(false);
@@ -133,6 +135,8 @@ const StaticLayout = ({ children } = {}) => {
 
     const finishLogin = (data) => {
         localStorage.setItem('token', data.token);
+        // Sync AppContext immediately so ProtectedRoute doesn't redirect back to "/"
+        if (data.user) setUser(data.user);
         setShowAuth(false);
         resetAuthDialog();
         toast.success(t('auth.loginSuccess'));

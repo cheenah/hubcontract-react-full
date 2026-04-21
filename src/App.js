@@ -188,29 +188,33 @@ function App() {
               {/* Customer routes */}
               <Route element={<ProtectedRoute allowedRole="customer" />}>
                 <Route element={<CustomerLayout />}>
+                  {/* Always accessible — verification status visible here */}
                   <Route path="/customer/dashboard" element={<Dashboard />} />
-                  <Route path="/customer/tenders" element={<VerificationGuard><MyTenders /></VerificationGuard>} />
-                  <Route path="/customer/supplier-bids" element={<SupplierBids />} />
-                  <Route path="/customer/contracts" element={<VerificationGuard><Contracts /></VerificationGuard>} />
-                  <Route path="/customer/contracts/:id" element={<ContractDetail />} />
                   <Route path="/customer/profile" element={<Profile />} />
                   <Route path="/customer/support" element={<Support />} />
                   <Route path="/customer/privacy-policy" element={<PrivacyPolicy />} />
                   <Route path="/customer/terms-of-use" element={<TermsOfUse />} />
                   <Route path="/customer/disclaimer" element={<Disclaimer />} />
+                  {/* Blocked until verified */}
+                  <Route path="/customer/tenders" element={<VerificationGuard><MyTenders /></VerificationGuard>} />
+                  <Route path="/customer/supplier-bids" element={<VerificationGuard><SupplierBids /></VerificationGuard>} />
+                  <Route path="/customer/contracts" element={<VerificationGuard><Contracts /></VerificationGuard>} />
+                  <Route path="/customer/contracts/:id" element={<VerificationGuard><ContractDetail /></VerificationGuard>} />
                 </Route>
               </Route>
 
               {/* Contractor routes */}
               <Route element={<ProtectedRoute allowedRole="contractor" />}>
                 <Route element={<ContractorLayout />}>
+                  {/* Always accessible */}
                   <Route path="/contractor/dashboard" element={<ContractorDashboard />} />
-                  <Route path="/contractor/bids" element={<VerificationGuard><MyBids /></VerificationGuard>} />
-                  <Route path="/contractor/contracts" element={<VerificationGuard><ContractorContracts /></VerificationGuard>} />
-                  <Route path="/contractor/analytics" element={<ContractorAnalytics />} />
-                  <Route path="/contractor/archive" element={<ContractorArchive />} />
                   <Route path="/contractor/profile" element={<ContractorProfile />} />
                   <Route path="/contractor/support" element={<Support />} />
+                  {/* Blocked until verified */}
+                  <Route path="/contractor/bids" element={<VerificationGuard><MyBids /></VerificationGuard>} />
+                  <Route path="/contractor/contracts" element={<VerificationGuard><ContractorContracts /></VerificationGuard>} />
+                  <Route path="/contractor/analytics" element={<VerificationGuard><ContractorAnalytics /></VerificationGuard>} />
+                  <Route path="/contractor/archive" element={<VerificationGuard><ContractorArchive /></VerificationGuard>} />
                   <Route path="/tenders/:tenderId/submit-bid" element={<VerificationGuard><SubmitBid /></VerificationGuard>} />
                 </Route>
               </Route>
@@ -218,14 +222,15 @@ function App() {
               {/* Shared authenticated routes — CustomerLayout for visual consistency */}
               <Route element={<ProtectedRoute />}>
                 <Route element={<CustomerLayout />}>
-                  <Route path="/protocol/:tenderId" element={<ProtocolView />} />
                   <Route path="/profile" element={<Profile />} />
                   <Route path="/support" element={<Support />} />
-                  <Route path="/contracts" element={<VerificationGuard><Contracts /></VerificationGuard>} />
-                  <Route path="/contracts/:id" element={<ContractDetail />} />
                   <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                   <Route path="/terms-of-use" element={<TermsOfUse />} />
                   <Route path="/disclaimer" element={<Disclaimer />} />
+                  {/* Blocked until verified */}
+                  <Route path="/protocol/:tenderId" element={<VerificationGuard><ProtocolView /></VerificationGuard>} />
+                  <Route path="/contracts" element={<VerificationGuard><Contracts /></VerificationGuard>} />
+                  <Route path="/contracts/:id" element={<VerificationGuard><ContractDetail /></VerificationGuard>} />
                 </Route>
               </Route>
 

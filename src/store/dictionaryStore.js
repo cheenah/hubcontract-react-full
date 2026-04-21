@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { BASE_URL } from '@/services/api';
-
+import apiClient from '@/services/api';
 const DICT_TYPES = [
   'company_type',
   'procurement_category',
