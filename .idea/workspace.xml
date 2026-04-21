@@ -4,52 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="baac46ef-bf41-4f73-b09d-490929e58f4a" name="Changes" comment="Дофигища изменений и рефакторинг стилей">
-      <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Layout.backup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout.backup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/StaticLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StaticLayout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/alert-dialog.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/alert-dialog.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/dialog.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/dialog.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/CompleteRegistration.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/CompleteRegistration.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/admin/AdminContracts.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/admin/AdminTenders.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/admin/AdminUsers.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/contractor/ContractorAnalytics.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/contractor/ContractorAnalytics.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/contractor/ContractorArchive.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/contractor/ContractorArchive.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/contractor/ContractorContracts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/contractor/ContractorContracts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/contractor/ContractorFinances.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/contractor/ContractorGuarantees.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/contractor/ContractorQualifications.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/contractor/ContractorTenderView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/contractor/ContractorTenderView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/contractor/MyBids.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/contractor/MyBids.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/customer/Analytics.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/customer/BankAccounts.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/customer/OrganizationEmployees.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/customer/OrganizationProfile.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/customer/ProcurementPlans.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/customer/Reports.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/customer/SupplierSearch.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/shared/Communications.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/shared/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/shared/Profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/shared/Settings.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/static/AboutPlatform.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/static/AboutPlatform.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/static/ForgotPassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/static/ForgotPassword.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/static/HelpCenter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/static/HelpCenter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/static/LandingPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/static/LandingPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/static/Offer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/static/Offer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/static/Privacy.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/static/Privacy.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/static/Registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/static/Registration.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/static/ResetPassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/static/ResetPassword.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/static/TenderDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/static/TenderDetail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/static/TenderList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/static/TenderList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/translations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/translations.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+    <list default="true" id="baac46ef-bf41-4f73-b09d-490929e58f4a" name="Changes" comment="temp-save a lot of changes">
+      <change beforePath="$PROJECT_DIR$/src/services/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/api.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +137,7 @@
       <workItem from="1776619091729" duration="5872000" />
       <workItem from="1776667016464" duration="11981000" />
       <workItem from="1776693037247" duration="9488000" />
-      <workItem from="1776749548132" duration="13594000" />
+      <workItem from="1776749548132" duration="18239000" />
     </task>
     <task id="LOCAL-00001" summary="Node.js modules versions [Fix]">
       <option name="closed" value="true" />
@@ -279,7 +235,23 @@
       <option name="project" value="LOCAL" />
       <updated>1776692575489</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="temp-save a lot of changes">
+      <option name="closed" value="true" />
+      <created>1776768506850</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1776768506850</updated>
+    </task>
+    <task id="LOCAL-00014" summary="temp-save a lot of changes">
+      <option name="closed" value="true" />
+      <created>1776768513092</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1776768513092</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -329,7 +301,8 @@
     <MESSAGE value="New build" />
     <MESSAGE value="TMP save" />
     <MESSAGE value="Дофигища изменений и рефакторинг стилей" />
-    <option name="LAST_COMMIT_MESSAGE" value="Дофигища изменений и рефакторинг стилей" />
+    <MESSAGE value="temp-save a lot of changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="temp-save a lot of changes" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
