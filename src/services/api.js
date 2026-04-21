@@ -15,7 +15,8 @@
 
 import axios from 'axios';
 
-export const BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
+export const BASE_URL = 'https://test-api.hubcontract.kz/api';
+    // process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Interceptor factories (shared logic, applied to both instances)
