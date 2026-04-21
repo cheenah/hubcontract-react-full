@@ -15,7 +15,7 @@
 
 import axios from 'axios';
 
-export const BASE_URL = 'http://localhost:8001/api';
+export const BASE_URL = 'https://test-api.hubcontract.kz/api';
     // process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
 
 // ─────────────────────────────────────────────────────────────────────────────
