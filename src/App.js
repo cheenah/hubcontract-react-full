@@ -6,6 +6,7 @@ import { toast } from 'sonner';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import apiClient, { BASE_URL } from '@/services/api';
+import useDictionaryStore from '@/store/dictionaryStore';
 
 // Layouts
 import AdminLayout from '@/layouts/AdminLayout';
@@ -34,32 +35,19 @@ import CompleteRegistration from '@/pages/CompleteRegistration';
 
 // Admin pages
 import AdminPanel from '@/pages/admin/AdminPanel';
-import AdminTenders from '@/pages/admin/AdminTenders';
-import AdminContracts from '@/pages/admin/AdminContracts';
-import AdminUsers from '@/pages/admin/AdminUsers';
 import CreateTender from '@/pages/admin/CreateTenderNew';
 
 // Customer pages
 import Dashboard from '@/pages/customer/Dashboard';
 import MyTenders from '@/pages/customer/MyTenders';
-import OrganizationProfile from '@/pages/customer/OrganizationProfile';
-import ProcurementPlans from '@/pages/customer/ProcurementPlans';
 import SupplierBids from '@/pages/customer/SupplierBids';
-import SupplierSearch from '@/pages/customer/SupplierSearch';
 import Contracts from '@/pages/customer/Contracts';
 import ContractDetail from '@/pages/customer/ContractDetail';
-import Analytics from '@/pages/customer/Analytics';
-import BankAccounts from '@/pages/customer/BankAccounts';
-import OrganizationEmployees from '@/pages/customer/OrganizationEmployees';
-import Reports from '@/pages/customer/Reports';
 
 // Contractor pages
 import ContractorDashboard from '@/pages/contractor/ContractorDashboard';
 import MyBids from '@/pages/contractor/MyBids';
 import ContractorContracts from '@/pages/contractor/ContractorContracts';
-import ContractorGuarantees from '@/pages/contractor/ContractorGuarantees';
-import ContractorQualifications from '@/pages/contractor/ContractorQualifications';
-import ContractorFinances from '@/pages/contractor/ContractorFinances';
 import ContractorAnalytics from '@/pages/contractor/ContractorAnalytics';
 import ContractorArchive from '@/pages/contractor/ContractorArchive';
 import ContractorProfile from '@/pages/contractor/ContractorProfile';
@@ -67,8 +55,7 @@ import SubmitBid from '@/pages/contractor/SubmitBid';
 
 // Shared authenticated pages
 import Profile from '@/pages/shared/Profile';
-import Communications from '@/pages/shared/Communications';
-import Settings from '@/pages/shared/Settings';
+import VerificationGuard from '@/components/VerificationGuard';
 import Support from '@/pages/shared/Support';
 import PrivacyPolicy from '@/pages/static/PrivacyPolicy';
 import TermsOfUse from '@/pages/static/TermsOfUse';
@@ -81,9 +68,11 @@ export const AppContext = React.createContext();
 function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const fetchInitial = useDictionaryStore((s) => s.fetchInitial);
 
   useEffect(() => {
     checkAuth();
+    fetchInitial();
 
     // Triggered by apiClient's 401 interceptor when the JWT expires mid-session
     const handleForcedLogout = () => {
@@ -144,14 +133,7 @@ function App() {
               {/* Legacy URL redirects */}
               <Route path="/dashboard" element={<Navigate to={user ? roleHome : '/'} replace />} />
               <Route path="/my-bids" element={<Navigate to="/contractor/bids" replace />} />
-              <Route path="/organization" element={<Navigate to="/customer/organization" replace />} />
-              <Route path="/procurement-plans" element={<Navigate to="/customer/procurement-plans" replace />} />
-              <Route path="/supplier-bids" element={<Navigate to="/customer/supplier-bids" replace />} />
-              <Route path="/supplier-search" element={<Navigate to="/customer/supplier-search" replace />} />
-              <Route path="/analytics" element={<Navigate to="/customer/analytics" replace />} />
-              <Route path="/bank-accounts" element={<Navigate to="/customer/bank-accounts" replace />} />
-              <Route path="/employees" element={<Navigate to="/customer/employees" replace />} />
-              <Route path="/reports" element={<Navigate to="/customer/reports" replace />} />
+              <Route path="/organization" element={<Navigate to="/customer/profile" replace />} />
               <Route path="/my-tenders" element={<Navigate to="/customer/tenders" replace />} />
               <Route path="/create-tender" element={<Navigate to="/admin/create-tender" replace />} />
 
@@ -167,9 +149,11 @@ function App() {
                 />
               </Route>
 
+              {/* Tenders list — self-contained layout */}
+              <Route path="/tenders" element={<TenderList />} />
+
               {/* Public routes — StaticLayout */}
               <Route element={<PublicLayout />}>
-                <Route path="/tenders" element={<TenderList />} />
                 <Route
                   path="/registration"
                   element={
@@ -197,10 +181,7 @@ function App() {
               <Route element={<ProtectedRoute allowedRole="admin" />}>
                 <Route element={<AdminLayout />}>
                   <Route path="/admin" element={<AdminPanel />} />
-                  <Route path="/admin/tenders" element={<AdminTenders />} />
-                  <Route path="/admin/contracts" element={<AdminContracts />} />
-                  <Route path="/admin/users" element={<AdminUsers />} />
-                  <Route path="/admin/create-tender" element={<CreateTender />} />
+                  <Route path="/admin/create-tender" element={<VerificationGuard><CreateTender /></VerificationGuard>} />
                 </Route>
               </Route>
 
@@ -208,20 +189,11 @@ function App() {
               <Route element={<ProtectedRoute allowedRole="customer" />}>
                 <Route element={<CustomerLayout />}>
                   <Route path="/customer/dashboard" element={<Dashboard />} />
-                  <Route path="/customer/tenders" element={<MyTenders />} />
-                  <Route path="/customer/organization" element={<OrganizationProfile />} />
-                  <Route path="/customer/procurement-plans" element={<ProcurementPlans />} />
+                  <Route path="/customer/tenders" element={<VerificationGuard><MyTenders /></VerificationGuard>} />
                   <Route path="/customer/supplier-bids" element={<SupplierBids />} />
-                  <Route path="/customer/supplier-search" element={<SupplierSearch />} />
-                  <Route path="/customer/contracts" element={<Contracts />} />
+                  <Route path="/customer/contracts" element={<VerificationGuard><Contracts /></VerificationGuard>} />
                   <Route path="/customer/contracts/:id" element={<ContractDetail />} />
-                  <Route path="/customer/analytics" element={<Analytics />} />
-                  <Route path="/customer/bank-accounts" element={<BankAccounts />} />
-                  <Route path="/customer/employees" element={<OrganizationEmployees />} />
-                  <Route path="/customer/reports" element={<Reports />} />
                   <Route path="/customer/profile" element={<Profile />} />
-                  <Route path="/customer/communications" element={<Communications />} />
-                  <Route path="/customer/settings" element={<Settings />} />
                   <Route path="/customer/support" element={<Support />} />
                   <Route path="/customer/privacy-policy" element={<PrivacyPolicy />} />
                   <Route path="/customer/terms-of-use" element={<TermsOfUse />} />
@@ -233,18 +205,13 @@ function App() {
               <Route element={<ProtectedRoute allowedRole="contractor" />}>
                 <Route element={<ContractorLayout />}>
                   <Route path="/contractor/dashboard" element={<ContractorDashboard />} />
-                  <Route path="/contractor/bids" element={<MyBids />} />
-                  <Route path="/contractor/contracts" element={<ContractorContracts />} />
-                  <Route path="/contractor/guarantees" element={<ContractorGuarantees />} />
-                  <Route path="/contractor/qualifications" element={<ContractorQualifications />} />
-                  <Route path="/contractor/finances" element={<ContractorFinances />} />
+                  <Route path="/contractor/bids" element={<VerificationGuard><MyBids /></VerificationGuard>} />
+                  <Route path="/contractor/contracts" element={<VerificationGuard><ContractorContracts /></VerificationGuard>} />
                   <Route path="/contractor/analytics" element={<ContractorAnalytics />} />
                   <Route path="/contractor/archive" element={<ContractorArchive />} />
                   <Route path="/contractor/profile" element={<ContractorProfile />} />
-                  <Route path="/contractor/communications" element={<Communications />} />
-                  <Route path="/contractor/settings" element={<Settings />} />
                   <Route path="/contractor/support" element={<Support />} />
-                  <Route path="/tenders/:tenderId/submit-bid" element={<SubmitBid />} />
+                  <Route path="/tenders/:tenderId/submit-bid" element={<VerificationGuard><SubmitBid /></VerificationGuard>} />
                 </Route>
               </Route>
 
@@ -253,10 +220,8 @@ function App() {
                 <Route element={<CustomerLayout />}>
                   <Route path="/protocol/:tenderId" element={<ProtocolView />} />
                   <Route path="/profile" element={<Profile />} />
-                  <Route path="/communications" element={<Communications />} />
-                  <Route path="/settings" element={<Settings />} />
                   <Route path="/support" element={<Support />} />
-                  <Route path="/contracts" element={<Contracts />} />
+                  <Route path="/contracts" element={<VerificationGuard><Contracts /></VerificationGuard>} />
                   <Route path="/contracts/:id" element={<ContractDetail />} />
                   <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                   <Route path="/terms-of-use" element={<TermsOfUse />} />

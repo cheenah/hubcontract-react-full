@@ -496,7 +496,6 @@ const LandingPage = () => {
             {/* Auth Dialog */}
 
 
-
         </StaticLayout>
     );
 };

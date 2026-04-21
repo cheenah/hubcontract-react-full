@@ -101,19 +101,19 @@ const ContractorTenderView = () => {
 
   const getStatusBadge = (status) => {
     const statusMap = {
-      'draft': { label: 'Черновик', color: 'bg-gray-100 text-gray-800' },
-      'published': { label: 'Опубликован', color: 'bg-blue-100 text-blue-800' },
-      'published_receiving_proposals': { label: 'Прием заявок', color: 'bg-green-100 text-green-800' },
-      'active': { label: 'Активный', color: 'bg-green-100 text-green-800' },
-      'under_review': { label: 'На рассмотрении', color: 'bg-yellow-100 text-yellow-800' },
-      'closed': { label: 'Завершен', color: 'bg-gray-100 text-gray-800' },
-      'cancelled': { label: 'Отменен', color: 'bg-red-100 text-red-800' },
-      'failed': { label: 'Не состоялся', color: 'bg-red-100 text-red-800' }
+      'draft': { label: 'Черновик', bg: 'var(--color-bg-muted)', color: 'var(--color-text-muted)' },
+      'published': { label: 'Опубликован', bg: 'var(--color-primary-bg)', color: 'var(--color-primary-dark)' },
+      'published_receiving_proposals': { label: 'Прием заявок', bg: 'var(--color-success-bg)', color: 'var(--color-success-mid)' },
+      'active': { label: 'Активный', bg: 'var(--color-success-bg)', color: 'var(--color-success-mid)' },
+      'under_review': { label: 'На рассмотрении', bg: 'var(--color-bg-muted)', color: 'var(--color-warning)' },
+      'closed': { label: 'Завершен', bg: 'var(--color-bg-muted)', color: 'var(--color-text-muted)' },
+      'cancelled': { label: 'Отменен', bg: 'var(--color-danger-tint-10)', color: 'var(--color-danger)' },
+      'failed': { label: 'Не состоялся', bg: 'var(--color-danger-tint-10)', color: 'var(--color-danger)' }
     };
-    
-    const statusInfo = statusMap[status] || { label: status, color: 'bg-gray-100 text-gray-800' };
+
+    const statusInfo = statusMap[status] || { label: status, bg: 'var(--color-bg-muted)', color: 'var(--color-text-muted)' };
     return (
-      <span className={`px-3 py-1 rounded-full text-sm font-medium ${statusInfo.color}`}>
+      <span style={{padding:'var(--space-1) var(--space-3)',borderRadius:'var(--radius-pill)',fontSize:'var(--font-size-sm)',fontWeight:'var(--font-weight-medium)',background:statusInfo.bg,color:statusInfo.color}}>
         {statusInfo.label}
       </span>
     );
@@ -151,8 +151,8 @@ const ContractorTenderView = () => {
           {/* Заголовок с кнопкой */}
           <div className="flex justify-between items-center mb-6">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">{tender.title}</h1>
-              <p className="text-sm text-gray-600 mt-1">Номер тендера: {tender.tender_number}</p>
+              <h1 style={{fontSize:'var(--font-size-3xl)',fontWeight:'var(--font-weight-bold)',color:'var(--color-text-primary)'}}>{tender.title}</h1>
+              <p style={{fontSize:'var(--font-size-sm)',color:'var(--color-text-tertiary)',marginTop:'var(--space-1)'}}>Номер тендера: {tender.tender_number}</p>
             </div>
             
             {user && user.role === 'contractor' && (
@@ -161,7 +161,7 @@ const ContractorTenderView = () => {
                   <Button
                     size="lg"
                     onClick={() => navigate('/contractor/bids')}
-                    className="bg-blue-600 hover:bg-blue-700 text-white"
+                    style={{background:'var(--color-primary)',color:'var(--color-text-inverse)'}}
                   >
                     Моя заявка
                   </Button>
@@ -169,7 +169,7 @@ const ContractorTenderView = () => {
                   <Button
                     size="lg"
                     onClick={() => navigate(`/tenders/${tender.id}/submit-bid`)}
-                    className="bg-green-600 hover:bg-green-700 text-white"
+                    style={{background:'var(--color-success-alt)',color:'var(--color-text-inverse)'}}
                   >
                     Подать заявку
                   </Button>
@@ -177,7 +177,7 @@ const ContractorTenderView = () => {
                   <Button
                     size="lg"
                     disabled
-                    className="bg-gray-400 text-white cursor-not-allowed"
+                    style={{background:'var(--color-text-placeholder)',color:'var(--color-text-inverse)',cursor:'not-allowed'}}
                   >
                     {tender.status === 'closed' ? 'Тендер завершен' : 'Прием заявок завершен'}
                   </Button>
@@ -193,29 +193,29 @@ const ContractorTenderView = () => {
                 {/* Левая колонка */}
                 <div className="space-y-4">
                   <div>
-                    <label className="text-xs text-gray-500 block mb-1">Номер объявления</label>
-                    <div className="p-2.5 bg-gray-50 rounded border border-gray-200 text-sm">
+                    <label className="text-xs block mb-1" style={{color:'var(--color-text-muted)'}}>Номер объявления</label>
+                    <div style={{padding:'var(--space-2-5)',background:'var(--color-bg-subtle)',borderRadius:'var(--radius-md)',border:'1px solid var(--color-border)',fontSize:'var(--font-size-sm)'}}>
                       {tender.tender_number || 'Не указан'}
                     </div>
                   </div>
                   
                   <div>
-                    <label className="text-xs text-gray-500 block mb-1">Наименование объявления</label>
-                    <div className="p-2.5 bg-gray-50 rounded border border-gray-200 text-sm">
+                    <label className="text-xs block mb-1" style={{color:'var(--color-text-muted)'}}>Наименование объявления</label>
+                    <div style={{padding:'var(--space-2-5)',background:'var(--color-bg-subtle)',borderRadius:'var(--radius-md)',border:'1px solid var(--color-border)',fontSize:'var(--font-size-sm)'}}>
                       {tender.title}
                     </div>
                   </div>
                   
                   <div>
-                    <label className="text-xs text-gray-500 block mb-1">Статус объявления</label>
-                    <div className="p-2.5 bg-gray-50 rounded border border-gray-200 text-sm">
+                    <label className="text-xs block mb-1" style={{color:'var(--color-text-muted)'}}>Статус объявления</label>
+                    <div style={{padding:'var(--space-2-5)',background:'var(--color-bg-subtle)',borderRadius:'var(--radius-md)',border:'1px solid var(--color-border)',fontSize:'var(--font-size-sm)'}}>
                       {getStatusBadge(tender.status)}
                     </div>
                   </div>
                   
                   <div>
-                    <label className="text-xs text-gray-500 block mb-1">Дата публикации объявления</label>
-                    <div className="p-2.5 bg-gray-50 rounded border border-gray-200 text-sm">
+                    <label className="text-xs block mb-1" style={{color:'var(--color-text-muted)'}}>Дата публикации объявления</label>
+                    <div style={{padding:'var(--space-2-5)',background:'var(--color-bg-subtle)',borderRadius:'var(--radius-md)',border:'1px solid var(--color-border)',fontSize:'var(--font-size-sm)'}}>
                       {formatDate(tender.publication_date)}
                     </div>
                   </div>
@@ -224,29 +224,29 @@ const ContractorTenderView = () => {
                 {/* Правая колонка */}
                 <div className="space-y-4">
                   <div>
-                    <label className="text-xs text-gray-500 block mb-1">Срок начала обсуждения</label>
-                    <div className="p-2.5 bg-gray-50 rounded border border-gray-200 text-sm">
+                    <label className="text-xs block mb-1" style={{color:'var(--color-text-muted)'}}>Срок начала обсуждения</label>
+                    <div style={{padding:'var(--space-2-5)',background:'var(--color-bg-subtle)',borderRadius:'var(--radius-md)',border:'1px solid var(--color-border)',fontSize:'var(--font-size-sm)'}}>
                       {formatDate(tender.publication_date)}
                     </div>
                   </div>
                   
                   <div>
-                    <label className="text-xs text-gray-500 block mb-1">Срок окончания обсуждения</label>
-                    <div className="p-2.5 bg-gray-50 rounded border border-gray-200 text-sm">
+                    <label className="text-xs block mb-1" style={{color:'var(--color-text-muted)'}}>Срок окончания обсуждения</label>
+                    <div style={{padding:'var(--space-2-5)',background:'var(--color-bg-subtle)',borderRadius:'var(--radius-md)',border:'1px solid var(--color-border)',fontSize:'var(--font-size-sm)'}}>
                       {formatDate(tender.submission_start)}
                     </div>
                   </div>
                   
                   <div>
-                    <label className="text-xs text-gray-500 block mb-1">Предварительный срок начала приема заявок</label>
-                    <div className="p-2.5 bg-gray-50 rounded border border-gray-200 text-sm">
+                    <label className="text-xs block mb-1" style={{color:'var(--color-text-muted)'}}>Предварительный срок начала приема заявок</label>
+                    <div style={{padding:'var(--space-2-5)',background:'var(--color-bg-subtle)',borderRadius:'var(--radius-md)',border:'1px solid var(--color-border)',fontSize:'var(--font-size-sm)'}}>
                       {formatDate(tender.submission_start)}
                     </div>
                   </div>
                   
                   <div>
-                    <label className="text-xs text-gray-500 block mb-1">Предварительный срок окончания приема заявок</label>
-                    <div className="p-2.5 bg-gray-50 rounded border border-gray-200 text-sm">
+                    <label className="text-xs block mb-1" style={{color:'var(--color-text-muted)'}}>Предварительный срок окончания приема заявок</label>
+                    <div style={{padding:'var(--space-2-5)',background:'var(--color-bg-subtle)',borderRadius:'var(--radius-md)',border:'1px solid var(--color-border)',fontSize:'var(--font-size-sm)'}}>
                       {formatDate(tender.submission_end)}
                     </div>
                   </div>
@@ -258,34 +258,34 @@ const ContractorTenderView = () => {
 
         {/* Tabs */}
         <Tabs defaultValue="general" className="w-full">
-          <TabsList className="w-full justify-start mb-6 bg-white border-b border-gray-300 rounded-none h-auto p-0">
+          <TabsList className="w-full justify-start mb-6 rounded-none h-auto p-0" style={{background:'var(--color-bg-surface)',borderBottom:'1px solid var(--color-border-gray)'}}>
             <TabsTrigger 
               value="general" 
-              className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:bg-blue-50 px-6 py-3 text-sm font-medium"
+              className="rounded-none border-b-2 border-transparent data-[state=active]:border-[var(--color-primary)] data-[state=active]:bg-[var(--color-primary-bg)] px-6 py-3 text-sm font-medium"
             >
               Общие сведения
             </TabsTrigger>
             <TabsTrigger 
               value="lots"
-              className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:bg-blue-50 px-6 py-3 text-sm font-medium"
+              className="rounded-none border-b-2 border-transparent data-[state=active]:border-[var(--color-primary)] data-[state=active]:bg-[var(--color-primary-bg)] px-6 py-3 text-sm font-medium"
             >
               Лоты
             </TabsTrigger>
             <TabsTrigger 
               value="documents"
-              className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:bg-blue-50 px-6 py-3 text-sm font-medium"
+              className="rounded-none border-b-2 border-transparent data-[state=active]:border-[var(--color-primary)] data-[state=active]:bg-[var(--color-primary-bg)] px-6 py-3 text-sm font-medium"
             >
               Документация
             </TabsTrigger>
             <TabsTrigger 
               value="protocols"
-              className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:bg-blue-50 px-6 py-3 text-sm font-medium"
+              className="rounded-none border-b-2 border-transparent data-[state=active]:border-[var(--color-primary)] data-[state=active]:bg-[var(--color-primary-bg)] px-6 py-3 text-sm font-medium"
             >
               Протоколы
             </TabsTrigger>
             <TabsTrigger 
               value="winners"
-              className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:bg-blue-50 px-6 py-3 text-sm font-medium"
+              className="rounded-none border-b-2 border-transparent data-[state=active]:border-[var(--color-primary)] data-[state=active]:bg-[var(--color-primary-bg)] px-6 py-3 text-sm font-medium"
             >
               Информация о победителях
             </TabsTrigger>
@@ -301,8 +301,8 @@ const ContractorTenderView = () => {
                 <div className="space-y-4">
                   <div className="grid grid-cols-2 gap-6">
                     <div>
-                      <label className="text-sm font-semibold text-gray-700">Способ проведения закупки</label>
-                      <p className="mt-1 text-gray-900">
+                      <label className="text-sm font-semibold" style={{color:'var(--color-text-tertiary)'}}>Способ проведения закупки</label>
+                      <p className="mt-1" style={{color:'var(--color-text-primary)'}}>
                         {tender.tender_type === 'price_proposals' && 'Ценовые предложения'}
                         {tender.tender_type === 'open_competition' && 'Открытый конкурс'}
                         {tender.tender_type === 'auction' && 'Аукцион'}
@@ -311,8 +311,8 @@ const ContractorTenderView = () => {
                     </div>
                     
                     <div>
-                      <label className="text-sm font-semibold text-gray-700">Вид предмета закупок</label>
-                      <p className="mt-1 text-gray-900">
+                      <label className="text-sm font-semibold" style={{color:'var(--color-text-tertiary)'}}>Вид предмета закупок</label>
+                      <p className="mt-1" style={{color:'var(--color-text-primary)'}}>
                         {tender.category === 'construction' && 'Строительство'}
                         {tender.category === 'it' && 'IT-услуги'}
                         {tender.category === 'consulting' && 'Консалтинг'}
@@ -322,19 +322,19 @@ const ContractorTenderView = () => {
                   </div>
                   
                   <div>
-                    <label className="text-sm font-semibold text-gray-700">Организатор</label>
-                    <p className="mt-1 text-gray-900">{tender.customer_organization || tender.customer_name || 'Не указано'}</p>
+                    <label className="text-sm font-semibold" style={{color:'var(--color-text-tertiary)'}}>Организатор</label>
+                    <p className="mt-1" style={{color:'var(--color-text-primary)'}}>{tender.customer_organization || tender.customer_name || 'Не указано'}</p>
                   </div>
                   
                   <div>
-                    <label className="text-sm font-semibold text-gray-700">Юр. адрес организатора</label>
-                    <p className="mt-1 text-gray-900">{tender.customer_legal_address || tender.customer_email}</p>
+                    <label className="text-sm font-semibold" style={{color:'var(--color-text-tertiary)'}}>Юр. адрес организатора</label>
+                    <p className="mt-1" style={{color:'var(--color-text-primary)'}}>{tender.customer_legal_address || tender.customer_email}</p>
                   </div>
                   
                   {tender.procurement_subject && (
                     <div>
-                      <label className="text-sm font-semibold text-gray-700">Вид предмета закупок</label>
-                      <p className="mt-1 text-gray-900">
+                      <label className="text-sm font-semibold" style={{color:'var(--color-text-tertiary)'}}>Вид предмета закупок</label>
+                      <p className="mt-1" style={{color:'var(--color-text-primary)'}}>
                         {tender.procurement_subject === 'goods' && 'Товары'}
                         {tender.procurement_subject === 'works' && 'Работы'}
                         {tender.procurement_subject === 'services' && 'Услуги'}
@@ -344,13 +344,13 @@ const ContractorTenderView = () => {
                   
                   <div className="grid grid-cols-2 gap-6">
                     <div>
-                      <label className="text-sm font-semibold text-gray-700">Кол-во лотов в объявлении</label>
-                      <p className="mt-1 text-gray-900 text-lg font-bold">{tender.lots?.length || 1}</p>
+                      <label className="text-sm font-semibold" style={{color:'var(--color-text-tertiary)'}}>Кол-во лотов в объявлении</label>
+                      <p className="mt-1 text-lg font-bold" style={{color:'var(--color-text-primary)'}}>{tender.lots?.length || 1}</p>
                     </div>
                     
                     <div>
-                      <label className="text-sm font-semibold text-gray-700">Сумма закупки</label>
-                      <p className="mt-1 text-gray-900 text-lg font-bold">
+                      <label className="text-sm font-semibold" style={{color:'var(--color-text-tertiary)'}}>Сумма закупки</label>
+                      <p className="mt-1 text-lg font-bold" style={{color:'var(--color-text-primary)'}}>
                         {tender.budget?.toLocaleString('ru-RU')} ₸
                       </p>
                     </div>
@@ -358,12 +358,12 @@ const ContractorTenderView = () => {
                   
                   {(tender.special_conditions && tender.special_conditions.length > 0 && tender.special_conditions[0]) && (
                     <div>
-                      <label className="text-sm font-semibold text-gray-700">Признаки</label>
+                      <label className="text-sm font-semibold" style={{color:'var(--color-text-tertiary)'}}>Признаки</label>
                       <ul className="mt-2 space-y-1">
                         {tender.special_conditions.filter(cond => cond).map((cond, index) => (
                           <li key={index} className="flex items-center gap-2">
-                            <span className="text-green-600">✓</span>
-                            <span className="text-gray-900">{cond}</span>
+                            <span style={{color:'var(--color-success-medium)'}}>✓</span>
+                            <span style={{color:'var(--color-text-primary)'}}>{cond}</span>
                           </li>
                         ))}
                       </ul>
@@ -372,12 +372,12 @@ const ContractorTenderView = () => {
                   
                   {tender.requirements && tender.requirements.length > 0 && tender.requirements[0] && (
                     <div>
-                      <label className="text-sm font-semibold text-gray-700">Требования к участникам</label>
+                      <label className="text-sm font-semibold" style={{color:'var(--color-text-tertiary)'}}>Требования к участникам</label>
                       <ul className="mt-2 space-y-1">
                         {tender.requirements.filter(req => req).map((req, index) => (
                           <li key={index} className="flex items-center gap-2">
-                            <span className="text-blue-600">•</span>
-                            <span className="text-gray-900">{req}</span>
+                            <span style={{color:'var(--color-primary)'}}>•</span>
+                            <span style={{color:'var(--color-text-primary)'}}>{req}</span>
                           </li>
                         ))}
                       </ul>
@@ -385,24 +385,24 @@ const ContractorTenderView = () => {
                   )}
                   
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-2 mt-6">Информация об организаторе</h4>
+                    <h4 className="font-semibold mb-2 mt-6" style={{color:'var(--color-text-primary)'}}>Информация об организаторе</h4>
                     <div className="grid grid-cols-2 gap-6">
                       <div>
-                        <label className="text-sm font-semibold text-gray-700">ФИО представителя</label>
-                        <p className="mt-1 text-gray-900">{tender.customer_representative_name || tender.customer_name || 'Не указано'}</p>
+                        <label className="text-sm font-semibold" style={{color:'var(--color-text-tertiary)'}}>ФИО представителя</label>
+                        <p className="mt-1" style={{color:'var(--color-text-primary)'}}>{tender.customer_representative_name || tender.customer_name || 'Не указано'}</p>
                       </div>
                       
                       <div>
-                        <label className="text-sm font-semibold text-gray-700">Должность</label>
-                        <p className="mt-1 text-gray-900">{tender.customer_representative_position || 'Руководитель отдела закупок'}</p>
+                        <label className="text-sm font-semibold" style={{color:'var(--color-text-tertiary)'}}>Должность</label>
+                        <p className="mt-1" style={{color:'var(--color-text-primary)'}}>{tender.customer_representative_position || 'Руководитель отдела закупок'}</p>
                       </div>
                     </div>
                   </div>
                   
                   {tender.description && (
-                    <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <div className="mt-6 p-4 rounded-lg" style={{background:'var(--color-primary-bg)',border:'1px solid var(--color-primary-border)'}}>
                       <h4 className="font-semibold mb-2">Описание закупки</h4>
-                      <p className="text-gray-700 whitespace-pre-wrap">{tender.description}</p>
+                      <p className="whitespace-pre-wrap" style={{color:'var(--color-text-tertiary)'}}>{tender.description}</p>
                     </div>
                   )}
                 </div>
@@ -421,31 +421,31 @@ const ContractorTenderView = () => {
                   <div className="overflow-x-auto">
                     <table className="w-full border-collapse" style={{ minWidth: '1200px' }}>
                       <thead>
-                        <tr className="bg-gray-50 border-b-2 border-gray-200">
-                          <th className="p-3 text-left text-sm font-semibold text-gray-700 border whitespace-nowrap">№ п/п</th>
-                          <th className="p-3 text-left text-sm font-semibold text-gray-700 border whitespace-nowrap">Номер лота</th>
-                          <th className="p-3 text-left text-sm font-semibold text-gray-700 border whitespace-nowrap">Заказчик</th>
-                          <th className="p-3 text-left text-sm font-semibold text-gray-700 border whitespace-nowrap">Наименование</th>
-                          <th className="p-3 text-left text-sm font-semibold text-gray-700 border whitespace-nowrap">Дополнительная характеристика</th>
-                          <th className="p-3 text-left text-sm font-semibold text-gray-700 border whitespace-nowrap">Цена за ед.</th>
-                          <th className="p-3 text-left text-sm font-semibold text-gray-700 border whitespace-nowrap">Кол-во</th>
-                          <th className="p-3 text-left text-sm font-semibold text-gray-700 border whitespace-nowrap">Ед. изм.</th>
-                          <th className="p-3 text-left text-sm font-semibold text-gray-700 border whitespace-nowrap">Плановая сумма</th>
-                          <th className="p-3 text-left text-sm font-semibold text-gray-700 border whitespace-nowrap">Статус лота</th>
+                        <tr style={{background:'var(--color-bg-subtle)',borderBottom:'2px solid var(--color-border)'}}>
+                          <th className="p-3 text-left text-sm font-semibold border whitespace-nowrap" style={{color:'var(--color-text-tertiary)'}}>№ п/п</th>
+                          <th className="p-3 text-left text-sm font-semibold border whitespace-nowrap" style={{color:'var(--color-text-tertiary)'}}>Номер лота</th>
+                          <th className="p-3 text-left text-sm font-semibold border whitespace-nowrap" style={{color:'var(--color-text-tertiary)'}}>Заказчик</th>
+                          <th className="p-3 text-left text-sm font-semibold border whitespace-nowrap" style={{color:'var(--color-text-tertiary)'}}>Наименование</th>
+                          <th className="p-3 text-left text-sm font-semibold border whitespace-nowrap" style={{color:'var(--color-text-tertiary)'}}>Дополнительная характеристика</th>
+                          <th className="p-3 text-left text-sm font-semibold border whitespace-nowrap" style={{color:'var(--color-text-tertiary)'}}>Цена за ед.</th>
+                          <th className="p-3 text-left text-sm font-semibold border whitespace-nowrap" style={{color:'var(--color-text-tertiary)'}}>Кол-во</th>
+                          <th className="p-3 text-left text-sm font-semibold border whitespace-nowrap" style={{color:'var(--color-text-tertiary)'}}>Ед. изм.</th>
+                          <th className="p-3 text-left text-sm font-semibold border whitespace-nowrap" style={{color:'var(--color-text-tertiary)'}}>Плановая сумма</th>
+                          <th className="p-3 text-left text-sm font-semibold border whitespace-nowrap" style={{color:'var(--color-text-tertiary)'}}>Статус лота</th>
                         </tr>
                       </thead>
                       <tbody>
                         {tender.lots.map((lot, index) => (
-                          <tr key={lot.id || index} className="border-b hover:bg-gray-50">
+                          <tr key={lot.id || index} className="border-b hover:bg-[var(--color-bg-subtle)]">
                             <td className="p-3 text-sm border whitespace-nowrap">{index + 1}</td>
                             <td className="p-3 text-sm border whitespace-nowrap">
-                              <span className="text-blue-600 font-medium">
+                              <span className="font-medium" style={{color:'var(--color-primary)'}}>
                                 {tender.tender_number}-{lot.lot_number || (index + 1)}
                               </span>
                             </td>
                             <td className="p-3 text-sm border">{tender.customer_name || 'Не указано'}</td>
                             <td className="p-3 text-sm border font-medium">{lot.name}</td>
-                            <td className="p-3 text-sm border text-gray-600">
+                            <td className="p-3 text-sm border" style={{color:'var(--color-text-tertiary)'}}>
                               {lot.technical_spec || 'Не указано'}
                             </td>
                             <td className="p-3 text-sm border text-right font-semibold whitespace-nowrap">
@@ -457,7 +457,7 @@ const ContractorTenderView = () => {
                               {lot.total_price?.toLocaleString('ru-RU')} ₸
                             </td>
                             <td className="p-3 text-sm border whitespace-nowrap">
-                              <span className="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">
+                              <span className="px-2 py-1 rounded text-xs" style={{background:'var(--color-success-bg)',color:'var(--color-success-mid)'}}>
                                 Опубликован
                               </span>
                             </td>
@@ -467,18 +467,18 @@ const ContractorTenderView = () => {
                     </table>
                   </div>
                 ) : (
-                  <div className="p-6 bg-gray-50 rounded text-center">
-                    <p className="text-gray-600">Закупка без разделения на лоты</p>
+                  <div className="p-6 rounded text-center" style={{background:'var(--color-bg-subtle)'}}>
+                    <p style={{color:'var(--color-text-tertiary)'}}>Закупка без разделения на лоты</p>
                     <div className="mt-4">
-                      <p className="text-sm text-gray-600">Общая сумма закупки:</p>
-                      <p className="text-2xl font-bold text-gray-900 mt-1">
+                      <p className="text-sm" style={{color:'var(--color-text-tertiary)'}}>Общая сумма закупки:</p>
+                      <p className="text-2xl font-bold mt-1" style={{color:'var(--color-text-primary)'}}>
                         {tender.budget?.toLocaleString('ru-RU')} ₸
                       </p>
                     </div>
                     {tender.technical_specs && (
                       <div className="mt-4 p-4 bg-white rounded text-left">
                         <h4 className="font-semibold mb-2">Технические требования</h4>
-                        <p className="text-gray-700 text-sm whitespace-pre-wrap">{tender.technical_specs}</p>
+                        <p className="text-sm whitespace-pre-wrap" style={{color:'var(--color-text-tertiary)'}}>{tender.technical_specs}</p>
                       </div>
                     )}
                   </div>
@@ -497,19 +497,19 @@ const ContractorTenderView = () => {
                 <div className="overflow-x-auto">
                   <table className="w-full border-collapse">
                     <thead>
-                      <tr className="bg-gray-50 border-b-2 border-gray-200">
-                        <th className="p-3 text-left text-sm font-semibold text-gray-700 border">Наименование документа</th>
-                        <th className="p-3 text-center text-sm font-semibold text-gray-700 border w-32">Признак</th>
-                        <th className="p-3 text-center text-sm font-semibold text-gray-700 border w-32"></th>
+                      <tr style={{background:'var(--color-bg-subtle)',borderBottom:'2px solid var(--color-border)'}}>
+                        <th className="p-3 text-left text-sm font-semibold border" style={{color:'var(--color-text-tertiary)'}}>Наименование документа</th>
+                        <th className="p-3 text-center text-sm font-semibold border w-32" style={{color:'var(--color-text-tertiary)'}}>Признак</th>
+                        <th className="p-3 text-center text-sm font-semibold border w-32"></th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr className="border-b hover:bg-gray-50">
+                      <tr className="border-b hover:bg-[var(--color-bg-subtle)]">
                         <td className="p-3 text-sm border">Конкурсная документация</td>
                         <td className="p-3 text-sm border text-center">Нет</td>
                         <td className="p-3 text-sm border text-center"></td>
                       </tr>
-                      <tr className="border-b hover:bg-gray-50">
+                      <tr className="border-b hover:bg-[var(--color-bg-subtle)]">
                         <td className="p-3 text-sm border">Проект договора об электронных закупках</td>
                         <td className="p-3 text-sm border text-center">Нет</td>
                         <td className="p-3 text-sm border text-center"></td>
@@ -517,8 +517,8 @@ const ContractorTenderView = () => {
                       {/* Дополнительные документы из tender.documents */}
                       {tender.documents && tender.documents.length > 0 ? (
                         tender.documents.map((doc, index) => (
-                          <tr key={index} className="border-b hover:bg-gray-50">
-                            <td className="p-3 text-sm border text-blue-600 hover:underline cursor-pointer">
+                          <tr key={index} className="border-b hover:bg-[var(--color-bg-subtle)]">
+                            <td className="p-3 text-sm border hover:underline cursor-pointer" style={{color:'var(--color-primary)'}}>
                               {doc.filename || `Документ ${index + 1}`}
                             </td>
                             <td className="p-3 text-sm border text-center">Да</td>
@@ -526,7 +526,7 @@ const ContractorTenderView = () => {
                               <Button 
                                 variant="default" 
                                 size="sm" 
-                                className="bg-blue-600 hover:bg-blue-700 text-white"
+                                style={{background:'var(--color-primary)',color:'var(--color-text-inverse)'}}
                                 onClick={() => handleDownloadDocument(doc)}
                               >
                                 Перейти
@@ -536,12 +536,12 @@ const ContractorTenderView = () => {
                         ))
                       ) : (
                         <>
-                          <tr className="border-b hover:bg-gray-50">
+                          <tr className="border-b hover:bg-[var(--color-bg-subtle)]">
                             <td className="p-3 text-sm border">Приложение 1 (Перечень лотов)</td>
                             <td className="p-3 text-sm border text-center">Нет</td>
                             <td className="p-3 text-sm border text-center"></td>
                           </tr>
-                          <tr className="border-b hover:bg-gray-50">
+                          <tr className="border-b hover:bg-[var(--color-bg-subtle)]">
                             <td className="p-3 text-sm border">Приложение 2 (Техническая спецификация)</td>
                             <td className="p-3 text-sm border text-center">Нет</td>
                             <td className="p-3 text-sm border text-center"></td>
@@ -552,9 +552,9 @@ const ContractorTenderView = () => {
                   </table>
                 </div>
                 
-                <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded">
+                <div className="mt-6 p-4 rounded" style={{background:'var(--color-bg-muted)',border:'1px solid var(--color-border-gray)'}}>
                   <h4 className="font-semibold mb-2 flex items-center gap-2">
-                    <AlertCircle size={20} className="text-yellow-600" />
+                    <AlertCircle size={20} style={{color:'var(--color-warning)'}} />
                     Требуемые документы для участия
                   </h4>
                   <ul className="list-disc list-inside space-y-1 text-sm">
@@ -584,14 +584,14 @@ const ContractorTenderView = () => {
                         {protocol.stage1_qualified && protocol.stage1_qualified.length > 0 && (
                           <div className="mb-6">
                             <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-                              <Award className="text-green-600" size={20} />
+                              <Award style={{color:'var(--color-success-medium)'}} size={20} />
                               Участники, прошедшие первый этап
                             </h3>
                             <div className="space-y-2">
                               {protocol.stage1_qualified.map((bid, bidIndex) => (
-                                <div key={bidIndex} className="p-3 bg-green-50 border border-green-200 rounded">
+                                <div key={bidIndex} className="p-3 rounded" style={{background:'var(--color-success-bg-alt)',border:'1px solid var(--color-success-bg)'}}>
                                   <p className="font-medium">{bid.contractor_name}</p>
-                                  <div className="flex gap-4 text-sm text-gray-600 mt-1">
+                                  <div className="flex gap-4 text-sm mt-1" style={{color:'var(--color-text-tertiary)'}}>
                                     <span>Цена: {bid.price?.toLocaleString('ru-RU')} ₸</span>
                                     <span>AI Оценка: {bid.ai_score}/100</span>
                                   </div>
@@ -605,14 +605,14 @@ const ContractorTenderView = () => {
                         {protocol.rejected_bids && protocol.rejected_bids.length > 0 && (
                           <div className="mb-6">
                             <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-                              <FileText className="text-red-600" size={20} />
+                              <FileText style={{color:'var(--color-danger)'}} size={20} />
                               Заявки, не прошедшие отбор
                             </h3>
                             <div className="space-y-2">
                               {protocol.rejected_bids.map((bid, bidIndex) => (
-                                <div key={bidIndex} className="p-3 bg-red-50 border border-red-200 rounded">
+                                <div key={bidIndex} className="p-3 rounded" style={{background:'var(--color-danger-tint-05)',border:'1px solid var(--color-danger-tint-10)'}}>
                                   <p className="font-medium">{bid.contractor_name}</p>
-                                  <p className="text-sm text-gray-600 mt-1">
+                                  <p className="text-sm mt-1" style={{color:'var(--color-text-tertiary)'}}>
                                     Причина: {bid.rejection_reason || 'Не соответствует требованиям'}
                                   </p>
                                 </div>
@@ -625,24 +625,24 @@ const ContractorTenderView = () => {
                         {protocol.winner && (
                           <div>
                             <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-                              <Trophy className="text-yellow-600" size={20} />
+                              <Trophy style={{color:'var(--color-warning)'}} size={20} />
                               Итоговый протокол
                             </h3>
-                            <div className="p-4 bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-300 rounded-lg">
-                              <p className="text-sm text-gray-600 mb-2">Победитель тендера:</p>
-                              <p className="text-xl font-bold text-gray-900">{protocol.winner.contractor_name}</p>
+                            <div className="p-4 rounded-lg" style={{background:'var(--color-bg-warm)',border:'2px solid var(--color-border-dark)'}}>
+                              <p className="text-sm mb-2" style={{color:'var(--color-text-tertiary)'}}>Победитель тендера:</p>
+                              <p className="text-xl font-bold" style={{color:'var(--color-text-primary)'}}>{protocol.winner.contractor_name}</p>
                               <div className="grid grid-cols-3 gap-4 mt-3">
                                 <div>
-                                  <p className="text-sm text-gray-600">Сумма заявки</p>
+                                  <p className="text-sm" style={{color:'var(--color-text-tertiary)'}}>Сумма заявки</p>
                                   <p className="font-semibold">{protocol.winner.price?.toLocaleString('ru-RU')} ₸</p>
                                 </div>
                                 <div>
-                                  <p className="text-sm text-gray-600">AI Оценка</p>
+                                  <p className="text-sm" style={{color:'var(--color-text-tertiary)'}}>AI Оценка</p>
                                   <p className="font-semibold">{protocol.winner.ai_score}/100</p>
                                 </div>
                                 <div>
-                                  <p className="text-sm text-gray-600">Экономия</p>
-                                  <p className="font-semibold text-green-600">
+                                  <p className="text-sm" style={{color:'var(--color-text-tertiary)'}}>Экономия</p>
+                                  <p className="font-semibold" style={{color:'var(--color-success-medium)'}}>
                                     {protocol.savings?.toLocaleString('ru-RU')} ₸
                                   </p>
                                 </div>
@@ -654,7 +654,7 @@ const ContractorTenderView = () => {
                     ))}
                   </div>
                 ) : (
-                  <div className="text-center py-8 text-gray-500">
+                  <div className="text-center py-8" style={{color:'var(--color-text-muted)'}}>
                     <FileText size={48} className="mx-auto mb-3 opacity-50" />
                     <p>Протоколы будут опубликованы после завершения тендера</p>
                   </div>
@@ -673,28 +673,28 @@ const ContractorTenderView = () => {
               <CardContent>
                 {tender.winner_id ? (
                   <div className="space-y-4">
-                    <div className="p-6 bg-gradient-to-r from-green-50 to-blue-50 border-2 border-green-300 rounded-lg">
+                    <div className="p-6 rounded-lg" style={{background:'var(--color-success-bg-alt)',border:'2px solid var(--color-success-bg)'}}>
                       <div className="flex items-center gap-3 mb-4">
-                        <Trophy className="text-yellow-500" size={32} />
+                        <Trophy style={{color:'var(--color-warning)'}} size={32} />
                         <div>
                           <h3 className="text-2xl font-bold">Победитель определен</h3>
-                          <p className="text-gray-600">Тендер завершен, выбран исполнитель</p>
+                          <p style={{color:'var(--color-text-tertiary)'}}>Тендер завершен, выбран исполнитель</p>
                         </div>
                       </div>
 
-                      <div className="bg-white p-4 rounded mt-4">
+                      <div className="p-4 rounded mt-4" style={{background:'var(--color-bg-surface)'}}>
                         <h4 className="font-semibold mb-2">Победитель:</h4>
-                        <p className="text-lg font-bold text-green-700">{tender.winner_company || 'Информация обновляется'}</p>
-                        
+                        <p className="text-lg font-bold" style={{color:'var(--color-success-mid)'}}>{tender.winner_company || 'Информация обновляется'}</p>
+
                         {tender.winner_price && (
                           <div className="mt-4 grid grid-cols-2 gap-4">
                             <div>
-                              <p className="text-sm text-gray-600">Сумма контракта</p>
+                              <p className="text-sm" style={{color:'var(--color-text-tertiary)'}}>Сумма контракта</p>
                               <p className="text-xl font-bold">{tender.winner_price.toLocaleString('ru-RU')} ₸</p>
                             </div>
                             <div>
-                              <p className="text-sm text-gray-600">Экономия бюджета</p>
-                              <p className="text-xl font-bold text-green-600">
+                              <p className="text-sm" style={{color:'var(--color-text-tertiary)'}}>Экономия бюджета</p>
+                              <p className="text-xl font-bold" style={{color:'var(--color-success-medium)'}}>
                                 {((tender.budget - tender.winner_price) / tender.budget * 100).toFixed(1)}%
                               </p>
                             </div>
@@ -703,7 +703,7 @@ const ContractorTenderView = () => {
                       </div>
                     </div>
 
-                    <div className="p-4 bg-blue-50 rounded">
+                    <div className="p-4 rounded" style={{background:'var(--color-primary-bg)'}}>
                       <h4 className="font-semibold mb-2">Следующие шаги:</h4>
                       <ul className="list-disc list-inside space-y-1 text-sm">
                         <li>Подписание договора между заказчиком и победителем</li>
@@ -714,7 +714,7 @@ const ContractorTenderView = () => {
                     </div>
                   </div>
                 ) : (
-                  <div className="text-center py-8 text-gray-500">
+                  <div className="text-center py-8" style={{color:'var(--color-text-muted)'}}>
                     <Trophy size={48} className="mx-auto mb-3 opacity-50" />
                     <p>Победитель еще не определен</p>
                     <p className="text-sm mt-2">Информация появится после завершения тендера</p>

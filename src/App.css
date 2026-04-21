@@ -695,7 +695,12 @@ footer a[href^="tel:"] {
     gap: 12px;
     cursor: pointer;
 }
-
+.inset-c-0 {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
 .logo-image {
     height: 38px;
     width: auto;
@@ -2013,7 +2018,9 @@ footer a[href^="tel:"] {
     font-weight: var(--font-weight-bold);
     color: var(--color-text-inverse);
 }
-
+.landing-header .logo-text {
+     color: var(--color-text-dark2) !important;
+}
 .navbar-spacer {
     flex: 1;
 }
@@ -2454,9 +2461,6 @@ footer a[href^="tel:"] {
     gap: 4px;
 }
 
-.main-content {
-    min-height: calc(100vh - 108px); /* 60px header + 48px secondary nav */
-}
 
 @media (max-width: 768px) {
     .nav-links,
@@ -2492,9 +2496,6 @@ footer a[href^="tel:"] {
         padding: 6px 12px;
     }
 
-    .main-content {
-        min-height: calc(100vh - 108px);
-    }
 
     .footer-content {
         padding: 12px 16px;
@@ -3072,10 +3073,11 @@ footer a[href^="tel:"] {
 }
 
 .empty-state {
+    flex-direction: column;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 60px;
+    padding: 60px !important;
     text-align: center;
     color: var(--color-text-dark);
 }
@@ -3760,6 +3762,45 @@ input[type="datetime-local"]:focus {
 .cr-btn-row {
     display: flex;
     gap: var(--space-3);
+}
+
+/* ── Step-3 legal ── */
+.cr-legal-scroll {
+    max-height: 200px;
+    overflow-y: auto;
+    padding: var(--space-4);
+    background: var(--color-bg-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    font-size: var(--font-size-base);
+    color: var(--color-text-tertiary);
+    line-height: var(--line-height-normal);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.cr-agree-row {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-primary-bg);
+    border: 1px solid var(--color-primary-border);
+    border-radius: var(--radius-xl);
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    line-height: 1.5;
+}
+
+.cr-agree-check {
+    margin-top: 2px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--color-primary);
+    flex-shrink: 0;
+    cursor: pointer;
 }
 
 /* ── Step-2 blocks ── */

@@ -53,56 +53,35 @@ const Layout = ({ children } = {}) => {
     { label: t('nav.browseTenders'), path: '/tenders', icon: FileText },
   ];
 
-  // Рабочий кабинет (Customer workspace)
+  // Управление закупками (Customer workspace)
   const workspaceItems = [
-    { label: 'Поиск поставщиков', path: '/customer/supplier-search', icon: Users },
-    { label: 'Заявки', path: '/customer/supplier-bids', icon: MessageSquare },
-    { label: 'Аналитика', path: '/customer/analytics', icon: FileBarChart },
+    { label: t('nav.incomingBids'), path: '/customer/supplier-bids', icon: MessageSquare },
   ];
 
-  // Личный кабинет исполнителя
+  // Участие в торгах (Contractor workspace)
   const contractorWorkspaceItems = [
-    { label: 'Гарантии',      path: '/contractor/guarantees',     icon: Shield },
-    { label: 'Квалификация',  path: '/contractor/qualifications', icon: Award },
-    { label: 'Финансы',       path: '/contractor/finances',       icon: DollarSign },
-    { label: 'Аналитика',     path: '/contractor/analytics',      icon: BarChart2 },
-    { label: 'Архив',         path: '/contractor/archive',        icon: Archive },
+    { label: t('nav.analytics'), path: '/contractor/analytics', icon: BarChart2 },
+    { label: t('nav.archive'),   path: '/contractor/archive',   icon: Archive },
   ];
 
-  // Профиль заказчика
-  const profileItems = [
-    { label: 'Регистрационные данные', path: '/customer/organization', icon: Building },
-    { label: 'Банковские счета', path: '/customer/bank-accounts', icon: Building },
-    { label: 'Сотрудники организации', path: '/customer/employees', icon: Users },
-    { label: 'Документы', path: '/customer/profile', icon: FileText },
-  ];
 
   const navItems = [...baseNavItems];
 
-  // Меню для администратора
-  if (user?.role === 'admin') {
-    navItems.push({ label: 'Тендеры', path: '/admin/tenders', icon: FileText });
-    navItems.push({ label: 'Договоры', path: '/admin/contracts', icon: File });
-    navItems.push({ label: 'Пользователи', path: '/admin/users', icon: Users });
-  }
 
   // Меню для заказчика
   if (user?.role === 'customer') {
-    navItems.push({ label: 'Мои тендеры', path: '/customer/tenders', icon: FileText });
-    navItems.push({ label: 'Договоры', path: '/customer/contracts', icon: FileText });
+    navItems.push({ label: t('nav.myTenders'),        path: '/customer/tenders',  icon: FileText });
+    navItems.push({ label: t('nav.contracts'),         path: '/customer/contracts', icon: FileText });
+    navItems.push({ label: t('nav.docsVerification'), path: '/customer/profile',  icon: FileText });
   }
 
   // Меню для исполнителя
   if (user?.role === 'contractor') {
-    navItems.push({ label: 'Мои заявки', path: '/contractor/bids', icon: ClipboardList });
-    navItems.push({ label: 'Договоры',   path: '/contractor/contracts', icon: FileText });
+    navItems.push({ label: t('nav.myBids'),    path: '/contractor/bids',      icon: ClipboardList });
+    navItems.push({ label: t('nav.contracts'), path: '/contractor/contracts', icon: FileText });
   }
 
-  // Additional navigation items
-  const additionalNavItems = [
-    { label: 'Уведомления', path: '/communications', icon: Bell, hasNotifications: unreadNotifications > 0 },
-    { label: 'Отчеты', path: '/customer/reports', icon: FileText },
-  ];
+  const additionalNavItems = [];
 
   const isActive = (path) => location.pathname === path;
 
@@ -219,8 +198,7 @@ const Layout = ({ children } = {}) => {
               );
             })}
             <div className="mobile-menu-divider"></div>
-            
-            {/* Mobile Language Selector */}
+
             <div className="mobile-language-section">
               <div className="mobile-section-title">
                 <span>{t('common.chooseLanguage')}</span>
@@ -257,7 +235,6 @@ const Layout = ({ children } = {}) => {
         )}
       </nav>
 
-      {/* Secondary Navigation Bar - под header */}
       {user && (
         <div className="secondary-nav">
           <div className="secondary-nav-container">
@@ -274,13 +251,12 @@ const Layout = ({ children } = {}) => {
                 </button>
               );
             })}
-            
-            {/* Customer Workspace Dropdown - Рабочий кабинет */}
+
             {user?.role === 'customer' && (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <button className="secondary-nav-link nav-dropdown">
-                    <span>Рабочий кабинет</span>
+                    <span>{t('nav.procurementMenu')}</span>
                     <ChevronDown size={16} />
                   </button>
                 </DropdownMenuTrigger>
@@ -302,39 +278,13 @@ const Layout = ({ children } = {}) => {
               </DropdownMenu>
             )}
 
-            {/* Customer Profile Dropdown - Профиль заказчика */}
-            {user?.role === 'customer' && (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button className="secondary-nav-link nav-dropdown">
-                    <span>Профиль заказчика</span>
-                    <ChevronDown size={16} />
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="nav-dropdown-menu">
-                  {profileItems.map((item) => {
-                    const Icon = item.icon;
-                    return (
-                      <DropdownMenuItem
-                        key={item.path + item.label}
-                        onClick={() => navigate(item.path)}
-                        className={isActive(item.path) ? 'active-menu-item' : ''}
-                      >
-                        <Icon size={16} />
-                        <span>{item.label}</span>
-                      </DropdownMenuItem>
-                    );
-                  })}
-                </DropdownMenuContent>
-              </DropdownMenu>
-            )}
 
             {/* Contractor Workspace Dropdown - Личный кабинет исполнителя */}
             {user?.role === 'contractor' && (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <button className="secondary-nav-link nav-dropdown">
-                    <span>Личный кабинет</span>
+                    <span>{t('nav.biddingMenu')}</span>
                     <ChevronDown size={16} />
                   </button>
                 </DropdownMenuTrigger>
@@ -358,9 +308,9 @@ const Layout = ({ children } = {}) => {
           </div>
         </div>
       )}
-
-      <main className="main-content">{children ?? <Outlet />}</main>
-
+<div className="h-screen flex flex-col overflow-hidden">
+      <main className="flex-grow overflow-auto">{children ?? <Outlet />}</main>
+</div>
       {/* Footer */}
       <footer className="footer-section">
         <div className="footer-container">

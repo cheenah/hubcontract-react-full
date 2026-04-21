@@ -609,9 +609,7 @@ const Layout = ({ children }) => {
           font-weight: 600;
         }
 
-        .main-content {
-          min-height: calc(100vh - 60px);
-        }
+
 
         @media (max-width: 768px) {
           .nav-links,

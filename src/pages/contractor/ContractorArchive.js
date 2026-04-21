@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Card } from '@/components/ui/card';
 import { Archive, FileText, CheckCircle, XCircle } from 'lucide-react';
 import { getContractStatusText } from '@/utils/statusHelpers';
+import { useLanguage } from '@/context/LanguageContext';
 
 const API = process.env.REACT_APP_BACKEND_URL;
 
@@ -13,6 +14,7 @@ const statusColor = (status) => {
 };
 
 const ContractorArchive = () => {
+  const { t } = useLanguage();
   const [loading, setLoading] = useState(true);
   const [contracts, setContracts] = useState([]);
   const [bids, setBids] = useState([]);
@@ -43,17 +45,17 @@ const ContractorArchive = () => {
   }, []);
 
   const tabs = [
-    { key: 'contracts', label: 'Договоры', icon: FileText },
-    { key: 'bids',      label: 'Заявки',   icon: Archive },
+    { key: 'contracts', label: t('contractorArchive.contracts'), icon: FileText },
+    { key: 'bids',      label: t('contractorArchive.bids'),      icon: Archive },
   ];
 
   return (
       <div style={{ padding: 'var(--space-6)', maxWidth: '1100px', margin: '0 auto' }}>
         <h1 style={{ fontSize: '1.5rem', fontWeight: 'var(--font-weight-bold)', color: 'var(--color-text-dark)', marginBottom: 'var(--space-1-5)' }}>
-          Архив
+          {t('contractorArchive.title')}
         </h1>
         <p style={{ color: 'var(--color-text-muted)', marginBottom: 'var(--space-5)', fontSize: 'var(--font-size-base)' }}>
-          Завершённые, подписанные и отклонённые документы
+          {t('contractorArchive.subtitle')}
         </p>
 
         {/* Tabs */}
@@ -79,12 +81,12 @@ const ContractorArchive = () => {
         </div>
 
         {loading ? (
-          <div style={{ textAlign: 'center', padding: '60px', color: 'var(--color-text-placeholder)' }}>Загрузка...</div>
+          <div style={{ textAlign: 'center', padding: '60px', color: 'var(--color-text-placeholder)' }}>{t('common.loading')}</div>
         ) : (
           <>
             {tab === 'contracts' && (
               contracts.length === 0 ? (
-                <EmptyState label="Архивных договоров нет" />
+                <EmptyState label={`${t('common.noResults')}`} />
               ) : (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2-5)' }}>
                   {contracts.map((c) => (
@@ -113,7 +115,7 @@ const ContractorArchive = () => {
 
             {tab === 'bids' && (
               bids.length === 0 ? (
-                <EmptyState label="Архивных заявок нет" />
+                <EmptyState label={`${t('common.noResults')}`} />
               ) : (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2-5)' }}>
                   {bids.map((b) => (

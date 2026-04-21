@@ -66,11 +66,10 @@ const Registration = ({ setShowAuth }) => {
     };
 
     return (
-            <div className="min-h-[calc(100vh-200px)] flex items-center justify-center py-12 px-4 bg-[var(--color-bg-warm)]">
-                <div className="container mx-auto max-w-[1100px] bg-white border border-gray-100 rounded-[2rem] shadow-sm overflow-hidden flex flex-col md:flex-row">
+         <div className="min-h-[calc(100vh-200px)] flex items-center justify-center py-12 px-4 bg-[var(--color-bg-warm)]">
+  <div className="container mx-auto max-w-[1100px] w-full bg-white border border-gray-100 rounded-[2rem] shadow-sm overflow-hidden flex flex-col md:flex-row p-8">
 
-                    {/* ЛЕВАЯ ЧАСТЬ: ФОРМА */}
-                    <div className="w-full md:w-1/2 p-8 md:p-12 lg:p-16">
+                    <div className="w-full p-8 md:p-12 lg:p-16">
                         <div className="mb-8">
                             <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
                                 {t('auth.register')}
@@ -184,7 +183,8 @@ const Registration = ({ setShowAuth }) => {
                             </p>
                         </form>
                     </div>
-                    {/* ПРАВАЯ ЧАСТЬ (если она есть в вашем дизайне, можно добавить здесь) */}
+
+
                 </div>
             </div>
     );

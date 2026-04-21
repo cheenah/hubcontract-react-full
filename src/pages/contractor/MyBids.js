@@ -414,62 +414,62 @@ const MyBids = () => {
       <Dialog open={showEditDialog} onOpenChange={setShowEditDialog}>
         <DialogContent className="mb-dialog">
           <DialogHeader>
-            <DialogTitle>Редактировать заявку</DialogTitle>
+            <DialogTitle>{t('myBids.editTitle')}</DialogTitle>
           </DialogHeader>
-          
+
           <div className="mb-dialog-body">
             <div>
-              <Label>Цена предложения (₸) *</Label>
+              <Label>{t('tenderDetail.bidPrice')} *</Label>
               <Input
                 type="number"
                 value={editFormData.price}
                 onChange={(e) => setEditFormData({...editFormData, price: e.target.value})}
-                placeholder="Введите цену"
+                placeholder={t('tenderDetail.pricePlaceholder')}
               />
             </div>
-            
+
             <div>
-              <Label>Срок поставки</Label>
+              <Label>{t('tenderDetail.deliveryTime')}</Label>
               <Input
                 type="text"
                 value={editFormData.delivery_time}
                 onChange={(e) => setEditFormData({...editFormData, delivery_time: e.target.value})}
-                placeholder="Например: 30 дней, 2 месяца"
+                placeholder={t('tenderDetail.deliveryPlaceholder')}
               />
             </div>
-            
+
             <div>
-              <Label>Предложение *</Label>
+              <Label>{t('tenderDetail.yourProposal')} *</Label>
               <Textarea
                 value={editFormData.proposal}
                 onChange={(e) => setEditFormData({...editFormData, proposal: e.target.value})}
-                placeholder="Опишите ваше предложение"
+                placeholder={t('tenderDetail.proposalPlaceholder')}
                 rows={4}
               />
             </div>
-            
+
             <div>
-              <Label>Техническое предложение</Label>
+              <Label>{t('myBids.techSpec')}</Label>
               <Textarea
                 value={editFormData.technical_spec}
                 onChange={(e) => setEditFormData({...editFormData, technical_spec: e.target.value})}
-                placeholder="Техническая спецификация и детали предложения"
+                placeholder={t('myBids.techSpecPlaceholder')}
                 rows={4}
               />
             </div>
-            
+
             {editingBid && editingBid.status === 'withdrawn' && (
               <div className="mb-withdrawn-notice">
-                <strong>Внимание:</strong> Эта заявка была отозвана. После сохранения изменений она будет повторно подана на рассмотрение.
+                <strong>{t('myBids.notice')}:</strong> {t('auth.withdrawnBidWarning')}
               </div>
             )}
-            
+
             <div className="mb-dialog-footer">
               <Button variant="outline" onClick={() => setShowEditDialog(false)}>
-                Отмена
+                {t('common.cancel')}
               </Button>
               <Button onClick={handleUpdateBid}>
-                {editingBid && editingBid.status === 'withdrawn' ? 'Сохранить и подать заново' : 'Сохранить изменения'}
+                {editingBid && editingBid.status === 'withdrawn' ? t('auth.saveAndResubmit') : t('myBids.saveChanges')}
               </Button>
             </div>
           </div>

@@ -641,14 +641,14 @@ const HelpCenter = () => {
       <style jsx>{`
         .help-center-page {
           min-height: calc(100vh - 108px);
-          background: var(--bg-off-white, #f8f9fa);
+          background: var(--color-bg-subtle);
         }
 
         .help-header {
-          background: linear-gradient(135deg, var(--bg-blue, #1e40af) 0%, #1e3a8a 100%);
-          color: white;
-          padding: 48px 20px;
-          margin-bottom: 32px;
+          background: var(--color-primary-gradient);
+          color: var(--color-text-inverse);
+          padding: var(--space-12) var(--space-5);
+          margin-bottom: var(--space-8);
         }
 
         .help-header-content {
@@ -658,19 +658,19 @@ const HelpCenter = () => {
         }
 
         .help-icon {
-          margin: 0 auto 16px;
+          margin: 0 auto var(--space-4);
           opacity: 0.9;
         }
 
         .help-title {
-          font-size: 2.5rem;
-          font-weight: 700;
-          margin-bottom: 12px;
+          font-size: var(--font-size-7xl);
+          font-weight: var(--font-weight-bold);
+          margin-bottom: var(--space-3);
           font-family: 'Roboto', sans-serif;
         }
 
         .help-subtitle {
-          font-size: 1.125rem;
+          font-size: var(--font-size-lg);
           opacity: 0.9;
           max-width: 600px;
           margin: 0 auto;
@@ -679,7 +679,7 @@ const HelpCenter = () => {
         .help-content {
           max-width: 1200px;
           margin: 0 auto;
-          padding: 0 20px 48px;
+          padding: 0 var(--space-5) var(--space-12);
         }
 
         .help-tabs {
@@ -688,26 +688,26 @@ const HelpCenter = () => {
 
         .tabs-list {
           display: flex;
-          gap: 8px;
-          margin-bottom: 32px;
-          background: white;
-          padding: 8px;
-          border-radius: 8px;
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+          gap: var(--space-2);
+          margin-bottom: var(--space-8);
+          background: var(--color-bg-surface);
+          padding: var(--space-2);
+          border-radius: var(--radius-lg);
+          box-shadow: var(--shadow-xs);
         }
 
         .tab-trigger {
           display: flex;
           align-items: center;
-          gap: 8px;
-          padding: 12px 24px;
-          border-radius: 6px;
-          font-weight: 500;
-          transition: all 0.2s ease;
+          gap: var(--space-2);
+          padding: var(--space-3) var(--space-6);
+          border-radius: var(--radius-md);
+          font-weight: var(--font-weight-medium);
+          transition: all var(--transition-normal) ease;
         }
 
         .tab-content {
-          animation: fadeIn 0.3s ease;
+          animation: fadeIn var(--transition-slow) ease;
         }
 
         @keyframes fadeIn {
@@ -718,104 +718,104 @@ const HelpCenter = () => {
         .guide-section {
           display: flex;
           flex-direction: column;
-          gap: 24px;
+          gap: var(--space-6);
         }
 
         .guide-card {
-          background: white;
-          border-radius: 12px;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-          transition: all 0.3s ease;
+          background: var(--color-bg-surface);
+          border-radius: var(--radius-2xl);
+          box-shadow: var(--shadow-card);
+          transition: all var(--transition-slow) ease;
         }
 
         .guide-card:hover {
-          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+          box-shadow: var(--shadow-card-hover);
           transform: translateY(-2px);
         }
 
         .card-header-with-icon {
           display: flex;
           align-items: flex-start;
-          gap: 16px;
+          gap: var(--space-4);
         }
 
         .step-number {
           width: 48px;
           height: 48px;
-          background: linear-gradient(135deg, var(--btn-green, #10b981) 0%, #059669 100%);
-          color: white;
-          border-radius: 12px;
+          background: linear-gradient(135deg, var(--color-success-alt) 0%, var(--color-success-medium) 100%);
+          color: var(--color-text-inverse);
+          border-radius: var(--radius-2xl);
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 1.5rem;
-          font-weight: 700;
+          font-size: var(--font-size-3xl);
+          font-weight: var(--font-weight-bold);
           flex-shrink: 0;
         }
 
         .instruction-steps {
           display: flex;
           flex-direction: column;
-          gap: 20px;
+          gap: var(--space-5);
         }
 
         .instruction-step {
           display: flex;
-          gap: 16px;
-          padding: 16px;
-          background: var(--bg-off-white, #f8f9fa);
-          border-radius: 8px;
-          border-left: 4px solid var(--btn-green, #10b981);
+          gap: var(--space-4);
+          padding: var(--space-4);
+          background: var(--color-bg-subtle);
+          border-radius: var(--radius-lg);
+          border-left: 4px solid var(--color-success-alt);
         }
 
         .step-icon {
-          color: var(--btn-green, #10b981);
+          color: var(--color-success-alt);
           flex-shrink: 0;
           margin-top: 2px;
         }
 
         .step-content h4 {
-          font-size: 1.125rem;
-          font-weight: 600;
-          color: var(--text-dark-gray, #1a202c);
-          margin-bottom: 8px;
+          font-size: var(--font-size-lg);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark2);
+          margin-bottom: var(--space-2);
         }
 
         .step-content p {
-          color: var(--text-secondary, #4a5568);
-          line-height: 1.6;
+          color: var(--color-text-tertiary);
+          line-height: var(--line-height-relaxed);
           margin: 0;
         }
 
         .faq-section {
           display: flex;
           flex-direction: column;
-          gap: 24px;
+          gap: var(--space-6);
         }
 
         .faq-intro {
           text-align: center;
-          padding: 32px 20px;
-          background: white;
-          border-radius: 12px;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+          padding: var(--space-8) var(--space-5);
+          background: var(--color-bg-surface);
+          border-radius: var(--radius-2xl);
+          box-shadow: var(--shadow-card);
         }
 
         .faq-icon {
-          color: var(--btn-green, #10b981);
-          margin: 0 auto 16px;
+          color: var(--color-success-alt);
+          margin: 0 auto var(--space-4);
         }
 
         .faq-intro h2 {
-          font-size: 2rem;
-          font-weight: 700;
-          color: var(--text-dark-gray, #1a202c);
-          margin-bottom: 12px;
+          font-size: var(--font-size-6xl);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-dark2);
+          margin-bottom: var(--space-3);
         }
 
         .faq-intro p {
-          font-size: 1.125rem;
-          color: var(--text-secondary, #4a5568);
+          font-size: var(--font-size-lg);
+          color: var(--color-text-tertiary);
           max-width: 600px;
           margin: 0 auto;
         }
@@ -823,48 +823,48 @@ const HelpCenter = () => {
         .faq-list {
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          gap: var(--space-4);
         }
 
         .faq-card {
-          background: white;
-          border-radius: 8px;
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-          transition: all 0.2s ease;
+          background: var(--color-bg-surface);
+          border-radius: var(--radius-lg);
+          box-shadow: var(--shadow-xs);
+          transition: all var(--transition-normal) ease;
         }
 
         .faq-card:hover {
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+          box-shadow: var(--shadow-md);
         }
 
         .faq-question {
           display: flex;
           align-items: center;
-          gap: 12px;
-          font-size: 1.125rem;
-          font-weight: 600;
-          color: var(--text-dark-gray, #1a202c);
+          gap: var(--space-3);
+          font-size: var(--font-size-lg);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark2);
         }
 
         .faq-question :global(svg) {
-          color: var(--btn-green, #10b981);
+          color: var(--color-success-alt);
           flex-shrink: 0;
         }
 
         .faq-answer {
-          color: var(--text-secondary, #4a5568);
-          line-height: 1.7;
-          font-size: 1rem;
+          color: var(--color-text-tertiary);
+          line-height: var(--line-height-relaxed);
+          font-size: var(--font-size-lg);
           margin: 0;
         }
 
         @media (max-width: 768px) {
           .help-title {
-            font-size: 1.875rem;
+            font-size: var(--font-size-4xl);
           }
 
           .help-subtitle {
-            font-size: 1rem;
+            font-size: var(--font-size-lg);
           }
 
           .tabs-list {
@@ -878,7 +878,7 @@ const HelpCenter = () => {
           .step-number {
             width: 40px;
             height: 40px;
-            font-size: 1.25rem;
+            font-size: var(--font-size-xl3);
           }
 
           .instruction-step {
@@ -886,7 +886,7 @@ const HelpCenter = () => {
           }
 
           .faq-intro h2 {
-            font-size: 1.5rem;
+            font-size: var(--font-size-3xl);
           }
         }
       `}</style>

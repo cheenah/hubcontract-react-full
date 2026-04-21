@@ -131,70 +131,70 @@ const Privacy = () => {
             </div>
             <style jsx>{`
                 .privacy-container {
-                    background: #fff;
-                    padding: 50px;
+                    background: var(--color-bg-surface);
+                    padding: var(--space-12);
                     max-width: 1280px;
-                    margin: 20px auto;
+                    margin: var(--space-5) auto;
                     font-family: Arial, sans-serif;
-                    line-height: 1.6;
-                    color: #333;
+                    line-height: var(--line-height-relaxed);
+                    color: var(--color-text-secondary);
                 }
                 .news-article {
                     margin-bottom: 0;
                 }
                 .article-header {
                     text-align: center;
-                    margin-bottom: 30px;
+                    margin-bottom: var(--space-8);
                 }
                 .article-title {
-                    font-size: 28px;
-                    margin-bottom: 10px;
+                    font-size: var(--font-size-4xl);
+                    margin-bottom: var(--space-2-5);
                 }
                 .article-subtitle {
-                    font-size: 18px;
-                    margin-bottom: 10px;
-                    color: #777;
+                    font-size: var(--font-size-lg);
+                    margin-bottom: var(--space-2-5);
+                    color: var(--color-text-muted);
                 }
                 .article-meta {
-                    font-size: 14px;
-                    color: #999;
-                    margin-bottom: 20px;
+                    font-size: var(--font-size-base);
+                    color: var(--color-text-placeholder);
+                    margin-bottom: var(--space-5);
                 }
                 .article-meta span {
                     display: block;
                 }
                 .article-content {
-                    font-size: 16px;
-                    line-height: 1.7;
+                    font-size: var(--font-size-lg);
+                    line-height: var(--line-height-relaxed);
                 }
                 h3 {
-                    font-size: 20px;
-                    margin-top: 25px;
-                    margin-bottom: 15px;
-                    border-bottom: 1px solid #ddd;
-                    padding-bottom: 5px;
+                    font-size: var(--font-size-xl3);
+                    margin-top: var(--space-6);
+                    margin-bottom: var(--space-4);
+                    border-bottom: 1px solid var(--color-border);
+                    padding-bottom: var(--space-1-5);
                 }
                 p {
-                    margin-bottom: 15px;
+                    margin-bottom: var(--space-4);
                 }
                 ul {
-                    margin-left: 20px;
-                    margin-bottom: 15px;
+                    margin-left: var(--space-5);
+                    margin-bottom: var(--space-4);
                 }
                 li {
-                    margin-bottom: 5px;
+                    margin-bottom: var(--space-1-5);
                 }
                 .contacts-section {
-                    margin-top: 30px;
+                    margin-top: var(--space-8);
                 }
                 .contacts-block {
-                    background-color: #f9f9f9;
-                    padding: 15px;
-                    border-radius: 5px;
-                    margin-top: 10px;
+                    background-color: var(--color-bg-subtle);
+                    padding: var(--space-4);
+                    border-radius: var(--radius-sm);
+                    margin-top: var(--space-2-5);
                 }
                 .contacts-block p {
-                    margin: 5px 0;
+                    margin: var(--space-1-5) 0;
                 }
             `}</style>
       </>

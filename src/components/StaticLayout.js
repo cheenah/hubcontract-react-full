@@ -18,13 +18,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useLanguage } from '@/context/LanguageContext';
 import { useLocation, useNavigate, Outlet } from 'react-router-dom';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogPortal, DialogOverlay, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import axios from "axios";
 import { toast } from "sonner";
 import useRecaptcha from '@/hooks/useRecaptcha';
-
+import ResendOtpButton from '@/components/ResendOtpButton';
 
 const API = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
 
@@ -93,7 +93,7 @@ const StaticLayout = ({ children } = {}) => {
             if (response.data.status === 'otp_sent') {
                 setOtpEmail(response.data.email);
                 setOtpStep(true);
-                toast.info(`Код отправлен на ${response.data.email}`);
+                toast.info(`${t('auth.otpSentToast')} ${response.data.email}`);
                 return;
             }
 
@@ -105,13 +105,9 @@ const StaticLayout = ({ children } = {}) => {
             const status = error.response?.status;
             const detail = error.response?.data?.detail;
             if (status === 403 && detail?.toLowerCase().includes('скоринг')) {
-                toast.error(
-                    'Система защиты посчитала действие подозрительным. ' +
-                    'Попробуйте обновить страницу и повторить.',
-                    { duration: 6000 }
-                );
+                toast.error(t('auth.recaptchaError'), { duration: 6000 });
             } else {
-                toast.error(detail || 'Ошибка входа');
+                toast.error(detail || t('auth.loginError'));
             }
         } finally {
             setLoading(false);
@@ -129,7 +125,7 @@ const StaticLayout = ({ children } = {}) => {
             });
             finishLogin(response.data);
         } catch (error) {
-            toast.error(error.response?.data?.detail || 'Неверный или устаревший код');
+            toast.error(error.response?.data?.detail || t('auth.invalidOtp'));
         } finally {
             setLoading(false);
         }
@@ -139,7 +135,7 @@ const StaticLayout = ({ children } = {}) => {
         localStorage.setItem('token', data.token);
         setShowAuth(false);
         resetAuthDialog();
-        toast.success('Вход выполнен');
+        toast.success(t('auth.loginSuccess'));
 
         if (data.user?.onboarding_completed === false) {
             navigate('/complete-registration');
@@ -318,13 +314,14 @@ const StaticLayout = ({ children } = {}) => {
             </footer>
 
             <Dialog open={showAuth} onOpenChange={handleCloseAuth}>
-                <DialogContent className="auth-dialog">
+                <DialogOverlay className="fixed inset-c-0 z-50 bg-white/40 backdrop-blur-sm transition-all" />
+                <DialogContent className="auth-dialog z-50">
                     <DialogHeader>
                         <DialogTitle className="auth-title">
                             {otpStep ? (
                                 <span className="sl-otp-title">
                                     <ShieldCheck size={20} className="sl-otp-icon" />
-                                    Подтверждение входа
+                                    {t('auth.otpTitle')}
                                 </span>
                             ) : t('auth.welcomeTitle')}
                         </DialogTitle>
@@ -377,7 +374,7 @@ const StaticLayout = ({ children } = {}) => {
                                     {loading ? t('auth.signingIn') : t('auth.signIn')}
                                 </Button>
                                 <p className="sl-recaptcha-note">
-                                    Этот вход защищён{' '}
+                                    {t('auth.recaptchaNote')}{' '}
                                     <a
                                         href="https://policies.google.com/privacy"
                                         target="_blank"
@@ -394,10 +391,10 @@ const StaticLayout = ({ children } = {}) => {
                         {otpStep && (
                             <form onSubmit={handleVerifyOtp} className="auth-form">
                                 <p className="sl-otp-hint">
-                                    Мы отправили 6-значный код на <strong>{otpEmail}</strong>. Введите его ниже.
+                                    {t('auth.otpSentPrefix')} <strong>{otpEmail}</strong>{t('auth.otpSentSuffix')}
                                 </p>
                                 <div className="form-field">
-                                    <Label htmlFor="otp-code">Код подтверждения</Label>
+                                    <Label htmlFor="otp-code">{t('auth.otpCodeLabel')}</Label>
                                     <Input
                                         id="otp-code"
                                         type="text"
@@ -413,15 +410,19 @@ const StaticLayout = ({ children } = {}) => {
                                 </div>
 
                                 <Button type="submit" className="btn-primary w-full" disabled={loading || otpCode.length < 6}>
-                                    {loading ? 'Проверяем…' : 'Подтвердить'}
+                                    {loading ? t('auth.otpVerifying') : t('auth.otpConfirm')}
                                 </Button>
-
+                                <ResendOtpButton
+                                    email={otpEmail}
+                                    autoStart={true}
+                                    onResent={() => setOtpCode('')}
+                                />
                                 <button
                                     type="button"
                                     onClick={resetAuthDialog}
                                     className="sl-back-btn"
                                 >
-                                    ← Вернуться
+                                    {t('auth.backBtn')}
                                 </button>
                             </form>
                         )}

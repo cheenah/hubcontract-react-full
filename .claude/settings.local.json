@@ -25,7 +25,13 @@
       "Bash(sed -n '539,546p' C:/Users/User/PycharmProjects/hubcontract-react-full/src/pages/admin/CreateTenderNew.js)",
       "Bash(grep -v \"dynamic\\\\|runtime\\\\|color.*\\\\${\")",
       "Bash(wc *)",
-      "Bash(grep -v \"^$\")"
+      "Bash(grep -v \"^$\")",
+      "Bash(git log *)",
+      "Bash(git -C \"C:\\\\\\\\Users\\\\\\\\User\\\\\\\\PycharmProjects\\\\\\\\hubcontract-react-full\" log --oneline -10)",
+      "Bash(git *)",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\({**d.get\\('dependencies',{}\\), **d.get\\('devDependencies',{}\\)}, indent=2\\)\\)\")",
+      "Bash(node -e \"const p=require\\('./package.json'\\); const deps={...p.dependencies,...p.devDependencies}; console.log\\(Object.keys\\(deps\\).filter\\(k=>['zustand','axios','react-query','@tanstack','swr'].some\\(x=>k.includes\\(x\\)\\)\\).map\\(k=>k+': '+deps[k]\\).join\\('\\\\n'\\)\\)\")",
+      "Bash(node -e \"require\\('zustand'\\); console.log\\('ok'\\)\")"
     ]
   }
 }

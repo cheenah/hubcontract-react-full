@@ -114,27 +114,27 @@ const ResetPassword = () => {
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 20px;
+            background: var(--color-primary-gradient);
+            padding: var(--space-5);
           }
           .reset-password-card {
             max-width: 450px;
             width: 100%;
-            padding: 60px 40px;
+            padding: var(--space-12) var(--space-10);
           }
           .loading-content {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
-            color: #666;
+            gap: var(--space-5);
+            color: var(--color-text-muted);
           }
           .loading-spinner {
             width: 48px;
             height: 48px;
-            border: 4px solid #e5e7eb;
-            border-top-color: #1e40af;
-            border-radius: 50%;
+            border: 4px solid var(--color-border);
+            border-top-color: var(--color-primary-dark);
+            border-radius: var(--radius-circle);
             animation: spin 1s linear infinite;
           }
           @keyframes spin {
@@ -169,52 +169,52 @@ const ResetPassword = () => {
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 20px;
+            background: var(--color-primary-gradient);
+            padding: var(--space-5);
           }
           .error-card {
             max-width: 500px;
             width: 100%;
-            padding: 40px;
+            padding: var(--space-10);
             text-align: center;
           }
           .error-content {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: var(--space-5);
           }
           .error-icon {
-            color: #ef4444;
+            color: var(--color-danger);
           }
           .error-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1a1a1a;
+            font-size: var(--font-size-6xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text-dark);
             margin: 0;
           }
           .error-message, .error-info {
-            font-size: 1rem;
-            color: #666;
+            font-size: var(--font-size-lg);
+            color: var(--color-text-muted);
             margin: 0;
-            line-height: 1.6;
+            line-height: var(--line-height-relaxed);
           }
           .error-actions {
             width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 16px;
-            margin-top: 10px;
+            gap: var(--space-4);
+            margin-top: var(--space-2-5);
           }
           .link-button {
-            color: #1e40af;
+            color: var(--color-primary-dark);
             text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: color 0.2s;
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-medium);
+            transition: color var(--transition-normal);
           }
           .link-button:hover {
-            color: #1e3a8a;
+            color: var(--color-primary-dark);
           }
         `}</style>
       </div>
@@ -239,23 +239,23 @@ const ResetPassword = () => {
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 20px;
+            background: var(--color-primary-gradient);
+            padding: var(--space-5);
           }
           .success-card {
             max-width: 500px;
             width: 100%;
-            padding: 40px;
+            padding: var(--space-10);
             text-align: center;
           }
           .success-content {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: var(--space-5);
           }
           .success-icon {
-            color: #10b981;
+            color: var(--color-success-alt);
             animation: scaleIn 0.5s ease-out;
           }
           @keyframes scaleIn {
@@ -263,19 +263,19 @@ const ResetPassword = () => {
             to { transform: scale(1); opacity: 1; }
           }
           .success-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1a1a1a;
+            font-size: var(--font-size-6xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text-dark);
             margin: 0;
           }
           .success-message, .redirect-info {
-            font-size: 1rem;
-            color: #666;
+            font-size: var(--font-size-lg);
+            color: var(--color-text-muted);
             margin: 0;
           }
           .redirect-info {
-            font-size: 0.875rem;
-            color: #999;
+            font-size: var(--font-size-base);
+            color: var(--color-text-placeholder);
           }
         `}</style>
       </div>
@@ -333,67 +333,67 @@ const ResetPassword = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          padding: 20px;
+          background: var(--color-primary-gradient);
+          padding: var(--space-5);
         }
         .reset-password-card {
           max-width: 450px;
           width: 100%;
-          padding: 40px;
+          padding: var(--space-10);
         }
         .card-header {
           text-align: center;
-          margin-bottom: 32px;
+          margin-bottom: var(--space-8);
         }
         .header-icon {
-          color: #1e40af;
-          margin-bottom: 16px;
+          color: var(--color-primary-dark);
+          margin-bottom: var(--space-4);
         }
         .card-title {
-          font-size: 2rem;
-          font-weight: 700;
-          color: #1a1a1a;
-          margin: 0 0 12px 0;
+          font-size: var(--font-size-6xl);
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-dark);
+          margin: 0 0 var(--space-3) 0;
         }
         .card-subtitle {
-          font-size: 0.95rem;
-          color: #666;
+          font-size: var(--font-size-lg);
+          color: var(--color-text-muted);
           margin: 0;
         }
         .card-subtitle strong {
-          color: #1e40af;
+          color: var(--color-primary-dark);
         }
         .reset-password-form {
           display: flex;
           flex-direction: column;
-          gap: 24px;
+          gap: var(--space-6);
         }
         .form-group {
           display: flex;
           flex-direction: column;
-          gap: 8px;
+          gap: var(--space-2);
         }
         .form-label {
-          font-size: 0.95rem;
-          font-weight: 500;
-          color: #333;
+          font-size: var(--font-size-lg);
+          font-weight: var(--font-weight-medium);
+          color: var(--color-text-secondary);
         }
         .form-hint {
-          font-size: 0.875rem;
-          color: #999;
+          font-size: var(--font-size-base);
+          color: var(--color-text-placeholder);
         }
         .submit-button {
           width: 100%;
-          padding: 12px;
-          font-size: 1rem;
-          margin-top: 8px;
+          padding: var(--space-3);
+          font-size: var(--font-size-lg);
+          margin-top: var(--space-2);
         }
         @media (max-width: 640px) {
           .reset-password-card {
-            padding: 30px 24px;
+            padding: var(--space-8) var(--space-6);
           }
           .card-title {
-            font-size: 1.75rem;
+            font-size: var(--font-size-4xl);
           }
         }
       `}</style>

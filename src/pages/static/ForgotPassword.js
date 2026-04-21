@@ -78,7 +78,7 @@ const ForgotPassword = () => {
 
         <style jsx>{`
           .forgot-password-container {
-            min-height: 100vh;
+            min-height: calc(100dvh - 100px);
             display: flex;
             align-items: center;
             justify-content: center;
