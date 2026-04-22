@@ -15,7 +15,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { toast } from "sonner";
 import useRecaptcha from '@/hooks/useRecaptcha';
 
-const API = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
+const API = process.env.REACT_APP_API_URL || 'https://test-api.hubcontract.kz/api';
 
 const Registration = ({ setShowAuth }) => {
     const navigate = useNavigate();

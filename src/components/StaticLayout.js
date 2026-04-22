@@ -27,7 +27,7 @@ import useRecaptcha from '@/hooks/useRecaptcha';
 import ResendOtpButton from '@/components/ResendOtpButton';
 import { AppContext } from '@/App';
 
-const API = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
+const API = process.env.REACT_APP_API_URL || 'https://test-api.hubcontract.kz/api';
 
 const HeaderButton = ({ children, onClick, onMouseEnter, onMouseLeave, style }) => (
     <div
