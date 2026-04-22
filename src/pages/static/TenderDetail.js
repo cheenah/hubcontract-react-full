@@ -12,6 +12,7 @@ import {Textarea} from '@/components/ui/textarea';
 import {Dialog, DialogContent, DialogHeader, DialogTitle} from '@/components/ui/dialog';
 import {Label} from '@/components/ui/label';
 import {Calendar, MapPin, DollarSign, FileText, Banknote, Download} from 'lucide-react';
+import StaticLayout from "@/components/StaticLayout";
 
 const styles = `
   .tender-detail-protocol-icon {
@@ -272,7 +273,7 @@ const TenderDetail = () => {
         };
         return map[category] || category;
     };
-    if (!isAuth) {
+    if (isAuth) {
         return (
             <Layout>
                 <style>{styles}</style>
@@ -567,7 +568,7 @@ const TenderDetail = () => {
         )
     }
     return (
-        <Layout>
+        <StaticLayout>
             <style>{styles}</style>
             <div className="tender-detail-container" data-testid="tender-detail">
                 <div className="tender-header-section">
@@ -863,7 +864,7 @@ const TenderDetail = () => {
                 </div>
             </div>
 
-        </Layout>
+        </StaticLayout>
     );
 };
 

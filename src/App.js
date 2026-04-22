@@ -117,7 +117,7 @@ function App() {
     user?.role === 'customer' ? '/customer/dashboard' : '/';
 
   return (
-    <GoogleReCaptchaProvider reCaptchaKey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}>
+
     <LanguageProvider>
       <AppContext.Provider value={{ user, setUser, logout, API, checkAuth }}>
         <div className="App">
@@ -246,7 +246,7 @@ function App() {
         </div>
       </AppContext.Provider>
     </LanguageProvider>
-    </GoogleReCaptchaProvider>
+
   );
 }
 

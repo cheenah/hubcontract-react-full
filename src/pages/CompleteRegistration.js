@@ -28,10 +28,10 @@ const ACCEPT_TYPES = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png']
 const MAX_BYTES    = 10 * 1024 * 1024;
 
 const FILE_KEYS = [
-  { key: 'registration_cert', tKey: 'completeReg.registrationCert' },
+  { key: 'registration_certificate', tKey: 'completeReg.registrationCert' },
   { key: 'tax_clearance',     tKey: 'completeReg.taxClearance' },
-  { key: 'director_docs',     tKey: 'completeReg.directorDocs' },
-  { key: 'director_order',    tKey: 'completeReg.directorOrder' },
+  { key: 'director_id_doc',     tKey: 'completeReg.directorDocs' },
+  { key: 'director_appointment_order',    tKey: 'completeReg.directorOrder' },
   { key: 'company_charter',   tKey: 'completeReg.charter' },
 ];
 
@@ -200,10 +200,10 @@ const CompleteRegistration = () => {
 
   const [form, setForm] = useState({ org_type: '', legal_address: '', director_name: '' });
   const [files, setFiles] = useState({
-    registration_cert: null,
+    registration_certificate: null,
     tax_clearance:     null,
-    director_docs:     null,
-    director_order:    null,
+    director_id_doc:     null,
+    director_appointment_order:    null,
     company_charter:   null,
   });
 
@@ -315,10 +315,7 @@ const CompleteRegistration = () => {
 
       await checkAuth();
       toast.success(t('completeReg.successMessage'));
-      const role = user?.role;
-      if (role === 'admin') navigate('/admin');
-      else if (role === 'contractor') navigate('/contractor/dashboard');
-      else navigate('/customer/dashboard');
+      navigate('/');
     } catch (error) {
       toast.error(error.response?.data?.detail || 'Ошибка при сохранении данных');
     } finally {

@@ -13,14 +13,12 @@ import {
 } from "@/components/ui/select";
 import { useLanguage } from '@/context/LanguageContext';
 import { toast } from "sonner";
-import useRecaptcha from '@/hooks/useRecaptcha';
 
 const API = process.env.REACT_APP_API_URL || 'https://test-api.hubcontract.kz/api';
 
 const Registration = ({ setShowAuth }) => {
     const navigate = useNavigate();
     const { t } = useLanguage();
-    const { getToken } = useRecaptcha();
     const [loading, setLoading] = useState(false);
 
     const [registerForm, setRegisterForm] = useState({
@@ -36,13 +34,8 @@ const Registration = ({ setShowAuth }) => {
         e.preventDefault();
         setLoading(true);
         try {
-            // Токен запрашивается здесь — непосредственно в момент нажатия кнопки,
-            // чтобы не истёк 2-минутный TTL
-            const captcha_token = await getToken('registration');
-
             await axios.post(`${API}/auth/register`, {
                 ...registerForm,
-                captcha_token,
             });
 
             toast.success('Регистрация успешна! Проверьте email для подтверждения.');
@@ -168,19 +161,6 @@ const Registration = ({ setShowAuth }) => {
                             >
                                 {loading ? t('auth.creatingAccount') : t('auth.createAccount')}
                             </Button>
-
-                            <p className="text-center mt-3" style={{ fontSize: 'var(--font-size-xxs)', color: 'var(--color-text-placeholder)' }}>
-                                Эта форма защищена{' '}
-                                <a
-                                    href="https://policies.google.com/privacy"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    style={{ color: 'var(--color-text-muted)', textDecoration: 'underline' }}
-                                >
-                                    reCAPTCHA v3
-                                </a>
-                                {' '}от Google
-                            </p>
                         </form>
                     </div>
 
