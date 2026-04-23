@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="baac46ef-bf41-4f73-b09d-490929e58f4a" name="Changes" comment="&#10;вм" />
+    <list default="true" id="baac46ef-bf41-4f73-b09d-490929e58f4a" name="Changes" comment="&#10;вм">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StaticLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StaticLayout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/CompleteRegistration.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/CompleteRegistration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/static/TenderDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/static/TenderDetail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/translations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/translations.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,7 +25,7 @@
     <option name="chatModeId" value="Agent" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="229" />
+    <option name="cachedIndexableFilesCount" value="231" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -136,6 +142,8 @@
       <workItem from="1776667016464" duration="11981000" />
       <workItem from="1776693037247" duration="9488000" />
       <workItem from="1776749548132" duration="20032000" />
+      <workItem from="1776851192226" duration="8720000" />
+      <workItem from="1776929306255" duration="6251000" />
     </task>
     <task id="LOCAL-00001" summary="Node.js modules versions [Fix]">
       <option name="closed" value="true" />

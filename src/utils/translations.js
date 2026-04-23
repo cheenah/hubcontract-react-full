@@ -408,6 +408,7 @@ export const translations = {
             reset: 'Сбросить',
             joinEcosystem: 'Присоединяйтесь к экосистеме HubContract',
             postDate: 'Дата публикации',
+            completeReg: 'Завершение регистрации'
         },
         page: {
             mega: 'EPCM подрядчик'
@@ -974,6 +975,7 @@ export const translations = {
             reset: 'Қалпына келтіру',
             joinEcosystem: 'HubContract экожүйесіне қосылыңыз',
             postDate: 'Жарияланған күні',
+            completeReg: 'Тіркеуді аяқтау'
         },
         page: {
             mega: 'EPCM мердігер'
@@ -1541,6 +1543,7 @@ export const translations = {
             reset: 'Reset',
             joinEcosystem: 'Join the HubContract ecosystem',
             postDate: 'Publication date',
+            completeReg: 'Complete registration'
         },
         page: {
             mega: 'EPCM contractor'
@@ -2185,6 +2188,7 @@ export const translations = {
             reset: '重置',
             joinEcosystem: '加入HubContract生态系统',
             postDate: '发布日期',
+            completeReg: '完成注册'
         },
         page: {
             mega: 'EPCM承包商'

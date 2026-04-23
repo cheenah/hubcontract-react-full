@@ -156,6 +156,7 @@ const StaticLayout = ({ children } = {}) => {
     const breadcrumbNameMap = {
         'tenders': t('common.searchOrders'),
         'privacy': t('common.privacyPolicy'),
+        'complete-registration': t('common.completeReg'),
         'auth': t('auth.signIn'),
         '508e1745-94d6-40ca-9bd5-1e09327ad4f8': t('page.mega'),
         'registration': t('auth.register'),
@@ -163,7 +164,17 @@ const StaticLayout = ({ children } = {}) => {
 
     // Filter languages to only include EN, RU, KK, and ZH
     const allowedLanguages = languages.filter(lang => ['en', 'ru', 'kk', 'zh'].includes(lang.code));
-
+    const [tenderName, setTenderName] = useState('');
+    React.useEffect(() => {
+    const tenderId = pathnames[1];
+    if (pathnames[0] === 'tenders' && tenderId && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(tenderId)) {
+        axios.get(`${API}/tenders/${tenderId}`).then(res => {
+            setTenderName(res.data[`short_name_${language}`] || res.data.title || tenderId);
+        }).catch(() => setTenderName(tenderId));
+    } else {
+        setTenderName('');
+    }
+}, [location.pathname, language]);
     return (
         <div className="flex flex-col">
             <header className="landing-header">
@@ -234,7 +245,7 @@ const StaticLayout = ({ children } = {}) => {
                             {pathnames.map((value, index) => {
                                 const last = index === pathnames.length - 1;
                                 const to = `/${pathnames.slice(0, index + 1).join('/')}`;
-                                const name = breadcrumbNameMap[value] || value;
+                                const name = (value === pathnames[1] && pathnames[0] === 'tenders') ? tenderName : (breadcrumbNameMap[value] || value);
 
                                 return (
                                     <React.Fragment key={to}>
