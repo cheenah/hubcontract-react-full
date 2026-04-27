@@ -19,7 +19,7 @@ const TenderList = () => {
     const navigate = useNavigate();
     const {API, user} = React.useContext(AppContext);
     const {t, language} = useLanguage(); // language вернет 'ru', 'en', 'kk' или 'zh'
-    const [tenders, setTenders] = useState([]);
+    const [tenders, setTenders] = useState([] );
     const [filteredTenders, setFilteredTenders] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [categoryFilter, setCategoryFilter] = useState('');
@@ -57,7 +57,6 @@ const TenderList = () => {
 
     const applyFilters = () => {
         let filtered = [...tenders];
-
         if (searchTerm) {
             const searchLower = searchTerm.toLowerCase();
             filtered = filtered.filter((t) => {

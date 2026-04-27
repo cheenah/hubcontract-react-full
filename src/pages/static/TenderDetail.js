@@ -416,7 +416,7 @@ const TenderDetail = () => {
                                             ))}
                                         </div>
                                     </div>
-                                ) : String(tender?.id).toLowerCase() === 'a1b2c3d4-e5f6-7890-abcd-ef1234567890' ? (
+                                ) : ['a1b2c3d4-e5f6-7890-abcd-ef1234567890', 'f29a7d3e-8b1c-4b92-a165-92d3f4b5c6e7'].includes(String(tender?.id).toLowerCase()) ? (
                                     <div className="description-section">
                                         <h3 className="subsection-title">{t('tenderDetail.documents')}</h3>
                                         <div style={{
@@ -755,7 +755,7 @@ const TenderDetail = () => {
                                         ))}
                                     </div>
                                 </div>
-                            ) : String(tender?.id).toLowerCase() === 'a1b2c3d4-e5f6-7890-abcd-ef1234567890' ? (
+                            ) : ['a1b2c3d4-e5f6-7890-abcd-ef1234567890', 'f29a7d3e-8b1c-4b92-a165-92d3f4b5c6e7'].includes(String(tender?.id).toLowerCase()) ? (
                                 <div className="description-section">
                                     <h3 className="subsection-title">{t('tenderDetail.documents')}</h3>
                                     <div style={{
