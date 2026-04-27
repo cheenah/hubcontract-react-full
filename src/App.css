@@ -1872,6 +1872,132 @@ footer a[href^="tel:"] {
     color: var(--color-text-secondary);
 }
 
+/* ── StaticLayout logo ───────────────────────────────────────────────────── */
+.sl-logo-text {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-dark2);
+}
+
+/* ── StaticLayout hamburger (mobile) ─────────────────────────────────────── */
+.sl-hamburger-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    color: var(--color-text-dark);
+    border-radius: var(--radius-md);
+    transition: background 0.15s ease;
+}
+
+.sl-hamburger-btn:hover {
+    background: var(--color-bg-warm);
+}
+
+.sl-mobile-menu {
+    border-top: 1px solid var(--color-border-light);
+    background: white;
+}
+
+.sl-mobile-menu-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sl-mobile-lang {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+}
+
+.sl-mobile-lang-btn {
+    background: var(--color-bg-warm);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-md);
+    padding: 5px 12px;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    color: var(--color-text-dark);
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.sl-mobile-lang-btn.active {
+    background: var(--color-primary-bg);
+    border-color: var(--color-primary-border);
+    color: var(--color-primary);
+}
+
+.sl-mobile-signin-btn {
+    width: 100%;
+    padding: 10px 16px;
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border-medium);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    color: var(--color-text-dark);
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.sl-mobile-signin-btn:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+.sl-mobile-register-btn {
+    width: 100%;
+    padding: 10px 16px;
+    background: var(--color-primary);
+    border: none;
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    color: white;
+    transition: background 0.2s;
+}
+
+.sl-mobile-register-btn:hover {
+    background: var(--color-primary-dark);
+}
+
+/* ── StaticLayout desktop / mobile visibility ─────────────────────────────── */
+.sl-desktop-actions {
+    display: flex;
+}
+
+.sl-breadcrumbs-mobile {
+    display: none;
+}
+
+@media (max-width: 640px) {
+    .sl-hamburger-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sl-desktop-actions {
+        display: none;
+    }
+
+    .sl-breadcrumbs-desktop {
+        display: none;
+    }
+
+    .sl-breadcrumbs-mobile {
+        display: flex;
+    }
+}
+
 .footer-link-list {
     display: flex;
     flex-direction: column;

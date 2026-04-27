@@ -568,6 +568,18 @@ export const translations = {
             privacyAgree:       'Я даю согласие на хранение и обработку моих персональных данных в соответствии с указанной политикой',
             disclaimerAgree:    'Я ознакомился с отказом от ответственности и принимаю его условия',
         },
+        errors: {
+            notFound: {
+                title: 'Страница не найдена',
+                description: 'Запрашиваемая страница не существует или была перемещена.',
+            },
+            forbidden: {
+                title: 'Нет доступа',
+                description: 'У вас недостаточно прав для просмотра этой страницы.',
+            },
+            back: 'Назад',
+            goHome: 'На главную',
+        },
     },
 
     // KAZAKH
@@ -1134,6 +1146,18 @@ export const translations = {
             disclaimerTitle:    'Жауапкершіліктен бас тарту',
             privacyAgree:       'Мен дербес деректерімді көрсетілген саясатқа сәйкес сақтауға және өңдеуге келісімімді беремін',
             disclaimerAgree:    'Мен жауапкершіліктен бас тарту шарттарымен таныстым және оларды қабылдаймын',
+        },
+        errors: {
+            notFound: {
+                title: 'Бет табылмады',
+                description: 'Сұралған бет жоқ немесе жылжытылды.',
+            },
+            forbidden: {
+                title: 'Қол жеткізу жоқ',
+                description: 'Бұл бетті көру үшін сіздің жеткілікті рұқсаттарыңыз жоқ.',
+            },
+            back: 'Артқа',
+            goHome: 'Басты бетке',
         },
     },
 
@@ -1702,6 +1726,18 @@ export const translations = {
             disclaimerTitle:    'Disclaimer',
             privacyAgree:       'I consent to the storage and processing of my personal data in accordance with the stated policy',
             disclaimerAgree:    'I have read the disclaimer and accept its terms',
+        },
+        errors: {
+            notFound: {
+                title: 'Page Not Found',
+                description: 'The requested page does not exist or has been moved.',
+            },
+            forbidden: {
+                title: 'Access Denied',
+                description: 'You do not have sufficient permissions to view this page.',
+            },
+            back: 'Back',
+            goHome: 'Go to Home',
         },
     },
 
@@ -2284,7 +2320,19 @@ export const translations = {
                 website: '网站：',
                 addressValue: '哈萨克斯坦共和国，阿斯塔纳'
             }
-        }
+        },
+        errors: {
+            notFound: {
+                title: '页面未找到',
+                description: '请求的页面不存在或已被移动。',
+            },
+            forbidden: {
+                title: '访问被拒绝',
+                description: '您没有足够的权限查看此页面。',
+            },
+            back: '返回',
+            goHome: '返回首页',
+        },
     },
 
     // TURKISH (Türkçe)
@@ -2864,7 +2912,19 @@ export const translations = {
         },
         page: {
             mega: 'EPCM Yüklenicisi'
-        }
+        },
+        errors: {
+            notFound: {
+                title: 'Sayfa Bulunamadı',
+                description: 'İstenen sayfa mevcut değil veya taşınmış.',
+            },
+            forbidden: {
+                title: 'Erişim Reddedildi',
+                description: 'Bu sayfayı görüntülemek için yeterli izniniz yok.',
+            },
+            back: 'Geri',
+            goHome: 'Ana Sayfaya Git',
+        },
     },
 };
 

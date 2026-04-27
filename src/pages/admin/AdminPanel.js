@@ -7,7 +7,16 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Users, FileText, CheckCircle, XCircle, FileContract, Edit, Trash2, Eye, Play, Ban } from 'lucide-react';
+import { Users, FileText, CheckCircle, XCircle, FileContract, Edit, Trash2, Eye, Play, Ban, ExternalLink } from 'lucide-react';
+
+// Русские названия документов, загружаемых в CompleteRegistration
+const DOCUMENT_LABELS = {
+  registration_certificate:   'Свидетельство о регистрации',
+  tax_clearance:              'Справка об отсутствии задолженностей',
+  director_id_doc:            'Документы директора',
+  director_appointment_order: 'Приказ о назначении директора',
+  company_charter:            'Устав компании',
+};
 
 const AdminPanel = () => {
   const { API } = React.useContext(AppContext);
@@ -189,15 +198,65 @@ const AdminPanel = () => {
                     </div>
 
                     <div className="documents-section">
-                      <h4 className="section-title">Загруженные документы</h4>
-                      <div className="documents-grid">
+                      <h4 className="section-title">
+                        Загруженные документы
+                        {user.documents && (
+                          <span className="ml-2 text-sm font-normal text-[var(--color-text-muted)]">
+                            ({Object.keys(user.documents).length} / {Object.keys(DOCUMENT_LABELS).length})
+                          </span>
+                        )}
+                      </h4>
+                      {/* Список документов: каждый показывает иконку, название, имя файла, дату и кнопку просмотра */}
+                      <div className="flex flex-col gap-2">
                         {user.documents && Object.keys(user.documents).length > 0 ? (
-                          Object.entries(user.documents).map(([key, doc]) => (
-                            <div key={key} className="document-badge">
-                              <span>✓</span>
-                              <span>{key.replace('_', ' ')}</span>
-                            </div>
-                          ))
+                          Object.entries(user.documents).map(([key, doc]) => {
+                            // label — читаемое название документа из константы или fallback
+                            const label = DOCUMENT_LABELS[key] || key.replace(/_/g, ' ');
+                            // viewUrl — URL для открытия документа в новой вкладке
+                            const viewUrl = doc?.url || doc?.file_url;
+                            return (
+                              <div
+                                key={key}
+                                className="flex items-center justify-between gap-3 p-3 rounded-lg bg-[var(--color-bg-surface)] border border-[var(--color-border)]"
+                              >
+                                {/* Иконка + название + метаданные файла */}
+                                <div className="flex items-center gap-2 flex-1 min-w-0">
+                                  <FileText size={15} className="text-[var(--color-primary)] flex-shrink-0" />
+                                  <div className="flex-1 min-w-0">
+                                    <div className="text-sm font-medium text-[var(--color-text-dark)] truncate">
+                                      {label}
+                                    </div>
+                                    {doc?.filename && (
+                                      <div className="text-xs text-[var(--color-text-muted)] truncate" title={doc.filename}>
+                                        {doc.filename}
+                                      </div>
+                                    )}
+                                    {doc?.uploaded_at && (
+                                      <div className="text-xs text-[var(--color-text-placeholder)]">
+                                        {new Date(doc.uploaded_at).toLocaleDateString('ru-RU')}
+                                      </div>
+                                    )}
+                                  </div>
+                                </div>
+
+                                {/* Статус загружен + кнопка просмотра */}
+                                <div className="flex items-center gap-2 flex-shrink-0">
+                                  <span className="flex items-center gap-1 text-xs font-medium text-[var(--color-success-alt)]">
+                                    <CheckCircle size={13} />
+                                    Загружен
+                                  </span>
+                                  {viewUrl && (
+                                    <a href={viewUrl} target="_blank" rel="noopener noreferrer">
+                                      <Button variant="outline" size="sm" className="h-7 px-2 text-xs gap-1">
+                                        <ExternalLink size={12} />
+                                        Открыть
+                                      </Button>
+                                    </a>
+                                  )}
+                                </div>
+                              </div>
+                            );
+                          })
                         ) : (
                           <p className="no-documents">Нет документов</p>
                         )}
@@ -205,6 +264,14 @@ const AdminPanel = () => {
                     </div>
 
                     <div className="verification-actions">
+                      {/* Кнопка открывает страницу детального просмотра компании с документами */}
+                      <Button
+                        variant="outline"
+                        onClick={() => navigate(`/admin/verification/${user.id}`)}
+                      >
+                        <Eye size={18} />
+                        Подробнее
+                      </Button>
                       <Button
                         onClick={() => handleVerification(user.id, false)}
                         variant="outline"

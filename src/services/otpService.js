@@ -1,6 +1,5 @@
 import axios from 'axios';
-
-const API = process.env.REACT_APP_API_URL || 'https://test-api.hubcontract.kz/api';
+import { BASE_URL as API } from '@/services/api';
 
 /**
  * Повторная отправка OTP-кода.

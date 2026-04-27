@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { FileText, Home, User, LogOut, Shield, Menu, X, Building, Calendar, Users, FileBarChart, MessageSquare, Settings as SettingsIcon, ChevronDown, Bell, Award, DollarSign, File, HelpCircle, Phone, Mail, MapPin as Location, BarChart2, Archive, ClipboardList } from 'lucide-react';
 import { useState } from 'react';
+import { BASE_URL as API } from '@/services/api';
 
 const Layout = ({ children } = {}) => {
   const navigate = useNavigate();
@@ -29,7 +30,6 @@ const Layout = ({ children } = {}) => {
   // Fetch unread notifications count
   React.useEffect(() => {
     if (user) {
-      const API = process.env.REACT_APP_API_URL || 'https://test-api.hubcontract.kz/api';
       const token = localStorage.getItem('token');
 
       fetch(`${API}/notifications/unread-count`, {

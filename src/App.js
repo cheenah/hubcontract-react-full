@@ -7,7 +7,8 @@ import { LanguageProvider } from '@/context/LanguageContext';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import apiClient, { BASE_URL } from '@/services/api';
 import useDictionaryStore from '@/store/dictionaryStore';
-
+import NotFound from '@/pages/static/404';
+import Forbidden from '@/pages/static/Foribden';
 // Layouts
 import AdminLayout from '@/layouts/AdminLayout';
 import CustomerLayout from '@/layouts/CustomerLayout';
@@ -36,6 +37,7 @@ import CompleteRegistration from '@/pages/CompleteRegistration';
 // Admin pages
 import AdminPanel from '@/pages/admin/AdminPanel';
 import CreateTender from '@/pages/admin/CreateTenderNew';
+import VerificationDetail from '@/pages/admin/VerificationDetail';
 
 // Customer pages
 import Dashboard from '@/pages/customer/Dashboard';
@@ -182,6 +184,7 @@ function App() {
                 <Route element={<AdminLayout />}>
                   <Route path="/admin" element={<AdminPanel />} />
                   <Route path="/admin/create-tender" element={<VerificationGuard><CreateTender /></VerificationGuard>} />
+                  <Route path="/admin/verification/:userId" element={<VerificationDetail />} />
                 </Route>
               </Route>
 
@@ -233,6 +236,10 @@ function App() {
                   <Route path="/contracts/:id" element={<VerificationGuard><ContractDetail /></VerificationGuard>} />
                 </Route>
               </Route>
+
+              {/* Error pages */}
+              <Route path="/403" element={<Forbidden />} />
+              <Route path="*" element={<NotFound />} />
 
             </Routes>
           </BrowserRouter>

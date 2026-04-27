@@ -8,6 +8,8 @@ import {
     Home,
     Globe,
     ShieldCheck,
+    Menu,
+    X,
 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import {
@@ -26,8 +28,7 @@ import { toast } from "sonner";
 import useRecaptcha from '@/hooks/useRecaptcha';
 import ResendOtpButton from '@/components/ResendOtpButton';
 import { AppContext } from '@/App';
-
-const API = process.env.REACT_APP_API_URL || 'https://test-api.hubcontract.kz/api';
+import { BASE_URL as API } from '@/services/api';
 
 const HeaderButton = ({ children, onClick, onMouseEnter, onMouseLeave, style }) => (
     <div
@@ -55,6 +56,9 @@ const StaticLayout = ({ children } = {}) => {
     const { t, language, changeLanguage, languages } = useLanguage();
     const { getToken } = useRecaptcha();
     const { setUser } = useContext(AppContext);
+
+    // Mobile menu state
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     // Auth dialog state
     const [showAuth, setShowAuth] = useState(false);
@@ -179,18 +183,16 @@ const StaticLayout = ({ children } = {}) => {
         <div className="flex flex-col">
             <header className="landing-header">
                 <div className="header-container">
-                    <div className="logo-section"  onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
+                    <div className="logo-section" onClick={() => { navigate('/'); setMobileMenuOpen(false); }} style={{ cursor: 'pointer' }}>
                         <img src="/logo.png" alt="HubContract" className="logo-image" />
-                        <span className="logo-text">HubContract</span>
+                        <span className="sl-logo-text">HubContract</span>
                     </div>
-                    <div className="sl-header-actions">
+
+                    {/* Desktop actions */}
+                    <div className="sl-header-actions sl-desktop-actions">
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                                <div
-                                    role="button"
-                                    tabIndex={0}
-                                    className="lang-trigger"
-                                >
+                                <div role="button" tabIndex={0} className="lang-trigger">
                                     <Globe size={14} />
                                     <span>{language.toUpperCase()}</span>
                                     <ChevronDown size={13} />
@@ -228,13 +230,54 @@ const StaticLayout = ({ children } = {}) => {
                             {t('auth.register')}
                         </div>
                     </div>
+
+                    {/* Mobile hamburger button */}
+                    <button
+                        className="sl-hamburger-btn"
+                        onClick={() => setMobileMenuOpen((o) => !o)}
+                        aria-label="Toggle menu"
+                    >
+                        {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+                    </button>
                 </div>
+
+                {/* Mobile menu */}
+                {mobileMenuOpen && (
+                    <div className="sl-mobile-menu">
+                        <div className="sl-mobile-menu-inner">
+                            <div className="sl-mobile-lang">
+                                {allowedLanguages.map((lang) => (
+                                    <button
+                                        key={lang.code}
+                                        onClick={() => { changeLanguage(lang.code); setMobileMenuOpen(false); }}
+                                        className={`sl-mobile-lang-btn ${language === lang.code ? 'active' : ''}`}
+                                    >
+                                        {lang.code.toUpperCase()}
+                                    </button>
+                                ))}
+                            </div>
+                            <button
+                                className="sl-mobile-signin-btn"
+                                onClick={() => { setShowAuth(true); setMobileMenuOpen(false); }}
+                            >
+                                {t('auth.signIn')}
+                            </button>
+                            <button
+                                className="sl-mobile-register-btn"
+                                onClick={() => { navigate('/registration'); setMobileMenuOpen(false); }}
+                            >
+                                {t('auth.register')}
+                            </button>
+                        </div>
+                    </div>
+                )}
             </header>
 
             {!isHomePage && (
                 <header className="header-secondary bg-[var(--color-bg-warm)] border-b border-gray-100">
                     <div className="header-container-secondary mx-auto px-6 py-3 flex items-center justify-between">
-                        <div className="breadcrumbs flex items-center gap-2 text-sm">
+                        {/* Desktop breadcrumbs — all items */}
+                        <div className="breadcrumbs sl-breadcrumbs-desktop flex items-center gap-2 text-sm">
                             <div
                                 onClick={() => navigate('/')}
                                 className="flex items-center cursor-pointer hover:text-blue-600 transition-colors text-gray-500"
@@ -246,7 +289,6 @@ const StaticLayout = ({ children } = {}) => {
                                 const last = index === pathnames.length - 1;
                                 const to = `/${pathnames.slice(0, index + 1).join('/')}`;
                                 const name = (value === pathnames[1] && pathnames[0] === 'tenders') ? tenderName : (breadcrumbNameMap[value] || value);
-
                                 return (
                                     <React.Fragment key={to}>
                                         <ChevronRight size={14} className="text-gray-400" />
@@ -263,6 +305,35 @@ const StaticLayout = ({ children } = {}) => {
                                     </React.Fragment>
                                 );
                             })}
+                        </div>
+
+                        {/* Mobile breadcrumbs — home + current only */}
+                        <div className="breadcrumbs sl-breadcrumbs-mobile flex items-center gap-1 text-sm">
+                            <div
+                                onClick={() => navigate('/')}
+                                className="flex items-center cursor-pointer hover:text-blue-600 transition-colors text-gray-500"
+                            >
+                                <Home size={15} />
+                            </div>
+                            {pathnames.length > 0 && (
+                                <>
+                                    <ChevronRight size={13} className="text-gray-400" />
+                                    {pathnames.length > 1 && (
+                                        <>
+                                            <span className="text-gray-400">…</span>
+                                            <ChevronRight size={13} className="text-gray-400" />
+                                        </>
+                                    )}
+                                    <span className="font-medium text-blue-600 truncate max-w-[160px]">
+                                        {(() => {
+                                            const lastVal = pathnames[pathnames.length - 1];
+                                            return (lastVal === pathnames[1] && pathnames[0] === 'tenders')
+                                                ? tenderName
+                                                : (breadcrumbNameMap[lastVal] || lastVal);
+                                        })()}
+                                    </span>
+                                </>
+                            )}
                         </div>
                     </div>
                 </header>

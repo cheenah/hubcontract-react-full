@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="baac46ef-bf41-4f73-b09d-490929e58f4a" name="Changes" comment="&#10;вм" />
+    <list default="true" id="baac46ef-bf41-4f73-b09d-490929e58f4a" name="Changes" comment="&#10;вм">
+      <change afterPath="$PROJECT_DIR$/src/pages/static/404.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/static/Foribden.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/AdminPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/AdminPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/shared/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/shared/Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/translations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/translations.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,12 +27,13 @@
     <option name="chatModeId" value="Agent" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="231" />
+    <option name="cachedIndexableFilesCount" value="234" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -138,6 +147,8 @@
       <workItem from="1776749548132" duration="20032000" />
       <workItem from="1776851192226" duration="8720000" />
       <workItem from="1776929306255" duration="9613000" />
+      <workItem from="1776955535179" duration="8846000" />
+      <workItem from="1777100228802" duration="6566000" />
     </task>
     <task id="LOCAL-00001" summary="Node.js modules versions [Fix]">
       <option name="closed" value="true" />

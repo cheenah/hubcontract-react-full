@@ -13,8 +13,7 @@ import {
 } from "@/components/ui/select";
 import { useLanguage } from '@/context/LanguageContext';
 import { toast } from "sonner";
-
-const API = process.env.REACT_APP_API_URL || 'https://test-api.hubcontract.kz/api';
+import { BASE_URL as API } from '@/services/api';
 
 const Registration = ({ setShowAuth }) => {
     const navigate = useNavigate();

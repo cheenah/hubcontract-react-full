@@ -11,13 +11,36 @@ import { Textarea } from '@/components/ui/textarea';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   Upload, Shield, CheckCircle, AlertCircle, Clock,
-  Edit2, Save, X,
+  Edit2, Save, X, FileText, ExternalLink,
 } from 'lucide-react';
+
+// Ключи документов загружаемых в CompleteRegistration
+const DOCUMENT_KEYS = [
+  'registration_certificate',
+  'tax_clearance',
+  'director_id_doc',
+  'director_appointment_order',
+  'company_charter',
+];
+
+// Русские названия для каждого типа документа
+const DOCUMENT_LABELS = {
+  registration_certificate:    'Свидетельство о регистрации',
+  tax_clearance:               'Справка об отсутствии задолженностей',
+  director_id_doc:             'Документы директора (удостоверение)',
+  director_appointment_order:  'Приказ о назначении директора',
+  company_charter:             'Устав компании',
+};
 
 const Profile = () => {
   const { user, API } = useContext(AppContext);
   const { t } = useLanguage();
   const [uploading, setUploading] = useState(false);
+
+  // Documents state
+  // documents: { [document_type]: { id, filename, uploaded_at, url, file_url } }
+  const [documents, setDocuments] = useState({});
+  const [loadingDocs, setLoadingDocs] = useState(false);
 
   // Org data state
   const [isEditing, setIsEditing] = useState(false);
@@ -30,7 +53,27 @@ const Profile = () => {
 
   useEffect(() => {
     fetchOrgData();
+    fetchDocuments();
   }, []);
+
+  // fetchDocuments — получает список документов пользователя с бэкенда.
+  // GET /documents/list возвращает массив: [{ id, document_type, filename, uploaded_at, url }]
+  // Конвертируем в объект { [document_type]: doc } для быстрого доступа по ключу.
+  const fetchDocuments = async () => {
+    setLoadingDocs(true);
+    try {
+      const response = await axios.get(`${API}/documents/list`);
+      const list = Array.isArray(response.data) ? response.data : [];
+      const map = {};
+      list.forEach(doc => { map[doc.document_type] = doc; });
+      setDocuments(map);
+    } catch {
+      // Если эндпоинт недоступен — fallback на user?.documents из контекста
+      setDocuments(user?.documents || {});
+    } finally {
+      setLoadingDocs(false);
+    }
+  };
 
   const fetchOrgData = async () => {
     try {
@@ -88,7 +131,8 @@ const Profile = () => {
           filename: file.name,
         });
         toast.success('Документ загружен');
-        window.location.reload();
+        // Обновляем список документов без перезагрузки страницы
+        await fetchDocuments();
       };
     } catch (err) {
       toast.error(err.response?.data?.detail || 'Ошибка загрузки');
@@ -97,13 +141,6 @@ const Profile = () => {
     }
   };
 
-  const documentTypes = [
-    { key: 'id_card',        label: t('profile.idCard'),        description: t('profile.idCardDesc') },
-    { key: 'company_cert',   label: t('profile.companyCert'),   description: t('profile.companyCertDesc') },
-    { key: 'director_order', label: t('profile.directorOrder'), description: t('profile.directorOrderDesc') },
-    { key: 'selfie',         label: t('profile.selfie'),        description: t('profile.selfieDesc') },
-    { key: 'bank_statement', label: t('profile.bankStatement'), description: t('profile.bankStatementDesc') },
-  ];
 
   return (
     <>
@@ -219,44 +256,81 @@ const Profile = () => {
             <Card className="pf-card">
               <h2 className="pf-section-title">{t('profile.verificationDocs')}</h2>
               <p className="pf-section-sub">{t('profile.uploadAllDocs')}</p>
-              <div className="pf-doc-list">
-                {documentTypes.map((doc) => {
-                  const uploaded = user?.documents?.[doc.key];
-                  return (
-                    <div key={doc.key} className="pf-doc-item" data-testid={`doc-${doc.key}`}>
-                      <div>
-                        <div className="pf-doc-label">{doc.label}</div>
-                        <div className="pf-doc-desc">{doc.description}</div>
-                        {uploaded && (
-                          <div className="pf-doc-ok">
-                            ✓ {t('profile.uploaded')} {new Date(uploaded.uploaded_at).toLocaleDateString('ru-RU')}
+
+              {loadingDocs ? (
+                <div className="pf-loading"><div className="loading-spinner" /></div>
+              ) : (
+                <div className="pf-doc-list">
+                  {DOCUMENT_KEYS.map((docKey) => {
+                    // doc — объект из fetchDocuments или из user.documents (fallback)
+                    const doc = documents[docKey] || user?.documents?.[docKey];
+                    const label = DOCUMENT_LABELS[docKey];
+                    // viewUrl — прямая ссылка для просмотра документа в новой вкладке
+                    const viewUrl = doc?.url || doc?.file_url;
+                    return (
+                      <div key={docKey} className="pf-doc-item" data-testid={`doc-${docKey}`}>
+                        {/* Иконка + название + метаинформация о файле */}
+                        <div className="flex items-center gap-3 flex-1 min-w-0">
+                          <div className={`p-2 rounded-lg flex-shrink-0 ${doc ? 'bg-[var(--color-success-tint-10)]' : 'bg-[var(--color-bg-muted)]'}`}>
+                            <FileText
+                              size={18}
+                              className={doc ? 'text-[var(--color-success-alt)]' : 'text-[var(--color-text-placeholder)]'}
+                            />
                           </div>
-                        )}
+                          <div className="flex-1 min-w-0">
+                            <div className="pf-doc-label">{label}</div>
+                            {doc ? (
+                              <>
+                                {doc.filename && (
+                                  <div className="pf-doc-desc truncate" title={doc.filename}>{doc.filename}</div>
+                                )}
+                                {doc.uploaded_at && (
+                                  <div className="pf-doc-ok">
+                                    ✓ {t('profile.uploaded')} {new Date(doc.uploaded_at).toLocaleDateString('ru-RU')}
+                                  </div>
+                                )}
+                              </>
+                            ) : (
+                              <div className="pf-doc-desc">Документ не загружен</div>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Кнопки: Открыть (если есть URL) + загрузить/перезагрузить */}
+                        <div className="flex items-center gap-2 flex-shrink-0">
+                          {doc && viewUrl && (
+                            <a href={viewUrl} target="_blank" rel="noopener noreferrer">
+                              <Button variant="outline" size="sm">
+                                <ExternalLink size={14} />
+                                Открыть
+                              </Button>
+                            </a>
+                          )}
+                          <input
+                            type="file"
+                            id={`file-${docKey}`}
+                            style={{ display: 'none' }}
+                            onChange={e => handleFileUpload(docKey, e.target.files[0])}
+                            accept="image/*,.pdf"
+                            data-testid={`file-input-${docKey}`}
+                          />
+                          <Button
+                            variant={doc ? 'outline' : 'default'}
+                            disabled={uploading}
+                            size="sm"
+                            onClick={() => document.getElementById(`file-${docKey}`).click()}
+                            data-testid={`upload-btn-${docKey}`}
+                          >
+                            <Upload size={14} />
+                            {doc ? t('profile.reupload') : t('profile.upload')}
+                          </Button>
+                        </div>
                       </div>
-                      <div>
-                        <input
-                          type="file"
-                          id={`file-${doc.key}`}
-                          style={{ display: 'none' }}
-                          onChange={e => handleFileUpload(doc.key, e.target.files[0])}
-                          accept="image/*,.pdf"
-                          data-testid={`file-input-${doc.key}`}
-                        />
-                        <Button
-                          variant={uploaded ? 'outline' : 'default'}
-                          disabled={uploading}
-                          size="sm"
-                          onClick={() => document.getElementById(`file-${doc.key}`).click()}
-                          data-testid={`upload-btn-${doc.key}`}
-                        >
-                          <Upload size={14} />
-                          {uploaded ? t('profile.reupload') : t('profile.upload')}
-                        </Button>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+                    );
+                  })}
+                </div>
+              )}
+
               {user?.verification_status === 'rejected' && (
                 <div className="pf-notice pf-notice--error">✗ {t('profile.rejectionNotice')}</div>
               )}
