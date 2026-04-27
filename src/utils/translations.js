@@ -236,6 +236,7 @@ export const translations = {
             technicalCriteria: 'Технические критерии',
             financialCriteria: 'Финансовые критерии',
             criteriaWeight: 'Вес',
+            archiveCancelled: 'Объявление отменено',
         },
         createTender: {
             title: 'Создать новый тендер',
@@ -815,6 +816,7 @@ export const translations = {
             technicalCriteria: 'Техникалық өлшемдер',
             financialCriteria: 'Қаржылық өлшемдер',
             criteriaWeight: 'Үлесі',
+            archiveCancelled: 'Хабарландыру болдырылмады',
         },
         createTender: {
             title: 'Жаңа тендер жасау',
@@ -1395,6 +1397,7 @@ export const translations = {
             technicalCriteria: 'Technical Criteria',
             financialCriteria: 'Financial Criteria',
             criteriaWeight: 'Weight',
+            archiveCancelled: 'Announcement cancelled',
         },
         createTender: {
             title: 'Create New Tender',
@@ -1976,6 +1979,7 @@ export const translations = {
             technicalCriteria: '技术标准',
             financialCriteria: '财务标准',
             criteriaWeight: '权重',
+            archiveCancelled: '公告已取消',
         },
 
         // Create Tender
@@ -2572,6 +2576,7 @@ export const translations = {
             technicalCriteria: 'Teknik Kriterler',
             financialCriteria: 'Finansal Kriterler',
             criteriaWeight: 'Ağırlık',
+            archiveCancelled: 'Duyuru iptal edildi',
         },
 
         // Create Tender

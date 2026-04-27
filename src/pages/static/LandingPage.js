@@ -71,7 +71,7 @@ const LandingPage = () => {
     const fetchTenders = async () => {
         try {
             const response = await axios.get(`${API}/tenders`);
-            setTenders(response.data.filter(t => t.status !== 'archive').slice(0, 10));
+            setTenders(response.data.filter(t => !['cancelled', 'archive'].includes(t.status)).slice(0, 10));
         } catch (error) {
             console.error('Error fetching tenders:', error);
         } finally {

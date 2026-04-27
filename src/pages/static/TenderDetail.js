@@ -235,6 +235,7 @@ const TenderDetail = () => {
             toast.error(error.response?.data?.detail || t('common.error'));
         }
     };
+    console.log(tender)
 
     if (loading) {
         return (
@@ -263,7 +264,7 @@ const TenderDetail = () => {
         };
         return map[type] || type.replace('_', ' ');
     };
-    // console.log(tender)
+    console.log(tender)
     const getCategoryLabel = (category) => {
         const map = {
             construction: t('tenderList.construction'),
@@ -584,16 +585,35 @@ const TenderDetail = () => {
                             </Card>
                         )}
 
-                        {tender.status === 'archive' && (
+                        {tender.status === 'archive' && tender.winner_id == null && (
                             <Card className="neon-card tender-detail-archive-card">
                                 <div className="tender-detail-archive-inner">
                                     <FileText size={40} className="tender-detail-archive-icon"/>
                                     <h2 className="tender-detail-archive-title">
-                                        {t('status.archive')}
+                                        {t('tenderDetail.archiveCancelled')}
                                     </h2>
-                                    <p className="tender-detail-archive-text">
-                                        Тендер завершён, договор с победителем заключён
-                                    </p>
+                                </div>
+                            </Card>
+                        )}
+
+                        {tender.status === 'archive' && tender.winner_id != null && (
+                            <Card className="neon-card tender-detail-archive-card">
+                                <div className="tender-detail-archive-inner">
+                                    <FileText size={40} className="tender-detail-archive-icon"/>
+                                    <h2 className="tender-detail-archive-title">
+                                        {t('tenderDetail.archive')}
+                                    </h2>
+                                </div>
+                            </Card>
+                        )}
+
+                        {tender.status === 'cancelled' && (
+                            <Card className="neon-card tender-detail-archive-card">
+                                <div className="tender-detail-archive-inner">
+                                    <FileText size={40} className="tender-detail-archive-icon"/>
+                                    <h2 className="tender-detail-archive-title">
+                                        {t('status.cancelled')}
+                                    </h2>
                                 </div>
                             </Card>
                         )}
@@ -899,35 +919,35 @@ const TenderDetail = () => {
                         </Card>
                     )}
 
-                    {tender.status === 'archive' && (
-                        <Card className="neon-card" style={{
-                            padding: 'var(--space-8)',
-                            textAlign: 'center',
-                            background: 'linear-gradient(135deg, var(--color-bg-muted) 0%, var(--color-border) 100%)',
-                            border: '1px solid var(--color-border-gray)'
-                        }}>
-                            <div style={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                alignItems: 'center',
-                                gap: 'var(--space-3)'
-                            }}>
-                                <FileText size={40} style={{color: 'var(--color-text-placeholder)'}}/>
-                                <h2 style={{
-                                    fontSize: 'var(--font-size-3xl)',
-                                    fontWeight: 'var(--font-weight-bold)',
-                                    color: 'var(--color-text-muted)',
-                                    margin: 0
-                                }}>
-                                    {t('status.archive')}
+                    {tender.status === 'archive' && tender.winner_id == null && (
+                        <Card className="neon-card tender-detail-archive-card">
+                            <div className="tender-detail-archive-inner">
+                                <FileText size={40} className="tender-detail-archive-icon"/>
+                                <h2 className="tender-detail-archive-title">
+                                    {t('tenderDetail.archiveCancelled')}
                                 </h2>
-                                <p style={{
-                                    color: 'var(--color-text-placeholder)',
-                                    margin: 0,
-                                    fontSize: 'var(--font-size-lg)'
-                                }}>
-                                    Тендер завершён, договор с победителем заключён
-                                </p>
+                            </div>
+                        </Card>
+                    )}
+
+                    {tender.status === 'archive' && tender.winner_id != null && (
+                        <Card className="neon-card tender-detail-archive-card">
+                            <div className="tender-detail-archive-inner">
+                                <FileText size={40} className="tender-detail-archive-icon"/>
+                                <h2 className="tender-detail-archive-title">
+                                    {t('tenderDetail.archive')}
+                                </h2>
+                            </div>
+                        </Card>
+                    )}
+
+                    {tender.status === 'cancelled' && (
+                        <Card className="neon-card tender-detail-archive-card">
+                            <div className="tender-detail-archive-inner">
+                                <FileText size={40} className="tender-detail-archive-icon"/>
+                                <h2 className="tender-detail-archive-title">
+                                    {t('status.cancelled')}
+                                </h2>
                             </div>
                         </Card>
                     )}
