@@ -38,6 +38,7 @@ import CompleteRegistration from '@/pages/CompleteRegistration';
 import AdminPanel from '@/pages/admin/AdminPanel';
 import CreateTender from '@/pages/admin/CreateTenderNew';
 import VerificationDetail from '@/pages/admin/VerificationDetail';
+import AdminEmailSender from '@/pages/admin/AdminEmailSender';
 
 // Customer pages
 import Dashboard from '@/pages/customer/Dashboard';
@@ -185,6 +186,7 @@ function App() {
                   <Route path="/admin" element={<AdminPanel />} />
                   <Route path="/admin/create-tender" element={<VerificationGuard><CreateTender /></VerificationGuard>} />
                   <Route path="/admin/verification/:userId" element={<VerificationDetail />} />
+                  <Route path="/admin/email-sender" element={<AdminEmailSender />} />
                 </Route>
               </Route>
 

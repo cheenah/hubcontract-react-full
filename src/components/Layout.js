@@ -12,6 +12,7 @@ import {
 import { FileText, Home, User, LogOut, Shield, Menu, X, Building, Calendar, Users, FileBarChart, MessageSquare, Settings as SettingsIcon, ChevronDown, Bell, Award, DollarSign, File, HelpCircle, Phone, Mail, MapPin as Location, BarChart2, Archive, ClipboardList } from 'lucide-react';
 import { useState } from 'react';
 import { BASE_URL as API } from '@/services/api';
+import { Mail as MailIcon } from 'lucide-react';
 
 const Layout = ({ children } = {}) => {
   const navigate = useNavigate();
@@ -67,6 +68,11 @@ const Layout = ({ children } = {}) => {
 
   const navItems = [...baseNavItems];
 
+
+  // Меню для администратора
+  if (user?.role === 'admin') {
+    navItems.push({ label: 'Email рассылка', path: '/admin/email-sender', icon: MailIcon });
+  }
 
   // Меню для заказчика
   if (user?.role === 'customer') {
