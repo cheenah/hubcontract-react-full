@@ -183,6 +183,7 @@ const MyBids = () => {
 
   const getStatusLabel = (status) => t(`status.${status}`);
   const getTypeLabel = (type) => {
+    if (!type) return '';
     const map = {
       price_proposals: t('tenderList.priceProposals'),
       open_competition: t('tenderList.openCompetition'),

@@ -8,8 +8,11 @@ import { Card } from '@/components/ui/card';
 import {
   ArrowLeft, Building2, Mail, Phone, MapPin, Hash,
   FileText, ExternalLink, Download, CheckCircle, XCircle,
-  Clock, Shield, User, Loader2, AlertCircle,
+  Clock, Shield, User, Loader2, AlertCircle, Send,
 } from 'lucide-react';
+import {
+  Dialog, DialogContent, DialogHeader, DialogTitle,
+} from '@/components/ui/dialog';
 
 // ── Константы ────────────────────────────────────────────────────────────────
 
@@ -80,6 +83,10 @@ const VerificationDetail = () => {
   const [actionLoading, setActionLoading] = useState(false);
   // downloadingKey — ключ документа, который сейчас скачивается
   const [downloadingKey, setDownloadingKey] = useState(null);
+  // send completion email
+  const [sendDialogOpen, setSendDialogOpen] = useState(false);
+  const [sendLoading, setSendLoading] = useState(false);
+  const [lastSentAt, setLastSentAt] = useState(null);
 
   useEffect(() => {
     fetchAll();
@@ -152,6 +159,28 @@ const VerificationDetail = () => {
       toast.error('Не удалось скачать файл');
     } finally {
       setDownloadingKey(null);
+    }
+  };
+
+  const handleSendCompletionEmail = async () => {
+    setSendLoading(true);
+    try {
+      const res = await axios.post(`${API}/admin/users/${userId}/send-completion-email`);
+      if (res.data.success) {
+        setLastSentAt(res.data.sent_at);
+        setSendDialogOpen(false);
+        toast.success('Письмо отправлено');
+      } else {
+        toast.error(res.data.error || 'Ошибка отправки письма');
+      }
+    } catch (err) {
+      toast.error(
+        err.response?.data?.error ||
+        err.response?.data?.detail ||
+        'Ошибка отправки письма'
+      );
+    } finally {
+      setSendLoading(false);
     }
   };
 
@@ -346,6 +375,42 @@ const VerificationDetail = () => {
         </div>
       </Card>
 
+      {/* ── Карточка: отправка письма о завершении регистрации ── */}
+      {userData.onboarding_completed === false && (
+        <Card className="p-6 border border-[var(--color-border)] rounded-2xl bg-[var(--color-bg-surface)]">
+          <div className="flex items-center gap-2 mb-3">
+            <Send size={18} className="text-[var(--color-primary)]" />
+            <h2 className="text-base font-semibold text-[var(--color-text-primary)]">
+              Завершение регистрации
+            </h2>
+          </div>
+          <p className="text-sm text-[var(--color-text-muted)] mb-4">
+            Пользователь ещё не завершил регистрацию. Отправьте письмо со ссылкой для продолжения.
+          </p>
+
+          {lastSentAt && (
+            <div className="flex items-center gap-2 text-xs text-[var(--color-text-muted)] mb-4 px-3 py-2.5 rounded-lg bg-[var(--color-bg-subtle)] border border-[var(--color-border)]">
+              <Clock size={13} className="flex-shrink-0 text-[var(--color-text-placeholder)]" />
+              <span>
+                Последняя отправка:{' '}
+                {new Date(lastSentAt).toLocaleString('ru-RU', {
+                  day: '2-digit', month: 'long', year: 'numeric',
+                  hour: '2-digit', minute: '2-digit',
+                })}
+              </span>
+            </div>
+          )}
+
+          <Button
+            onClick={() => setSendDialogOpen(true)}
+            className="gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white"
+          >
+            <Send size={16} />
+            Отправить письмо о завершении регистрации
+          </Button>
+        </Card>
+      )}
+
       {/* ── Карточка: действия верификации ── */}
       {userData.verification_status === 'pending' && (
         <Card className="p-6 border border-[var(--color-border)] rounded-2xl bg-[var(--color-bg-surface)]">
@@ -401,6 +466,39 @@ const VerificationDetail = () => {
           }
         </div>
       )}
+
+      {/* ── Диалог подтверждения отправки ── */}
+      <Dialog open={sendDialogOpen} onOpenChange={setSendDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Отправить письмо?</DialogTitle>
+          </DialogHeader>
+          <p className="text-sm text-[var(--color-text-muted)] mt-1">
+            Письмо со ссылкой для завершения регистрации будет отправлено на{' '}
+            <strong className="text-[var(--color-text-primary)]">{userData?.email}</strong>.
+          </p>
+          <div className="flex justify-end gap-3 mt-5">
+            <Button
+              variant="outline"
+              onClick={() => setSendDialogOpen(false)}
+              disabled={sendLoading}
+            >
+              Отмена
+            </Button>
+            <Button
+              onClick={handleSendCompletionEmail}
+              disabled={sendLoading}
+              className="gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white"
+            >
+              {sendLoading
+                ? <Loader2 size={16} className="animate-spin" />
+                : <Send size={16} />
+              }
+              {sendLoading ? 'Отправка...' : 'Отправить'}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

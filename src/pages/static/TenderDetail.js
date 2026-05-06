@@ -72,7 +72,6 @@ const TenderDetail = () => {
     useEffect(() => {
         fetchTenderDetails();
     }, [id]);
-    const {isAuth} = React.useContext(AppContext);
     const fetchTenderDetails = async () => {
         try {
             const tenderResponse = await axios.get(`${API}/tenders/${id}`);
@@ -256,6 +255,7 @@ const TenderDetail = () => {
 
     const getStatusLabel = (status) => t(`status.${status}`);
     const getTypeLabel = (type) => {
+        if (!type) return '';
         const map = {
             price_proposals: t('tenderList.priceProposals'),
             open_competition: t('tenderList.openCompetition'),
@@ -274,7 +274,7 @@ const TenderDetail = () => {
         };
         return map[category] || category;
     };
-    if (isAuth) {
+    if (user) {
         return (
             <Layout>
                 <style>{styles}</style>

@@ -7,7 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Users, FileText, CheckCircle, XCircle, FileContract, Edit, Trash2, Eye, Play, Ban, ExternalLink } from 'lucide-react';
+import { Users, FileText, CheckCircle, XCircle, FileContract, Edit, Trash2, Eye, Play, Ban, ExternalLink, Plus } from 'lucide-react';
+import CreateTenderDialog from './CreateTenderDialog';
 
 // Русские названия документов, загружаемых в CompleteRegistration
 const DOCUMENT_LABELS = {
@@ -28,6 +29,7 @@ const AdminPanel = () => {
   const [tenders, setTenders] = useState([]);
   const [contracts, setContracts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [createDialogOpen, setCreateDialogOpen] = useState(false);
 
   useEffect(() => {
     fetchAdminData();
@@ -155,7 +157,11 @@ const AdminPanel = () => {
               </div>
               <div>
                 <p className="stat-label">Ожидают верификации</p>
-                <p className="stat-value" data-testid="admin-pending-verifications">{stats.pending_verifications}</p>
+                <p className="stat-value" data-testid="admin-pending-verifications">
+                  {typeof stats.pending_verifications === 'number'
+                    ? stats.pending_verifications
+                    : pendingUsers.length}
+                </p>
               </div>
             </Card>
           </div>
@@ -305,14 +311,22 @@ const AdminPanel = () => {
                     <div>
                       <h3 className="user-email">{user.email}</h3>
                       <p className="user-meta">
-                        {user.company_name || 'Без названия'} • БИН: {user.company_bin}
+                        {user.company_name || 'Без названия'} • БИН: {typeof user.company_bin === 'string' || typeof user.company_bin === 'number' ? user.company_bin : '—'}
                       </p>
                     </div>
                     <div className="user-badges">
-                      <span className="role-badge">{user.role}</span>
-                      <span className={`status-badge status-${user.verification_status}`}>
-                        {user.verification_status}
+                      <span className="role-badge">
+                        {typeof user.role === 'string' ? user.role : '—'}
                       </span>
+                      {(() => {
+                        const vs = user.verification_status;
+                        const statusStr = typeof vs === 'string' ? vs : (vs ? 'mixed' : 'unknown');
+                        return (
+                          <span className={`status-badge status-${statusStr}`}>
+                            {statusStr}
+                          </span>
+                        );
+                      })()}
                     </div>
                   </div>
                   <div className="card-actions">
@@ -332,6 +346,12 @@ const AdminPanel = () => {
 
           {/* Tenders Tab */}
           <TabsContent value="tenders" className="tab-content">
+            <div className="flex justify-end mb-4">
+              <Button onClick={() => setCreateDialogOpen(true)} className="neon-button-filled">
+                <Plus className="w-4 h-4 mr-2" />
+                Создать тендер
+              </Button>
+            </div>
             <div className="tenders-list">
               {tenders.map((tender) => (
                 <Card key={tender.id} className="tender-card neon-card">
@@ -399,6 +419,12 @@ const AdminPanel = () => {
           </TabsContent>
         </Tabs>
       </div>
+
+      <CreateTenderDialog
+        open={createDialogOpen}
+        onOpenChange={setCreateDialogOpen}
+        onSuccess={fetchAdminData}
+      />
 
       <style jsx>{`
         .admin-panel-container {

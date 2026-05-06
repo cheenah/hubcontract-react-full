@@ -12,6 +12,7 @@ import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from '@/c
 import {Search, Filter} from 'lucide-react';
 import Layout from '@/components/Layout';
 import StaticLayout from '@/components/StaticLayout';
+import useDictionaryStore from '@/store/dictionaryStore';
 
 
 const TenderList = () => {
@@ -19,6 +20,7 @@ const TenderList = () => {
     const navigate = useNavigate();
     const {API, user} = React.useContext(AppContext);
     const {t, language} = useLanguage(); // language вернет 'ru', 'en', 'kk' или 'zh'
+    const { tender_category, tender_type: tenderTypeDict, region: regionDict } = useDictionaryStore((s) => s.dictionaries);
     const [tenders, setTenders] = useState([] );
     const [filteredTenders, setFilteredTenders] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
@@ -100,25 +102,19 @@ const TenderList = () => {
     };
 
     const getCategoryLabel = (category) => {
-        const map = {
-            construction: t('tenderList.construction'),
-            it: t('tenderList.itServices'),
-            itServices: t('tenderList.itServices'),
-            consulting: t('tenderList.consulting'),
-            logistics: t('tenderList.logistics'),
-            oil_gas_chemistry: t('tenderList.oil_gas_chemistry'),
-        };
-        return map[category] || category;
+        const found = tender_category.find(c => c.code === category);
+        return found ? found.name_ru : category;
     };
 
     const getTypeLabel = (type) => {
-        const map = {
-            price_proposals: t('tenderList.priceProposals'),
-            open_competition: t('tenderList.openCompetition'),
-            auction: t('tenderList.auction'),
-            single_source: t('tenderList.singleSource'),
-        };
-        return map[type] || type.replace('_', ' ');
+        if (!type) return '';
+        const found = tenderTypeDict.find(tt => tt.code === type);
+        return found ? found.name_ru : type.replace(/_/g, ' ');
+    };
+
+    const getRegionLabel = (code) => {
+        const found = regionDict.find(r => r.code === code);
+        return found ? found.name_ru : code;
     };
 
     const getStatusLabel = (status) => t(`status.${status}`);
@@ -173,12 +169,9 @@ const TenderList = () => {
                                     </SelectTrigger>
                                     <SelectContent>
                                         <SelectItem value="all">{t('tenderList.allCategories')}</SelectItem>
-                                        <SelectItem value="construction">{t('tenderList.construction')}</SelectItem>
-                                        <SelectItem value="itServices">{t('tenderList.itServices')}</SelectItem>
-                                        <SelectItem value="consulting">{t('tenderList.consulting')}</SelectItem>
-                                        <SelectItem value="logistics">{t('tenderList.logistics')}</SelectItem>
-                                        <SelectItem
-                                            value="oil_gas_chemistry">{t('tenderList.oil_gas_chemistry')}</SelectItem>
+                                        {tender_category.map(c => (
+                                            <SelectItem key={c.code} value={c.code}>{c.name_ru}</SelectItem>
+                                        ))}
                                     </SelectContent>
                                 </Select>
                             </div>
@@ -191,11 +184,9 @@ const TenderList = () => {
                                     </SelectTrigger>
                                     <SelectContent>
                                         <SelectItem value="all">{t('tenderList.regions.all')}</SelectItem>
-                                        <SelectItem value="almaty">{t('tenderList.regions.almaty')}</SelectItem>
-                                        <SelectItem value="astana">{t('tenderList.regions.astana')}</SelectItem>
-                                        <SelectItem value="shymkent">{t('tenderList.regions.shymkent')}</SelectItem>
-                                        <SelectItem value="aktobe">{t('tenderList.regions.aktobe')}</SelectItem>
-                                        <SelectItem value="karaganda">{t('tenderList.regions.karaganda')}</SelectItem>
+                                        {regionDict.map(r => (
+                                            <SelectItem key={r.code} value={r.code}>{r.name_ru}</SelectItem>
+                                        ))}
                                     </SelectContent>
                                 </Select>
                             </div>
@@ -208,12 +199,9 @@ const TenderList = () => {
                                     </SelectTrigger>
                                     <SelectContent>
                                         <SelectItem value="all">{t('tenderList.allTypes')}</SelectItem>
-                                        <SelectItem
-                                            value="price_proposals">{t('tenderList.priceProposals')}</SelectItem>
-                                        <SelectItem
-                                            value="open_competition">{t('tenderList.openCompetition')}</SelectItem>
-                                        <SelectItem value="auction">{t('tenderList.auction')}</SelectItem>
-                                        <SelectItem value="single_source">{t('tenderList.singleSource')}</SelectItem>
+                                        {tenderTypeDict.map(tt => (
+                                            <SelectItem key={tt.code} value={tt.code}>{tt.name_ru}</SelectItem>
+                                        ))}
                                     </SelectContent>
                                 </Select>
                             </div>
@@ -347,7 +335,7 @@ const TenderList = () => {
                                             </div>
                                             <div className="detail-item">
                                                 <span className="detail-label">{t('tenderList.region')}</span>
-                                                <span className="detail-value">{tender.region}</span>
+                                                <span className="detail-value">{getRegionLabel(tender.region)}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -418,12 +406,9 @@ const TenderList = () => {
                                     </SelectTrigger>
                                     <SelectContent>
                                         <SelectItem value="all">{t('tenderList.allCategories')}</SelectItem>
-                                        <SelectItem value="construction">{t('tenderList.construction')}</SelectItem>
-                                        <SelectItem value="itServices">{t('tenderList.itServices')}</SelectItem>
-                                        <SelectItem value="consulting">{t('tenderList.consulting')}</SelectItem>
-                                        <SelectItem value="logistics">{t('tenderList.logistics')}</SelectItem>
-                                        <SelectItem
-                                            value="oil_gas_chemistry">{t('tenderList.oil_gas_chemistry')}</SelectItem>
+                                        {tender_category.map(c => (
+                                            <SelectItem key={c.code} value={c.code}>{c.name_ru}</SelectItem>
+                                        ))}
                                     </SelectContent>
                                 </Select>
                             </div>
@@ -436,11 +421,9 @@ const TenderList = () => {
                                     </SelectTrigger>
                                     <SelectContent>
                                         <SelectItem value="all">{t('tenderList.regions.all')}</SelectItem>
-                                        <SelectItem value="almaty">{t('tenderList.regions.almaty')}</SelectItem>
-                                        <SelectItem value="astana">{t('tenderList.regions.astana')}</SelectItem>
-                                        <SelectItem value="shymkent">{t('tenderList.regions.shymkent')}</SelectItem>
-                                        <SelectItem value="aktobe">{t('tenderList.regions.aktobe')}</SelectItem>
-                                        <SelectItem value="karaganda">{t('tenderList.regions.karaganda')}</SelectItem>
+                                        {regionDict.map(r => (
+                                            <SelectItem key={r.code} value={r.code}>{r.name_ru}</SelectItem>
+                                        ))}
                                     </SelectContent>
                                 </Select>
                             </div>
@@ -453,12 +436,9 @@ const TenderList = () => {
                                     </SelectTrigger>
                                     <SelectContent>
                                         <SelectItem value="all">{t('tenderList.allTypes')}</SelectItem>
-                                        <SelectItem
-                                            value="price_proposals">{t('tenderList.priceProposals')}</SelectItem>
-                                        <SelectItem
-                                            value="open_competition">{t('tenderList.openCompetition')}</SelectItem>
-                                        <SelectItem value="auction">{t('tenderList.auction')}</SelectItem>
-                                        <SelectItem value="single_source">{t('tenderList.singleSource')}</SelectItem>
+                                        {tenderTypeDict.map(tt => (
+                                            <SelectItem key={tt.code} value={tt.code}>{tt.name_ru}</SelectItem>
+                                        ))}
                                     </SelectContent>
                                 </Select>
                             </div>
@@ -592,7 +572,7 @@ const TenderList = () => {
                                             </div>
                                             <div className="detail-item">
                                                 <span className="detail-label">{t('tenderList.region')}</span>
-                                                <span className="detail-value">{tender.region}</span>
+                                                <span className="detail-value">{getRegionLabel(tender.region)}</span>
                                             </div>
                                         </div>
                                     </div>

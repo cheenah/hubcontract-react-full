@@ -15,7 +15,7 @@
 
 import axios from 'axios';
 
-//export const BASE_URL = process.env.REACT_APP_API_URL || 'https://test-api.hubcontract.kz/api';
+// export const BASE_URL = process.env.REACT_APP_API_URL || 'https://test-api.hubcontract.kz/api';
 export const BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
 
 // ─────────────────────────────────────────────────────────────────────────────

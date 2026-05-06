@@ -114,10 +114,9 @@ function App() {
   }
 
   const roleHome =
-    user?.onboarding_completed === false ? '/complete-registration' :
     user?.role === 'admin' ? '/admin' :
-    user?.role === 'contractor' ? '/contractor/dashboard' :
-    user?.role === 'customer' ? '/customer/dashboard' : '/';
+    user?.role === 'contractor' ? (user.documents_verified ? '/contractor/dashboard' : '/complete-registration') :
+    user?.role === 'customer' ? (user.documents_verified ? '/customer/dashboard' : '/complete-registration') : '/';
 
   return (
 
@@ -139,18 +138,6 @@ function App() {
               <Route path="/organization" element={<Navigate to="/customer/profile" replace />} />
               <Route path="/my-tenders" element={<Navigate to="/customer/tenders" replace />} />
               <Route path="/create-tender" element={<Navigate to="/admin/create-tender" replace />} />
-
-              {/* Onboarding — only for authenticated users with onboarding_completed === false */}
-              <Route element={<PublicLayout />}>
-                <Route
-                  path="/complete-registration"
-                  element={
-                    !user ? <Navigate to="/" replace /> :
-                    user.onboarding_completed !== false ? <Navigate to={roleHome} replace /> :
-                    <CompleteRegistration />
-                  }
-                />
-              </Route>
 
               {/* Tenders list — self-contained layout */}
               <Route path="/tenders" element={<TenderList />} />
@@ -194,8 +181,9 @@ function App() {
               <Route element={<ProtectedRoute allowedRole="customer" />}>
                 <Route element={<CustomerLayout />}>
                   {/* Always accessible — verification status visible here */}
-                  <Route path="/customer/dashboard" element={<Dashboard />} />
+                  <Route path="/customer/dashboard" element={user?.documents_verified ? <Dashboard /> : <Navigate to="/complete-registration" replace />} />
                   <Route path="/customer/profile" element={<Profile />} />
+                  <Route path="/complete-registration" element={user?.documents_verified ? <Navigate to="/customer/dashboard" replace /> : <CompleteRegistration />} />
                   <Route path="/customer/support" element={<Support />} />
                   <Route path="/customer/privacy-policy" element={<PrivacyPolicy />} />
                   <Route path="/customer/terms-of-use" element={<TermsOfUse />} />
@@ -212,8 +200,9 @@ function App() {
               <Route element={<ProtectedRoute allowedRole="contractor" />}>
                 <Route element={<ContractorLayout />}>
                   {/* Always accessible */}
-                  <Route path="/contractor/dashboard" element={<ContractorDashboard />} />
+                  <Route path="/contractor/dashboard" element={user?.documents_verified ? <ContractorDashboard /> : <Navigate to="/complete-registration" replace />} />
                   <Route path="/contractor/profile" element={<ContractorProfile />} />
+                  <Route path="/complete-registration" element={user?.documents_verified ? <Navigate to="/contractor/dashboard" replace /> : <CompleteRegistration />} />
                   <Route path="/contractor/support" element={<Support />} />
                   {/* Blocked until verified */}
                   <Route path="/contractor/bids" element={<VerificationGuard><MyBids /></VerificationGuard>} />

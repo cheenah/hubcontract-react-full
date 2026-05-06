@@ -17,6 +17,7 @@ import {
 import {
   Mail, Send, Eye, EyeOff, Loader2,
   Bold, Italic, Underline, List, ListOrdered, Link, Code2, Undo, Redo,
+  Paperclip, X, FileText,
 } from 'lucide-react';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -293,6 +294,10 @@ const AdminEmailSender = () => {
   // Visual editor mode
   const [richHtml, setRichHtml] = useState('');
 
+  // Attachments
+  const [attachments, setAttachments] = useState([]);
+  const [dragOver, setDragOver]       = useState(false);
+
   // ── Template helpers ──────────────────────────────────────────────────────
 
   const selectedTemplate = EMAIL_TEMPLATES.find((t) => t.id === templateId) || null;
@@ -318,6 +323,19 @@ const AdminEmailSender = () => {
     return false;
   })();
 
+  // ── Attachment helpers ────────────────────────────────────────────────────
+
+  const addFiles = (fileList) => {
+    const incoming = Array.from(fileList);
+    setAttachments((prev) => {
+      const existing = new Set(prev.map((f) => `${f.name}|${f.size}`));
+      return [...prev, ...incoming.filter((f) => !existing.has(`${f.name}|${f.size}`))];
+    });
+  };
+
+  const removeAttachment = (idx) =>
+    setAttachments((prev) => prev.filter((_, i) => i !== idx));
+
   // ── Build payload ─────────────────────────────────────────────────────────
 
   const buildPayload = () => {
@@ -336,10 +354,20 @@ const AdminEmailSender = () => {
     if (!canSend) return;
     setSending(true);
     try {
-      await axios.post(`${API}/admin/send-email`, buildPayload());
+      if (attachments.length > 0) {
+        const fd = new FormData();
+        fd.append('payload', JSON.stringify(buildPayload()));
+        attachments.forEach((f) => fd.append('files', f));
+        await axios.post(`${API}/admin/send-email`, fd, {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        });
+      } else {
+        await axios.post(`${API}/admin/send-email`, buildPayload());
+      }
       toast.success(`Письмо отправлено на ${email}`);
       setEmail(''); setSubject(''); setTemplateId('');
       setArgs({}); setRawHtml(''); setRichHtml('');
+      setAttachments([]);
       setShowPreview(false);
     } catch (err) {
       toast.error(err.response?.data?.detail || 'Ошибка отправки письма');
@@ -522,6 +550,88 @@ const AdminEmailSender = () => {
             )}
           </TabsContent>
         </Tabs>
+
+        {/* ── Вложения ── */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <Label style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <Paperclip size={14} />
+            Вложения {attachments.length > 0 && `(${attachments.length})`}
+          </Label>
+
+          {/* Drop zone */}
+          <div
+            onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
+            onDragLeave={() => setDragOver(false)}
+            onDrop={(e) => { e.preventDefault(); setDragOver(false); addFiles(e.dataTransfer.files); }}
+            onClick={() => document.getElementById('email-attach-input').click()}
+            style={{
+              border: `2px dashed ${dragOver ? 'var(--color-primary)' : 'var(--color-border-medium)'}`,
+              borderRadius: 'var(--radius-lg)',
+              padding: '14px 16px',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 8,
+              color: dragOver ? 'var(--color-primary)' : 'var(--color-text-muted)',
+              fontSize: 'var(--font-size-sm)',
+              background: dragOver ? 'var(--color-primary-bg)' : 'transparent',
+              transition: 'all var(--transition-fast)',
+              userSelect: 'none',
+            }}
+          >
+            <Paperclip size={15} />
+            Перетащите файлы сюда или нажмите для выбора
+          </div>
+          <input
+            id="email-attach-input"
+            type="file"
+            multiple
+            style={{ display: 'none' }}
+            onChange={(e) => { addFiles(e.target.files); e.target.value = ''; }}
+          />
+
+          {/* Chips */}
+          {attachments.length > 0 && (
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+              {attachments.map((file, i) => (
+                <div key={i} style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 5,
+                  padding: '4px 10px 4px 8px',
+                  background: 'var(--color-primary-bg)',
+                  border: '1px solid var(--color-primary-border)',
+                  borderRadius: 'var(--radius-pill)',
+                  fontSize: 'var(--font-size-xs)',
+                  color: 'var(--color-primary)',
+                  maxWidth: 260,
+                }}>
+                  <FileText size={12} style={{ flexShrink: 0 }} />
+                  <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    {file.name}
+                  </span>
+                  <span style={{ color: 'var(--color-text-placeholder)', whiteSpace: 'nowrap' }}>
+                    {file.size < 1024 * 1024
+                      ? `${(file.size / 1024).toFixed(0)} KB`
+                      : `${(file.size / 1024 / 1024).toFixed(1)} MB`}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => removeAttachment(i)}
+                    style={{
+                      background: 'none', border: 'none', cursor: 'pointer',
+                      padding: 0, display: 'flex', alignItems: 'center',
+                      color: 'var(--color-text-muted)', flexShrink: 0,
+                    }}
+                  >
+                    <X size={12} />
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
 
         {/* Превью payload */}
         <div>

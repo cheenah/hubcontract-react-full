@@ -28,6 +28,7 @@ import {
     MapPin as Location
 } from 'lucide-react';
 import StaticLayout from '@/components/StaticLayout';
+import useDictionaryStore from '@/store/dictionaryStore';
 
 const LandingPage = () => {
     const navigate = useNavigate();
@@ -46,6 +47,8 @@ const LandingPage = () => {
     const [budgetMin, setBudgetMin] = useState('');
     const [budgetMax, setBudgetMax] = useState('');
     const [loadingTenders, setLoadingTenders] = useState(true);
+    const { tender_category, tender_type: tenderTypeDict, region: regionDict } = useDictionaryStore((s) => s.dictionaries);
+    const [typeFilter, setTypeFilter] = useState('');
 
     const [loginForm, setLoginForm] = useState({email: '', password: ''});
     const [registerForm, setRegisterForm] = useState({
@@ -66,7 +69,7 @@ const LandingPage = () => {
     // Filter tenders when search term or filters change
     useEffect(() => {
         applyFilters();
-    }, [searchTerm, categoryFilter, regionFilter, budgetMin, budgetMax, tenders]);
+    }, [searchTerm, categoryFilter, typeFilter, regionFilter, budgetMin, budgetMax, tenders]);
 
     const fetchTenders = async () => {
         try {
@@ -106,11 +109,12 @@ const LandingPage = () => {
             );
         }
 
+        if (typeFilter && typeFilter !== 'all') {
+            filtered = filtered.filter((t) => t.tender_type === typeFilter);
+        }
+
         if (regionFilter && regionFilter !== 'all') {
-            const lowRegion = String(regionFilter).toLowerCase().trim();
-            filtered = filtered.filter((t) =>
-                t.region?.toLowerCase().includes(lowRegion)
-            );
+            filtered = filtered.filter((t) => t.region === regionFilter);
         }
 
         if (budgetMin !== "" && budgetMin !== null && !isNaN(budgetMin)) {
@@ -133,14 +137,8 @@ const LandingPage = () => {
     };
 
     const getCategoryLabel = (category) => {
-        const map = {
-            construction: t('tenderList.construction'),
-            it: t('tenderList.itServices'),
-            consulting: t('tenderList.consulting'),
-            logistics: t('tenderList.logistics'),
-            oil_gas_chemistry: t('tenderList.oil_gas_chemistry'),
-        };
-        return map[category] || category;
+        const found = tender_category.find(c => c.code === category);
+        return found ? found.name_ru : category;
     };
 
     const handleTenderClick = (tenderId) => {
@@ -235,13 +233,9 @@ const LandingPage = () => {
                                             </SelectTrigger>
                                             <SelectContent>
                                                 <SelectItem value="all">{t('tenderList.allCategories')}</SelectItem>
-                                                <SelectItem
-                                                    value="construction">{t('tenderList.construction')}</SelectItem>
-                                                <SelectItem value="it">{t('tenderList.itServices')}</SelectItem>
-                                                <SelectItem value="consulting">{t('tenderList.consulting')}</SelectItem>
-                                                <SelectItem value="logistics">{t('tenderList.logistics')}</SelectItem>
-                                                <SelectItem
-                                                    value="oil_gas_chemistry">{t('tenderList.oil_gas_chemistry')}</SelectItem>
+                                                {tender_category.map(c => (
+                                                    <SelectItem key={c.code} value={c.code}>{c.name_ru}</SelectItem>
+                                                ))}
                                             </SelectContent>
                                         </Select>
                                     </div>
@@ -254,32 +248,24 @@ const LandingPage = () => {
                                             </SelectTrigger>
                                             <SelectContent>
                                                 <SelectItem value="all">{t('tenderList.regions.all')}</SelectItem>
-                                                <SelectItem value="almaty">{t('tenderList.regions.almaty')}</SelectItem>
-                                                <SelectItem value="astana">{t('tenderList.regions.astana')}</SelectItem>
-                                                <SelectItem
-                                                    value="shymkent">{t('tenderList.regions.shymkent')}</SelectItem>
-                                                <SelectItem value="aktobe">{t('tenderList.regions.aktobe')}</SelectItem>
-                                                <SelectItem
-                                                    value="karaganda">{t('tenderList.regions.karaganda')}</SelectItem>
+                                                {regionDict.map(r => (
+                                                    <SelectItem key={r.code} value={r.code}>{r.name_ru}</SelectItem>
+                                                ))}
                                             </SelectContent>
                                         </Select>
                                     </div>
 
                                     <div className="filter-group">
                                         <label className="search-label">{t('tenderList.typeLabel')}</label>
-                                        <Select value="" onValueChange={() => {
-                                        }}>
+                                        <Select value={typeFilter} onValueChange={setTypeFilter}>
                                             <SelectTrigger className="filter-select-advanced">
                                                 <SelectValue placeholder={t('tenderList.allTypes')}/>
                                             </SelectTrigger>
                                             <SelectContent>
                                                 <SelectItem value="all">{t('tenderList.allTypes')}</SelectItem>
-                                                <SelectItem
-                                                    value="services">{t('tenderList.priceProposals')}</SelectItem>
-                                                <SelectItem
-                                                    value="supplies">{t('tenderList.openCompetition')}</SelectItem>
-                                                <SelectItem value="works">{t('tenderList.auction')}</SelectItem>
-                                                <SelectItem value="mixed">{t('tenderList.singleSource')}</SelectItem>
+                                                {tenderTypeDict.map(tt => (
+                                                    <SelectItem key={tt.code} value={tt.code}>{tt.name_ru}</SelectItem>
+                                                ))}
                                             </SelectContent>
                                         </Select>
                                     </div>
@@ -347,6 +333,7 @@ const LandingPage = () => {
                                         onClick={() => {
                                             setSearchTerm('');
                                             setCategoryFilter('');
+                                            setTypeFilter('');
                                             setRegionFilter('');
                                             setBudgetMin('');
                                             setBudgetMax('');
@@ -419,7 +406,7 @@ const LandingPage = () => {
                                                 </div>
                                                 <div className="tender-location">
                                                     <MapPin size={14}/>
-                                                    <span>{tender.region}</span>
+                                                    <span>{regionDict.find(r => r.code === tender.region)?.name_ru || tender.region}</span>
                                                 </div>
 
                                             </div>

@@ -11,11 +11,13 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ArrowLeft, ArrowRight, Plus, Trash2, Upload, FileText, Check } from 'lucide-react';
+import useDictionaryStore from '@/store/dictionaryStore';
 
 const CreateTenderNew = () => {
   const navigate = useNavigate();
   const { API } = React.useContext(AppContext);
   const { t } = useLanguage();
+  const { tender_category, tender_type: tenderTypeDict, region: regionDict } = useDictionaryStore((s) => s.dictionaries);
   const [loading, setLoading] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 2;
@@ -316,10 +318,9 @@ const CreateTenderNew = () => {
                   <SelectValue placeholder="Выберите тип" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="price_proposals">Ценовые предложения</SelectItem>
-                  <SelectItem value="open_competition">Открытый конкурс</SelectItem>
-                  <SelectItem value="auction">Аукцион</SelectItem>
-                  <SelectItem value="single_source">Единственный источник</SelectItem>
+                  {tenderTypeDict.map(tt => (
+                    <SelectItem key={tt.code} value={tt.code}>{tt.name_ru}</SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>
@@ -336,24 +337,28 @@ const CreateTenderNew = () => {
                     <SelectValue placeholder="Выберите категорию" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="construction">Строительство</SelectItem>
-                    <SelectItem value="equipment">Оборудование</SelectItem>
-                    <SelectItem value="services">Услуги</SelectItem>
-                    <SelectItem value="materials">Материалы</SelectItem>
-                    <SelectItem value="technology">Технологии</SelectItem>
-                    <SelectItem value="consulting">Консалтинг</SelectItem>
+                    {tender_category.map(c => (
+                      <SelectItem key={c.code} value={c.code}>{c.name_ru}</SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
 
               <div className="form-field">
                 <Label htmlFor="region">Регион *</Label>
-                <Input
-                  id="region"
+                <Select
                   value={generalData.region}
-                  onChange={(e) => setGeneralData({ ...generalData, region: e.target.value })}
-                  placeholder="Например: Алматы"
-                />
+                  onValueChange={(value) => setGeneralData({ ...generalData, region: value })}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Выберите регион" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {regionDict.map(r => (
+                      <SelectItem key={r.code} value={r.code}>{r.name_ru}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
             </div>
 

@@ -6,14 +6,21 @@
   <component name="ChangeListManager">
     <list default="true" id="baac46ef-bf41-4f73-b09d-490929e58f4a" name="Changes" comment="Новые исправления в отображении страниц">
       <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.development" beforeDir="false" afterPath="$PROJECT_DIR$/.env.development" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.production" beforeDir="false" afterPath="$PROJECT_DIR$/.env.production" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.staging" beforeDir="false" afterPath="$PROJECT_DIR$/.env.staging" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProtectedRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProtectedRoute.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/invite.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/invite.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/CompleteRegistration.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/CompleteRegistration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/AdminEmailSender.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/AdminEmailSender.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/AdminPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/AdminPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/CreateTenderNew.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/CreateTenderNew.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/VerificationDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/VerificationDetail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/contractor/MyBids.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/contractor/MyBids.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/static/LandingPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/static/LandingPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/static/TenderDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/static/TenderDetail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/static/TenderList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/static/TenderList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/variables.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/variables.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +34,9 @@
   </component>
   <component name="CopilotUserSelectedChatMode">
     <option name="chatModeId" value="Agent" />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="238" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -94,7 +104,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Subversion.SSH&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\PyCharm 2025.3.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
@@ -107,9 +117,13 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-PY-253.32098.74" />
         <option value="bundled-python-sdk-1cd77e80b48f-6d6dccd035ac-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.32098.74" />
       </set>
     </attachedChunks>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\User\AppData\Roaming\Subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -148,6 +162,9 @@
       <workItem from="1776955535179" duration="8846000" />
       <workItem from="1777100228802" duration="6566000" />
       <workItem from="1777271259887" duration="16643000" />
+      <workItem from="1777441669339" duration="1603000" />
+      <workItem from="1777456803143" duration="5364000" />
+      <workItem from="1777971852765" duration="18789000" />
     </task>
     <task id="LOCAL-00001" summary="Node.js modules versions [Fix]">
       <option name="closed" value="true" />
@@ -356,6 +373,18 @@
     <MESSAGE value="&#10;вм" />
     <MESSAGE value="Новые исправления в отображении страниц" />
     <option name="LAST_COMMIT_MESSAGE" value="Новые исправления в отображении страниц" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/pages/static/TenderDetail.js</url>
+          <line>616</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
