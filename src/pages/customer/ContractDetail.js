@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Card } from '@/components/ui/card';
@@ -8,7 +8,8 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { AppContext } from '@/App';
+import useAuthStore from '@/store/authStore';
+import { BASE_URL as API } from '@/services/api';
 import { ArrowLeft, Send, CheckCircle, FileSignature, Printer, FileText } from 'lucide-react';
 import { toast } from 'sonner';
 import { getContractStatusText, getContractActionText } from '@/utils/statusHelpers';
@@ -16,7 +17,7 @@ import { getContractStatusText, getContractActionText } from '@/utils/statusHelp
 const ContractDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { user, API } = useContext(AppContext);
+  const user = useAuthStore(s => s.user);
   const [contract, setContract] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showDetailsForm, setShowDetailsForm] = useState(false);

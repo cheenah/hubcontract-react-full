@@ -1,13 +1,10 @@
-import { useContext } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import { AppContext } from '@/App';
+import useAuthStore from '@/store/authStore';
 
 const ProtectedRoute = ({ allowedRole }) => {
-  const { user } = useContext(AppContext);
-
+  const user = useAuthStore(s => s.user);
   if (!user) return <Navigate to="/" replace />;
   if (allowedRole && user.role !== allowedRole) return <Navigate to="/" replace />;
-
   return <Outlet />;
 };
 

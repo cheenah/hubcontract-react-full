@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ShieldAlert } from 'lucide-react';
-import { AppContext } from '@/App';
+import useAuthStore from '@/store/authStore';
 import { useLanguage } from '@/context/LanguageContext';
 
 const VerificationGuard = ({ children }) => {
-  const { user } = useContext(AppContext);
+  const user = useAuthStore(s => s.user);
   const navigate = useNavigate();
   const { t } = useLanguage();
 

@@ -1,6 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
-import { AppContext } from '@/App';
+import useAuthStore from '@/store/authStore';
 import { useLanguage } from '@/context/LanguageContext';
 import {
   LayoutDashboard,
@@ -40,7 +40,7 @@ const menuItems = [
 const ContractorLayout = ({ children } = {}) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, logout } = useContext(AppContext);
+  const { user, logout } = useAuthStore();
   const { t, language, changeLanguage, languages } = useLanguage();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 

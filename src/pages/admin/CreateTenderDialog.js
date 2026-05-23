@@ -12,6 +12,7 @@ import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/card';
 import { Plus, Trash2, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import apiClient from '@/services/api';
+import { parseApiError } from '@/utils/apiError';
 import useDictionaryStore from '@/store/dictionaryStore';
 
 const lotSchema = z.object({
@@ -131,7 +132,7 @@ const CreateTenderDialog = ({ open, onOpenChange, onSuccess }) => {
       onSuccess();
       onOpenChange(false);
     } catch (err) {
-      toast.error(err?.response?.data?.detail || 'Ошибка при создании тендера');
+      toast.error(parseApiError(err, 'Ошибка при создании тендера'));
     } finally {
       setLoading(false);
     }

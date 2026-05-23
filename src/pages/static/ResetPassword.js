@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import { AppContext } from '@/App';
+import { BASE_URL as API } from '@/services/api';
 import { useLanguage } from '@/context/LanguageContext';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -12,7 +12,6 @@ import { toast } from 'sonner';
 const ResetPassword = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const { API } = React.useContext(AppContext);
   const { t } = useLanguage();
   
   const [token, setToken] = useState('');

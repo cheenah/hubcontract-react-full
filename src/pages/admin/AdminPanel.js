@@ -1,35 +1,50 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { toast } from 'sonner';
-import { AppContext } from '@/App';
-import { useLanguage } from '@/context/LanguageContext';
+import apiClient from '@/services/api';
+import { parseApiError } from '@/utils/apiError';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Users, FileText, CheckCircle, XCircle, FileContract, Edit, Trash2, Eye, Play, Ban, ExternalLink, Plus } from 'lucide-react';
+import { Users, FileText, CheckCircle, XCircle, Trash2, Eye, Plus } from 'lucide-react';
 import CreateTenderDialog from './CreateTenderDialog';
+import { getStatusConfig } from '@/utils/adminHelpers';
+import UserCard from '@/components/admin/UserCard';
+import VerificationCard from '@/components/admin/VerificationCard';
+import ConfirmDialog from '@/components/admin/dialogs/ConfirmDialog';
+import RejectDialog from '@/components/admin/dialogs/RejectDialog';
 
-// Русские названия документов, загружаемых в CompleteRegistration
-const DOCUMENT_LABELS = {
-  registration_certificate:   'Свидетельство о регистрации',
-  tax_clearance:              'Справка об отсутствии задолженностей',
-  director_id_doc:            'Документы директора',
-  director_appointment_order: 'Приказ о назначении директора',
-  company_charter:            'Устав компании',
-};
+// ── Constants ────────────────────────────────────────────────────────────────
+
+const ROLE_FILTER_OPTIONS = [
+  { value: '',           label: 'Все' },
+  { value: 'customer',   label: 'Заказчик' },
+  { value: 'contractor', label: 'Исполнитель' },
+  { value: 'admin',      label: 'Администратор' },
+];
+
+// ── Component ─────────────────────────────────────────────────────────────────
 
 const AdminPanel = () => {
-  const { API } = React.useContext(AppContext);
-  const { t } = useLanguage();
   const navigate = useNavigate();
-  const [stats, setStats] = useState(null);
-  const [users, setUsers] = useState([]);
+
+  const [stats, setStats]               = useState(null);
+  const [users, setUsers]               = useState([]);
   const [pendingUsers, setPendingUsers] = useState([]);
-  const [tenders, setTenders] = useState([]);
-  const [contracts, setContracts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [tenders, setTenders]           = useState([]);
+  const [contracts, setContracts]       = useState([]);
+  const [loading, setLoading]           = useState(true);
   const [createDialogOpen, setCreateDialogOpen] = useState(false);
+
+  const [userSearch, setUserSearch] = useState('');
+  const [verSearch,  setVerSearch]  = useState('');
+  const [roleFilter, setRoleFilter] = useState('');
+
+  const [confirmDialog, setConfirmDialog] = useState(null);
+  const [rejectDialog,  setRejectDialog]  = useState(null);
+  const [rejectReason,  setRejectReason]  = useState('');
+  const [rejectLoading, setRejectLoading] = useState(false);
 
   useEffect(() => {
     fetchAdminData();
@@ -38,123 +53,182 @@ const AdminPanel = () => {
   const fetchAdminData = async () => {
     try {
       const [statsRes, usersRes, pendingRes, tendersRes, contractsRes] = await Promise.all([
-        axios.get(`${API}/admin/stats`),
-        axios.get(`${API}/admin/users`),
-        axios.get(`${API}/documents/verification-pending`),
-        axios.get(`${API}/tenders`),
-        axios.get(`${API}/contracts`)
+        apiClient.get('/admin/stats'),
+        apiClient.get('/admin/users'),
+        apiClient.get('/documents/verification-pending'),
+        apiClient.get('/tenders'),
+        apiClient.get('/contracts'),
       ]);
-      
       setStats(statsRes.data);
       setUsers(usersRes.data);
       setPendingUsers(pendingRes.data);
       setTenders(tendersRes.data);
       setContracts(contractsRes.data);
-    } catch (error) {
+    } catch {
       toast.error('Ошибка загрузки данных админ-панели');
     } finally {
       setLoading(false);
     }
   };
 
-  const handleVerification = async (userId, approved) => {
+  // ── Helpers ───────────────────────────────────────────────────────────────
+
+  const openConfirm = (title, desc, onConfirm) => setConfirmDialog({ title, desc, onConfirm });
+
+  // ── Verification ──────────────────────────────────────────────────────────
+
+  const handleApprove = async (userId) => {
+    setPendingUsers(prev => prev.filter(u => u.id !== userId));
     try {
-      await axios.post(`${API}/documents/verify/${userId}`, null, {
-        params: { approved }
+      await apiClient.post(`/documents/verify/${userId}`, null, { params: { approved: true } });
+      toast.success('Компания одобрена');
+    } catch (err) {
+      toast.error(parseApiError(err, 'Ошибка верификации'));
+      apiClient.get('/documents/verification-pending').then(r => setPendingUsers(r.data)).catch(() => {});
+    }
+  };
+
+  const openRejectDialog = (userId) => {
+    setRejectReason('');
+    setRejectDialog({ userId });
+  };
+
+  const handleReject = async () => {
+    if (!rejectDialog) return;
+    setRejectLoading(true);
+    const { userId } = rejectDialog;
+    try {
+      await apiClient.post(`/documents/verify/${userId}`, null, {
+        params: { approved: false, ...(rejectReason ? { reason: rejectReason } : {}) },
       });
-      toast.success(`Пользователь ${approved ? 'одобрен' : 'отклонен'}`);
-      fetchAdminData();
-    } catch (error) {
-      toast.error('Ошибка верификации');
+      toast.success('Компания отклонена');
+      setPendingUsers(prev => prev.filter(u => u.id !== userId));
+      setRejectDialog(null);
+    } catch (err) {
+      toast.error(parseApiError(err, 'Ошибка верификации'));
+    } finally {
+      setRejectLoading(false);
     }
   };
 
-  const handleDeleteUser = async (userId) => {
-    if (!window.confirm('Вы уверены что хотите удалить этого пользователя?')) return;
-    
-    try {
-      await axios.delete(`${API}/users/${userId}`);
-      toast.success('Пользователь удален');
-      fetchAdminData();
-    } catch (error) {
-      toast.error('Ошибка удаления пользователя');
-    }
+  // ── Optimistic deletes ────────────────────────────────────────────────────
+
+  const handleDeleteUser = (userId) => {
+    openConfirm(
+      'Удалить пользователя?',
+      'Это действие нельзя отменить. Все данные пользователя будут удалены безвозвратно.',
+      async () => {
+        setUsers(prev => prev.filter(u => u.id !== userId));
+        try {
+          await apiClient.delete(`/users/${userId}`);
+          toast.success('Пользователь удалён');
+        } catch (err) {
+          toast.error(parseApiError(err, 'Ошибка удаления пользователя'));
+          apiClient.get('/admin/users').then(r => setUsers(r.data)).catch(() => {});
+        }
+      },
+    );
   };
 
-  const handleDeleteTender = async (tenderId) => {
-    if (!window.confirm('Вы уверены что хотите удалить этот тендер?')) return;
-    
-    try {
-      await axios.delete(`${API}/tenders/${tenderId}`);
-      toast.success('Тендер удален');
-      fetchAdminData();
-    } catch (error) {
-      toast.error('Ошибка удаления тендера');
-    }
+  const handleDeleteTender = (tenderId) => {
+    openConfirm(
+      'Удалить тендер?',
+      'Это действие нельзя отменить.',
+      async () => {
+        setTenders(prev => prev.filter(t => t.id !== tenderId));
+        try {
+          await apiClient.delete(`/tenders/${tenderId}`);
+          toast.success('Тендер удалён');
+        } catch (err) {
+          toast.error(parseApiError(err, 'Ошибка удаления тендера'));
+          apiClient.get('/tenders').then(r => setTenders(r.data)).catch(() => {});
+        }
+      },
+    );
   };
 
-  const handleDeleteContract = async (contractId) => {
-    if (!window.confirm('Вы уверены что хотите удалить этот договор?')) return;
-    
-    try {
-      await axios.delete(`${API}/contracts/${contractId}`);
-      toast.success('Договор удален');
-      fetchAdminData();
-    } catch (error) {
-      toast.error('Ошибка удаления договора');
-    }
+  const handleDeleteContract = (contractId) => {
+    openConfirm(
+      'Удалить договор?',
+      'Это действие нельзя отменить.',
+      async () => {
+        setContracts(prev => prev.filter(c => c.id !== contractId));
+        try {
+          await apiClient.delete(`/contracts/${contractId}`);
+          toast.success('Договор удалён');
+        } catch (err) {
+          toast.error(parseApiError(err, 'Ошибка удаления договора'));
+          apiClient.get('/contracts').then(r => setContracts(r.data)).catch(() => {});
+        }
+      },
+    );
   };
+
+  // ── Derived state ─────────────────────────────────────────────────────────
+
+  const filteredUsers = users.filter(u => {
+    const q            = userSearch.toLowerCase();
+    const matchSearch  = !q
+      || u.email?.toLowerCase().includes(q)
+      || String(u.company_bin ?? '').includes(q)
+      || u.company_name?.toLowerCase().includes(q);
+    const matchRole    = !roleFilter || u.role === roleFilter;
+    return matchSearch && matchRole;
+  });
+
+  const filteredPending = pendingUsers.filter(u => {
+    const q = verSearch.toLowerCase();
+    return !q || u.email?.toLowerCase().includes(q) || String(u.company_bin ?? '').includes(q);
+  });
+
+  // ── Loading ───────────────────────────────────────────────────────────────
 
   if (loading) {
     return (
-        <div className="loading-container">
-          <div className="loading-spinner"></div>
-        </div>
+      <div className="loading-container">
+        <div className="loading-spinner" />
+      </div>
     );
   }
+
+  // ── Render ────────────────────────────────────────────────────────────────
 
   return (
     <>
       <div className="admin-panel-container" data-testid="admin-panel">
+
+        {/* Header */}
         <div className="page-header">
           <h1 className="page-title">Панель администратора</h1>
           <p className="page-subtitle">Полное управление платформой</p>
         </div>
 
-        {/* Stats Overview */}
+        {/* Stats */}
         {stats && (
           <div className="stats-grid">
             <Card className="stat-card neon-card">
-              <div className="stat-icon">
-                <Users size={24} />
-              </div>
+              <div className="stat-icon"><Users size={24} /></div>
               <div>
                 <p className="stat-label">Всего пользователей</p>
                 <p className="stat-value" data-testid="admin-total-users">{stats.total_users}</p>
               </div>
             </Card>
             <Card className="stat-card neon-card">
-              <div className="stat-icon">
-                <FileText size={24} />
-              </div>
+              <div className="stat-icon"><FileText size={24} /></div>
               <div>
                 <p className="stat-label">Всего тендеров</p>
                 <p className="stat-value" data-testid="admin-total-tenders">{stats.total_tenders}</p>
               </div>
             </Card>
             <Card className="stat-card neon-card">
-              <div className="stat-icon">
-                <CheckCircle size={24} />
-              </div>
+              <div className="stat-icon"><CheckCircle size={24} /></div>
               <div>
                 <p className="stat-label">Активных тендеров</p>
                 <p className="stat-value" data-testid="admin-active-tenders">{stats.active_tenders}</p>
               </div>
             </Card>
             <Card className="stat-card neon-card">
-              <div className="stat-icon alert">
-                <XCircle size={24} />
-              </div>
+              <div className="stat-icon alert"><XCircle size={24} /></div>
               <div>
                 <p className="stat-label">Ожидают верификации</p>
                 <p className="stat-value" data-testid="admin-pending-verifications">
@@ -183,168 +257,66 @@ const AdminPanel = () => {
             </TabsTrigger>
           </TabsList>
 
-          {/* Verification Tab */}
-          <TabsContent value="verifications" className="tab-content">{pendingUsers.length === 0 ? (
+          {/* ── VERIFICATION TAB ── */}
+          <TabsContent value="verifications" className="tab-content">
+            <div className="search-bar">
+              <Input
+                placeholder="Поиск по email или БИН…"
+                value={verSearch}
+                onChange={e => setVerSearch(e.target.value)}
+              />
+            </div>
+            {filteredPending.length === 0 ? (
               <Card className="empty-state neon-card">
                 <CheckCircle size={48} className="empty-icon" />
-                <p>Нет ожидающих верификации</p>
+                <p>{verSearch ? 'Ничего не найдено' : 'Нет ожидающих верификации'}</p>
               </Card>
             ) : (
               <div className="verifications-list">
-                {pendingUsers.map((user) => (
-                  <Card key={user.id} className="verification-card neon-card" data-testid={`verification-${user.id}`}>
-                    <div className="verification-header">
-                      <div>
-                        <h3 className="user-email">{user.email}</h3>
-                        <p className="user-meta">
-                          {user.role} • {user.company_name || 'Без названия компании'}
-                        </p>
-                        <p className="user-meta">БИН: {user.company_bin} • Телефон: {user.phone}</p>
-                      </div>
-                    </div>
-
-                    <div className="documents-section">
-                      <h4 className="section-title">
-                        Загруженные документы
-                        {user.documents && (
-                          <span className="ml-2 text-sm font-normal text-[var(--color-text-muted)]">
-                            ({Object.keys(user.documents).length} / {Object.keys(DOCUMENT_LABELS).length})
-                          </span>
-                        )}
-                      </h4>
-                      {/* Список документов: каждый показывает иконку, название, имя файла, дату и кнопку просмотра */}
-                      <div className="flex flex-col gap-2">
-                        {user.documents && Object.keys(user.documents).length > 0 ? (
-                          Object.entries(user.documents).map(([key, doc]) => {
-                            // label — читаемое название документа из константы или fallback
-                            const label = DOCUMENT_LABELS[key] || key.replace(/_/g, ' ');
-                            // viewUrl — URL для открытия документа в новой вкладке
-                            const viewUrl = doc?.url || doc?.file_url;
-                            return (
-                              <div
-                                key={key}
-                                className="flex items-center justify-between gap-3 p-3 rounded-lg bg-[var(--color-bg-surface)] border border-[var(--color-border)]"
-                              >
-                                {/* Иконка + название + метаданные файла */}
-                                <div className="flex items-center gap-2 flex-1 min-w-0">
-                                  <FileText size={15} className="text-[var(--color-primary)] flex-shrink-0" />
-                                  <div className="flex-1 min-w-0">
-                                    <div className="text-sm font-medium text-[var(--color-text-dark)] truncate">
-                                      {label}
-                                    </div>
-                                    {doc?.filename && (
-                                      <div className="text-xs text-[var(--color-text-muted)] truncate" title={doc.filename}>
-                                        {doc.filename}
-                                      </div>
-                                    )}
-                                    {doc?.uploaded_at && (
-                                      <div className="text-xs text-[var(--color-text-placeholder)]">
-                                        {new Date(doc.uploaded_at).toLocaleDateString('ru-RU')}
-                                      </div>
-                                    )}
-                                  </div>
-                                </div>
-
-                                {/* Статус загружен + кнопка просмотра */}
-                                <div className="flex items-center gap-2 flex-shrink-0">
-                                  <span className="flex items-center gap-1 text-xs font-medium text-[var(--color-success-alt)]">
-                                    <CheckCircle size={13} />
-                                    Загружен
-                                  </span>
-                                  {viewUrl && (
-                                    <a href={viewUrl} target="_blank" rel="noopener noreferrer">
-                                      <Button variant="outline" size="sm" className="h-7 px-2 text-xs gap-1">
-                                        <ExternalLink size={12} />
-                                        Открыть
-                                      </Button>
-                                    </a>
-                                  )}
-                                </div>
-                              </div>
-                            );
-                          })
-                        ) : (
-                          <p className="no-documents">Нет документов</p>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="verification-actions">
-                      {/* Кнопка открывает страницу детального просмотра компании с документами */}
-                      <Button
-                        variant="outline"
-                        onClick={() => navigate(`/admin/verification/${user.id}`)}
-                      >
-                        <Eye size={18} />
-                        Подробнее
-                      </Button>
-                      <Button
-                        onClick={() => handleVerification(user.id, false)}
-                        variant="outline"
-                        className="reject-btn"
-                        data-testid={`reject-btn-${user.id}`}
-                      >
-                        <XCircle size={18} />
-                        Отклонить
-                      </Button>
-                      <Button
-                        onClick={() => handleVerification(user.id, true)}
-                        className="neon-button-filled"
-                        data-testid={`approve-btn-${user.id}`}
-                      >
-                        <CheckCircle size={18} />
-                        Одобрить
-                      </Button>
-                    </div>
-                  </Card>
+                {filteredPending.map(user => (
+                  <VerificationCard
+                    key={user.id}
+                    user={user}
+                    onApprove={handleApprove}
+                    onReject={openRejectDialog}
+                  />
                 ))}
               </div>
             )}
           </TabsContent>
 
-          {/* Users Tab */}
+          {/* ── USERS TAB ── */}
           <TabsContent value="users" className="tab-content">
+            <div className="users-toolbar">
+              <Input
+                className="users-search"
+                placeholder="Поиск по названию, email или БИН…"
+                value={userSearch}
+                onChange={e => setUserSearch(e.target.value)}
+              />
+              <select
+                className="role-filter-select"
+                value={roleFilter}
+                onChange={e => setRoleFilter(e.target.value)}
+              >
+                {ROLE_FILTER_OPTIONS.map(opt => (
+                  <option key={opt.value} value={opt.value}>{opt.label}</option>
+                ))}
+              </select>
+            </div>
             <div className="users-list">
-              {users.map((user) => (
-                <Card key={user.id} className="user-card neon-card" data-testid={`user-${user.id}`}>
-                  <div className="user-info">
-                    <div>
-                      <h3 className="user-email">{user.email}</h3>
-                      <p className="user-meta">
-                        {user.company_name || 'Без названия'} • БИН: {typeof user.company_bin === 'string' || typeof user.company_bin === 'number' ? user.company_bin : '—'}
-                      </p>
-                    </div>
-                    <div className="user-badges">
-                      <span className="role-badge">
-                        {typeof user.role === 'string' ? user.role : '—'}
-                      </span>
-                      {(() => {
-                        const vs = user.verification_status;
-                        const statusStr = typeof vs === 'string' ? vs : (vs ? 'mixed' : 'unknown');
-                        return (
-                          <span className={`status-badge status-${statusStr}`}>
-                            {statusStr}
-                          </span>
-                        );
-                      })()}
-                    </div>
-                  </div>
-                  <div className="card-actions">
-                    <Button variant="outline" size="sm" onClick={() => navigate(`/profile?userId=${user.id}`)}>
-                      <Eye size={16} />
-                      Просмотр
-                    </Button>
-                    <Button variant="outline" size="sm" onClick={() => handleDeleteUser(user.id)} className="delete-btn">
-                      <Trash2 size={16} />
-                      Удалить
-                    </Button>
-                  </div>
-                </Card>
+              {filteredUsers.map(user => (
+                <UserCard key={user.id} user={user} onDelete={handleDeleteUser} />
               ))}
+              {filteredUsers.length === 0 && (
+                <Card className="empty-state neon-card">
+                  <p>{userSearch || roleFilter ? 'Ничего не найдено' : 'Нет пользователей'}</p>
+                </Card>
+              )}
             </div>
           </TabsContent>
 
-          {/* Tenders Tab */}
+          {/* ── TENDERS TAB ── */}
           <TabsContent value="tenders" className="tab-content">
             <div className="flex justify-end mb-4">
               <Button onClick={() => setCreateDialogOpen(true)} className="neon-button-filled">
@@ -353,68 +325,64 @@ const AdminPanel = () => {
               </Button>
             </div>
             <div className="tenders-list">
-              {tenders.map((tender) => (
-                <Card key={tender.id} className="tender-card neon-card">
-                  <div className="tender-header">
-                    <div>
-                      <h3 className="tender-title">{tender.title}</h3>
-                      <p className="tender-meta">
-                        {tender.tender_number} • Бюджет: {tender.budget?.toLocaleString()} ₸
-                      </p>
-                      <p className="tender-meta">
-                        Заказчик: {tender.customer_email}
-                      </p>
+              {tenders.map((tender) => {
+                const { label: statusLabel } = getStatusConfig(tender.status);
+                return (
+                  <Card key={tender.id} className="tender-card neon-card">
+                    <div className="tender-header">
+                      <div>
+                        <h3 className="tender-title">{tender.title}</h3>
+                        <p className="tender-meta">
+                          {tender.tender_number} • Бюджет: {tender.budget?.toLocaleString()} ₸
+                        </p>
+                        <p className="tender-meta">Заказчик: {tender.customer_email}</p>
+                      </div>
+                      <span className={`status-badge status-${tender.status}`}>{statusLabel}</span>
                     </div>
-                    <span className={`status-badge status-${tender.status}`}>
-                      {tender.status}
-                    </span>
-                  </div>
-                  <div className="card-actions">
-                    <Button variant="outline" size="sm" onClick={() => navigate(`/tenders/${tender.id}`)}>
-                      <Eye size={16} />
-                      Просмотр
-                    </Button>
-                    <Button variant="outline" size="sm" onClick={() => handleDeleteTender(tender.id)} className="delete-btn">
-                      <Trash2 size={16} />
-                      Удалить
-                    </Button>
-                  </div>
-                </Card>
-              ))}
+                    <div className="card-actions">
+                      <Button variant="outline" size="sm" onClick={() => navigate(`/tenders/${tender.id}`)}>
+                        <Eye size={16} />
+                        Просмотр
+                      </Button>
+                      <Button variant="destructive" size="sm" onClick={() => handleDeleteTender(tender.id)}>
+                        <Trash2 size={16} />
+                        Удалить
+                      </Button>
+                    </div>
+                  </Card>
+                );
+              })}
             </div>
           </TabsContent>
 
-          {/* Contracts Tab */}
+          {/* ── CONTRACTS TAB ── */}
           <TabsContent value="contracts" className="tab-content">
             <div className="contracts-list">
-              {contracts.map((contract) => (
-                <Card key={contract.id} className="contract-card neon-card">
-                  <div className="contract-header">
-                    <div>
-                      <h3 className="contract-title">{contract.contract_number}</h3>
-                      <p className="contract-meta">
-                        Тендер: {contract.tender_title}
-                      </p>
-                      <p className="contract-meta">
-                        Сумма: {contract.total_amount?.toLocaleString()} ₸
-                      </p>
+              {contracts.map((contract) => {
+                const { label: statusLabel } = getStatusConfig(contract.status);
+                return (
+                  <Card key={contract.id} className="contract-card neon-card">
+                    <div className="contract-header">
+                      <div>
+                        <h3 className="contract-title">{contract.contract_number}</h3>
+                        <p className="contract-meta">Тендер: {contract.tender_title}</p>
+                        <p className="contract-meta">Сумма: {contract.total_amount?.toLocaleString()} ₸</p>
+                      </div>
+                      <span className={`status-badge status-${contract.status}`}>{statusLabel}</span>
                     </div>
-                    <span className={`status-badge status-${contract.status}`}>
-                      {contract.status}
-                    </span>
-                  </div>
-                  <div className="card-actions">
-                    <Button variant="outline" size="sm" onClick={() => navigate(`/contracts/${contract.id}`)}>
-                      <Eye size={16} />
-                      Просмотр
-                    </Button>
-                    <Button variant="outline" size="sm" onClick={() => handleDeleteContract(contract.id)} className="delete-btn">
-                      <Trash2 size={16} />
-                      Удалить
-                    </Button>
-                  </div>
-                </Card>
-              ))}
+                    <div className="card-actions">
+                      <Button variant="outline" size="sm" onClick={() => navigate(`/contracts/${contract.id}`)}>
+                        <Eye size={16} />
+                        Просмотр
+                      </Button>
+                      <Button variant="destructive" size="sm" onClick={() => handleDeleteContract(contract.id)}>
+                        <Trash2 size={16} />
+                        Удалить
+                      </Button>
+                    </div>
+                  </Card>
+                );
+              })}
             </div>
           </TabsContent>
         </Tabs>
@@ -426,7 +394,21 @@ const AdminPanel = () => {
         onSuccess={fetchAdminData}
       />
 
-      <style jsx>{`
+      <ConfirmDialog
+        dialog={confirmDialog}
+        onClose={() => setConfirmDialog(null)}
+      />
+
+      <RejectDialog
+        dialog={rejectDialog}
+        onClose={() => setRejectDialog(null)}
+        reason={rejectReason}
+        onReasonChange={setRejectReason}
+        loading={rejectLoading}
+        onConfirm={handleReject}
+      />
+
+      <style>{`
         .admin-panel-container {
           max-width: 1400px;
           margin: 0 auto;
@@ -439,9 +421,18 @@ const AdminPanel = () => {
           padding: 100px 0;
         }
 
-        .page-header {
-          margin-bottom: 40px;
+        .loading-spinner {
+          width: 40px;
+          height: 40px;
+          border: 3px solid var(--color-primary-bg);
+          border-top-color: var(--color-primary);
+          border-radius: 50%;
+          animation: ap-spin 0.8s linear infinite;
         }
+
+        @keyframes ap-spin { to { transform: rotate(360deg); } }
+
+        .page-header { margin-bottom: 40px; }
 
         .page-title {
           font-size: var(--font-size-7xl);
@@ -479,6 +470,7 @@ const AdminPanel = () => {
           border: 2px solid var(--color-primary);
           border-radius: var(--radius-2xl);
           color: var(--color-primary);
+          flex-shrink: 0;
         }
 
         .stat-icon.alert {
@@ -499,9 +491,7 @@ const AdminPanel = () => {
           color: var(--color-text-dark) !important;
         }
 
-        .admin-tabs {
-          width: 100%;
-        }
+        .admin-tabs { width: 100%; }
 
         .tabs-list {
           background: var(--color-bg-warm);
@@ -509,10 +499,41 @@ const AdminPanel = () => {
           margin-bottom: var(--space-8);
         }
 
-        .tab-content {
-          min-height: 400px;
+        .tab-content { min-height: 400px; }
+
+        /* Search */
+        .search-bar {
+          margin-bottom: 20px;
+          max-width: 360px;
         }
 
+        /* Users toolbar: search + role filter */
+        .users-toolbar {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 20px;
+        }
+
+        .users-search { max-width: 360px; }
+
+        .role-filter-select {
+          height: 36px;
+          padding: 0 10px;
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-md);
+          background: var(--color-bg-surface, #fff);
+          color: var(--color-text-dark);
+          font-size: var(--font-size-base);
+          cursor: pointer;
+          outline: none;
+        }
+
+        .role-filter-select:focus {
+          border-color: var(--color-primary);
+        }
+
+        /* Empty state */
         .empty-state {
           display: flex;
           flex-direction: column;
@@ -527,19 +548,16 @@ const AdminPanel = () => {
           margin-bottom: var(--space-4);
         }
 
-        .verifications-list, .users-list {
+        /* Verification */
+        .verifications-list {
           display: flex;
           flex-direction: column;
           gap: 20px;
         }
 
-        .verification-card, .user-card {
-          padding: 24px;
-        }
+        .verification-card { padding: 24px; }
 
-        .verification-header {
-          margin-bottom: 20px;
-        }
+        .verification-header { margin-bottom: 20px; }
 
         .user-email {
           font-size: var(--font-size-xl3);
@@ -569,25 +587,6 @@ const AdminPanel = () => {
           margin-bottom: var(--space-3);
         }
 
-        .documents-grid {
-          display: flex;
-          flex-wrap: wrap;
-          gap: var(--space-3);
-        }
-
-        .document-badge {
-          display: flex;
-          align-items: center;
-          gap: var(--space-1-5);
-          padding: var(--space-1-5) var(--space-3);
-          background: var(--color-primary-bg);
-          border: 1px solid var(--color-primary);
-          border-radius: var(--radius-pill);
-          font-size: var(--font-size-base);
-          color: var(--color-primary);
-          text-transform: capitalize;
-        }
-
         .no-documents {
           color: var(--color-text-dark3);
           font-size: var(--font-size-base);
@@ -599,26 +598,41 @@ const AdminPanel = () => {
           gap: var(--space-3);
         }
 
-        .reject-btn {
-          color: var(--color-danger);
-          border-color: var(--color-danger);
+        /* Users */
+        .users-list {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
         }
 
-        .reject-btn:hover {
-          background: var(--color-danger-tint-10);
-        }
+        .user-card { padding: 20px; }
 
         .user-info {
           display: flex;
           justify-content: space-between;
-          align-items: start;
+          align-items: flex-start;
           gap: var(--space-4);
+          margin-bottom: var(--space-3);
+        }
+
+        .user-company {
+          font-size: var(--font-size-xl3);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text-dark) !important;
+          margin-bottom: var(--space-1);
+        }
+
+        .user-email-secondary {
+          font-size: var(--font-size-base);
+          color: var(--color-text-muted);
+          margin-bottom: var(--space-1);
         }
 
         .user-badges {
           display: flex;
           gap: var(--space-2);
           flex-wrap: wrap;
+          flex-shrink: 0;
         }
 
         .role-badge {
@@ -629,28 +643,75 @@ const AdminPanel = () => {
           border-radius: var(--radius-pill);
           font-size: var(--font-size-base);
           font-weight: var(--font-weight-semibold);
-          text-transform: capitalize;
+          white-space: nowrap;
         }
 
-        @media (max-width: 768px) {
-          .page-title {
-            font-size: var(--font-size-6xl);
-          }
-
-          .stats-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
-
-          .verification-actions {
-            flex-direction: column;
-          }
-
-          .user-info {
-            flex-direction: column;
-          }
+        .status-badge {
+          padding: var(--space-1-5) var(--space-3);
+          border-radius: var(--radius-pill);
+          font-size: var(--font-size-base);
+          font-weight: var(--font-weight-semibold);
+          white-space: nowrap;
+          border: 1px solid transparent;
         }
 
-        /* New styles for tenders and contracts tabs */
+        /* Status color variants */
+        .status-verified {
+          background: var(--color-success-tint-10);
+          color: var(--color-success-alt);
+          border-color: var(--color-success-alt);
+        }
+        .status-pending {
+          background: rgba(255, 170, 0, 0.1);
+          color: var(--color-warning);
+          border-color: var(--color-warning);
+        }
+        .status-rejected {
+          background: var(--color-danger-tint-05);
+          color: var(--color-danger-alt);
+          border-color: var(--color-danger-tint-20);
+        }
+        .status-not_verified {
+          background: var(--color-bg-muted);
+          color: var(--color-text-placeholder);
+          border-color: var(--color-border);
+        }
+        .status-draft {
+          background: var(--color-bg-muted);
+          color: var(--color-text-muted);
+          border-color: var(--color-border);
+        }
+        .status-published,
+        .status-published_receiving_proposals,
+        .status-published_receiving_applications {
+          background: rgba(59, 130, 246, 0.08);
+          color: #2563eb;
+          border-color: rgba(59, 130, 246, 0.3);
+        }
+        .status-active,
+        .status-signed,
+        .status-awarded {
+          background: var(--color-success-tint-10);
+          color: var(--color-success-alt);
+          border-color: var(--color-success-alt);
+        }
+        .status-cancelled {
+          background: var(--color-danger-tint-05);
+          color: var(--color-danger-alt);
+          border-color: var(--color-danger-tint-20);
+        }
+        .status-completed {
+          background: var(--color-bg-muted);
+          color: var(--color-text-muted);
+          border-color: var(--color-border);
+        }
+        .status-under_review {
+          background: rgba(255, 170, 0, 0.1);
+          color: var(--color-warning);
+          border-color: var(--color-warning);
+        }
+
+        /* Tenders & Contracts */
         .tenders-list,
         .contracts-list {
           display: flex;
@@ -659,9 +720,7 @@ const AdminPanel = () => {
         }
 
         .tender-card,
-        .contract-card {
-          padding: 20px;
-        }
+        .contract-card { padding: 20px; }
 
         .tender-header,
         .contract-header {
@@ -686,20 +745,14 @@ const AdminPanel = () => {
           margin: var(--space-1) 0;
         }
 
-        .card-actions {
-          display: flex;
-          gap: var(--space-2);
-          margin-top: var(--space-3);
-        }
+        .card-actions { display: flex; gap: var(--space-2); }
 
-        .delete-btn {
-          color: var(--color-danger-alt);
-          border-color: var(--color-danger-alt);
-        }
-
-        .delete-btn:hover {
-          background: var(--color-danger-tint-10);
-          border-color: var(--color-danger-alt);
+        @media (max-width: 768px) {
+          .page-title           { font-size: var(--font-size-6xl); }
+          .stats-grid           { grid-template-columns: repeat(2, 1fr); }
+          .verification-actions { flex-direction: column; }
+          .user-info            { flex-direction: column; }
+          .users-toolbar        { flex-wrap: wrap; }
         }
       `}</style>
     </>

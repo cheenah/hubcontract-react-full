@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AppContext } from '@/App';
+import { BASE_URL as API } from '@/services/api';
+import { parseApiError } from '@/utils/apiError';
 import { useLanguage } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -12,7 +13,6 @@ import { toast } from 'sonner';
 
 const SupplierBids = () => {
   const navigate = useNavigate();
-  const { API } = React.useContext(AppContext);
   const { t } = useLanguage();
   const [bids, setBids] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -42,7 +42,7 @@ const SupplierBids = () => {
       toast.success('Заявка принята');
       fetchBids();
     } catch (error) {
-      toast.error(error.response?.data?.detail || 'Ошибка при принятии заявки');
+      toast.error(parseApiError(error, 'Ошибка при принятии заявки'));
     }
   };
 
@@ -52,7 +52,7 @@ const SupplierBids = () => {
       toast.success('Заявка отклонена');
       fetchBids();
     } catch (error) {
-      toast.error(error.response?.data?.detail || 'Ошибка при отклонении заявки');
+      toast.error(parseApiError(error, 'Ошибка при отклонении заявки'));
     }
   };
 
@@ -72,7 +72,7 @@ const SupplierBids = () => {
       if (error.response?.status === 400 && error.response?.data?.detail?.includes('already exists')) {
         toast.error('Договор для этого тендера уже создан');
       } else {
-        toast.error(error.response?.data?.detail || 'Ошибка при создании договора');
+        toast.error(parseApiError(error, 'Ошибка при создании договора'));
       }
     }
   };

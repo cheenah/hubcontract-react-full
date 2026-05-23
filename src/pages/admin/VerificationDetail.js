@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
-import { AppContext } from '@/App';
+import { BASE_URL as API } from '@/services/api';
+import { parseApiError } from '@/utils/apiError';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import {
@@ -71,7 +72,6 @@ const StatusBadge = ({ status }) => {
 
 const VerificationDetail = () => {
   const { userId } = useParams();
-  const { API } = useContext(AppContext);
   const navigate = useNavigate();
 
   // userData — данные пользователя из GET /admin/users/:userId
@@ -127,7 +127,7 @@ const VerificationDetail = () => {
       toast.success(approved ? 'Компания одобрена' : 'Компания отклонена');
       navigate('/admin');
     } catch (err) {
-      toast.error(err.response?.data?.detail || 'Ошибка верификации');
+      toast.error(parseApiError(err, 'Ошибка верификации'));
     } finally {
       setActionLoading(false);
     }
@@ -174,11 +174,7 @@ const VerificationDetail = () => {
         toast.error(res.data.error || 'Ошибка отправки письма');
       }
     } catch (err) {
-      toast.error(
-        err.response?.data?.error ||
-        err.response?.data?.detail ||
-        'Ошибка отправки письма'
-      );
+      toast.error(parseApiError(err, 'Ошибка отправки письма'));
     } finally {
       setSendLoading(false);
     }
@@ -213,7 +209,7 @@ const VerificationDetail = () => {
     <div className="max-w-4xl mx-auto px-6 py-8 space-y-6">
 
       {/* ── Шапка: кнопка назад + заголовок ── */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center justify-between gap-4">
         <button
           onClick={() => navigate('/admin')}
           className="inline-flex items-center gap-1.5 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors"
@@ -221,6 +217,10 @@ const VerificationDetail = () => {
           <ArrowLeft size={16} />
           Назад к панели
         </button>
+        <Button variant="outline" size="sm" onClick={() => navigate(`/profile?userId=${userId}`)}>
+          <User size={15} />
+          Профиль пользователя
+        </Button>
       </div>
 
       <div className="flex items-start justify-between gap-4 flex-wrap">

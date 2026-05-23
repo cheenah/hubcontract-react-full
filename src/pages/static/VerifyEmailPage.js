@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'sonner';
-import { AppContext } from '@/App';
+import useAuthStore from '@/store/authStore';
+import { BASE_URL as API } from '@/services/api';
+import { parseApiError } from '@/utils/apiError';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -12,7 +14,7 @@ import ResendOtpButton from '@/components/ResendOtpButton';
 const VerifyEmailPage = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const { API, setUser } = React.useContext(AppContext);
+  const { setUser } = useAuthStore();
 
   const emailFromUrl = searchParams.get('email') || '';
 
@@ -46,7 +48,7 @@ const VerifyEmailPage = () => {
       if (status === 410) {
         toast.error('Код истёк. Запросите новый.', { duration: 5000 });
       } else {
-        toast.error(detail || 'Неверный или устаревший код');
+        toast.error(parseApiError(error, 'Неверный или устаревший код'));
       }
     } finally {
       setLoading(false);

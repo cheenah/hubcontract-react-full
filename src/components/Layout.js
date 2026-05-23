@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
-import { AppContext } from '@/App';
+import useAuthStore from '@/store/authStore';
 import { useLanguage } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
 import {
@@ -17,7 +17,7 @@ import { Mail as MailIcon } from 'lucide-react';
 const Layout = ({ children } = {}) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, logout } = React.useContext(AppContext);
+  const { user, logout } = useAuthStore();
   const { t, language, changeLanguage, languages } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [unreadNotifications, setUnreadNotifications] = useState(0);

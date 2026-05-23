@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
-import { AppContext } from '@/App';
+import { BASE_URL as API } from '@/services/api';
 import { useLanguage } from '@/context/LanguageContext';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -12,7 +12,6 @@ import useRecaptcha from '@/hooks/useRecaptcha';
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
-  const { API } = React.useContext(AppContext);
   const { t } = useLanguage();
   const { getToken } = useRecaptcha();
   const [email, setEmail] = useState('');

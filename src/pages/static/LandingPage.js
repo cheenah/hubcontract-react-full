@@ -3,7 +3,9 @@ import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import useRecaptcha from '@/hooks/useRecaptcha';
 import {toast} from 'sonner';
-import {AppContext} from '@/App';
+import useAuthStore from '@/store/authStore';
+import { BASE_URL as API } from '@/services/api';
+import { parseApiError } from '@/utils/apiError';
 import {useLanguage} from '@/context/LanguageContext';
 import {Button} from '@/components/ui/button';
 import {Input} from '@/components/ui/input';
@@ -32,7 +34,7 @@ import useDictionaryStore from '@/store/dictionaryStore';
 
 const LandingPage = () => {
     const navigate = useNavigate();
-    const {setUser, API} = React.useContext(AppContext);
+    const { setUser } = useAuthStore();
     const {t, language, changeLanguage, languages} = useLanguage();
     const { getToken } = useRecaptcha();
     const [showAuth, setShowAuth] = useState(false);
@@ -160,7 +162,7 @@ const LandingPage = () => {
             toast.success('Регистрация успешна! Проверьте email для подтверждения.');
             navigate(`/verify-email?email=${encodeURIComponent(registerForm.email)}`);
         } catch (error) {
-            toast.error(error.response?.data?.detail || 'Ошибка регистрации');
+            toast.error(parseApiError(error, 'Ошибка регистрации'));
         } finally {
             setLoading(false);
         }

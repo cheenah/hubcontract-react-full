@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { AppContext } from '@/App';
+import useAuthStore from '@/store/authStore';
+import { BASE_URL as API } from '@/services/api';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -10,7 +11,7 @@ import axios from 'axios';
 import { toast } from 'sonner';
 
 const Support = () => {
-  const { user, API } = React.useContext(AppContext);
+  const user = useAuthStore(s => s.user);
   const [formData, setFormData] = useState({
     subject: '',
     category: 'general',

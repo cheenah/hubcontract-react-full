@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { AppContext } from '@/App';
+import useAuthStore from '@/store/authStore';
 import { useLanguage } from '@/context/LanguageContext';
 import Layout from '@/components/Layout';
 import { ArrowLeft } from 'lucide-react';
 
 const Forbidden = () => {
-  const { user } = useContext(AppContext);
+  const user = useAuthStore(s => s.user);
   const { t } = useLanguage();
   const navigate = useNavigate();
 

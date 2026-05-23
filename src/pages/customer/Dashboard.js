@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { AppContext } from '@/App';
+import useAuthStore from '@/store/authStore';
+import { BASE_URL as API } from '@/services/api';
 import { useLanguage } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -23,7 +24,7 @@ import {
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const { user, API } = React.useContext(AppContext);
+  const user = useAuthStore(s => s.user);
   const { t } = useLanguage();
   const [dashboardData, setDashboardData] = useState({
     stats: {

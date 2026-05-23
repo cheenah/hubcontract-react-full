@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { AppContext } from '@/App';
+import { BASE_URL as API } from '@/services/api';
+import { parseApiError } from '@/utils/apiError';
 import { useLanguage } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -11,7 +12,6 @@ import { toast } from 'sonner';
 
 const MyTenders = () => {
   const navigate = useNavigate();
-  const { API } = React.useContext(AppContext);
   const { t } = useLanguage();
   const [tenders, setTenders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -52,7 +52,7 @@ const MyTenders = () => {
       navigate(`/create-tender?id=${response.data.id}&mode=edit`);
     } catch (error) {
       console.error('Ошибка при копировании:', error);
-      toast.error(error.response?.data?.detail || 'Ошибка при копировании тендера');
+      toast.error(parseApiError(error, 'Ошибка при копировании тендера'));
     }
   };
 
@@ -83,7 +83,7 @@ const MyTenders = () => {
       toast.success('Тендер опубликован!');
       fetchMyTenders();
     } catch (error) {
-      toast.error(error.response?.data?.detail || 'Ошибка при публикации');
+      toast.error(parseApiError(error, 'Ошибка при публикации'));
     }
   };
 
@@ -103,7 +103,7 @@ const MyTenders = () => {
       toast.success('Тендер отменен');
       fetchMyTenders();
     } catch (error) {
-      toast.error(error.response?.data?.detail || 'Ошибка при отмене');
+      toast.error(parseApiError(error, 'Ошибка при отмене'));
     }
   };
 
@@ -123,7 +123,7 @@ const MyTenders = () => {
       navigate(`/contracts/${response.data.id}`);
     } catch (error) {
       console.error('Ошибка при создании договора:', error);
-      toast.error(error.response?.data?.detail || 'Ошибка при создании договора');
+      toast.error(parseApiError(error, 'Ошибка при создании договора'));
     }
   };
 

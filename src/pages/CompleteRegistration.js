@@ -1,9 +1,9 @@
-import React, {useState, useRef, useContext} from 'react';
+import React, {useState, useRef} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {toast} from 'sonner';
-import {AppContext} from '@/App';
+import useAuthStore from '@/store/authStore';
 import apiClient from '@/services/api';
-import useDictionaryStore from '@/store/dictionaryStore';
+import { parseApiError } from '@/utils/apiError';
 import {useLanguage} from '@/context/LanguageContext';
 import {Input} from '@/components/ui/input';
 import {Label} from '@/components/ui/label';
@@ -28,6 +28,7 @@ import {
 
 // ── Constants ──────────────────────────────────────────────────────────────────
 
+const ORG_TYPES = ['ТОО', 'АО', 'ИП', 'ГП', 'КТ'];
 
 const ACCEPT = '.pdf,.jpg,.jpeg,.png';
 const ACCEPT_TYPES = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'];
@@ -167,10 +168,9 @@ const ContactCard = ({idx, contact, errs = {}, onChange, onRemove, canRemove, la
 // ── Main component ─────────────────────────────────────────────────────────────
 
 const CompleteRegistration = () => {
-    const {user, logout, checkAuth} = useContext(AppContext);
+    const {user, logout, checkAuth} = useAuthStore();
     const {t} = useLanguage();
     const navigate = useNavigate();
-    const companyTypes = useDictionaryStore((s) => s.dictionaries.company_type);
 
     const STEPS = [{id: 1, label: t('completeReg.step1Title'), icon: Building2}, {
         id: 2,
@@ -311,8 +311,11 @@ const CompleteRegistration = () => {
 
             await checkAuth();
             toast.success(t('completeReg.successMessage'));
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 500);
         } catch (error) {
-            toast.error(error.response?.data?.detail || 'Ошибка при сохранении данных');
+            toast.error(parseApiError(error, 'Ошибка при сохранении данных'));
         } finally {
             setLoading(false);
         }
@@ -333,32 +336,6 @@ const CompleteRegistration = () => {
     disabled:opacity-50 disabled:cursor-not-allowed`;
 
     // ── Render ─────────────────────────────────────────────────────────────────
-
-    // Документы уже загружены — ожидание решения модератора
-    if (user?.onboarding_completed !== false) {
-        return (
-            <div className="min-h-screen bg-[var(--color-bg-subtle)] flex items-center justify-center p-4">
-                <div className="w-full max-w-md bg-[var(--color-bg-surface)] border border-[var(--color-border)] rounded-2xl shadow-lg px-8 py-10 flex flex-col items-center gap-5 text-center">
-                    <div className="w-16 h-16 rounded-full bg-[var(--color-warning)]/10 flex items-center justify-center">
-                        <ShieldCheck size={32} className="text-[var(--color-warning)]"/>
-                    </div>
-                    <h2 className="text-xl font-semibold text-[var(--color-text-primary)]">
-                        {t('dashboard.pendingReview')}
-                    </h2>
-                    <p className="text-[var(--color-text-muted)] leading-relaxed">
-                        {t('dashboard.pendingNotice')}
-                    </p>
-                    <button
-                        onClick={logout}
-                        className="mt-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-danger)] transition-colors"
-                    >
-                        {t('nav.logout')}
-                    </button>
-                </div>
-            </div>
-        );
-    }
-
     return (<div className="min-h-screen bg-[var(--color-bg-subtle)] py-10 px-4 flex flex-col items-center">
             <div className="w-full max-w-4xl space-y-8">
 
@@ -420,9 +397,7 @@ const CompleteRegistration = () => {
                                                 <SelectValue placeholder="Выберите тип"/>
                                             </SelectTrigger>
                                             <SelectContent>
-                                                {companyTypes.map(ct => (
-                                                    <SelectItem key={ct.code} value={ct.code}>{ct.name_ru}</SelectItem>
-                                                ))}
+                                                {ORG_TYPES.map(t => <SelectItem key={t} value={t}>{t}</SelectItem>)}
                                             </SelectContent>
                                         </Select>
                                         {!form.org_type && touched &&

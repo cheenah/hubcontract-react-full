@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import {useParams, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import {toast} from 'sonner';
-import {AppContext} from '@/App';
+import useAuthStore from '@/store/authStore';
+import { BASE_URL as API } from '@/services/api';
 import {useLanguage} from '@/context/LanguageContext';
 import Layout from '@/components/Layout';
 import {Button} from '@/components/ui/button';
@@ -53,7 +54,7 @@ const styles = `
 const TenderDetail = () => {
     const {id} = useParams();
     const navigate = useNavigate();
-    const {user, API} = React.useContext(AppContext);
+    const user = useAuthStore(s => s.user);
     const {t, language} = useLanguage();
     const [tender, setTender] = useState(null);
     const [bids, setBids] = useState([]);

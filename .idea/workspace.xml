@@ -4,23 +4,46 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="baac46ef-bf41-4f73-b09d-490929e58f4a" name="Changes" comment="Новые исправления в отображении страниц">
+    <list default="true" id="baac46ef-bf41-4f73-b09d-490929e58f4a" name="Changes" comment="Новые исправления в отображении страниц, плюс новый функционал">
       <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ContractorLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ContractorLayout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout.backup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout.backup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ProtectedRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProtectedRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StaticLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StaticLayout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/VerificationGuard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/VerificationGuard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/invite.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/invite.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/CompleteRegistration.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/CompleteRegistration.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/admin/AdminEmailSender.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/AdminEmailSender.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/admin/AdminPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/AdminPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/CreateTenderDialog.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/CreateTenderDialog.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/admin/CreateTenderNew.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/CreateTenderNew.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/admin/VerificationDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/VerificationDetail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/contractor/ContractorProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/contractor/ContractorProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/contractor/ContractorTenderView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/contractor/ContractorTenderView.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/contractor/MyBids.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/contractor/MyBids.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/contractor/SubmitBid.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/contractor/SubmitBid.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/customer/ContractDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/customer/ContractDetail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/customer/Contracts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/customer/Contracts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/customer/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/customer/Dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/customer/MyTenders.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/customer/MyTenders.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/customer/SupplierBids.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/customer/SupplierBids.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/shared/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/shared/Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/shared/ProtocolView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/shared/ProtocolView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/shared/Support.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/shared/Support.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/static/404.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/static/404.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/static/ForgotPassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/static/ForgotPassword.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/static/Foribden.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/static/Foribden.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/static/LandingPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/static/LandingPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/static/ResetPassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/static/ResetPassword.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/static/TenderDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/static/TenderDetail.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/static/TenderList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/static/TenderList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/variables.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/variables.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/static/VerifyEmailPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/static/VerifyEmailPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +59,7 @@
     <option name="chatModeId" value="Agent" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="238" />
+    <option name="cachedIndexableFilesCount" value="246" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -66,6 +89,9 @@
     &quot;accountId&quot;: &quot;4851477b-3e57-4a48-82ee-436f728ae3bd&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/node_modules/sonner/dist/index.d.mts" root0="SKIP_INSPECTION" />
+  </component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
@@ -82,38 +108,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowPanel.toolwindow.highlight.mappings&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowPanel.toolwindow.highlight.symlinks&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowPanel.toolwindow.show.date&quot;: &quot;false&quot;,
-    &quot;WebServerToolWindowPanel.toolwindow.show.permissions&quot;: &quot;false&quot;,
-    &quot;WebServerToolWindowPanel.toolwindow.show.size&quot;: &quot;false&quot;,
-    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
-    &quot;com.google.cloudcode.ide_session_index&quot;: &quot;20260405_0000&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Subversion.SSH&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\PyCharm 2025.3.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "WebServerToolWindowPanel.toolwindow.highlight.mappings": "true",
+    "WebServerToolWindowPanel.toolwindow.highlight.symlinks": "true",
+    "WebServerToolWindowPanel.toolwindow.show.date": "false",
+    "WebServerToolWindowPanel.toolwindow.show.permissions": "false",
+    "WebServerToolWindowPanel.toolwindow.show.size": "false",
+    "ai.playground.ignore.import.keys.banner.in.settings": "true",
+    "com.google.cloudcode.ide_session_index": "20260405_0000",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "settings.editor.selected.configurable": "ssh.settings",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\PyCharm 2025.3.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mongo&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mongo"
     ]
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -164,7 +190,10 @@
       <workItem from="1777271259887" duration="16643000" />
       <workItem from="1777441669339" duration="1603000" />
       <workItem from="1777456803143" duration="5364000" />
-      <workItem from="1777971852765" duration="18789000" />
+      <workItem from="1777971852765" duration="21666000" />
+      <workItem from="1778155431310" duration="41639000" />
+      <workItem from="1778843619378" duration="3970000" />
+      <workItem from="1779539075366" duration="3333000" />
     </task>
     <task id="LOCAL-00001" summary="Node.js modules versions [Fix]">
       <option name="closed" value="true" />
@@ -318,7 +347,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777305370788</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Новые исправления в отображении страниц, плюс новы">
+      <option name="closed" value="true" />
+      <created>1778071055702</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1778071055702</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -372,15 +409,15 @@
     <MESSAGE value="test" />
     <MESSAGE value="&#10;вм" />
     <MESSAGE value="Новые исправления в отображении страниц" />
-    <option name="LAST_COMMIT_MESSAGE" value="Новые исправления в отображении страниц" />
+    <MESSAGE value="Новые исправления в отображении страниц, плюс новы" />
+    <option name="LAST_COMMIT_MESSAGE" value="Новые исправления в отображении страниц, плюс новы" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/pages/static/TenderDetail.js</url>
-          <line>616</line>
-          <properties lambdaOrdinal="-1" />
+          <line>617</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

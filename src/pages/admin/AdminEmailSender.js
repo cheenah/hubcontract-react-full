@@ -1,7 +1,8 @@
 import React, { useState, useRef, useCallback } from 'react';
 import axios from 'axios';
 import { toast } from 'sonner';
-import { AppContext } from '@/App';
+import { BASE_URL as API } from '@/services/api';
+import { parseApiError } from '@/utils/apiError';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -275,7 +276,6 @@ const buildEmptyArgs = (tpl) =>
 // ─────────────────────────────────────────────────────────────────────────────
 
 const AdminEmailSender = () => {
-  const { API } = React.useContext(AppContext);
 
   // Common
   const [email,   setEmail]   = useState('');
@@ -370,7 +370,7 @@ const AdminEmailSender = () => {
       setAttachments([]);
       setShowPreview(false);
     } catch (err) {
-      toast.error(err.response?.data?.detail || 'Ошибка отправки письма');
+      toast.error(parseApiError(err, 'Ошибка отправки письма'));
     } finally {
       setSending(false);
     }

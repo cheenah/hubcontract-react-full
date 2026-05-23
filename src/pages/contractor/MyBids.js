@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { AppContext } from '@/App';
+import { BASE_URL as API } from '@/services/api';
 import { useLanguage } from '@/context/LanguageContext';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -15,7 +15,6 @@ import { toast } from 'sonner';
 
 const MyBids = () => {
   const navigate = useNavigate();
-  const { API } = React.useContext(AppContext);
   const { t } = useLanguage();
   const [bids, setBids] = useState([]);
   const [tenders, setTenders] = useState({});

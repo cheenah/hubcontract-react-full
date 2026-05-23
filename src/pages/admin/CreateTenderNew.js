@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'sonner';
-import { AppContext } from '@/App';
+import { BASE_URL as API } from '@/services/api';
+import { parseApiError } from '@/utils/apiError';
 import { useLanguage } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -15,7 +16,6 @@ import useDictionaryStore from '@/store/dictionaryStore';
 
 const CreateTenderNew = () => {
   const navigate = useNavigate();
-  const { API } = React.useContext(AppContext);
   const { t } = useLanguage();
   const { tender_category, tender_type: tenderTypeDict, region: regionDict } = useDictionaryStore((s) => s.dictionaries);
   const [loading, setLoading] = useState(false);
@@ -241,7 +241,7 @@ const CreateTenderNew = () => {
       navigate('/customer/tenders');
     } catch (error) {
       console.error('Error creating tender:', error);
-      toast.error(error.response?.data?.detail || 'Ошибка при создании тендера');
+      toast.error(parseApiError(error, 'Ошибка при создании тендера'));
     } finally {
       setLoading(false);
     }

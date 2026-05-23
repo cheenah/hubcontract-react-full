@@ -15,8 +15,8 @@
 
 import axios from 'axios';
 
-// export const BASE_URL = process.env.REACT_APP_API_URL || 'https://test-api.hubcontract.kz/api';
-export const BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
+export const BASE_URL = process.env.REACT_APP_API_URL || 'https://test-api.hubcontract.kz/api';
+// export const BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Interceptor factories (shared logic, applied to both instances)
@@ -25,7 +25,10 @@ export const BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/
 function makeRequestInterceptor() {
   return (config) => {
     const token = localStorage.getItem('token');
-    if (token) {
+    const isOwnApi = !config.baseURL
+      ? config.url?.startsWith(BASE_URL) || config.url?.startsWith('/')
+      : config.baseURL === BASE_URL;
+    if (token && isOwnApi) {
       config.headers = config.headers ?? {};
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -100,7 +103,7 @@ function auditLog(response, instance) {
 
   const action = deriveAction(method, url);
   instance
-    .post(`${BASE_URL}/audit/log`, { action, url, method, status: response.status })
+    .post('/audit/log', { action, url, method, status: response.status })
     .catch(() => {});
 }
 

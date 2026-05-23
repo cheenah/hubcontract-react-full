@@ -1,16 +1,17 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { AppContext } from '@/App';
+import useAuthStore from '@/store/authStore';
+import { BASE_URL as API } from '@/services/api';
 import { Search, FileText, CheckCircle, Clock, FileSignature, Ban } from 'lucide-react';
 import { toast } from 'sonner';
 
 const Contracts = () => {
   const navigate = useNavigate();
-  const { user, API } = useContext(AppContext);
+  const user = useAuthStore(s => s.user);
   const [contracts, setContracts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');

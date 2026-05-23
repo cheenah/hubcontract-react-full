@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
-import {AppContext} from '@/App';
+import useAuthStore from '@/store/authStore';
+import { BASE_URL as API } from '@/services/api';
 import {useLanguage} from '@/context/LanguageContext';
 
 import {Button} from '@/components/ui/button';
@@ -18,7 +19,7 @@ import useDictionaryStore from '@/store/dictionaryStore';
 const TenderList = () => {
 
     const navigate = useNavigate();
-    const {API, user} = React.useContext(AppContext);
+    const user = useAuthStore(s => s.user);
     const {t, language} = useLanguage(); // language вернет 'ru', 'en', 'kk' или 'zh'
     const { tender_category, tender_type: tenderTypeDict, region: regionDict } = useDictionaryStore((s) => s.dictionaries);
     const [tenders, setTenders] = useState([] );

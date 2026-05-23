@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'sonner';
-import { AppContext } from '@/App';
+import { BASE_URL as API } from '@/services/api';
+import { parseApiError } from '@/utils/apiError';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { FileText, Award, DollarSign, Users, Calendar } from 'lucide-react';
@@ -188,7 +189,6 @@ const styles = `
 const ProtocolView = () => {
   const { tenderId } = useParams();
   const navigate = useNavigate();
-  const { API } = React.useContext(AppContext);
   const [protocol, setProtocol] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -203,7 +203,7 @@ const ProtocolView = () => {
       setProtocol(response.data);
     } catch (error) {
       console.error('Error fetching protocol:', error);
-      toast.error(error.response?.data?.detail || 'Ошибка при загрузке протокола');
+      toast.error(parseApiError(error, 'Ошибка при загрузке протокола'));
       navigate('/tenders');
     } finally {
       setLoading(false);

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import {
     Mail,
     Phone,
@@ -27,8 +27,9 @@ import axios from "axios";
 import { toast } from "sonner";
 import useRecaptcha from '@/hooks/useRecaptcha';
 import ResendOtpButton from '@/components/ResendOtpButton';
-import { AppContext } from '@/App';
+import useAuthStore from '@/store/authStore';
 import { BASE_URL as API } from '@/services/api';
+import { parseApiError } from '@/utils/apiError';
 
 const HeaderButton = ({ children, onClick, onMouseEnter, onMouseLeave, style }) => (
     <div
@@ -55,7 +56,7 @@ const StaticLayout = ({ children } = {}) => {
     const location = useLocation();
     const { t, language, changeLanguage, languages } = useLanguage();
     const { getToken } = useRecaptcha();
-    const { setUser } = useContext(AppContext);
+    const { setUser } = useAuthStore();
 
     // Mobile menu state
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -113,7 +114,7 @@ const StaticLayout = ({ children } = {}) => {
             if (status === 403 && detail?.toLowerCase().includes('скоринг')) {
                 toast.error(t('auth.recaptchaError'), { duration: 6000 });
             } else {
-                toast.error(detail || t('auth.loginError'));
+                toast.error(parseApiError(error, t('auth.loginError')));
             }
         } finally {
             setLoading(false);
@@ -131,7 +132,7 @@ const StaticLayout = ({ children } = {}) => {
             });
             finishLogin(response.data);
         } catch (error) {
-            toast.error(error.response?.data?.detail || t('auth.invalidOtp'));
+            toast.error(parseApiError(error, t('auth.invalidOtp')));
         } finally {
             setLoading(false);
         }
@@ -139,7 +140,6 @@ const StaticLayout = ({ children } = {}) => {
 
     const finishLogin = (data) => {
         localStorage.setItem('token', data.token);
-        // Sync AppContext immediately so ProtectedRoute doesn't redirect back to "/"
         if (data.user) setUser(data.user);
         setShowAuth(false);
         resetAuthDialog();
